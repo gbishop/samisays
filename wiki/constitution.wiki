@@ -2,7 +2,7 @@
 
 =The Constitution of Sami Says=
 
-1. In the event of conflict, the parties involved must settle the debate with a vote, wherein majority rules.  Decisions reached in this manner must be documented.
+1. All members of the committee must certify this document.
 
 2. Discrimination based on race, religion, political values, or lack of natural programming talent is hereby prohibited.
 
@@ -12,7 +12,7 @@
 
 5. Each actor should make every effort to ensure his or her changes to the code will not break the build.
 
-6 All members of the committee must certify this document.
+6. In the event of conflict, the parties involved must settle the debate with a vote, wherein majority rules.  Decisions reached in this manner must be documented.
 
 7. Amendments to the document must be made with unanimous consent by all members of the committee.
 
