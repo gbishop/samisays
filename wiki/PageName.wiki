@@ -1,2 +1,0 @@
-#labels MeetingNotes
-Ok
