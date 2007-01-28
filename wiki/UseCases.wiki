@@ -1,0 +1,42 @@
+#summary Tasks the typical user might want to complete
+
+===Teacher Use Cases===
+
+*Starting the Application*
+  * The application will be started by the click of an icon or access via the start menu.
+
+*Assigning the Student a Free-Form Assignment*
+  * The teacher starts the application with a click.
+  * The teacher then selects the student from the list.
+  * The teacher selects the new project button and leaves the pool of sound effects in their default settings.
+  * The teacher gives control of the application to the student.
+
+*Assigning the Student an Assignment Using Selected Sounds*
+  * The teacher starts the application with a click.
+  * The teacher then selects the student from the list.
+  * The teacher selects the new project button and selects the desired sounds from the pool.
+  * The teacher gives control of the application to the student.
+
+*Letting the Student Resume Work on an Assignment*
+  * The teacher starts the application with a click
+  * The teacher then selects the student from the list and selects the open project button.
+  * The teacher selects the desired project from the list and clicks the edit button.
+  * The teacher gives control of the application to the student.
+
+*Playing a Student's Project*
+  * The teacher starts the application with a click
+  * The teacher then selects the student from the list and selects the open project button.
+  * The teacher selects the desired project from the list and clicks the play button.
+
+*Exporting a Student's Project*
+  * The teacher starts the application with a click
+  * The teacher then selects the student from the list and selects the export project button.
+  * The teacher selects the file type and file name and clicks save on the export dialog.
+
+*Deleting a Student's Project*
+  * The teacher starts the application with a click
+  * The teacher then selects the student from the list and clicks the delete button.
+  * A confirm dialog appears to avoid unplanned deletion.
+
+=== Student Use Cases ===
+
