@@ -41,3 +41,10 @@
 
 
 === Student Use Cases ===
+
+*Recording Consecutive Segments*
+  * The student records segments by pressing down the space-bar and speaking into the microphone.
+  * The segment completes with the release of the space-bar.
+  * To record another segment, press the spacebar and speak again.
+
+*Inserting a sound effect between segments*
