@@ -1,5 +1,6 @@
 #summary Tasks the typical user might want to complete
 
+
 ===Teacher Use Cases===
 
 *Starting the Application*
@@ -38,5 +39,5 @@
   * The teacher then selects the student from the list and clicks the delete button.
   * A confirm dialog appears to avoid unplanned deletion.
 
-=== Student Use Cases ===
 
+=== Student Use Cases ===
