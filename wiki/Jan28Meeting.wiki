@@ -11,5 +11,8 @@ Length: 4 hours
 
 *Major Decisions:*
   * See GUI design.
+    * Only teachers can export files
+    * Two Contexts: Free Play and Guided Play
   * Hear AUI design.
-
+    * 6-button design (Space, Arrows, CTRL)
+  * "Select Story Screen" will be synced between AUI and GUI.
