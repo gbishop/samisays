@@ -6,39 +6,97 @@
 *Starting the Application*
   * The application will be started by the click of an icon or access via the start menu.
 
-*Assigning the Student a Free-Form Assignment*
+*Importing Sound File Into Library*
+  * The teacher starts the applications with a click.
+  * The teacher selects "Sounds".
+  * The teacher then clicks the "Import Sound(s)" button.
+  * A file dialog box opens.
+  * The teacher browses to the desired sound file or package for importation.
+  * If it is a single sound: 
+     * The teacher chooses a category for the sound from a list.
+     * If desired category does not exist, the teacher selects "Add New Category" and types in a name.
+  * The file is imported into the library.  A dialog pops up to let the teacher know the
+file has been imported.  The dialog asks if they wish us to delete the source file.
+
+*Adding a New Student*
   * The teacher starts the application with a click.
-  * The teacher then selects the student from the list.
-  * The teacher selects the new project button and leaves the pool of sound effects in their default settings.
-  * The teacher gives control of the application to the student.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher clicks the "New" button.
+  * The teacher enters the student's name.
+  * The teacher selects "Add Student".
 
-*Assigning the Student an Assignment Using Selected Sounds*
+*Deleting a Student*
   * The teacher starts the application with a click.
-  * The teacher then selects the student from the list.
-  * The teacher selects the new project button and selects the desired sounds from the pool.
-  * The teacher gives control of the application to the student.
-
-*Letting the Student Resume Work on an Assignment*
-  * The teacher starts the application with a click
-  * The teacher then selects the student from the list and selects the open project button.
-  * The teacher selects the desired project from the list and clicks the edit button.
-  * The teacher gives control of the application to the student.
-
-*Playing a Student's Project*
-  * The teacher starts the application with a click
-  * The teacher then selects the student from the list and selects the open project button.
-  * The teacher selects the desired project from the list and clicks the play button.
-
-*Exporting a Student's Project*
-  * The teacher starts the application with a click
-  * The teacher then selects the student from the list and selects the export project button.
-  * The teacher selects the file type and file name and clicks save on the export dialog.
-
-*Deleting a Student's Project*
-  * The teacher starts the application with a click
-  * The teacher then selects the student from the list and clicks the delete button.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher highlights the student to be deleted.
+  * The teacher clicks the "Delete" button.
   * A confirm dialog appears to avoid unplanned deletion.
 
+*Assigning the Student a Free-Form Assignment*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher selects "Free Play".
+  * The teacher gives control of the application to the student.
+
+*Assigning the Student a New Assignment Using Selected Sounds*
+  * The teacher starts the application with a click.
+  * THe teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher selects "Guided Play".
+  * The teacher selects "New".
+  * The teacher selects sounds and sound categories from the sound pool.
+  * The teacher gives control of the application to the student.
+
+*Letting the Student Resume Work on an Existng Assignment Using Selected Sounds*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher selects "Guided Play".
+  * The teacher selects the desired project from the list and clicks the "Select" button.
+  * The teacher gives control of the application to the student.
+
+*Playing a Student's Story*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher selects "Guided Play"/"Free Play".
+  * (If Guided Play) The teacher selects the desired project from the list.
+  * The teacher selects the story to be played.
+  * The teacher clicks the "Play" button.
+
+*Exporting a Student's Story*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher selects "Guided Play"/"Free Play".
+  * (If Guided Play) The teacher selects the desired project from the list.
+  * Select the story to be exported.
+  * The teacher clicks the "Export" button.
+  * The teacher selects the file type and file name and clicks save on the export dialog.
+
+*Deleting a Student (and the Studen't Projects and Stories)*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list and clicks the "Delete" button.
+  * A confirm dialog appears to avoid unplanned deletion.
+
+*Deleting a Student's Project (and the Stories in the Project)*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher clicks the "Guided Play" button.
+  * The teacher selects the project and clicks the "Delete" button.
+  * A confirm dialog appears to avoid unplanned deletion.
+
+*Deleting a Student's Story*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher clicks the "Free Play"/"Guided Play" button.
+  * (If Guided Play) The teacher selects the desired project from the list.
+  * The teacher selects the story and clicks the "Delete" button.
+  * A confirm dialog appears to avoid unplanned deletion.
 
 === Student Use Cases ===
 
