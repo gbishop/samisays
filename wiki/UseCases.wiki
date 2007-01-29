@@ -15,7 +15,9 @@
   * If it is a single sound: 
      * The teacher chooses a category for the sound from a list.
      * If desired category does not exist, the teacher selects "Add New Category" and types in a name.
-  * The file is imported into the library.  A dialog pops up to let the teacher know the file has been imported.  The dialog asks if they wish us to delete the source file.
+  * The file is imported into the library.  
+  * A dialog pops up to let the teacher know the file has been imported.  
+  * The dialog asks if the teacher wishes for the source file to be deleted.
 
 *Adding a New Student*
   * The teacher starts the application with a click.
@@ -35,7 +37,7 @@
   * The teacher starts the application with a click.
   * The teacher selects "Stories" from the splash screen.
   * The teacher then selects the student from the list.
-  * The teacher selects "Free Play".
+  * The teacher clicks "Free Play".
   * The teacher gives control of the application to the student.
 
 *Assigning the Student a New Assignment Using Selected Sounds*
@@ -52,7 +54,7 @@
   * The teacher selects "Stories" from the splash screen.
   * The teacher then selects the student from the list.
   * The teacher selects "Guided Play".
-  * The teacher selects the desired project from the list and clicks the "Select" button.
+  * The teacher highlights the desired project from the list and clicks the "Select" button.
   * The teacher gives control of the application to the student.
 
 *Playing a Student's Story*
@@ -61,8 +63,18 @@
   * The teacher then selects the student from the list.
   * The teacher selects "Guided Play"/"Free Play".
   * (If Guided Play) The teacher selects the desired project from the list.
-  * The teacher selects the story to be played.
+  * The teacher highlights the story to be played.
   * The teacher clicks the "Play" button.
+
+*Giving a Text Name to a Student's Story*
+  * The teacher starts the application with a click.
+  * The teacher selects "Stories" from the splash screen.
+  * The teacher then selects the student from the list.
+  * The teacher selects "Guided Play"/"Free Play".
+  * (If Guided Play) The teacher selects the desired project from the list.
+  * The teacher highlights the story to be named.
+  * The teacher clicks the "Add Text Title" button
+  * The teacher types the text title into the dialog box and clicks "OK".
 
 *Exporting a Student's Story*
   * The teacher starts the application with a click.
@@ -70,7 +82,7 @@
   * The teacher then selects the student from the list.
   * The teacher selects "Guided Play"/"Free Play".
   * (If Guided Play) The teacher selects the desired project from the list.
-  * Select the story to be exported.
+  * The teacher highlights the story to be exported.
   * The teacher clicks the "Export" button.
   * The teacher selects the file type and file name and clicks save on the export dialog.
 
@@ -105,4 +117,3 @@
   * To record another segment, press the spacebar and speak again.
 
 *Inserting a sound effect between segments*
-
