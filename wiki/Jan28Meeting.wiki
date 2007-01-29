@@ -1,0 +1,15 @@
+#labels Meetings
+Length: 4 hours
+
+*Completed Tasks:*
+  * Demoed Adam's AUI proof-of-concept.
+  * Modified and extended Patrick's Teacher Use Cases.
+  * Designed tenative GUI and AUI.
+  * Wrote requirements.
+  * Used $42 of Patrick's meal plan at Lenoir.
+    * Made good waffle, "milk shakes," and ice cream sundae.
+
+*Major Decisions:*
+  * See GUI design.
+  * Hear AUI design.
+
