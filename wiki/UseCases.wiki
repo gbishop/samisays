@@ -2,6 +2,8 @@
 
 
 ===Teacher Use Cases===
+ T # Starting the Application
+ T # Importing Sound File Into Library
 
 *Starting the Application*
   * The application will be started by the click of an icon or access via the start menu.
