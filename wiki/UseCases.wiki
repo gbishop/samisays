@@ -15,7 +15,7 @@
  # Deleting a Student's Story
  # Deleting a Student's Project (and the Stories in the Project)
  # Deleting a Student (and the Studen't Projects and Stories)
- # ADVANCED: Importing Sound file Into Library
+ # _Advanced_: Importing Sound file Into Library
 *
 
 *T1.  Starting the Application*
@@ -111,7 +111,7 @@
   * The teacher then selects the student from the list and clicks the "Delete" button.
   * A confirm dialog appears to avoid unplanned deletion.
 
-*T13. ADVANCED: Importing Sound File Into Library*
+*T13. _Advanced:_ Importing Sound File Into Library*
   * The teacher starts the applications with a click.
   * The teacher selects "Sounds".
   * The teacher then clicks the "Import Sound(s)" button.
@@ -130,8 +130,8 @@
  # Opening a Saved Story
  # Recording a Story as Consecutive Segments
  # Inserting Sound Effects in a Consecutive Segment Story
- # Saving a Story
- # ADVANCED: Recording and Editing a Story
+ # Saving and Exiting a Story
+ # _Advanced:_ Recording and Editing a Story
 
 *
 
@@ -149,7 +149,7 @@
  * The student presses the SPACE BAR to select the desired story.
  * The student is played instructions for editing an existing story.
 
-*S3. Recording a Story as Consecutive Segments*
+*S3.  Recording a Story as Consecutive Segments*
  * The student opens an existing story or starts a new story.
  * If the story is new:
     *The student records the title of the story by pressing and holding the SPACE BAR and speaking into the microphone.
@@ -159,9 +159,24 @@
  * The recording completes with the release of the SPACE BAR.
  * The segment is played and the student may press the UP arrow key to erase it and rerecord.
  * To record the next segment, the student presses and holds the SPACE BAR and speaks again.
- * When the story is complete, the student presses CTRL to play the story in its entirety.
 
-*Inserting Sound Effects in a Consecutive Segment Story*
+*S4.  Inserting Sound Effects in a Consecutive Segment Story*
  * The student begins recording a story as in S3.
  * When the student desires to insert a sound effect, s/he presses the DOWN arrow key.
- * 
+ * The student uses the LEFT and RIGHT arrow keys to navigate through the different categories.
+ * The name of each category is played as the student navigates, and the student may interrupt the name at any time to move to the next category.
+ * When the student finds the desired category, the s/he navigates with the UP and DOWN keys between the different sounds in the category.
+ * Each sound is played as the student navigates, and the student may interrupt the sound at any time to move to the next sound.
+ * The student may also press the LEFT or RIGHT arrow keys to again navigate between categories.
+ * When the desired sound is found, the student presses the SPACE BAR to insert the sound in the story.
+ * The sound is repeated and the student may press the DOWN arrow key to delete the sound.
+ * At this point, the student continues as in S3.
+
+*S5.  _Advanced:_ Recording and Editing a Story*
+
+
+*S6.  Saving and Exiting a Story*
+ * The student creates their story as in S3, S4, and S5.
+ * When ready to save, the student presses CTRL to have the story played back in its entirety.
+ * After the story is played, the student will be asked to press CTRL again if s/he would like to save and exit.  Otherwise the student is to continue creating as before.
+ * If the student presses CTRL, s/he is notified that the story has been succesfully saved and is returned to the project or Free Play menu.
