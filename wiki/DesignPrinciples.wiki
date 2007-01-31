@@ -13,3 +13,5 @@
  * All interactions should be designed with a novice computer user in mind.  File interactions, such as when a user imports a sound library, should be simple and not assume any knowledge or understanding of directory structure or other advanced topics.
 
  * The entire program should be kept simple - avoid "modes" and heavy modularization of the design.
+
+ * Two uses should be kept in mind throughout design - "free" and "guided" use.  While the primary purpose is educational with the classroom in mind, users should be able to play on their own without any hassle introduced by managing multiple student profiles.
