@@ -1,4 +1,5 @@
 #summary A very specific outline of what we aim for Sami Says to do.
+#labels AssignedDocuments
 
 ==What We Want Sami Says to do==
 
