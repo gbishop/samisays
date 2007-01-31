@@ -1,0 +1,4 @@
+#summary How to run the prototype.
+
+ # Install Python 2.4 [http://www.python.org/ftp/python/2.4.4/python-2.4.4.msi]
+ # Install Pysonic for Python 2.4 [http://downloads.sourceforge.net/pysonic/pySonic-0.8.win32-py2.4.exe?modtime=1108217760&big_mirror=0]
