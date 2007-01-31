@@ -1,1 +1,9 @@
+#summary Overaching principles for SamiSays
+
 = Design Principles =
+*The GUI should be managable by novice users.  This entails as few buttons as possible with descriptive labels.
+*No more than six buttons should be used to navigate through the audio interface.
+*Students should be able to save their progress so that they may resume later at any point during story creation.  This should be possible without the teacher's assistance.
+*There should be one version of the game that requires the teacher to launch the application and navigate to story creation.  The teacher can then turn over control to the student.  Time permitting there will be another version that will allow the student to start immediately into story creation.
+*It is expected that the teacher will be launching the program and navigate to story creation.  It is also expected that the teacher will not be visually impaired and capable of navigating through a GUI.
+*It is expected that the students creating stories may be visually impaired, so the interface is designed to accomodate their needs using audio prompts.
