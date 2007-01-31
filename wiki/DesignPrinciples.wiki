@@ -2,7 +2,7 @@
 
 = Design Principles =
 
- * The GUI should be manageable by novice users.  This entails as few buttons as possible with descriptive labels.
+ * The GUI should be manageable by novice users.  This entails as few buttons as possible with descriptive labels.  Additionally, tooltips should be included for teachers/parents for every major function to provide a good description of what everything does.
 
  * No more than six buttons should be used to navigate through the audio interface.  Buttons should perform in a consistent, predictable fashion at all times.
 
