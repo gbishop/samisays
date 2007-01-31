@@ -1,4 +1,5 @@
 #summary Overarching principles for SamiSays
+#labels AssignedDocuments
 
 = Design Principles =
 
