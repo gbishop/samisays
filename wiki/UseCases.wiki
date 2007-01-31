@@ -2,6 +2,7 @@
 
 
 ===Teacher Use Cases===
+*
  # Starting the Application
  # Adding a New Student
  # Deleting a Student
@@ -15,7 +16,7 @@
  # Deleting a Student's Project (and the Stories in the Project)
  # Deleting a Student (and the Studen't Projects and Stories)
  # ADVANCED: Importing Sound file Into Library
-
+*
 *T1.  Starting the Application*
   * The application will be started by the click of an icon or access via the start menu.
 
