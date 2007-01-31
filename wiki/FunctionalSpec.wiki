@@ -1,0 +1,9 @@
+#summary The functional spec for Sami Says.
+
+= Functional Spec =
+
+[PrimaryFunctions Primary Functions]
+
+[DesignPrinciples Design Principles]
+
+[UseCases Use Cases]
