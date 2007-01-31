@@ -1,4 +1,5 @@
 #summary The functional spec for Sami Says.
+#labels AssignedDocuments
 
 = Functional Spec =
 
