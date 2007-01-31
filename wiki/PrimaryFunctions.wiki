@@ -1,4 +1,5 @@
 #summary The primary functions of Sami Says
+#labels AssignedDocuments
 
 = What Sami Says Should Do at a High Level =
   * Provide an easy-to-use, accessible interface for vision-impaired children to record story segments, insert sound clips, and play back completed stories.
