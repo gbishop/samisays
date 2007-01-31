@@ -15,7 +15,7 @@
  # Deleting a Student's Story
  # Deleting a Student's Project (and the Stories in the Project)
  # Deleting a Student (and the Studen't Projects and Stories)
- # _Advanced_: Importing Sound file Into Library
+ # _Advanced_: Importing Sound File Into Library
 *
 
 *T1.  Starting the Application*
@@ -173,7 +173,17 @@
  * At this point, the student continues as in S3.
 
 *S5.  _Advanced:_ Recording and Editing a Story*
-
+ * The student begins recording a story as in S3.
+ * After recording a title, the student may use the LEFT and RIGHT arrow keys to navigate between the story's segments.
+ * Each segment will begin playing as it is navigatd to.
+ * The playing will be interrupted by any of the following key actions:
+  * UP to delete the segment, after which the previous segment will automatically be navigated to and begin playing.
+  * DOWN to insert a sound effect as described in S4.
+  * LEFT or RIGHT to navigate.
+  * CTRL to play the full story and (possibly) save and exit as described in S5.
+ * Any added sounds or recordings will be placed after the segment that has last been repeated.
+ * If the student attempts to navigate past the end or beginning, the last or first segment will be repeated respectively. 
+ * If the student deletes the title, s/he will be prompted to record a new one.
 
 *S6.  Saving and Exiting a Story*
  * The student creates their story as in S3, S4, and S5.
