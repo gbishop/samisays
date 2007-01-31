@@ -1,3 +1,5 @@
+1 Hour
+
 Attendees:
  * Diane P
  * Sami Says Team
@@ -11,10 +13,12 @@ Discussion:
    * No password.
    * Say person's name when user is selected.
  * Project defines the order of sounds.
-   *Copy into prioritized category.
+   * Copy into prioritized category.
+   * This category remains until it is changed.
  * Projects above students in hierarchy?
  * No Projects? - All stories go to the same place.
  * Sound reordering remains until it is changed.
+ * First time user instructions for student.
  
 Deliverables:
  # Core game function.
