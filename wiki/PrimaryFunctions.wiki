@@ -1,14 +1,5 @@
 #summary The primary functions of Sami Says
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
+= What Sami Says Should Do at a High Level =
+  * Provide an easy-to-use, accessible interface for vision-impaired children to record story segments, insert sound clips, and play back completed stories.
+  * Provide advanced users an interface for editing their stories and applying more complex audio transformations and filters.
