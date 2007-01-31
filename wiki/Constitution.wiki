@@ -1,4 +1,5 @@
-#summary team rules
+#summary Team Rules
+#labels AssignedDocuments
 
 =The Constitution of Sami Says=
 
