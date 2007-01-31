@@ -2,19 +2,19 @@
 
 
 ===Teacher Use Cases===
-  # Starting the Application
-  # Adding a New Student
-  # Deleting a Student
-  # Assigning a Student a Free-Form Assignment
-  # Assigning a Student a New Assignment Using Selected Sounds
-  # Letting the Student Resume Work on an Existng Assignment Using Selected Sounds
-  # Playing a Student's Story
-  # Giving a Text Name to a Student's Story
-  # Exporting a Student's Story
-  # Deleting a Student's Story
-  # Deleting a Student's Project (and the Stories in the Project)
-  # Deleting a Student (and the Studen't Projects and Stories)
-  # Importing Sound file Into Library
+ # Starting the Application
+ # Adding a New Student
+ # Deleting a Student
+ # Assigning a Student a Free-Form Assignment
+ # Assigning a Student a New Assignment Using Selected Sounds
+ # Letting the Student Resume Work on an Existng Assignment Using Selected Sounds
+ # Playing a Student's Story
+ # Giving a Text Name to a Student's Story
+ # Exporting a Student's Story
+ # Deleting a Student's Story
+ # Deleting a Student's Project (and the Stories in the Project)
+ # Deleting a Student (and the Studen't Projects and Stories)
+ # ADVANCED: Importing Sound file Into Library
 
 *T1.  Starting the Application*
   * The application will be started by the click of an icon or access via the start menu.
@@ -109,7 +109,7 @@
   * The teacher then selects the student from the list and clicks the "Delete" button.
   * A confirm dialog appears to avoid unplanned deletion.
 
-*T13. Importing Sound File Into Library*
+*T13. ADVANCED: Importing Sound File Into Library*
   * The teacher starts the applications with a click.
   * The teacher selects "Sounds".
   * The teacher then clicks the "Import Sound(s)" button.
@@ -123,6 +123,13 @@
   * The dialog asks if the teacher wishes for the source file to be deleted.
 
 === Student Use Cases ===
+ # Starting a New Story
+ # Opening a Saved Story
+ # Recording a Story as Consecutive Segments
+ # Inserting Sounds in a Consecutive Segment Story
+ # ADVANCED: Recording and Editing a Story
+ # Saving a Story
+ 
 
 *Recording Consecutive Segments*
   * The student records segments by pressing down the space-bar and speaking into the microphone.
@@ -130,8 +137,3 @@
   * To record another segment, press the spacebar and speak again.
 
 *Inserting a sound effect between segments*
-
-
-
-
-
