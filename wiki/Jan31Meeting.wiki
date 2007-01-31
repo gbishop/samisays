@@ -1,0 +1,22 @@
+Attendees:
+ *Diane P
+ *Sami Says Team
+
+Discussion:
+ *Single functional spec document for Diane B.
+ *Use "visually impaired" instead of "blind".
+ *Teacher may be visually impaired but needs to be able to use a GUI.
+ *Security?
+   *Don't worry about "maliciousness".
+   *No password.
+   *Say person's name when user is selected.
+ *Project defines the order of sounds.
+   *Copy into prioritized category.
+ *Projects above students in hierarchy?
+ *No Projects? - All stories go to the same place.
+ *Sound reordering remains until it is changed.
+ 
+Deliverables:
+ # Core game function.
+ # Core teacher interface.
+ # Primary sound effects management and student GUI.
