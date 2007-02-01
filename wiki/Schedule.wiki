@@ -2,5 +2,28 @@
 
 = The Schedule =
 
-|| *Task* || *Planned Date* || *Date Completed* || *Person Responsible* ||
-|| Test || Now || Never || Corey ||
+|| _*Task*_ || _*Planned Date*_ || _*Date Completed*_ || _*Person Responsible*_ ||
+|| Web Site || 1/29 || 1/29 || Ed ||
+|| Team Rules || 1/29 || 1/29 || Everyone ||
+|| Functional Spec || 1/30 || 1/30 || Everyone ||
+|| Project Schedule || 1/31 || 2/1 || Corey & Ed ||
+|| Draft Contract || 2/2 || _N/A_ || Everyone ||
+|| Draft AUI Design Doc || 2/7 || _N/A_ || Ed ||
+|| Initial Contract || 2/7 || _N/A_ || Everyone ||
+|| Final AUI Design Doc || 2/9 || _N/A_ || Ed ||
+|| Draft GUI Design Doc || 2/12 || _N/A_ || Patrick ||
+|| AUI Code Intermediate Checkpoint || 2/14 || _N/A_ || Adam ||
+|| AUI Documentation Outline || 2/14 || _N/A_ || Ed ||
+|| AUI Code Freeze || 2/26 || _N/A_ || Adam ||
+|| AUI Documentation Complete || 2/26 || _N/A_ || Ed ||
+|| AUI Test Plan || 2/26 || _N/A_ || Corey ||
+|| *First Deliverable* || 3/2 || _N/A_ || Everyone ||
+|| *Midterm Presentation* || 3/6 || _N/A_ || Everyone ||
+|| *Second Deliverable* || 4/5 || _N/A_ || Everyone ||
+
+
+
+
+
+
+
