@@ -22,7 +22,7 @@
 || *Midterm Presentation* || 3/6 || _N/A_ || Everyone ||
 || Final Teacher GUI Design Doc || 3/7 || _N/A_ || Patrick ||
 || Draft File System Design Doc || 3/7 || _N/A_ || Corey ||
-|| Teacher GUI Code Intermediate Checkpoint || 3/21 || _N/A_ ||
+|| Teacher GUI Code Intermediate Checkpoint || 3/21 || _N/A_ || Patrick ||
 || Final File System Design Doc || 3/26 || _N/A_ || Corey ||
 || Teacher GUI Code Complete || 3/30 || _N/A_ || Patrick ||
 || Teacher GUI Documentation Complete || 3/30 || _N/A_ || Ed ||
@@ -31,7 +31,6 @@
 || *Second Deliverable* || 4/5 || _N/A_ || Everyone ||
 || *In-class testing* || 4/17 || _N/A_ || Everyone ||
 || *Final Presentation* || 5/3 || _N/A_ || Everyone ||
-
 
 
 
