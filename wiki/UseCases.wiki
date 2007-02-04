@@ -109,13 +109,13 @@
 *
 
 *S1.  Starting a New Story*
- * The teacher navigates to the student's project or Free Play main screen and gives control to the student.
- * The student is played the instructions for the main screen.
+ * The teacher navigates to the student's stories and gives control to the student.
+ * The student hears the instructions for the main screen.
  * The student presses the UP arrow key to start a new story.
- * The student is played the instructions for a new story.
+ * The student hears the instructions for a new story.
 
 *S2.  Opening a Saved Story*
- * The teacher navigates to the student's project or Free Play main screen and gives control to the student.
+ * The teacher navigates to the student's stories and gives control to the student.
  * The student is played the instructions for the main screen.
  * The student uses the LEFT and RIGHT arrow keys to navigate to the story s/he wishes to open.
  * The title of each story is played as the student navigates, and the student may interrupt the title at any time to move to the next story.
