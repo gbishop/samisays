@@ -5,8 +5,7 @@
 
 ===Primary Requirements===
 
- # Teachers should be able to manage a list of students and their projects.
- # Teachers should be able to create new projects for students to complete with or without specification on the group of sounds that students may access.
+ # Teachers should be able to manage a list of students via a GUI.
  # Teachers should be able to manage the sound library via the file system.
  # Students should be able to load and save stories via an Audio User Interface (AUI).
  # Students should be able to record and navigate stories using a simple 5-6 button interface coupled with the afore-mentioned AUI.
@@ -14,7 +13,7 @@
 
 ===Secondary Requirements===
 
- # Teachers should be able to manage the sound library.
+ # Teachers should be able to manage the sound library via a GUI.
  # Teachers should be able to export stories into standard format(s).
  # Teachers should be able to see, *not modify* the sound through a time-line gui.
 
