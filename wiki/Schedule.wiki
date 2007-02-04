@@ -10,7 +10,7 @@
 || Project Schedule || 1/31 || 2/1 || Corey & Ed ||
 || Draft Contract || 2/2 || _N/A_ || Everyone ||
 || Draft AUI Design Doc || 2/7 || _N/A_ || Ed ||
-|| Initial Contract || 2/7 || _N/A_ || Patrick ||
+|| Initial Contract || 2/7 || _N/A_ || Everyone ||
 || Final AUI Design Doc || 2/9 || _N/A_ || Ed ||
 || Draft Teacher GUI Design Doc || 2/12 || _N/A_ || Patrick ||
 || AUI Code Intermediate Checkpoint || 2/14 || _N/A_ || Adam ||
@@ -32,7 +32,6 @@
 || *Second Deliverable* || 4/5 || _N/A_ || Everyone ||
 || *In-class testing* || 4/17 || _N/A_ || Everyone ||
 || *Final Presentation* || 5/3 || _N/A_ || Everyone ||
-
 
 
 
