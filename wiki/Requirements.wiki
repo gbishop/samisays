@@ -6,7 +6,8 @@
 ===Primary Requirements===
 
  # Teachers should be able to manage a list of students via a GUI.
- # Teachers should be able to manage the sound library via the file system.
+ # Teachers should be able to manage (categorize, add, and delete) the sound library via the file system.
+ # Teachers should be able to place certain sounds in a "Priority" category that will be the first presented to students when inserting sounds.
  # Students should be able to load and save stories via an Audio User Interface (AUI).
  # Students should be able to record and navigate stories using a simple 5-6 button interface coupled with the afore-mentioned AUI.
  # Students should be able to insert sound effects into their stories.
