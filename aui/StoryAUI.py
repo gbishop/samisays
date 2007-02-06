@@ -49,12 +49,13 @@ class StoryAUI:
         
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
                         wx.WXK_DOWN : self.insertSound, wx.WXK_UP : self.deleteClip,
-                        wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight}
+                        wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
+                        wx.WXK_RETURN: self.exportToMp3}
         
         if keyCode not in keyFunctions:
             return      
         
-        if keyCode != wx.WXK_DELETE:
+        if keyCode != wx.WXK_UP:
             self.deleteConfirmed = False
         
         self.stopPlayback = True
@@ -76,7 +77,7 @@ class StoryAUI:
         if story.needsTitle() and self.firstTitle:
             self.firstTitle = False
             story.replaceTitle(soundBytes)
-            self.SC.playSoundBytes(soundBytes + resamplePySonic(pySonic.FromSoundFile('instr_sounds/main_instructions.wav')))
+            self.SC.playSoundBytes(soundBytes + resamplePySonic(pySonic.FileSample('instr_sounds/main_instructions.wav')))
         elif story.needsTitle():
             story.replaceTitle(soundBytes)
             self.SC.playSoundBytes(soundBytes)
@@ -109,7 +110,7 @@ class StoryAUI:
                 self.SC.playSoundBytes(story.deleteClip())
         
         else:
-            self.SC.playSoundFile('instr_counds/confirm_delete.wav')
+            self.SC.playSoundFile('instr_sounds/confirm_delete.wav')
             self.deleteConfirmed = True
                 
             
@@ -119,6 +120,9 @@ class StoryAUI:
     
     def navRight(self):
         self.SC.playSoundBytes(self.story.getNextClip())
+        
+    def exportToMp3(self):
+        encodeToMp3(self.story.getStory(),'test.mp3')
         
 
 class StoryPlayback(threading.Thread):
