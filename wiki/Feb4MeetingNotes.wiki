@@ -1,4 +1,5 @@
 #summary Feb 4th Meeting Notes
+#labels Meetings
 
 = Meeting Notes =
 
@@ -6,4 +7,3 @@ Made an AUI option picture
 Worked on the Contract
 
 Keep it simple!
-
