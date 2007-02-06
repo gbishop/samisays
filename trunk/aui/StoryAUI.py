@@ -1,5 +1,6 @@
 import wx
 import threading
+import pySonic
 from SoundControl import *
 from Story import *
 from SoundLibraryAUI import *
