@@ -9,14 +9,16 @@ class StoryAUI:
     def __init__(self,parent,soundControl):
         self.main = parent
         self.SC = soundControl
-        self.SC.playSoundFile('opening.wav')
+        self.SC.playSoundFile('instr_sounds/record_title.wav')
         self.story = Story()
+        self.firstTitle = True
         
         # initialize key recognition variables
         self.keyDown = False
         self.keyDownCode = -1
         
-             
+        self.deleteConfirmed = False
+              
     
     def onKeyDown(self, event):
         '''This gets called on when a key is pressed.'''
@@ -51,13 +53,15 @@ class StoryAUI:
         if keyCode not in keyFunctions:
             return      
         
+        if keyCode != wx.WXK_DELETE:
+            self.deleteConfirmed = False
         
         self.stopPlayback = True
         self.SC.stopPlay()
         
         if self.story.needsTitle() and keyCode != wx.WXK_SPACE:
-            self.SC.playSoundFile('delete_title.wav')
-        elif keyCode in keyFunctions:
+            self.SC.playSoundFile('instr_sounds/record_title.wav')
+        else:
             keyFunctions[keyCode]()
             
         event.Skip()
@@ -68,12 +72,18 @@ class StoryAUI:
         soundBytes = self.SC.stopRecord()
         story = self.story
         
-        if story.needsTitle():
+        if story.needsTitle() and self.firstTitle:
+            self.firstTitle = False
             story.replaceTitle(soundBytes)
+            self.SC.playSoundBytes(soundBytes + resamplePySonic(pySonic.FromSoundFile('instr_sounds/main_instructions.wav')))
+        elif story.needsTitle():
+            story.replaceTitle(soundBytes)
+            self.SC.playSoundBytes(soundBytes)
         else:
             story.insertClip(soundBytes)
+            self.SC.playSoundBytes(soundBytes)
       
-        self.SC.playSoundBytes(soundBytes)
+        
             
     
     def playbackStory(self):
@@ -87,13 +97,21 @@ class StoryAUI:
         self.main.keyDownFunct = SLA.onKeyDown
         
     def deleteClip(self):
-        story = self.story
         
-        if story.currClip == 0:
-            self.SC.playSoundFile('delete_title.wav')
-            story.replaceTitle('')
+        if self.deleteConfirmed:
+            story = self.story
+        
+            if story.currClip == 0:
+                story.replaceTitle('')
+                self.SC.playSoundFile('instr_sounds/record_title.wav')
+            else:
+                self.SC.playSoundBytes(story.deleteClip())
+        
         else:
-            story.deleteClip()
+            self.SC.playSoundFile('instr_counds/confirm_delete.wav')
+            self.deleteConfirmed = True
+                
+            
         
     def navLeft(self):
         self.SC.playSoundBytes(self.story.getPreviousClip())
