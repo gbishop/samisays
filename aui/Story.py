@@ -14,6 +14,8 @@ class Story:
     def deleteClip(self):
         if self.currClip > 0:
             del self.clips[self.currClip]
+        self.currClip -= 1
+        return self.getCurrClip()
     
     def getCurrClip(self):
         return self.clips[self.currClip]

@@ -15,7 +15,7 @@ class SoundLibraryAUI:
         
         self.SL = SoundLibrary()
         
-        self.SC.playSoundFile('insert_sound_instructions.wav')
+        self.SC.playSoundFile('instr_sounds/select_cat.wav')
         
     def onKeyDown(self, event):
         event.Skip()
@@ -30,6 +30,7 @@ class SoundLibraryAUI:
         
 
         if keyCode in keyFunctions:
+            self.SC.stopPlay()
             keyFunctions[keyCode]()
         
         event.Skip()
@@ -47,8 +48,14 @@ class SoundLibraryAUI:
         self.SC.playSoundFile(self.SL.getNextSoundFile())
         
     def select(self):
+        if self.SC.currCat == -1:
+            self.SC.playSoundFile('instr_sounds/select_cat.wav')
+            return
+        elif self.SC.currSound == -1:
+            self.SC.playSoundFile('instr_sounds/select_sound.wav')
+            return
         currSound = pySonic.FileSample(self.SL.getCurrSoundFile())
-        soundBytes = self.SC.resamplePySonic(currSound)
+        soundBytes = resamplePySonic(currSound)
         self.story.insertClip(soundBytes)
         parent = self.storyAUI
         parent.main.keyDownFunct = parent.onKeyDown
