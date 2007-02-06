@@ -7,13 +7,14 @@ class SoundLibrary:
     def __init__(self):
         self.catList = os.listdir(soundLibraryDir)
         self.catList.sort()
+        self.catList.remove('.svn')
         
         self.soundMatrix = [[] for i in xrange(len(self.catList))]
         for i in xrange(len(self.catList)):
             soundList = os.listdir(soundLibraryDir + self.catList[i])
             soundList.sort()
             for sound in soundList:
-                if sound != 'cat_name.wav':
+                if sound != 'cat_name.wav' and sound != '.svn':
                     self.soundMatrix[i] += [sound] 
         
         self.currCat = -1

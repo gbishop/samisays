@@ -15,7 +15,7 @@ class SoundLibraryAUI:
         
         self.SL = SoundLibrary()
         
-        self.SC.playSoundFile('instr_sounds/select_cat.wav')
+        self.SC.playSoundFile('instr_sounds/select_category.wav')
         
     def onKeyDown(self, event):
         event.Skip()
@@ -48,10 +48,10 @@ class SoundLibraryAUI:
         self.SC.playSoundFile(self.SL.getNextSoundFile())
         
     def select(self):
-        if self.SC.currCat == -1:
-            self.SC.playSoundFile('instr_sounds/select_cat.wav')
+        if self.SL.currCat == -1:
+            self.SC.playSoundFile('instr_sounds/select_category.wav')
             return
-        elif self.SC.currSound == -1:
+        elif self.SL.currSound == -1:
             self.SC.playSoundFile('instr_sounds/select_sound.wav')
             return
         currSound = pySonic.FileSample(self.SL.getCurrSoundFile())
