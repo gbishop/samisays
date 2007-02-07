@@ -7,7 +7,7 @@
 
 2. Discrimination based on race, religion, political values, or lack of natural programming talent is hereby prohibited.
 
-3. The committee will convene weekly, and all members must be in attendance if able.  Validity of a members excuse for absence will be put to a vote within committee.
+3. The committee will convene weekly, and all members must be in attendance if able.  Validity of a member's excuse for absence will be put to a vote within committee.
 
 4. There will be a 25 hour freeze on code before a deliverable is due.
 
