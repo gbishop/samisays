@@ -1,0 +1,21 @@
+#summary Feb 7 Meeting
+
+= Feb 7 Meeting with Gary & Diane P. =
+
+Notes
+ * Work on an installer
+ * Check for no-sound on clips, low volume, etc. ("I didn't hear anything, please try again.")
+ * Need to do leveling across sounds.  Text-to-speech for instructions would give a standard, consistent volume.  Could clip/clamp to a certain range or scale (stdev, etc).  Gary suggests using numpi and has some code for controlling windows/sliders etc with volume control.
+ * Teacher needs to be able to adjust volume levels *easily*.
+ * Think about volume control for kids.  Maybe hold shift+up/down to increase/decrease volume.
+ * Text control on teacher GUI to see what is being said/prompted to student.
+ * Gary liked timeline but wants it to be very simple.  Maybe somehow show volume level of clips or something like that.  Likes idea of a *big*, *bright* display for students with some vision.
+ * Might be useful to have cut-and-paste functionality for clips. On insert, could insert clips from current story.
+ * Think about how to integrate sound effects (distortions, etc.)
+ * Need to support start-to-finish AUI support (blind user can start program and use it without pure GUI contorl)
+ * Need to figure out delete conditions (can student delete entire story?)
+ * Establish context with sound but don't play long, help sounds after maybe first time through.
+ * Maybe add a "Help" button to play full Help audio for any given context.
+ * Don't overwhelm kids with options at the start.  Just tell them how to record and, potentially, after recording a few clips tell them about inserting, etc. (allow it to "reveal" itself)
+
+
