@@ -127,7 +127,7 @@
  * If the story is new:
     * The student records the title of the story by pressing and holding the SPACE BAR and speaking into the microphone.
     * The recording completes with the release of the SPACE BAR.
-    * The title is play and the student may press the UP arrow key to erase it and start over. 
+    * The title is played and the student may press the UP arrow key to erase it and start over. 
  * The student records segments by pressing and holding the SPACE BAR and speaking into the microphone.
  * The recording completes with the release of the SPACE BAR.
  * The segment is played and the student may press the UP arrow key to erase it and rerecord.
