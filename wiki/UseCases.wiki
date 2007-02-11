@@ -125,7 +125,7 @@
 *S3.  Recording a Story as Consecutive Segments*
  * The student opens an existing story or starts a new story.
  * If the story is new:
-    *The student records the title of the story by pressing and holding the SPACE BAR and speaking into the microphone.
+    * The student records the title of the story by pressing and holding the SPACE BAR and speaking into the microphone.
     * The recording completes with the release of the SPACE BAR.
     * The title is play and the student may press the UP arrow key to erase it and start over. 
  * The student records segments by pressing and holding the SPACE BAR and speaking into the microphone.
