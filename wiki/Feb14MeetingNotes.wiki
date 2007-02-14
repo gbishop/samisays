@@ -5,4 +5,6 @@ Notes
   * Age-friendly instructions and teacher-friendly instructions.
   * Audio cues should not be duplicated anywhere... as users move to insert modified sound clips, it should never sound like the original clip.  This may trick users into thinking they are editing the story instead of inserting clips.  PERHAPS make an exception for a category of "clips from your story" (Possibly second pass additions)
   * Escape as possibly a menu <- old story ^ playback -> new story (down) quit
+  * Escape as help.  This seems to be the most preferred use.
   * Two keys for finish
+  * Space may not work as both record and insert
