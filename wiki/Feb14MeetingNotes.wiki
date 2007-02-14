@@ -1,14 +1,6 @@
-#summary One-sentence summary of this page.
+#summary Meeting with Diane on Feb 14
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
+Notes
+  * Teach the user's process in pieces.  Possibly in a tutorial.  Confirm the student performed the operations correctly, or the teacher can confirm in person.
+  * Age-friendly instructions and teacher-friendly instructions.
+  
