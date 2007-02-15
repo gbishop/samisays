@@ -1,4 +1,5 @@
 #summary Meeting with Diane on Feb 14
+#labels Meetings
 
 Notes
   * Teach the user the story creating process in pieces.  Possibly in a tutorial.  Confirm that the student performed the operations correctly, or the teacher can confirm in person.
