@@ -1,6 +1,6 @@
 Todo:
- * ~Contract logistics / finish contract~
- * ~Design document design...document~
+ * ~~Contract logistics / finish contract~~
+ * ~~Design document design...document~~
 
  * Our Modules:
   * GUI
@@ -16,3 +16,4 @@ Todo:
   * Hold down a button to "drag" sound.
 
  * Trash Category?
+
