@@ -1,6 +1,6 @@
 Todo:
- * Contract logistics / finish contract
- * Design document design...document
+ * ~Contract logistics / finish contract~
+ * ~Design document design...document~
 
  * Our Modules:
   * GUI
