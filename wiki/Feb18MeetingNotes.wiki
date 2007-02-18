@@ -1,4 +1,10 @@
-
 Todo:
  * Contract logistics / finish contract
  * Design document design...document
+
+Our Modules:
+ * GUI
+ * AUI
+ * Sound Library
+ * Story Creation
+ * File System
