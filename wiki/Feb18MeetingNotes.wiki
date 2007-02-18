@@ -8,3 +8,9 @@ Our Modules:
  * Sound Library
  * Story Creation
  * File System
+
+How do we do cut/copy/paste?
+ * "Current Story Sounds" category (in sound library)
+ * A button to put in copy buffer...another to paste.
+ * A button to put into "Copy" category (in sound library)
+ * Hold down a button to "drag" sound.
