@@ -1,13 +1,15 @@
+# Imports
 import cPickle as pickle
 import os
 import shutil
 from Student import Student
 
-''' No magic in my code! '''
+# No magic in my code!
 STUDENT_DIR = 'students\\'
 BACKUP_DIR = STUDENT_DIR + 'removed\\'
 FILE_EXTENSION = '.pkl'
 
+''' 
 class Class:
      
     def __init__(self, students = []):
