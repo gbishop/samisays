@@ -1,5 +1,5 @@
 import wx
-from StoryAUI import *
+from StoryCreationAUI import *
 from SoundControl import *
 
 #AUI is separate thread.  Condition variable on keydown/keyup.  Queue of keys.
@@ -11,9 +11,9 @@ class SamiSays(wx.App):
         
         self.SC = SoundControl()
         self.frame = wx.Frame(None, -1, 'Sami Says')
-        self.SA = StoryAUI(self,self.SC)
-        self.keyDownFunct = self.SA.onKeyDown
-        self.keyUpFunct = self.SA.onKeyUp
+        self.SCA = StoryCreationAUI(self)
+        self.keyDownFunct = self.SCA.onKeyDown
+        self.keyUpFunct = self.SCA.onKeyUp
         self.frame.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.frame.Bind(wx.EVT_KEY_UP, self.onKeyUp)
         self.frame.Show(True)

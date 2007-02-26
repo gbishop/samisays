@@ -1,12 +1,10 @@
-import os, threading
-import wx, pySonic
+import os
 from SoundControl import *
 from Story import *
-from SoundLibraryAUI import *
 from SoundLibrary import *
 
 
-class SoundLibraryAUI:
+class InsertSoundAUI:
     
     def __init__(self, parent):
         self.storyAUI = parent
@@ -56,6 +54,7 @@ class SoundLibraryAUI:
             return
         currSound = pySonic.FileSample(self.SL.getCurrSoundFile())
         soundBytes = resamplePySonic(currSound)
+        soundBytes = normalizeSoundBytes(soundBytes)
         self.story.insertClip(soundBytes)
         parent = self.storyAUI
         parent.main.keyDownFunct = parent.onKeyDown

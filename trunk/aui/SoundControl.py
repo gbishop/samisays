@@ -1,19 +1,30 @@
-import wx
 import pySonic
 import pymedia.audio.sound as sound
 import pymedia.audio.acodec as acodec
 
+from numpy import *
 
-# recording characteristics
+# Sound properties
 RATE = 44100    # samples per second
 BITS = 16       # BITS per sample
 CHANNELS = 1    # 1 is mono, 2 is stereo
-BUFF_DURATION = 1# showing off that the buffer can be shorter so we can record long segments
+BUFF_DURATION = 1 # in seconds
 
 
-
+'''
+' Class Name:  SoundControl
+' Description: This object controls all aspects of sound playback, recording, modification,
+'              and exporting.  A single SoundControl object should be used for each instance
+'              of Sami Says so that only one sound will be played or recorded at a time.  
+' Dependencies: pySonic - for recording and playback
+'               pymedia - for resampling, converting, and exporting
+'               numpy - for normalizing
+'''
 class SoundControl:
 
+    '''
+    ' Constructor initializes object.
+    '''
     def __init__(self):
         # initialize pySonic
         self.w = pySonic.World(44100,32)
@@ -32,17 +43,23 @@ class SoundControl:
         self.lastPos = 0  # keep track of the last sample recorded
         self.isRecording = False
         
-        '''Grab last chunk of recorded audio'''
+        
+    ''' 
+    ' Grabs last chunk of recorded audio and appends it to the current recording. 
+    '''
     def grabAudio(self):
+
         pos = self.rec.CurrentSample
-        #print pos
+
         N = pos - self.lastPos
         if N < 0:
             N += BUFF_DURATION * RATE
         self.recData.append(self.sample.GetBytes(self.lastPos, N))
         self.lastPos = pos
     
-    '''Start recording sound.  If already recording, do nothing.'''
+    ''' 
+    ' Start recording sound.  If already recording, do nothing. 
+    '''
     def startRecord(self):  
         if self.isRecording:
             return
@@ -52,17 +69,23 @@ class SoundControl:
         self.rec.Start(self.sample, loopit=True)
         self.isRecording = True
         
-    '''Stop recording and return sound bytes.  If not recording, do nothing.'''
+    ''' 
+    ' Stop recording and return sound bytes.  If not recording, do nothing. 
+    '''
     def stopRecord(self):
+        
         if not self.isRecording:
             return
         
         self.rec.Stop()
         self.isRecording = False
         self.grabAudio()
-        soundBytes = ''.join(self.recData) # join all the chunks together into one long string
+        soundBytes = ''.join(self.recData) # join all the chunks together into one string
         return soundBytes
     
+    ''' 
+    ' Plays specified file (wav, aiff, mp3, ogg, etc.) with or without blocking. 
+    '''
     def playSoundFile(self, filePath, blocking = False):
         self.src.Sound = pySonic.FileSample(filePath)
         self.src.Play()
@@ -72,7 +95,10 @@ class SoundControl:
         
         while self.src.IsPlaying():
             pass
-        
+    
+    ''' 
+    ' Plays sound given in byte string with or without blocking. 
+    '''
     def playSoundBytes(self, soundBytes, blocking = False):
         self.src.Sound = pySonic.MemorySample(soundBytes, CHANNELS, BITS, RATE)
         self.src.Play()
@@ -82,20 +108,42 @@ class SoundControl:
         
         while self.src.IsPlaying():
             pass
-        
+    
+    ''' 
+    ' Stops whatever is playing. If not playing, does nothing. 
+    '''
     def stopPlay(self):
         if self.src.IsPlaying():
             self.src.Stop()
-        
+    
+    ''' Returns True if a sound is being played.  Otherwise, returns False. '''
     def isPlaying(self):
         return self.src.IsPlaying()
-        
+    
+    ''' 
+    ' Called every 1000 seconds.  If recording, this is when the buffer should be full.
+    ' Audio in buffer is grabbed to make room for more. 
+    '''
     def onTimer(self, event):
-        '''Grab recorded audio'''
+
         if self.isRecording:
             self.grabAudio()
         event.Skip()
-    
+
+'''
+' Normalizes sound bytes by finding the peak and scaling everything by it up to the maximum amplitude.
+'''
+def normalizeSoundBytes(soundBytes):
+    soundArray = fromstring(soundBytes, uint16)
+    m = max(soundArray)
+    soundArray = soundArray/float(m)*65535
+    soundArray = array(soundArray,uint16)
+    return soundArray.tostring()
+
+'''
+' Resamples the pySonic sample into the default sound properties specified above.  
+' Uses pymedia's built-in resampler.
+'''      
 def resamplePySonic(oldSample):
     oRate = oldSample.Frequency
     oSampleSize = oldSample.SampleSize
@@ -114,10 +162,14 @@ def resamplePySonic(oldSample):
     soundBytes = resampler.resample(soundBytes)
 
     return soundBytes
-    
-def encodeToMp3(soundBytes, fileName):
+
+'''
+' Encodes sound bytes into mp3 format using pymedia's built-in encoder.  
+' The sound is expected to have the default sound properties specified above.
+'''
+def encodeToMp3(soundBytes, fileName, bitRate):
     params= {'id': acodec.getCodecID('mp3'),
-            'bitrate': BITS,
+            'bitrate': bitRate,
             'sample_rate': RATE,
             'ext': 'mp3',
             'channels': CHANNELS } 
