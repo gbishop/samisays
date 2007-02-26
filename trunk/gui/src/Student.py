@@ -1,5 +1,3 @@
-import cPickle as pickle
-
 class Student:
     
     def __init__(self, name = 'Sami'):
@@ -27,3 +25,5 @@ class Student:
     def delStory(self,index):
         self.stories.pop(index)
          
+if __name__ == "__main__":
+    print 'The class "Student" is not runnable'

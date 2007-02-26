@@ -8,8 +8,7 @@ from Student import Student
 STUDENT_DIR = 'students\\'
 BACKUP_DIR = STUDENT_DIR + 'removed\\'
 FILE_EXTENSION = '.pkl'
-
-''' 
+ 
 class Class:
      
     def __init__(self, students = []):
@@ -50,8 +49,6 @@ class Class:
             self.students.append(pickle.load(f))
             f.close()
             
-        
-        
-        
-    
+if __name__ == "__main__":
+    print 'The class "Class" is not runnable.'
     
