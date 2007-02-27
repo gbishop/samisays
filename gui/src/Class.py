@@ -37,8 +37,8 @@ class Class:
             pickle.dump(self.students[i],f)
             f.close()
             
-    def load(self, path = '.\\' + STUDENT_DIR):
-        directory = os.listdir(path)
+    def load(self, path = '.\\'):
+        directory = os.listdir(path + STUDENT_DIR)
         pickles = []
         for item in directory:
             if item.endswith('.pkl'):
