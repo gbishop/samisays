@@ -1,7 +1,9 @@
 #summary Text for text to speech reader
 
 *[B]* Beginner - play if the user matches certain criteria.
+
 *[A]* Advanced - play if the user selects advanced help.
+
 *[E]* Every time - play every time the user performs the appropriate action.
 
 
