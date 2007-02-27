@@ -10,8 +10,8 @@
 
 Layout for each tip should be |Where I am|What I can do|
 
-*Enter Story Creation*
- * *[E]* Welcome to Sami Says story creation.  
+*Enter Story Creation* 
+ * *[E]* Welcome to Sami Says story creation.  (creation_welcome.wav)
 
 *Empty Story - No title (Only Record and Help keys enabled)*
  * *[E][H]* Your story needs a title.  Hold down the space bar and say the title into the microphone. (needs_title.wav)
