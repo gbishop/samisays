@@ -36,9 +36,10 @@ Layout for each tip should be |Where I am|What I can do|
 *User Selects Delete*
  * _On a Clip_ Are you sure you would like to delete the clip you just heard?  Press up to delete it or down to cancel.
  * _On the title_ Are you sure you would like to delete the title?  If you delete the title, you will have to record another one.  Press up to delete it or down to cancel.
-
+{{{
 _________________________________________________________________________________________
 
+}}}
 *Beginner*
 
 *Enter Story Creation* 
