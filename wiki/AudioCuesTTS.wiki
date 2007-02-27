@@ -6,8 +6,15 @@
 
 *[E]* Every time - play every time the user performs the appropriate action.
 
+*[H]* Help - play this when the user presses the help key.
 
-*Introduction*
- * Welcome to story creation.  Hold down the space bar to record your title.
-   * [B] If you are unhappy with your title, you may delete it by pressing the up arrow.
-     * 
+Layout for each tip should be [Where I am][What I can do].
+
+*Empty Story*
+ * *[E]* Welcome to story creation.
+ * *[E][H]* Your story needs a title.  Hold down the space bar and say the title into the microphone.
+   * *[B]* If you are unhappy with your title, you may delete it by pressing the up arrow.
+     * -> _User deletes story_ Repeat parent's parent's speech.
+
+*Title Recorded - No other clips*
+ * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect.
