@@ -11,26 +11,26 @@
 Layout for each tip should be |Where I am|What I can do|
 
 *Enter Story Creation*
- * *[E]* Welcome to SamiSays story creation.
+ * *[E]* Welcome to Sami Says story creation.  
 
-*Empty Story - No title (Down key disabled?)*
- * *[E][H]* Your story needs a title.  Hold down the space bar and say the title into the microphone.
+*Empty Story - No title (Only Record and Help keys enabled)*
+ * *[E][H]* Your story needs a title.  Hold down the space bar and say the title into the microphone. (needs_title.wav)
    * _User records title_ 
      
-*Title Recorded - No other clips (Down key disabled?)*
- * *[B]* You just heard your title repeated.  If you are unhappy with the title, you may delete it by pressing the up arrow.
+*Title Recorded - No other clips *
+ * *[B]* You just heard your title repeated.  If you are unhappy with the title, you may delete it by pressing the up arrow.  Otherwise, press and hold the space bar to record the first sound clip in your story. (b_after_title.wav)
   * _User deletes title_ - Move up one level.
- * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect. ([H]Play title)
+ * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect. ([H]Play title) (begin_story.wav)
   * _User records a clip_ 
 
 *First Clip is Inserted*
- * *[B]* If you are unhappy with the clip you just heard, you may delete it by pressing the up arrow.
+ * *[B]* If you are ever unhappy with the clip you just heard, you may delete it by pressing the up arrow. ('b_after_first_clip.wav')
    * _User deletes clip_ - Move up one level.
  * *[E][H]* You now have one clip and a title.  You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips.  You can also insert sound effects after the clip you just heard with the down arrow. ([H]Play current clip)
   * _User records a clip /inserts an effect_ - 
 
 *Second Clip is Inserted - User is now on their own*
- * *[E]* [HOW TO DELETE - should this say "if you are unhappy with a sound you just heard..."]If you are ever unhappy with a sound you record or insert into your story you may delete it by pressing the up arrow.
+
  * *[E][H]* You are working on a story that has multiple story clips and a title.  You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips.  You can also insert sound effects after the clip you just heard with the down arrow. ([H]Play current clip)
  
 
