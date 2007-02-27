@@ -1,0 +1,11 @@
+#summary Text for text to speech reader
+
+*[B]* Beginner - play if the user matches certain criteria.
+*[A]* Advanced - play if the user selects advanced help.
+*[E]* Every time - play every time the user performs the appropriate action.
+
+
+*Introduction*
+ * Welcome to story creation.  Hold down the space bar to record your title.
+   * [B] If you are unhappy with your title, you may delete it by pressing the up arrow.
+     * 
