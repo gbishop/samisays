@@ -1,4 +1,5 @@
 import os
+
 from numpy import *
 
 soundLibraryDir = 'sound_library/'
