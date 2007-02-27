@@ -13,11 +13,11 @@ Layout for each tip should be |Where I am|What I can do|
 *Empty Story*
  * *[E]* Welcome to story creation.
  * *[E][H]* Your story needs a title.  Hold down the space bar and say the title into the microphone.
-   * *[B]* If you are unhappy with your title, you may delete it by pressing the up arrow.
+   * _User records title_ - *[B]* If you are unhappy with your title, you may delete it by pressing the up arrow.
      * _User deletes title_ - Repeat parent's parent's speech.
 
 *Title Recorded - No other clips*
- * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip,*[!T]* or press the down arrow to insert a sound effect.
+ * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect.
   * _User records a clip_ - *[B]* If you are unhappy with this clip, you may delete it by pressing the up arrow.
    
   * _User deletes clip_ - Repeat parent's parent's speech.
