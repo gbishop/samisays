@@ -4,58 +4,109 @@ from Story import *
 from SoundLibrary import *
 
 
+INSTR_DIR = 'instr_sounds/'
+
 class InsertSoundAUI:
     
     def __init__(self, parent):
-        self.storyAUI = parent
+        self.SCA = parent
         self.SC = parent.SC
+        self.main = parent.main
         self.story = parent.story
         
         self.SL = SoundLibrary()
         
-        self.SC.playSoundFile('instr_sounds/select_category.wav')
+        self.SC.playSoundFile('select_category.wav')
         
+        self.keyDown = False # Flag to tell if a key is already being held down
+        self.keyDownCode = -1 # Code to recognize which key is being held down
+    
+    ''' 
+    ' Handles event when a key is pressed. 
+    '''
     def onKeyDown(self, event):
+        if not self.keyDown:
+            self.keyDown = True
+            self.keyDownCode = event.GetKeyCode()
+            
         event.Skip()
-        
+    
+    ''' 
+    ' Handles event when a key is released by calling the correct function for 
+    ' each valid key.
+    '''
     def onKeyUp(self, event):
         
         keyCode = event.GetKeyCode()
+        if self.keyDownCode != keyCode: # If released key is not the first one pressed, ignore it
+            return
         
-        keyFunctions = {wx.WXK_SPACE : self.select,
+        self.keyDown = False
+        
+        # Define dictionary of functions for valid keys
+        keyFunctions = {wx.WXK_SPACE : self.select, wx.WXK_ESCAPE : self.getHelp,
                         wx.WXK_DOWN : self.navDown, wx.WXK_UP : self.navUp,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight}
         
 
-        if keyCode in keyFunctions:
-            self.SC.stopPlay()
-            keyFunctions[keyCode]()
+        if keyCode in keyFunctions: # Ignore invalid keys
+            self.SC.stopPlay() # Stop any sound that is playing
+            keyFunctions[keyCode]() # Call function for valid key
         
         event.Skip()
-        
+     
+    '''
+    ' Called when navigate left key is released.
+    ' Moves to the category to previous category in cyclical fashion.
+    '''
     def navLeft(self):
         self.SC.playSoundFile(self.SL.getPrevCatNameFile())
-        
+    
+    '''
+    ' Called when navigate right key is released.
+    ' Moves to the next category in cyclical fashion.
+    '''    
     def navRight(self):
         self.SC.playSoundFile(self.SL.getNextCatNameFile())
-        
+ 
+    '''
+    ' Called when navigate up key is released.
+    ' Moves to the previous sound of the current category in cyclical fashion.
+    '''   
     def navUp(self):
         self.SC.playSoundFile(self.SL.getPrevSoundFile())
-        
+    
+    '''
+    ' Called when navigate down key is released.
+    ' Moves to the next sound of the current category in cyclical fashion.
+    '''       
     def navDown(self):
         self.SC.playSoundFile(self.SL.getNextSoundFile())
-        
+    
+    ''' 
+    ' Called when help key is released.
+    ' Notifies the user of the current options.
+    '''
+    def getHelp(self):
+        self.SC.playSoundFile(INSTR_DIR + 'insert_sound.wav')
+    
+    ''' 
+    ' Called when selection key is released.
+    ' If a sound has been navigated to, it is inserted into the story
+    ' and control is returned to the StoryCreationAUI class that called
+    ' this object.
+    '''    
     def select(self):
-        if self.SL.currCat == -1:
-            self.SC.playSoundFile('instr_sounds/select_category.wav')
+
+        if self.SL.currCat == -1 or self.SL.currSound == -1: # No category/sound selected
+            self.getHelp()
             return
-        elif self.SL.currSound == -1:
-            self.SC.playSoundFile('instr_sounds/select_sound.wav')
-            return
+
         currSound = pySonic.FileSample(self.SL.getCurrSoundFile())
         soundBytes = resamplePySonic(currSound)
         soundBytes = normalizeSoundBytes(soundBytes)
         self.story.insertClip(soundBytes)
-        parent = self.storyAUI
-        parent.main.keyDownFunct = parent.onKeyDown
-        parent.main.keyUpFunct = parent.onKeyUp
+        
+        # Return key bindings to StoryCreationAUI class that called me
+        self.main.keyDownFunct = self.SCA.onKeyDown
+        self.main.keyUpFunct = self.SCA.onKeyUp
