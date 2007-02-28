@@ -14,6 +14,12 @@ class Story:
     def __init__(self, titleBytes = ''):
         self.clips = [titleBytes]
         self.currClip = 0
+        
+    '''
+    ' Returns the number of clips currently in the story (including the title).
+    '''   
+    def __len__(self):
+        return len(self.clips)
     
     '''
     ' Inserts clip after current clip and makes new clip the current clip.
@@ -73,12 +79,6 @@ class Story:
     '''
     def getStory(self):
         return ''.join(self.clips)
-    
-    '''
-    ' Returns the number of clips currently in the story (including the title).
-    '''
-    def getNumClips(self):
-        return len(self.clips)
     
     '''
     ' Returns True if the title is empty.  Otherwise, returns False.

@@ -3,6 +3,8 @@ from SoundControl import *
 from Story import *
 from InsertSoundAUI import *
 
+INSTR_DIR = 'instructions/'
+
 '''
 ' Class Name:  StoryCreationAUI
 ' Description: Captures keys and gives audio cues to control the creation of a story.
@@ -18,7 +20,7 @@ class StoryCreationAUI:
     def __init__(self, parent, story=None):
         self.SM = parent # Story Manager
         self.SC = parent.SC # Sound Control
-        self.SC.playSoundFile('instr_sounds/record_title.wav') # Play Instructions
+        self.SC.playSoundFile(INSTR_DIR + 'creation_welcome.wav') # Play Welcome
         if story == None:
             self.story = Story() # Initialize Empty Story
             #self.firstTitle = True
@@ -52,7 +54,8 @@ class StoryCreationAUI:
         event.Skip()
         
     ''' 
-    ' Handles event when a key is released. 
+    ' Handles event when a key is released by calling the correct function for 
+    ' each valid key.
     '''
     def onKeyUp(self, event):
 
@@ -68,7 +71,7 @@ class StoryCreationAUI:
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
                         wx.WXK_DOWN : self.insertSound, wx.WXK_UP : self.deleteClip,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
-                        wx.WXK_RETURN: self.exportToMp3}
+                        wx.WXK_ESCAPE : self.getHelp, wx.WXK_RETURN: self.exportToMp3}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
             return      
@@ -83,13 +86,32 @@ class StoryCreationAUI:
         
         if self.story.needsTitle() and keyCode != wx.WXK_SPACE: 
             # If no title exists, nothing is to be done until one is recorded
-            self.SC.playSoundFile('instr_sounds/record_title.wav')
+            self.SC.playSoundFile(INSTR_DIR + 'needs_title.wav')
         else:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
             
         event.Skip()
-    
+
+    ''' 
+    ' Called when help key is released.
+    ' Notifies the user of the current options.  The case where there is no title 
+    ' (len(story) == 0) is already handled in OnKeyUp.
+    '''
+    def getHelp(self):
+        
+        story = self.story
+        soundFile = INSTR_DIR
+
+        if len(story) == 1:
+            soundFile += 'after_title.wav'
+        elif len(story) == 2:
+            soundFile += 'after_first_clip.wav'
+        else:
+            soundFile += 'creation_instructions.wav'
+        
+        self.SC.playSoundFile(soundFile)
+        
     ''' 
     ' Called when record key is lifted.
     ' Ends recording of clip, inserts it into the story, and replays it. 
@@ -202,7 +224,7 @@ class StoryPlayback(threading.Thread):
         
         story.currClip = -1
         
-        while not self.SCA.stopPlayback and (story.currClip < story.getNumClips()-1):
+        while not self.SCA.stopPlayback and (story.currClip < len(story)-1):
             SC.playSoundBytes(story.getNextClip())
             while (SC.isPlaying()):
                 pass
