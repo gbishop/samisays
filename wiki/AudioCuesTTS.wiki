@@ -19,23 +19,23 @@ Layout for each tip should be |Where I am|What I can do|
      
 *Title Recorded - No other clips *
 
- * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect. ([H]Play title) (after_title.wav)
+ * *[E][H]* You now have a title to an empty story.  You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect.  (after_title.wav)
 
 
 *First Clip is Inserted*
- * *[E][H]* You now have one clip and a title.  You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips.  You can also insert sound effects after the clip you just heard with the down arrow. ([H]Play current clip) (after_first_clip.wav)
+ * *[E][H]* You now have one clip and a title.  You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips.  You can also insert sound effects after the clip you just heard with the down arrow. (after_first_clip.wav)
 
 *Second Clip is Inserted - User is now on their own*
 
- * *[E][H]* You are working on a story that has multiple story clips and a title.  You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips.  You can also insert sound effects after the clip you just heard with the down arrow. If you are unhappy with a clip you  just heard, press the up arrow key to delete it. ([H]Play current clip) (creation_instructions.wav)
+ * *[E][H]* You are working on a story that has multiple story clips and a title.  You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips.  You can also insert sound effects after the clip you just heard with the down arrow. If you are unhappy with a clip you just heard, press the up arrow key to delete it.  Press the control key to hear your story in its entirety. (creation_instructions.wav)
  
 
 *Sound Effect Insertion Selection*
- * *[E][H]* You are now searching through the sound effects.  Use the up and down arrows to hear the sound effects in a category and the left and right arrows to change categories. ([H]Play category - effect)
+ * *[E][H]* You are now searching through the sound effects.  Use the up and down arrows to hear the sound effects in a category and the left and right arrows to change categories. 
 
 *User Selects Delete*
- * _On a Clip_ Are you sure you would like to delete the clip you just heard?  Press up to delete it or down to cancel.
- * _On the title_ Are you sure you would like to delete the title?  If you delete the title, you will have to record another one.  Press up to delete it or down to cancel.
+ * _On a Clip_ Are you sure you would like to delete the clip you just heard?  Press up to delete it or continue working. (delete_clip.wav)
+ * _On the title_ Are you sure you would like to delete the title?  If you delete the title, you will have to record another one.  Press up to delete it or continue working. (delete_title.wav)
 {{{
 _________________________________________________________________________________________
 
