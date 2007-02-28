@@ -31,7 +31,7 @@ Layout for each tip should be |Where I am|What I can do|
  
 
 *Sound Effect Insertion Selection*
- * *[E][H]* You are now searching through the sound effects.  Use the up and down arrows to hear the sound effects in a category and the left and right arrows to change categories. 
+ * *[E][H]* You are now searching through the sound effects.  Use the up and down arrows to hear the sound effects in a category and the left and right arrows to change categories. (insert_sound.wav)
 
 *User Selects Delete*
  * _On a Clip_ Are you sure you would like to delete the clip you just heard?  Press up to delete it or continue working. (delete_clip.wav)
