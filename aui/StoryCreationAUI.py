@@ -33,7 +33,7 @@ class StoryCreationAUI:
         self.keyDownCode = -1 # Code to recognize which key is being held down
                 
         self.deleteConfirmed = False # Flag for whether delete needs confirmation
-        
+        self.firstTitle = True # Flag for whether a title has been recorded yet (for first time)
         self.stopPlayBack = False # Flag to interrupt full playback of story
               
     ''' 
@@ -106,8 +106,6 @@ class StoryCreationAUI:
 
         if len(story) == 1:
             soundFile += 'after_title.wav'
-        elif len(story) == 2:
-            soundFile += 'after_first_clip.wav'
         else:
             soundFile += 'creation_instructions.wav'
         
@@ -123,12 +121,11 @@ class StoryCreationAUI:
         soundBytes = normalizeSoundBytes(soundBytes)
         story = self.story
         
- #       if story.needsTitle() and self.firstTitle: 
- #           self.firstTitle = False
- #           story.replaceTitle(soundBytes)
- #           self.SC.playSoundBytes(soundBytes + resamplePySonic(pySonic.FileSample('instr_sounds/main_instructions.wav')))
- 
-        if story.needsTitle():
+        if story.needsTitle() and self.firstTitle: 
+            self.firstTitle = False
+            story.replaceTitle(soundBytes)
+            soundBytes = soundBytes + resampleSoundFile(INSTR_DIR + 'after_title.wav')
+        elif story.needsTitle():
             story.replaceTitle(soundBytes)
         else:
             story.insertClip(soundBytes)

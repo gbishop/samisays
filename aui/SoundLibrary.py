@@ -30,7 +30,13 @@ class SoundLibrary:
         
         self.currCat = -1
         self.currSound = -1
-        
+       
+    def onValidCat(self):
+        return self.currCat != -1
+    
+    def onValidSound(self):
+        return self.currSound != -1
+    
     '''
     ' Increments the current category in a circular fashion and returns a path
     ' to the new category's name sound file.

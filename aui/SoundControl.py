@@ -136,15 +136,18 @@ class SoundControl:
 def normalizeSoundBytes(soundBytes):
     soundArray = fromstring(soundBytes, uint16)
     m = max(soundArray)
+    print m
     soundArray = soundArray/float(m)*65535
     soundArray = array(soundArray,uint16)
     return soundArray.tostring()
 
 '''
-' Resamples the pySonic sample into the default sound properties specified above.  
+' Resamples the sound file into the default sound properties specified above and returns as bytes.
 ' Uses pymedia's built-in resampler.
 '''      
-def resamplePySonic(oldSample):
+def resampleSoundFile(filePath):
+    
+    oldSample = pySonic.FileSample(filePath)
     oRate = oldSample.Frequency
     oSampleSize = oldSample.SampleSize
     oNumSamples = oldSample.NumSamples
