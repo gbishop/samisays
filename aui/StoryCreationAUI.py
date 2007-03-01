@@ -3,7 +3,7 @@ from SoundControl import *
 from Story import *
 from InsertSoundAUI import *
 
-INSTR_DIR = 'instructions/'
+INSTR_DIR = 'instr_sounds/'
 
 '''
 ' Class Name:  StoryCreationAUI
