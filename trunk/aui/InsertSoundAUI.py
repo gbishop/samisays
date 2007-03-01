@@ -1,4 +1,5 @@
 import os
+import wx
 from SoundControl import *
 from Story import *
 from SoundLibrary import *
@@ -16,11 +17,11 @@ class InsertSoundAUI:
         
         self.SL = SoundLibrary()
         
-        self.SC.playSoundFile('select_category.wav')
-        
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
     
+        self.getHelp()
+        
     ''' 
     ' Handles event when a key is pressed. 
     '''
