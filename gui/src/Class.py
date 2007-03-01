@@ -1,12 +1,11 @@
 # Imports
-import cPickle as pickle
 import os
 import shutil
 from Student import Student
 
 # No magic in my code!
-STUDENT_DIR = 'students\\'
-BACKUP_DIR = STUDENT_DIR + 'removed\\'
+STUDENT_DIR = 'students/'
+BACKUP_DIR = STUDENT_DIR + 'removed/'
 FILE_EXTENSION = '.pkl'
  
 class Class:
@@ -24,30 +23,25 @@ class Class:
         self.save()
         
     def delStudent(self,index):
-        fname = self.students[index].name + FILE_EXTENSION
+        dname = '_' + self.students[index].name
         self.students.pop(index)
         try:
             os.mkdir(BACKUP_DIR)
         except OSError:()
-        shutil.move(STUDENT_DIR + fname, BACKUP_DIR + fname);
+        shutil.move(STUDENT_DIR + dname, BACKUP_DIR + dname);
         
     def save(self):
         for i in range(len(self.students)):
-            f = file(STUDENT_DIR + self.students[i].name + FILE_EXTENSION, 'w')
-            pickle.dump(self.students[i],f)
-            f.close()
+            try:
+                os.mkdir(STUDENT_DIR + '_' + self.students[i].name);
+            except OSError:()
             
-    def load(self, path = '.\\'):
+    def load(self, path = ''):
         directory = os.listdir(path + STUDENT_DIR)
-        pickles = []
-        for item in directory:
-            if item.endswith('.pkl'):
-                pickles.append(item)
         self.students = []
-        for i in pickles:
-            f = file(path + i,'r')
-            self.students.append(pickle.load(f))
-            f.close()
+        for i in directory:
+            if(i[0] == '_'):
+                self.students.append(Student(i[1:]))
             
 if __name__ == "__main__":
     print 'The class "Class" is not runnable.'
