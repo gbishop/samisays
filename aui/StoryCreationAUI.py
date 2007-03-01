@@ -165,17 +165,21 @@ class StoryCreationAUI:
     '''    
     def deleteClip(self):
         
-        if self.deleteConfirmed:
-            story = self.story
+        story = self.story
         
+        if self.deleteConfirmed:
+            
             if story.currClip == 0:
                 story.replaceTitle('')
-                self.SC.playSoundFile('instr_sounds/record_title.wav')
+                self.SC.playSoundFile(INSTR_DIR + 'needs_title.wav')
             else:
                 self.SC.playSoundBytes(story.deleteClip())
         
         else:
-            self.SC.playSoundFile('instr_sounds/confirm_delete.wav')
+            if story.currClip == 0:
+                self.SC.playSoundFile(INSTR_DIR + 'delete_title.wav')
+            else:
+                self.SC.playSoundFile(INSTR_DIR + 'delete_clip.wav')
             self.deleteConfirmed = True
                 
     '''

@@ -105,8 +105,9 @@ class InsertSoundAUI:
 
         currSound = pySonic.FileSample(self.SL.getCurrSoundFile())
         soundBytes = resamplePySonic(currSound)
-        soundBytes = normalizeSoundBytes(soundBytes)
+        #soundBytes = normalizeSoundBytes(soundBytes)
         self.story.insertClip(soundBytes)
+        self.SC.playSoundBytes(soundBytes)
         
         # Return key bindings to StoryCreationAUI class that called me
         self.main.keyDownFunct = self.SCA.onKeyDown
