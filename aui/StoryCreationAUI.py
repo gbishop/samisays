@@ -1,4 +1,5 @@
 import threading
+import wx
 from SoundControl import *
 from Story import *
 from InsertSoundAUI import *
@@ -18,7 +19,7 @@ class StoryCreationAUI:
     ' Constructor initializes object. 
     '''
     def __init__(self, parent, story=None):
-        self.SM = parent # Story Manager
+        self.main = parent # Story Manager
         self.SC = parent.SC # Sound Control
         self.SC.playSoundFile(INSTR_DIR + 'creation_welcome.wav') # Play Welcome
         if story == None:
