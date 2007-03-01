@@ -50,8 +50,15 @@ class InsertSoundAUI:
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight}
         
 
-        if keyCode in keyFunctions: # Ignore invalid keys
-            self.SC.stopPlay() # Stop any sound that is playing
+        if not keyCode in keyFunctions: # Ignore invalid keys
+            return
+        
+        self.SC.stopPlay() # Stop any sound that is playing
+        
+        # If not yet navigated to a category, ignore keys and repeat instructions
+        if not self.SL.onValidCat() and not (keyCode==wx.WXK_LEFT or keyCode==wx.WXK_RIGHT):
+            self.getHelp()
+        else:
             keyFunctions[keyCode]() # Call function for valid key
         
         event.Skip()
@@ -83,6 +90,7 @@ class InsertSoundAUI:
     '''       
     def navDown(self):
         self.SC.playSoundFile(self.SL.getNextSoundFile())
+
     
     ''' 
     ' Called when help key is released.
@@ -98,14 +106,13 @@ class InsertSoundAUI:
     ' this object.
     '''    
     def select(self):
-
-        if self.SL.currCat == -1 or self.SL.currSound == -1: # No category/sound selected
+        
+        if not self.SL.onValidSound():
             self.getHelp()
             return
-
-        currSound = pySonic.FileSample(self.SL.getCurrSoundFile())
-        soundBytes = resamplePySonic(currSound)
-        #soundBytes = normalizeSoundBytes(soundBytes)
+        
+        soundBytes = resampleSoundFile(self.SL.getCurrSoundFile())
+        soundBytes = normalizeSoundBytes(soundBytes)
         self.story.insertClip(soundBytes)
         self.SC.playSoundBytes(soundBytes)
         
