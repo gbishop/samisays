@@ -8,7 +8,7 @@ import sys
 class GuiStart(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: guiStart.__init__
-        kwds["style"] = wx.DEFAULT_FRAME_STYLE
+        kwds["style"] = wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
         self.picBanner = wx.StaticBitmap(self, -1, wx.NullBitmap)
         self.filler00 = wx.Panel(self, -1)
@@ -51,6 +51,7 @@ class GuiStart(wx.Frame):
         self.btnStories.SetMinSize((175, 35))
         self.btnStories.SetToolTipString("Make a story by recording and inserting sounds.")
         self.btnStories.SetDefault()
+        self.btnStories.SetFocus()
         self.btnSounds.SetMinSize((175, 35))
         self.btnSounds.SetToolTipString("Manage how sounds are organized when making stories.")
     # end guiStart.__set_properties

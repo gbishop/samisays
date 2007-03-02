@@ -8,7 +8,7 @@ import sys
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: guiStories.__init__
-        kwds["style"] = wx.DEFAULT_FRAME_STYLE
+        kwds["style"] = wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
         self.filler00 = wx.Panel(self, -1)
         self.filler01 = wx.Panel(self, -1)
@@ -51,6 +51,7 @@ class GuiStories(wx.Frame):
         self.SetTitle("Sami's Stories")
         self.SetSize((400, 400))
         self.btnSelect.SetDefault()
+        self.btnSelect.SetFocus()
         # end wxGlade
 
     def __do_layout(self):

@@ -9,7 +9,7 @@ from Student import Student
 class GuiStudents(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: guiStudents.__init__
-        kwds['style'] = wx.DEFAULT_FRAME_STYLE
+        kwds['style'] = wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
         self.filler00 = wx.Panel(self, -1)
         self.filler01 = wx.Panel(self, -1)
@@ -19,7 +19,7 @@ class GuiStudents(wx.Frame):
         self.btnSelect = wx.Button(self, -1, 'Select')
         self.btnSelect.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.filler03 = wx.Panel(self, -1)
-        self.btnCreate = wx.Button(self, -1, 'Create')
+        self.btnCreate = wx.Button(self, -1, 'Add')
         self.btnCreate.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.filler04 = wx.Panel(self, -1)
         self.btnRemove = wx.Button(self, -1, 'Remove')
@@ -51,6 +51,7 @@ class GuiStudents(wx.Frame):
         self.filler01.SetMinSize((30, -1))
         self.filler02.SetMinSize((25, -1))
         self.btnSelect.SetDefault()
+        self.btnSelect.SetFocus()
         self.filler03.SetMinSize((75, 14))
         self.filler06.SetMinSize((30, -1))
         self.filler07.SetMinSize((-1, 30))
