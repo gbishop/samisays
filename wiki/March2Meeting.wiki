@@ -1,0 +1,8 @@
+#summary Meeting with Diane B
+
+* Enter Button for Help
+* Escape for Exit according to Diane
+* Insert sound menu typo involving escape needs to be fixed
+
+
+
