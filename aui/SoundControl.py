@@ -1,6 +1,7 @@
 import pySonic
 import pymedia.audio.sound as sound
 import pymedia.audio.acodec as acodec
+import pymedia.muxer as muxer
 
 from numpy import *
 
@@ -134,10 +135,9 @@ class SoundControl:
 ' Normalizes sound bytes by finding the peak and scaling everything by it up to the maximum amplitude.
 '''
 def normalizeSoundBytes(soundBytes):
-    soundArray = fromstring(soundBytes, uint16)
-    m = max(soundArray)
-    print m
-    soundArray = soundArray/float(m)*65535
+    soundArray = fromstring(soundBytes, int16)
+    m = max(abs(soundArray))
+    soundArray = soundArray/float(m)*20000
     soundArray = array(soundArray,uint16)
     return soundArray.tostring()
 
@@ -176,10 +176,15 @@ def encodeToMp3(soundBytes, fileName, bitRate):
             'sample_rate': RATE,
             'ext': 'mp3',
             'channels': CHANNELS } 
+    for i in xrange(100000):
+        soundBytes += '\x00'
     enc = acodec.Encoder(params)
+    
     frames = enc.encode(soundBytes)
     f = file(fileName,'wb')
     for frame in frames:
         f.write(frame)
     f.close()
+    
+
         

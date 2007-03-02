@@ -25,7 +25,7 @@ class SoundLibrary:
             soundList = os.listdir(SOUND_LIB_DIR + self.catList[i])
             soundList.sort()
             for sound in soundList:
-                if sound != 'cat_name.wav' and sound != '.svn': # Ignore category names and SVN files
+                if sound != 'cat_name.mp3' and sound != '.svn': # Ignore category names and SVN files
                     self.soundMatrix[i] += [sound] 
         
         self.currCat = -1
@@ -44,7 +44,7 @@ class SoundLibrary:
     def getNextCatNameFile(self):
         self.currSound = -1
         self.currCat = (self.currCat + 1)%len(self.catList)
-        return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.wav'
+        return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
     
     '''
     ' Decrements the current category in a circular fashion and returns a path
@@ -57,7 +57,7 @@ class SoundLibrary:
             self.currCat = len(self.catList)-1
         else:
             self.currCat = (self.currCat - 1)%len(self.catList)
-        return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.wav'
+        return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
     
     '''
     ' Increments the current sound in a circular fashion and returns a path

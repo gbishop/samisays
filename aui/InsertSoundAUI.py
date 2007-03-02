@@ -97,7 +97,7 @@ class InsertSoundAUI:
     ' Notifies the user of the current options.
     '''
     def getHelp(self):
-        self.SC.playSoundFile(INSTR_DIR + 'insert_sound.wav')
+        self.SC.playSoundFile(INSTR_DIR + 'insert_sound.mp3')
     
     ''' 
     ' Called when selection key is released.
