@@ -21,7 +21,7 @@ class StoryCreationAUI:
     def __init__(self, parent, story=None):
         self.main = parent # Story Manager
         self.SC = parent.SC # Sound Control
-        self.SC.playSoundFile(INSTR_DIR + 'creation_welcome.wav') # Play Welcome
+        self.SC.playSoundFile(INSTR_DIR + 'creation_welcome.mp3') # Play Welcome
         if story == None:
             self.story = Story() # Initialize Empty Story
             #self.firstTitle = True
@@ -87,7 +87,7 @@ class StoryCreationAUI:
         
         if self.story.needsTitle() and keyCode != wx.WXK_SPACE: 
             # If no title exists, nothing is to be done until one is recorded
-            self.SC.playSoundFile(INSTR_DIR + 'needs_title.wav')
+            self.SC.playSoundFile(INSTR_DIR + 'needs_title.mp3')
         else:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
@@ -105,9 +105,9 @@ class StoryCreationAUI:
         soundFile = INSTR_DIR
 
         if len(story) == 1:
-            soundFile += 'after_title.wav'
+            soundFile += 'after_title.mp3'
         else:
-            soundFile += 'creation_instructions.wav'
+            soundFile += 'creation_instructions.mp3'
         
         self.SC.playSoundFile(soundFile)
         
@@ -124,7 +124,7 @@ class StoryCreationAUI:
         if story.needsTitle() and self.firstTitle: 
             self.firstTitle = False
             story.replaceTitle(soundBytes)
-            soundBytes = soundBytes + resampleSoundFile(INSTR_DIR + 'after_title.wav')
+            soundBytes = soundBytes + resampleSoundFile(INSTR_DIR + 'after_title.mp3')
         elif story.needsTitle():
             story.replaceTitle(soundBytes)
         else:
@@ -168,15 +168,15 @@ class StoryCreationAUI:
             
             if story.currClip == 0:
                 story.replaceTitle('')
-                self.SC.playSoundFile(INSTR_DIR + 'needs_title.wav')
+                self.SC.playSoundFile(INSTR_DIR + 'needs_title.mp3')
             else:
                 self.SC.playSoundBytes(story.deleteClip())
         
         else:
             if story.currClip == 0:
-                self.SC.playSoundFile(INSTR_DIR + 'delete_title.wav')
+                self.SC.playSoundFile(INSTR_DIR + 'delete_title.mp3')
             else:
-                self.SC.playSoundFile(INSTR_DIR + 'delete_clip.wav')
+                self.SC.playSoundFile(INSTR_DIR + 'delete_clip.mp3')
             self.deleteConfirmed = True
                 
     '''
@@ -195,7 +195,7 @@ class StoryCreationAUI:
        
     ''' Test function for exporting to mp3. '''
     def exportToMp3(self):
-        encodeToMp3(self.story.getStory(),'test.mp3')
+        encodeToMp3(self.story.getStory(),'test.mp3',64000)
         
         
 '''
