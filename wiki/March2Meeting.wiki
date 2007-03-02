@@ -1,4 +1,5 @@
 #summary Meeting with Diane B
+#labels Meetings
 
   * Enter Button for Help
   * Escape for Exit according to Diane
@@ -8,6 +9,7 @@
   * Template creation mode
   * Moving stories from one student to another
   * Possible sharing of stories via a Gary Bishop Website
+  * Do you really want to delete (hit delete again)
 
 
 
