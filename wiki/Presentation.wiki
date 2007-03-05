@@ -1,6 +1,6 @@
 #summary Presentation outline for 3-6-2007
 
-= Introduction =
+= Slide 0 =
 
 Sami Says
   * Corey Davis
@@ -8,9 +8,16 @@ Sami Says
   * Adam Roberts
   * Ed Rowe
 
-= Details =
+= Slide 1 =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+What are we doing?
+
+Basically, we're creating a program that allows visually-impared children to create "stories" by recording clips of their own voice and mixing those clips with sound clips from an extensive library of fun pre-recorded sounds. (play toilet-flush)
+
+= Slide 2 =
+
+How are we doing it?
+
+  * Python with GUI using WX and AUI using several super-cool python libraries.
+  * Pydev Eclipse extension for actual coding.
+
