@@ -1,3 +1,5 @@
+import cPickle
+
 '''
 ' Class Name:  Story
 ' Description: Contains data structures and methods for a single
@@ -6,12 +8,16 @@
 '              witht the properties (bits, sample rate, etc.)
 '              defined in the SoundControl class.
 '''
+
+STUDENT_DIR = 'Students'
 class Story:
     
     '''
     ' Constructor initializes Story object.  Current clip is title.
     '''
-    def __init__(self, titleBytes = ''):
+    def __init__(self, name='',student='',titleBytes = ''):
+        self.name = name
+        self.student = student
         self.clips = [titleBytes]
         self.currClip = 0
         
@@ -85,3 +91,11 @@ class Story:
     '''
     def needsTitle(self):
         return self.clips[0] == ''
+    
+    def pickleMe(self):
+        fileName = '%s/%s/%s' % (STUDENT_DIR,self.student,self.story)
+        f = file(fileName,'w')
+        p = cPickle.Pickler(f)
+        p.dump(self)
+        f.close()
+        
