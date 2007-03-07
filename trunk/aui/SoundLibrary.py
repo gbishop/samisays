@@ -18,7 +18,8 @@ class SoundLibrary:
     def loadLibrary(self, libraryDir):
         self.catList = os.listdir(libraryDir)
         self.catList.sort()
-        self.catList.remove('.svn') # Ignore SVN files
+        if '.svn' in self.catList:
+            self.catList.remove('.svn') # Ignore SVN files
         
         self.soundMatrix = [[] for i in xrange(len(self.catList))]
         for i in xrange(len(self.catList)):
