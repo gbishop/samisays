@@ -6,7 +6,6 @@ from Student import Student
 # No magic in my code!
 STUDENT_DIR = 'students/'
 BACKUP_DIR = STUDENT_DIR + 'removed/'
-FILE_EXTENSION = '.pkl'
  
 class Class:
      
@@ -37,6 +36,9 @@ class Class:
             except OSError:()
             
     def load(self, path = ''):
+        try:
+            os.mkdir(STUDENT_DIR)
+        except OSError:()
         directory = os.listdir(path + STUDENT_DIR)
         self.students = []
         for i in directory:
