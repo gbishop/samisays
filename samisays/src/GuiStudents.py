@@ -46,7 +46,8 @@ class GuiStudents(wx.Frame):
     def __set_properties(self):
         # begin wxGlade: guiStudents.__set_properties
         self.SetTitle("Student Selection")
-        self.SetSize((500, 500))
+        self.SetPosition((0,0))
+        self.SetSize(wx.DisplaySize())
         self.filler00.SetMinSize((-1, 30))
         self.filler01.SetMinSize((30, -1))
         self.filler02.SetMinSize((25, -1))

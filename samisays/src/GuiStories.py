@@ -49,7 +49,8 @@ class GuiStories(wx.Frame):
     def __set_properties(self):
         # begin wxGlade: guiStories.__set_properties
         self.SetTitle("Sami's Stories")
-        self.SetSize((400, 400))
+        self.SetPosition((0,0))
+        self.SetSize(wx.DisplaySize())
         self.btnSelect.SetDefault()
         self.btnSelect.SetFocus()
         # end wxGlade
