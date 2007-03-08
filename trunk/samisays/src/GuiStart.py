@@ -110,7 +110,7 @@ class GuiStart(wx.Frame):
     # end btnSoundPressed
     
     def onClose(self, event):
-        dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO)
+        dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO | wx.ICON_EXCLAMATION)
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
             sys.exit()
