@@ -2,7 +2,7 @@ Welcome to Sami Says story creation.
 creation_welcome.wav
 Your story needs a title. Hold down the space bar and say the title into the microphone.
 needs_title.wav
-You now have a title to an empty story. You can press and hold the space bar to record the first sound clip, or press the down arrow to insert a sound effect.
+You now have a title to an empty story. You can press and hold the space bar to reecord the first sound clip, or press the down arrow to insert a sound effect.
 after_title.wav
 You now have one clip and a title. You may use the space bar to record another sound clip after the clip you just heard and the left and right arrow keys to move through your clips. You can also insert sound effects after the clip you just heard with the down arrow.
 after_first_clip.wav
