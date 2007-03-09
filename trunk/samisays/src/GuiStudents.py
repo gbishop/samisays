@@ -48,6 +48,7 @@ class GuiStudents(wx.Frame):
         self.SetTitle("Student Selection")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
+        self.Maximize()
         self.filler00.SetMinSize((-1, 30))
         self.filler01.SetMinSize((30, -1))
         self.filler02.SetMinSize((25, -1))

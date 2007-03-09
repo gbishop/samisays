@@ -49,6 +49,7 @@ class GuiStart(wx.Frame):
         self.SetTitle("Sami Says")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
+        self.Maximize()
         self.btnStories.SetMinSize((175, 35))
         self.btnStories.SetToolTipString("Make a story by recording and inserting sounds.")
         self.btnStories.SetDefault()
