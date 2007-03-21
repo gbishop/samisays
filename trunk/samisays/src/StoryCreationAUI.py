@@ -4,7 +4,7 @@ from SoundControl import *
 from Story import *
 from InsertSoundAUI import *
 
-INSTR_DIR = 'instr_sounds/'
+INSTR_DIR = 'instr_text/'
 
 '''
 ' Class Name:  StoryCreationAUI
@@ -18,16 +18,9 @@ class StoryCreationAUI:
     ''' 
     ' Constructor initializes object. 
     '''
-    def __init__(self, parent, story=None):
-        self.main = parent # Story Manager
-        self.SC = parent.SC # Sound Control
-        self.SC.playSoundFile(INSTR_DIR + 'creation_welcome.mp3') # Play Welcome
-        if story == None:
-            self.story = Story() # Initialize Empty Story
-            #self.firstTitle = True
-        else:
-            self.story = story # Open existing story
-
+    def __init__(self, env):
+        self.env = env
+        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
@@ -49,8 +42,8 @@ class StoryCreationAUI:
         
         if self.keyDownCode == wx.WXK_SPACE: # If key is record button, begin recording
             self.stopPlayback = True 
-            self.SC.stopPlay()
-            self.SC.startRecord()
+            self.env['SoundControl'].stopPlay()
+            self.env['SoundControl'].startRecord()
         
         event.Skip()
         
@@ -82,12 +75,12 @@ class StoryCreationAUI:
         
         # Stop any sound that is playing
         self.stopPlayback = True 
-        self.SC.stopPlay()
+        self.env['SoundControl'].stopPlay()
         
         
-        if self.story.needsTitle() and keyCode != wx.WXK_SPACE: 
+        if self.env['Story'].needsTitle() and keyCode != wx.WXK_SPACE: 
             # If no title exists, nothing is to be done until one is recorded
-            self.SC.playSoundFile(INSTR_DIR + 'needs_title.mp3')
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
         else:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
@@ -100,16 +93,14 @@ class StoryCreationAUI:
     ' (len(story) == 0) is already handled in OnKeyUp.
     '''
     def getHelp(self):
-        
-        story = self.story
-        soundFile = INSTR_DIR
+        textFile = INSTR_DIR
 
-        if len(story) == 1:
-            soundFile += 'after_title.mp3'
+        if len(self.env['Story']) == 1:
+            textFile += 'after_title.txt'
         else:
-            soundFile += 'creation_instructions.mp3'
+            textFile += 'creation_instructions.txt'
         
-        self.SC.playSoundFile(soundFile)
+        self.env['SoundControl'].speakTextFile(soundFile)
         
     ''' 
     ' Called when record key is lifted.
@@ -117,9 +108,9 @@ class StoryCreationAUI:
     '''
     def recordingFinished(self):
         
-        soundBytes = self.SC.stopRecord() # End record and get recorded bytes
+        soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
         soundBytes = normalizeSoundBytes(soundBytes)
-        story = self.story
+        story = self.env['Story']
         
         if story.needsTitle() and self.firstTitle: 
             self.firstTitle = False
@@ -130,7 +121,7 @@ class StoryCreationAUI:
         else:
             story.insertClip(soundBytes)
         
-        self.SC.playSoundBytes(soundBytes)
+        self.env['SoundControl'].playSoundBytes(soundBytes)
         
     ''' 
     ' Called when Story Playback key is released.
@@ -151,8 +142,8 @@ class StoryCreationAUI:
         ISA = InsertSoundAUI(self)
         
         # Pass key bindings to InsertSoundAUI
-        self.main.keyUpFunct = ISA.onKeyUp
-        self.main.keyDownFunct = ISA.onKeyDown
+        self.env['keyUpFunct'] = ISA.onKeyUp
+        self.env['keyDownFunct'] = ISA.onKeyDown
     
     '''
     ' Called when delete key is released.
@@ -162,21 +153,21 @@ class StoryCreationAUI:
     '''    
     def deleteClip(self):
         
-        story = self.story
+        story = self.env['Story']
         
         if self.deleteConfirmed:
             
             if story.currClip == 0:
                 story.replaceTitle('')
-                self.SC.playSoundFile(INSTR_DIR + 'needs_title.mp3')
+                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
             else:
-                self.SC.playSoundBytes(story.deleteClip())
+                self.env['SoundControl'].playSoundBytes(story.deleteClip())
         
         else:
             if story.currClip == 0:
-                self.SC.playSoundFile(INSTR_DIR + 'delete_title.mp3')
+                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_title.txt')
             else:
-                self.SC.playSoundFile(INSTR_DIR + 'delete_clip.mp3')
+                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_clip.txt')
             self.deleteConfirmed = True
                 
     '''
@@ -184,14 +175,14 @@ class StoryCreationAUI:
     ' Moves to the previous clip in the story and plays it back.
     '''
     def navLeft(self):
-        self.SC.playSoundBytes(self.story.getPreviousClip())
+        self.env['SoundControl'].playSoundBytes(self.story.getPreviousClip())
     
     '''
     ' Called when navigate right key is released.
     ' Moves to the next clip in the story and plays it back.
     '''
     def navRight(self):
-        self.SC.playSoundBytes(self.story.getNextClip())
+        self.env['SoundControl'].playSoundBytes(self.story.getNextClip())
        
     ''' Test function for exporting to mp3. '''
     def exportToMp3(self):
@@ -212,8 +203,8 @@ class StoryPlayback(threading.Thread):
     '''
     ' Constructor initializes thread.
     '''
-    def __init__(self, parent):
-        self.SCA = parent
+    def __init__(self, env):
+        self.env = env
         threading.Thread.__init__(self)
     
     '''
@@ -221,14 +212,13 @@ class StoryPlayback(threading.Thread):
     ' either the stopPlayback flag is set to True or the last clip in the story has been played.
     '''
     def run(self):
-        story = self.SCA.story
-        SC = self.SCA.SC
         
+        story = self.env['Story']
         story.currClip = -1
         
         while not self.SCA.stopPlayback and (story.currClip < len(story)-1):
-            SC.playSoundBytes(story.getNextClip())
-            while (SC.isPlaying()):
+            self.env['SoundControl'].playSoundBytes(story.getNextClip())
+            while (self.env['SoundControl'].isPlaying()):
                 pass
         
         
