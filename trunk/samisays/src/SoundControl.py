@@ -2,6 +2,7 @@ import pySonic
 import pymedia.audio.sound as sound
 import pymedia.audio.acodec as acodec
 import pymedia.muxer as muxer
+import pyTTS
 
 from numpy import *
 
@@ -27,6 +28,9 @@ class SoundControl:
     ' Constructor initializes object.
     '''
     def __init__(self):
+        
+        self.tts = pyTTS.Create()
+        
         # initialize pySonic
         self.w = pySonic.World(44100,32)
         
@@ -130,6 +134,16 @@ class SoundControl:
         if self.isRecording:
             self.grabAudio()
         event.Skip()
+        
+    def speakText(self, text, blocking = False):
+        m = self.tts.SpeakToMemory(text)
+        format = m.Format.GetWaveFormatEx()
+        soundBytes = m.GetData()
+        self.playSoundBytes(soundBytes, blocking)
+        
+    def speakTextFile(self, filepath, blocking = False):
+        text = file(filepath,'r').read()
+        self.speakText(text, blocking)
 
 '''
 ' Normalizes sound bytes by finding the peak and scaling everything by it up to the maximum amplitude.
