@@ -59,7 +59,6 @@ class GuiStories(wx.Frame):
         self.SetTitle("Sami's Stories")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
-        self.Maximize()
         self.btnSelect.SetDefault()
         self.btnSelect.SetFocus()
         # end wxGlade
