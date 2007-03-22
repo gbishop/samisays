@@ -137,13 +137,13 @@ class GuiStories(wx.Frame):
 
     def btnBackPressed(self, event): # wxGlade: guiStories.<event_handler>
         self.Hide()
-        self.env[2].Show()
+        self.env['guiStudents'].Show()
     
     def setEnv(self,env): 
         self.env = env 
         
     def setStudent(self,index):
-        self.student = self.env[0].students[index]
+        self.student = self.env['class'].students[index]
         self.SetTitle(self.student.getName() + '\'s Stories')
         
     def onClose(self, event):
