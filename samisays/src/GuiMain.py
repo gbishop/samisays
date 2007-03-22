@@ -16,7 +16,7 @@ wx.InitAllImageHandlers()
 start = GuiStart(None, -1, "")
 students = GuiStudents(None, -1, "")
 stories = GuiStories(None,-1,"")
-env = [currentClass,start,students,stories]
+env = {'class': currentClass, 'guiStart': start, 'guiStudents': students, 'guiStories': stories}
 start.setEnv(env)
 students.setEnv(env)
 stories.setEnv(env)

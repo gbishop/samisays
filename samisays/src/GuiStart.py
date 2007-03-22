@@ -74,7 +74,7 @@ class GuiStart(wx.Frame):
 
     def btnStoriesPressed(self, event): # wxGlade: guiStart.<event_handler>
         self.Hide()
-        self.env[2].Show()
+        self.env['guiStudents'].Show()
     # end btnStoriesPressed
 
     def btnSoundsPressed(self, event): # wxGlade: guiStart.<event_handler>

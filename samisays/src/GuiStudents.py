@@ -99,8 +99,8 @@ class GuiStudents(wx.Frame):
 
     def handleSelect(self):
         self.Hide()
-        self.env[3].setStudent(self.lstStudents.GetSelection());
-        self.env[3].Show()
+        self.env['guiStories'].setStudent(self.lstStudents.GetSelection());
+        self.env['guiStories'].Show()
 
     def lstStudentsDblClick(self, event): # wxGlade: guiStudents.<event_handler>
         self.handleSelect()
@@ -113,25 +113,25 @@ class GuiStudents(wx.Frame):
         if dialog.ShowModal() == wx.ID_OK:
             newName = dialog.GetValue()
             if(newName != ''):
-                self.env[0].addStudent(Student(dialog.GetValue()))
+                self.env['class'].addStudent(Student(dialog.GetValue()))
                 self.populateList()
         else:
             dialog.Destroy()
 
     def btnRemovePressed(self, event): # wxGlade: guiStudents.<event_handler>
         dialog = wx.MessageDialog(None,'Are you sure you want delete ' + 
-                                  self.env[0].students[self.lstStudents.GetSelection()].getName() + 
+                                  self.env['class'].students[self.lstStudents.GetSelection()].getName() + 
                                   ' from the class?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
-            self.env[0].delStudent(self.lstStudents.GetSelection())
+            self.env['class'].delStudent(self.lstStudents.GetSelection())
             self.populateList()
         else:
             dialog.Destroy()
 
     def btnBackPressed(self, event): # wxGlade: guiStudents.<event_handler>
         self.Hide()
-        self.env[1].Show()
+        self.env['guiStart'].Show()
         
     def setEnv(self,env): 
         self.env = env
@@ -148,7 +148,7 @@ class GuiStudents(wx.Frame):
     def populateList(self):
         self.lstStudents.Clear()
         count = 0;
-        for i in self.env[0].students:
+        for i in self.env['class'].students:
             self.lstStudents.Insert(i.name,count)
             count+=1
         if(self.lstStudents.GetCount() > 0):
