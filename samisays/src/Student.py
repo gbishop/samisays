@@ -24,6 +24,11 @@ class Student:
     
     def delStory(self,index):
         self.stories.pop(index)
+        
+    def loadNames(self,path):
+        directory = os.listdir(path)
+        for i in directory:
+            self.addStory(i[:-4])
          
 if __name__ == "__main__":
     print 'The class "Student" is not runnable'

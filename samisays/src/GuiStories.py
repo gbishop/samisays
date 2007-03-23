@@ -106,9 +106,10 @@ class GuiStories(wx.Frame):
         event.Skip()
 
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
-        
+        print 'create not done'
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
+        self.populateList()
         print "Event handler `btnRenamePressed' not implemented!"
         event.Skip()
 
@@ -145,12 +146,13 @@ class GuiStories(wx.Frame):
             
     def populateList(self):
         self.lstStories.Clear()
+        self.student.loadNames('students/_' + self.student.getName())
         count = 0;
-        for i in self.env['class'].students:
-            self.lstStudents.Insert(i.name,count)
+        for i in self.student.stories:
+            self.lstStories.Insert(i.name,count)
             count+=1
-        if(self.lstStudents.GetCount() > 0):
-            self.lstStudents.SetSelection(0)
+        if(self.lstStories.GetCount() > 0):
+            self.lstStories.SetSelection(0)
             self.btnSelect.Enable()
         else:
             self.btnSelect.Enable(False)
