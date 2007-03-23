@@ -9,26 +9,19 @@ from Student import Student
 class GuiStudents(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: guiStudents.__init__
-        kwds['style'] = wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL
+        kwds['style'] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.filler00 = wx.Panel(self, -1)
-        self.filler01 = wx.Panel(self, -1)
-        self.lstStudents = wx.ListBox(self, -1, choices=[])
+        self.panel = wx.Panel(self,-1)
+        self.lstStudents = wx.ListBox(self.panel, -1, choices=[])
         self.lstStudents.SetFont(wx.Font(16,wx.SWISS, wx.NORMAL, wx.NORMAL))
-        self.filler02 = wx.Panel(self, -1)
-        self.btnSelect = wx.Button(self, -1, 'Select')
+        self.btnSelect = wx.Button(self.panel, -1, 'Select')
         self.btnSelect.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
-        self.filler03 = wx.Panel(self, -1)
-        self.btnCreate = wx.Button(self, -1, 'Add')
+        self.btnCreate = wx.Button(self.panel, -1, 'Add')
         self.btnCreate.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
-        self.filler04 = wx.Panel(self, -1)
-        self.btnRemove = wx.Button(self, -1, 'Remove')
+        self.btnRemove = wx.Button(self.panel, -1, 'Remove')
         self.btnRemove.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
-        self.filler05 = wx.Panel(self, -1)
-        self.btnBack = wx.Button(self, -1, 'Back')
+        self.btnBack = wx.Button(self.panel, -1, 'Back')
         self.btnBack.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
-        self.filler06 = wx.Panel(self, -1)
-        self.filler07 = wx.Panel(self, -1)
 
         self.__set_properties()
         self.__do_layout()
@@ -41,21 +34,15 @@ class GuiStudents(wx.Frame):
         
         # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
-        self.env = []
+        self.env = {}
 
     def __set_properties(self):
         # begin wxGlade: guiStudents.__set_properties
         self.SetTitle("Student Selection")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
-        self.filler00.SetMinSize((-1, 30))
-        self.filler01.SetMinSize((30, -1))
-        self.filler02.SetMinSize((25, -1))
         self.btnSelect.SetDefault()
         self.btnSelect.SetFocus()
-        self.filler03.SetMinSize((75, 14))
-        self.filler06.SetMinSize((30, -1))
-        self.filler07.SetMinSize((-1, 30))
         # end wxGlade
 
     def __do_layout(self):
@@ -63,16 +50,16 @@ class GuiStudents(wx.Frame):
         szrParent = wx.FlexGridSizer(3, 1, 0, 5)
         szrChildList = wx.FlexGridSizer(1, 5, 0, 0)
         szrChildButtons = wx.FlexGridSizer(7, 1, 0, 0)
-        szrParent.Add(self.filler00, 1, wx.EXPAND, 0)
-        szrChildList.Add(self.filler01, 1, wx.EXPAND, 0)
+        szrParent.AddSpacer(-1)
+        szrChildList.AddSpacer(-1)
         szrChildList.Add(self.lstStudents, 0, wx.EXPAND, 0)
-        szrChildList.Add(self.filler02, 1, wx.EXPAND, 0)
+        szrChildList.AddSpacer(-1)
         szrChildButtons.Add(self.btnSelect, 0, wx.EXPAND, 0)
-        szrChildButtons.Add(self.filler03, 1, wx.EXPAND, 0)
+        szrChildButtons.AddSpacer(-1)
         szrChildButtons.Add(self.btnCreate, 0, wx.EXPAND, 0)
-        szrChildButtons.Add(self.filler04, 1, wx.EXPAND, 0)
+        szrChildButtons.AddSpacer(-1)
         szrChildButtons.Add(self.btnRemove, 0, wx.EXPAND, 0)
-        szrChildButtons.Add(self.filler05, 1, wx.EXPAND, 0)
+        szrChildButtons.AddSpacer(-1)
         szrChildButtons.Add(self.btnBack, 0, wx.EXPAND, 0)
         szrChildButtons.AddGrowableRow(0)
         szrChildButtons.AddGrowableRow(1)
@@ -83,18 +70,18 @@ class GuiStudents(wx.Frame):
         szrChildButtons.AddGrowableRow(6)
         szrChildButtons.AddGrowableCol(0)
         szrChildList.Add(szrChildButtons, 1, wx.EXPAND, 0)
-        szrChildList.Add(self.filler06, 1, wx.EXPAND, 0)
+        szrChildList.AddSpacer(-1)
         szrChildList.AddGrowableRow(0)
         szrChildList.AddGrowableCol(1)
         szrChildList.AddGrowableCol(3)
         szrParent.Add(szrChildList, 1, wx.EXPAND, 0)
-        szrParent.Add(self.filler07, 1, wx.EXPAND, 0)
-        self.SetAutoLayout(True)
-        self.SetSizer(szrParent)
+        szrParent.AddSpacer(-1)
+        self.panel.SetAutoLayout(True)
+        self.panel.SetSizer(szrParent)
         szrParent.AddGrowableRow(1)
         szrParent.AddGrowableCol(0)
-        self.Layout()
-        self.Centre()
+        self.panel.Layout()
+        #    self.Centre()
         # end wxGlade
 
     def handleSelect(self):
