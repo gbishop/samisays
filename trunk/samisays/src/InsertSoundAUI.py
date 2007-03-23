@@ -110,7 +110,7 @@ class InsertSoundAUI:
         
         soundBytes = resampleSoundFile(self.SL.getCurrSoundFile())
         soundBytes = normalizeSoundBytes(soundBytes)
-        self.env['Story'].insertClip(soundBytes)
+        self.env['story'].insertClip(soundBytes)
         self.env['SoundControl'].playSoundBytes(soundBytes)
         
         # Return key bindings to StoryCreationAUI class that called me

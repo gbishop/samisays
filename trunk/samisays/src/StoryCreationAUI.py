@@ -98,7 +98,7 @@ class StoryCreationAUI:
     def getHelp(self):
         textFile = INSTR_DIR
 
-        if len(self.env['Story']) == 1:
+        if len(self.env['story']) == 1:
             textFile += 'after_title.txt'
         else:
             textFile += 'creation_instructions.txt'
@@ -113,7 +113,7 @@ class StoryCreationAUI:
         
         soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
         soundBytes = normalizeSoundBytes(soundBytes)
-        story = self.env['Story']
+        story = self.env['story']
         
         if story.needsTitle() and self.firstTitle: 
             self.firstTitle = False
@@ -156,7 +156,7 @@ class StoryCreationAUI:
     '''    
     def deleteClip(self):
         
-        story = self.env['Story']
+        story = self.env['story']
         
         if self.deleteConfirmed:
             
@@ -216,7 +216,7 @@ class StoryPlayback(threading.Thread):
     '''
     def run(self):
         
-        story = self.env['Story']
+        story = self.env['story']
         story.currClip = -1
         
         while not self.env['auiStoryCreation'].stopPlayback and (story.currClip < len(story)-1):
