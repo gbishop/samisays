@@ -1,5 +1,6 @@
 import threading
 import wx
+import time
 from SoundControl import *
 from Story import *
 from InsertSoundAUI import *
@@ -21,7 +22,8 @@ class StoryCreationAUI:
     def __init__(self, env):
         self.env = env
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
-        self.env['Story'] = Story('story1','adam')
+        name = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
+        self.env['Story'] = Story(name,'adam')
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
@@ -132,7 +134,7 @@ class StoryCreationAUI:
     '''
     def playbackStory(self):
         self.stopPlayback = False
-        spb = StoryPlayback(self) 
+        spb = StoryPlayback(self, self.env) 
         spb.start()
         
     '''
@@ -217,7 +219,7 @@ class StoryPlayback(threading.Thread):
         story = self.env['Story']
         story.currClip = -1
         
-        while not self.SCA.stopPlayback and (story.currClip < len(story)-1):
+        while not self.env['auiStoryCreation'].stopPlayback and (story.currClip < len(story)-1):
             self.env['SoundControl'].playSoundBytes(story.getNextClip())
             while (self.env['SoundControl'].isPlaying()):
                 pass
