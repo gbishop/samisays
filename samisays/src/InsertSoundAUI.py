@@ -9,11 +9,8 @@ INSTR_DIR = 'instr_sounds/'
 
 class InsertSoundAUI:
     
-    def __init__(self, parent):
-        self.SCA = parent
-        self.SC = parent.SC
-        self.main = parent.main
-        self.story = parent.story
+    def __init__(self, env):
+        self.env = env
         
         self.SL = SoundLibrary()
         
@@ -53,7 +50,7 @@ class InsertSoundAUI:
         if not keyCode in keyFunctions: # Ignore invalid keys
             return
         
-        self.SC.stopPlay() # Stop any sound that is playing
+        self.env['SoundControl'].stopPlay() # Stop any sound that is playing
         
         # If not yet navigated to a category, ignore keys and repeat instructions
         if not self.SL.onValidCat() and not (keyCode==wx.WXK_LEFT or keyCode==wx.WXK_RIGHT):
@@ -68,28 +65,28 @@ class InsertSoundAUI:
     ' Moves to the category to previous category in cyclical fashion.
     '''
     def navLeft(self):
-        self.SC.playSoundFile(self.SL.getPrevCatNameFile())
+        self.env['SoundControl'].playSoundFile(self.SL.getPrevCatNameFile())
     
     '''
     ' Called when navigate right key is released.
     ' Moves to the next category in cyclical fashion.
     '''    
     def navRight(self):
-        self.SC.playSoundFile(self.SL.getNextCatNameFile())
+        self.env['SoundControl'].playSoundFile(self.SL.getNextCatNameFile())
  
     '''
     ' Called when navigate up key is released.
     ' Moves to the previous sound of the current category in cyclical fashion.
     '''   
     def navUp(self):
-        self.SC.playSoundFile(self.SL.getPrevSoundFile())
+        self.env['SoundControl'].playSoundFile(self.SL.getPrevSoundFile())
     
     '''
     ' Called when navigate down key is released.
     ' Moves to the next sound of the current category in cyclical fashion.
     '''       
     def navDown(self):
-        self.SC.playSoundFile(self.SL.getNextSoundFile())
+        self.env['SoundControl'].playSoundFile(self.SL.getNextSoundFile())
 
     
     ''' 
@@ -97,7 +94,7 @@ class InsertSoundAUI:
     ' Notifies the user of the current options.
     '''
     def getHelp(self):
-        self.SC.playSoundFile(INSTR_DIR + 'insert_sound.mp3')
+        self.env['SoundControl'].playSoundFile(INSTR_DIR + 'insert_sound.mp3')
     
     ''' 
     ' Called when selection key is released.
@@ -113,9 +110,9 @@ class InsertSoundAUI:
         
         soundBytes = resampleSoundFile(self.SL.getCurrSoundFile())
         soundBytes = normalizeSoundBytes(soundBytes)
-        self.story.insertClip(soundBytes)
-        self.SC.playSoundBytes(soundBytes)
+        self.env['Story'].insertClip(soundBytes)
+        self.env['SoundControl'].playSoundBytes(soundBytes)
         
         # Return key bindings to StoryCreationAUI class that called me
-        self.main.keyDownFunct = self.SCA.onKeyDown
-        self.main.keyUpFunct = self.SCA.onKeyUp
+        self.env['keyDownFunct'] = self.env['auiStoryCreation'].onKeyDown
+        self.env['keyUpFunct'] = self.env['auiStoryCreation'].onKeyUp

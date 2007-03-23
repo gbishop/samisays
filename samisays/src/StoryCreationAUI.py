@@ -21,6 +21,7 @@ class StoryCreationAUI:
     def __init__(self, env):
         self.env = env
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
+        self.env['Story'] = Story('story1','adam')
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
@@ -115,7 +116,7 @@ class StoryCreationAUI:
         if story.needsTitle() and self.firstTitle: 
             self.firstTitle = False
             story.replaceTitle(soundBytes)
-            soundBytes = soundBytes + resampleSoundFile(INSTR_DIR + 'after_title.mp3')
+            soundBytes = soundBytes #+ resampleSoundFile(INSTR_DIR + 'after_title.mp3')
         elif story.needsTitle():
             story.replaceTitle(soundBytes)
         else:
@@ -139,7 +140,7 @@ class StoryCreationAUI:
     ' Passes control to the InsertSoundAUI class to allow user to insert a sound effect.
     '''
     def insertSound(self):
-        ISA = InsertSoundAUI(self)
+        ISA = InsertSoundAUI(self, env)
         
         # Pass key bindings to InsertSoundAUI
         self.env['keyUpFunct'] = ISA.onKeyUp
