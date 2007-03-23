@@ -36,6 +36,7 @@
 || Sound Clips are Modifiable || 4/2 || _N/A_ || Corey ||
 || Visualizer (GUI and Code) Complete || 4/2 || _N/A_ || E and P ||
 || Filled out Sound Library || 4/2 || _N/A_ || Ed ||
+|| Rigorous Testing || 4/2 || _N/A_ || All members ||
 || Final Story Creation Module Design Doc || 4/10 || _N/A_ || Ed ||
 || Final File System Design Doc || 4/10 || _N/A_ || Corey ||
 || Final Teacher GUI Design Doc || 4/10 || _N/A_ || Patrick ||
