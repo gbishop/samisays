@@ -20,13 +20,22 @@
 || Teacher GUI Code Complete || 3/30 || _N/A_ || Patrick ||
 || Draft Teacher GUI Design Doc || 3/30 || _N/A_ || Patrick ||
 || Teacher GUI Test Plan || 3/30 || _N/A_ || Adam ||
-|| Story Creation Code Complete || 3/30 || _N/A_ || Adam ||
+|| Teacher Template Final Checkpoint || 3/30 || _N/A_ || Adam ||
+|| Visualizer Code Final Checkpoint || 3/30 || _N/A_ || Ed ||
+|| Story Creation Code Complete (and Normalized) || 3/30 || _N/A_ || Adam ||
+|| Sound Library Manager Code Final Checkpoint || 3/30 || _N/A_ || Corey ||
+|| Sound Library GUI Final Checkpoint || 3/30 || _N/A_ || Patrick ||
 || Draft File System Design Doc || 3/30 || _N/A_ || Corey ||
 || Story Creation Documentation Outline || 3/30 || _N/A_ || Ed ||
 || Teacher GUI Documentation Outline || 3/30 || _N/A_ || Ed ||
 || Teacher GUI Documentation Complete || 4/2 || _N/A_ || Ed ||
 || Story Creation Documentation Complete || 4/2 || _N/A_ || Ed ||
+|| Teacher Template Complete || 4/2 || _N/A_ || Adam ||
 || Teacher GUI Code Freeze || 4/2 || _N/A_ || Patrick ||
+|| Sound Library Manager (GUI and Code) Complete || 4/2 || _N/A_ || P and C ||
+|| Sound Clips are Modifiable || 4/2 || _N/A_ || Corey ||
+|| Visualizer (GUI and Code) Complete || 4/2 || _N/A_ || E and P ||
+|| Filled out Sound Library || 4/2 || _N/A_ || Ed ||
 || Final Story Creation Module Design Doc || 4/10 || _N/A_ || Ed ||
 || Final File System Design Doc || 4/10 || _N/A_ || Corey ||
 || Final Teacher GUI Design Doc || 4/10 || _N/A_ || Patrick ||
