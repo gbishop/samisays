@@ -7,7 +7,7 @@ from SoundLibrary import *
 
 INSTR_DIR = 'instr_text/'
 
-class InsertSoundAUI:
+class AuiInsertSound:
     
     def __init__(self, env):
         self.env = env
