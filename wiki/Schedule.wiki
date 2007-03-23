@@ -4,23 +4,23 @@
 = The Schedule =
 
 || _*Task*_ || _*Planned Date*_ || _*Date Completed*_ || _*Person Responsible*_ ||
-|| Web Site || 1/29 || 1/29 || Ed ||
-|| Team Rules || 1/29 || 1/29 || Everyone ||
-|| Functional Spec || 1/30 || 1/30 || Everyone ||
-|| Project Schedule || 1/31 || 2/1 || Corey & Ed ||
-|| Draft Contract || 2/2 || 2/2 || Everyone ||
-|| Draft Story Creation Module Design Doc || 2/7 || 2/10 || Ed ||
-|| Sign Contract || 2/7 || _N/A_ || Everyone ||
+|| ~~Web Site~~ || 1/29 || 1/29 || Ed ||
+|| ~~Team Rules~~ || 1/29 || 1/29 || Everyone ||
+|| ~~Functional Spec~~ || 1/30 || 1/30 || Everyone ||
+|| ~~Project Schedule~~ || 1/31 || 2/1 || Corey & Ed ||
+|| ~~Draft Contract~~ || 2/2 || 2/2 || Everyone ||
+|| ~~Draft Story Creation Module Design Doc~~ || 2/7 || 2/10 || Ed ||
+|| ~~Sign Contract~~ || 2/7 || 2/26 || Everyone ||
 || Final Story Creation Module Design Doc || 2/9 || _N/A_ || Ed ||
 || Draft Teacher GUI Design Doc || 2/12 || _N/A_ || Patrick ||
-|| Story Creation Code Intermediate Checkpoint || 2/14 || 2/12 || Adam ||
+|| ~~Story Creation Code Intermediate Checkpoint~~ || 2/14 || 2/12 || Adam ||
 || Story Creation Documentation Outline || 2/14 || _N/A_ || Ed ||
 || Story Creation Code Complete || 2/26 || _N/A_ || Adam ||
 || Story Creation Documentation Complete || 2/26 || _N/A_ || Ed ||
 || Story Creation Test Plan || 2/26 || _N/A_ || Corey ||
-|| Story Creation Code Freeze || 2/28 || _N/A_ || Adam ||
-|| *First Deliverable* || 3/2 || 3/2 || Everyone ||
-|| *Midterm Presentation* || 3/6 || 3/6 || Everyone ||
+|| ~~Story Creation Code Freeze~~ || 2/28 || 2/28 || Adam ||
+|| ~~*First Deliverable*~~ || 3/2 || 3/2 || Everyone ||
+|| ~~*Midterm Presentation*~~ || 3/6 || 3/6 || Everyone ||
 || Final Teacher GUI Design Doc || 3/7 || _N/A_ || Patrick ||
 || Draft File System Design Doc || 3/7 || _N/A_ || Corey ||
 || Teacher GUI Code Intermediate Checkpoint || 3/21 || _N/A_ || Patrick ||
