@@ -11,24 +11,25 @@
 || ~~Draft Contract~~ || 2/2 || 2/2 || Everyone ||
 || ~~Draft Story Creation Module Design Doc~~ || 2/7 || 2/10 || Ed ||
 || ~~Sign Contract~~ || 2/7 || 2/26 || Everyone ||
-|| Final Story Creation Module Design Doc || 2/9 || _N/A_ || Ed ||
-|| Draft Teacher GUI Design Doc || 2/12 || _N/A_ || Patrick ||
 || ~~Story Creation Code Intermediate Checkpoint~~ || 2/14 || 2/12 || Adam ||
-|| Story Creation Documentation Outline || 2/14 || _N/A_ || Ed ||
-|| Story Creation Code Complete || 2/26 || _N/A_ || Adam ||
-|| Story Creation Documentation Complete || 2/26 || _N/A_ || Ed ||
 || Story Creation Test Plan || 2/26 || _N/A_ || Corey ||
 || ~~Story Creation Code Freeze~~ || 2/28 || 2/28 || Adam ||
 || ~~*First Deliverable*~~ || 3/2 || 3/2 || Everyone ||
 || ~~*Midterm Presentation*~~ || 3/6 || 3/6 || Everyone ||
-|| Final Teacher GUI Design Doc || 3/7 || _N/A_ || Patrick ||
-|| Draft File System Design Doc || 3/7 || _N/A_ || Corey ||
-|| Teacher GUI Code Intermediate Checkpoint || 3/21 || _N/A_ || Patrick ||
-|| Final File System Design Doc || 3/26 || _N/A_ || Corey ||
+|| Teacher GUI Code Intermediate Checkpoint || 3/21 || 3/23 || Patrick ||
 || Teacher GUI Code Complete || 3/30 || _N/A_ || Patrick ||
-|| Teacher GUI Documentation Complete || 3/30 || _N/A_ || Ed ||
+|| Draft Teacher GUI Design Doc || 3/30 || _N/A_ || Patrick ||
 || Teacher GUI Test Plan || 3/30 || _N/A_ || Adam ||
+|| Story Creation Code Complete || 3/30 || _N/A_ || Adam ||
+|| Draft File System Design Doc || 3/30 || _N/A_ || Corey ||
+|| Story Creation Documentation Outline || 3/30 || _N/A_ || Ed ||
+|| Teacher GUI Documentation Outline || 3/30 || _N/A_ || Ed ||
+|| Teacher GUI Documentation Complete || 4/2 || _N/A_ || Ed ||
+|| Story Creation Documentation Complete || 4/2 || _N/A_ || Ed ||
 || Teacher GUI Code Freeze || 4/2 || _N/A_ || Patrick ||
+|| Final Story Creation Module Design Doc || 4/10 || _N/A_ || Ed ||
+|| Final File System Design Doc || 4/10 || _N/A_ || Corey ||
+|| Final Teacher GUI Design Doc || 4/10 || _N/A_ || Patrick ||
 || *Second Deliverable* || 4/5 || _N/A_ || Everyone ||
 || *In-class testing* || 4/17 || _N/A_ || Everyone ||
 || *Final Presentation* || 5/3 || _N/A_ || Everyone ||
