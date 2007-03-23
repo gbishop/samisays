@@ -106,8 +106,7 @@ class GuiStories(wx.Frame):
         event.Skip()
 
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
-        print "Event handler `btnCreatePressed' not implemented!"
-        event.Skip()
+        
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
         print "Event handler `btnRenamePressed' not implemented!"
@@ -143,6 +142,18 @@ class GuiStories(wx.Frame):
             sys.exit()
         else:
             dialog.Destroy()
+            
+    def populateList(self):
+        self.lstStories.Clear()
+        count = 0;
+        for i in self.env['class'].students:
+            self.lstStudents.Insert(i.name,count)
+            count+=1
+        if(self.lstStudents.GetCount() > 0):
+            self.lstStudents.SetSelection(0)
+            self.btnSelect.Enable()
+        else:
+            self.btnSelect.Enable(False)
 
 # end of class guiStories
 
