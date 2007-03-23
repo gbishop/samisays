@@ -20,6 +20,7 @@ class Story:
         self.student = student
         self.clips = [titleBytes]
         self.currClip = 0
+        self.pickleMe()
         
     '''
     ' Returns the number of clips currently in the story (including the title).
@@ -33,12 +34,14 @@ class Story:
     def insertClip(self, soundBytes):
         self.currClip += 1
         self.clips.insert(self.currClip,soundBytes)
+        self.pickleMe()
     
     '''
     ' Replaces the first clip (the title) with new bytes.
     '''
     def replaceTitle(self, titleBytes):
         self.clips[0] = titleBytes
+        self.pickleMe()
     
     '''
     ' Deletes the current clip, makes clip before deleted clip the current clip,
@@ -48,6 +51,7 @@ class Story:
         if self.currClip > 0:
             del self.clips[self.currClip]
         self.currClip -= 1
+        self.pickleMe()
         return self.getCurrClip()
     
     '''
@@ -93,7 +97,7 @@ class Story:
         return self.clips[0] == ''
     
     def pickleMe(self):
-        fileName = '%s/%s/%s' % (STUDENT_DIR,self.student,self.story)
+        fileName = '%s/%s/%s' % (STUDENT_DIR,self.student,self.name)
         f = file(fileName,'w')
         p = cPickle.Pickler(f)
         p.dump(self)
