@@ -12,9 +12,9 @@ class SamiSays(wx.App):
         self.env = dict()
         self.env['SoundControl'] = SoundControl()
         self.frame = wx.Frame(None, -1, 'Sami Says')
-        self.SCA = StoryCreationAUI(self.env)
-        self.env['keyDownFunct'] = self.SCA.onKeyDown
-        self.env['keyUpFunct'] = self.SCA.onKeyUp
+        self.env['auiStoryCreation'] = StoryCreationAUI(self.env)
+        self.env['keyDownFunct'] = self.env['auiStoryCreation'].onKeyDown
+        self.env['keyUpFunct'] = self.env['auiStoryCreation'].onKeyUp
         self.frame.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.frame.Bind(wx.EVT_KEY_UP, self.onKeyUp)
         self.frame.Show(True)

@@ -5,7 +5,7 @@ from Story import *
 from SoundLibrary import *
 
 
-INSTR_DIR = 'instr_sounds/'
+INSTR_DIR = 'instr_text/'
 
 class InsertSoundAUI:
     
@@ -94,7 +94,7 @@ class InsertSoundAUI:
     ' Notifies the user of the current options.
     '''
     def getHelp(self):
-        self.env['SoundControl'].playSoundFile(INSTR_DIR + 'insert_sound.mp3')
+        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'insert_sound.txt')
     
     ''' 
     ' Called when selection key is released.
