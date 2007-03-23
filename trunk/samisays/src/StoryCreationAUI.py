@@ -23,7 +23,7 @@ class StoryCreationAUI:
         self.env = env
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
         name = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
-        self.env['Story'] = Story(name,'adam')
+        self.env['story'] = Story(name,'Adam')
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
@@ -81,7 +81,7 @@ class StoryCreationAUI:
         self.env['SoundControl'].stopPlay()
         
         
-        if self.env['Story'].needsTitle() and keyCode != wx.WXK_SPACE: 
+        if self.env['story'].needsTitle() and keyCode != wx.WXK_SPACE: 
             # If no title exists, nothing is to be done until one is recorded
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
         else:
