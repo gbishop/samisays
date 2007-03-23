@@ -24,7 +24,7 @@ class GuiStart(wx.Frame):
         
         # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
-        self.env = []
+        self.env = {}
         
     # end guiStart.__init__
 
