@@ -3,7 +3,7 @@ import wx
 import time
 from SoundControl import *
 from Story import *
-from InsertSoundAUI import *
+from AuiInsertSound import *
 
 INSTR_DIR = 'instr_text/'
 
@@ -14,7 +14,7 @@ INSTR_DIR = 'instr_text/'
 '              enables user to enter the module for inserting sound effects.  Exiting
 '              this module returns the user to managing his or her stories.
 '''
-class StoryCreationAUI:
+class AuiStoryCreation:
     
     ''' 
     ' Constructor initializes object. 
@@ -139,14 +139,14 @@ class StoryCreationAUI:
         
     '''
     ' Called when insert sound key is released. 
-    ' Passes control to the InsertSoundAUI class to allow user to insert a sound effect.
+    ' Passes control to the AuiInsertSound class to allow user to insert a sound effect.
     '''
     def insertSound(self):
-        ISA = InsertSoundAUI(self.env)
+        AIS = AuiInsertSound(self.env)
         
-        # Pass key bindings to InsertSoundAUI
-        self.env['keyUpFunct'] = ISA.onKeyUp
-        self.env['keyDownFunct'] = ISA.onKeyDown
+        # Pass key bindings to AuiInsertSound
+        self.env['keyUpFunct'] = AIS.onKeyUp
+        self.env['keyDownFunct'] = AIS.onKeyDown
     
     '''
     ' Called when delete key is released.
@@ -223,8 +223,4 @@ class StoryPlayback(threading.Thread):
             self.env['SoundControl'].playSoundBytes(story.getNextClip())
             while (self.env['SoundControl'].isPlaying()):
                 pass
-        
-        
-        
-        
-        
+         

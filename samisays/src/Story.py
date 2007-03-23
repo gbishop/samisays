@@ -97,9 +97,13 @@ class Story:
         return self.clips[0] == ''
     
     def pickleMe(self):
-        fileName = '%s/_%s/%s.pkl' % (STUDENT_DIR,self.student,self.name)
-        f = file(fileName,'w')
+        filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, self.student, self.name)
+        f = file(filepath,'w')
         p = cPickle.Pickler(f)
         p.dump(self)
         f.close()
+        
+def unpickleMe(filepath):
+    f = file(filepath,'r')
+    return load(f)
         
