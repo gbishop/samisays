@@ -19,8 +19,8 @@
 || Story Creation Documentation Complete || 2/26 || _N/A_ || Ed ||
 || Story Creation Test Plan || 2/26 || _N/A_ || Corey ||
 || Story Creation Code Freeze || 2/28 || _N/A_ || Adam ||
-|| *First Deliverable* || 3/2 || _N/A_ || Everyone ||
-|| *Midterm Presentation* || 3/6 || _N/A_ || Everyone ||
+|| *First Deliverable* || 3/2 || 3/2 || Everyone ||
+|| *Midterm Presentation* || 3/6 || 3/6 || Everyone ||
 || Final Teacher GUI Design Doc || 3/7 || _N/A_ || Patrick ||
 || Draft File System Design Doc || 3/7 || _N/A_ || Corey ||
 || Teacher GUI Code Intermediate Checkpoint || 3/21 || _N/A_ || Patrick ||
