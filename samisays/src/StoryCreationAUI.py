@@ -134,7 +134,7 @@ class StoryCreationAUI:
     '''
     def playbackStory(self):
         self.stopPlayback = False
-        spb = StoryPlayback(self, self.env) 
+        spb = StoryPlayback(self.env) 
         spb.start()
         
     '''
@@ -142,7 +142,7 @@ class StoryCreationAUI:
     ' Passes control to the InsertSoundAUI class to allow user to insert a sound effect.
     '''
     def insertSound(self):
-        ISA = InsertSoundAUI(self, env)
+        ISA = InsertSoundAUI(self.env)
         
         # Pass key bindings to InsertSoundAUI
         self.env['keyUpFunct'] = ISA.onKeyUp
