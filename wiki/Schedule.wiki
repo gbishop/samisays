@@ -17,6 +17,7 @@
 || ~~*First Deliverable*~~ || 3/2 || 3/2 || Everyone ||
 || ~~*Midterm Presentation*~~ || 3/6 || 3/6 || Everyone ||
 || Teacher GUI Code Intermediate Checkpoint || 3/21 || 3/23 || Patrick ||
+|| GUI / AUI Integrated || 3/26 || _N/A_ || Patrick and Adam ||
 || Teacher GUI Code Complete || 3/30 || _N/A_ || Patrick ||
 || Draft Teacher GUI Design Doc || 3/30 || _N/A_ || Patrick ||
 || Teacher GUI Test Plan || 3/30 || _N/A_ || Adam ||
