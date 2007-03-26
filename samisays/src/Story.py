@@ -87,7 +87,7 @@ class Story:
     '''
     ' Joins the story into a single byte string and returns it.
     '''
-    def getStory(self):
+    def getStoryBytes(self):
         return ''.join(self.clips)
     
     '''

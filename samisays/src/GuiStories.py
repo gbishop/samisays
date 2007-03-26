@@ -102,11 +102,14 @@ class GuiStories(wx.Frame):
         event.Skip()
 
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
+        self.env['SoundControl'].stopPlay()
         print "Event handler `btnSelectPressed' not implemented!"
         event.Skip()
 
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
-        print 'create not done'
+        self.env['SoundControl'].stopPlay()
+        self.newStory()
+        event.skip()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
         self.populateList()
@@ -157,6 +160,26 @@ class GuiStories(wx.Frame):
         else:
             self.btnSelect.Enable(False)
 
+    def newStory(self):
+        storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
+        studentName = self.env['student'].getName()
+        self.env['story'] = story(studentName, storyName)
+        self.openStory()
+   
+    def openStory(self):
+        self.env['SoundControl'].stopPlay()
+        aSC = auiStoryCreation()
+        self.env['keyUpFunct'] = aSC.keyUp()
+        self.env['keyDownFunct'] = aSC.keyDown()
+        self.env['auiStoryCreation'] = aSC 
+       #change focus to form 
+        
+    def playStory(self):
+        self.env['SoundControl'].stopPlay()
+        storyBytes = self.env['story'].getStoryBytes()
+        self.env['SoundControl'].playSoundBytes(storyBytes)
+        
+        
 # end of class guiStories
 
 
