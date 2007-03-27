@@ -86,7 +86,8 @@ class GuiStudents(wx.Frame):
 
     def handleSelect(self):
         self.Hide()
-        self.env['guiStories'].setStudent(self.lstStudents.GetSelection());
+        self.env['student'] = self.env['class'].students[self.lstStudents.GetSelection()]
+        self.env['guiStories'].setStudent(self.lstStudents.GetSelection())
         self.env['guiStories'].Show()
 
     def lstStudentsDblClick(self, event): # wxGlade: guiStudents.<event_handler>
