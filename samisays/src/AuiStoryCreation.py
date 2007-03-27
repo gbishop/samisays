@@ -172,7 +172,9 @@ class AuiStoryCreation:
         
         story = self.env['story']
         
-        if self.deleteConfirmed:
+        if story.clipIsLocked():
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
+        elif self.deleteConfirmed:
             
             if story.currClip == 0:
                 story.replaceTitle('')
