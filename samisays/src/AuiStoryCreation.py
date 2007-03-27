@@ -169,8 +169,7 @@ class AuiStoryCreation:
     ' title must be recorded before anything else can be done.
     '''    
     def deleteClip(self):
-        
-        story = self.env['story']
+
         
         if story.clipIsLocked():
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
@@ -194,18 +193,18 @@ class AuiStoryCreation:
     ' Moves to the previous clip in the story and plays it back.
     '''
     def navLeft(self):
-        self.env['SoundControl'].playSoundBytes(self.story.getPreviousClip())
+        self.env['SoundControl'].playSoundBytes(self.env['story'].getPreviousClip())
     
     '''
     ' Called when navigate right key is released.
     ' Moves to the next clip in the story and plays it back.
     '''
     def navRight(self):
-        self.env['SoundControl'].playSoundBytes(self.story.getNextClip())
+        self.env['SoundControl'].playSoundBytes(self.env['story'].getNextClip())
        
     ''' Test function for exporting to mp3. '''
     def exportToMp3(self):
-        encodeToMp3(self.story.getStory(),'test.mp3',64000)
+        encodeToMp3(self.env['story'].getStory(),'test.mp3',64000)
         
         
 '''
