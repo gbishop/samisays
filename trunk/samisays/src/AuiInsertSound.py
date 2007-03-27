@@ -16,7 +16,7 @@ class AuiInsertSound:
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
-    
+        
         self.getHelp()
         
     ''' 
@@ -65,28 +65,29 @@ class AuiInsertSound:
     ' Moves to the category to previous category in cyclical fashion.
     '''
     def navLeft(self):
-        self.env['SoundControl'].playSoundFile(self.SL.getPrevCatNameFile())
+        self.env['SoundControl'].speakText(self.SL.getPrevCatName())
     
     '''
     ' Called when navigate right key is released.
     ' Moves to the next category in cyclical fashion.
     '''    
     def navRight(self):
-        self.env['SoundControl'].playSoundFile(self.SL.getNextCatNameFile())
+        self.env['SoundControl'].speakText(self.SL.getNextCatName())
  
     '''
     ' Called when navigate up key is released.
     ' Moves to the previous sound of the current category in cyclical fashion.
     '''   
     def navUp(self):
-        self.env['SoundControl'].playSoundFile(self.SL.getPrevSoundFile())
+        
+        self.env['SoundControl'].playSoundBytes(self.SL.getPrevSoundBytes())
     
     '''
     ' Called when navigate down key is released.
     ' Moves to the next sound of the current category in cyclical fashion.
     '''       
     def navDown(self):
-        self.env['SoundControl'].playSoundFile(self.SL.getNextSoundFile())
+        self.env['SoundControl'].playSoundBytes(self.SL.getNextSoundBytes())
 
     
     ''' 
@@ -108,8 +109,7 @@ class AuiInsertSound:
             self.getHelp()
             return
         
-        soundBytes = resampleSoundFile(self.SL.getCurrSoundFile())
-        soundBytes = normalizeSoundBytes(soundBytes)
+        soundBytes = self.SL.getCurrSoundBytes()
         self.env['story'].insertClip(soundBytes)
         self.env['SoundControl'].playSoundBytes(soundBytes)
         
