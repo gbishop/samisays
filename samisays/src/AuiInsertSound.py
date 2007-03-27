@@ -12,7 +12,7 @@ class AuiInsertSound:
     def __init__(self, env):
         self.env = env
         
-        self.SL = SoundLibrary()
+        self.SL = SoundLibrary(env)
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
