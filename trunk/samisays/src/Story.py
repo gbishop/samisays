@@ -62,11 +62,18 @@ class Story:
         self.pickleMe()
         return self.getCurrClip()
     
+    '''
+    ' Locks all clips in the story.
+    '''
     def lockStory(self):
         self.locks = [True for i in xrange(len(self))]
     
-    
-    def mergeBreaks(self, includeBreakClip):
+    '''
+    ' Merges all clips between breaks into single clips.  Includes break sound if
+    ' specified.  Locks all clips in newly merged story (otherwise, would need to handle
+    ' conditions for when some clips between a break are locked and some aren't).
+    '''
+    def mergeAndLockBreaks(self, includeBreakClip):
         mergedClips = []
         lastBreak = -1
         for i in xrange(1, len(self)):
@@ -78,6 +85,7 @@ class Story:
                 lastBreak = i
 
         self.clips = mergedClips
+        self.lockStory()
     
     '''
     ' Returns the current clip.
@@ -115,6 +123,9 @@ class Story:
     def getStoryBytes(self):
         return ''.join(self.clips)
     
+    '''
+    ' Creates and returns a copy of this story object using the specified name and student.
+    '''
     def getCopy(self, name, student):
         copy = Story(name, student)
         copy.clips = [c for c in self.clips]
