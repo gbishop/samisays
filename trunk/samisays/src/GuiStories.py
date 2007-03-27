@@ -4,6 +4,8 @@
 
 import wx
 import sys
+import os
+from SoundControl import SoundControl
 
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -39,6 +41,7 @@ class GuiStories(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnPlayPressed, self.btnPlay)
         self.Bind(wx.EVT_BUTTON, self.btnPublishPressed, self.btnPublish)
         self.Bind(wx.EVT_BUTTON, self.btnBackPressed, self.btnBack)
+        self.Bind(wx.EVT_SHOW, self.populateList, self)
         
         # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
@@ -112,7 +115,7 @@ class GuiStories(wx.Frame):
         event.skip()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
-        self.populateList()
+        self.populateList(None)
         print "Event handler `btnRenamePressed' not implemented!"
         event.Skip()
 
@@ -147,12 +150,12 @@ class GuiStories(wx.Frame):
         else:
             dialog.Destroy()
             
-    def populateList(self):
+    def populateList(self, event):
         self.lstStories.Clear()
         self.student.loadNames('students/_' + self.student.getName())
         count = 0;
         for i in self.student.stories:
-            self.lstStories.Insert(i.name,count)
+            self.lstStories.Insert(i,count)
             count+=1
         if(self.lstStories.GetCount() > 0):
             self.lstStories.SetSelection(0)
