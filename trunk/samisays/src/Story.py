@@ -15,10 +15,12 @@ class Story:
     '''
     ' Constructor initializes Story object.  Current clip is title.
     '''
-    def __init__(self, name='',student='',titleBytes = ''):
+    def __init__(self, name='', student='', titleBytes = '', lockedTitle = False):
         self.name = name
         self.student = student
         self.clips = [titleBytes]
+        self.locks = [lockedTitle]
+        self.breaks = [True]
         self.currClip = 0
         self.pickleMe()
         
@@ -31,11 +33,13 @@ class Story:
     '''
     ' Inserts clip after current clip and makes new clip the current clip.
     '''
-    def insertClip(self, soundBytes):
+    def insertClip(self, soundBytes, isBreak = False, locked = False):
         self.currClip += 1
-        self.clips.insert(self.currClip,soundBytes)
+        self.clips.insert(self.currClip, soundBytes)
+        self.locks.insert(self.currClip, locked)
+        self.breaks.insert(self.currClip, isBreak)
         self.pickleMe()
-    
+
     '''
     ' Replaces the first clip (the title) with new bytes.
     '''
@@ -48,11 +52,32 @@ class Story:
     ' and returns current clip.
     '''
     def deleteClip(self):
+        if self.locks[self.currClip]:
+            return
         if self.currClip > 0:
             del self.clips[self.currClip]
+            del self.locks[self.currClip]
+            del self.breaks[self.currClip]
         self.currClip -= 1
         self.pickleMe()
         return self.getCurrClip()
+    
+    def lockStory(self):
+        self.locks = [True for i in xrange(len(self))]
+    
+    
+    def mergeBreaks(self, includeBreakClip):
+        mergedClips = []
+        lastBreak = -1
+        for i in xrange(1, len(self)):
+            if self.breaks[i]:
+                if includeBreakClip:
+                    mergedClips += [''.join(self.clips[lastBreak+1:i+1])]
+                else:
+                    mergedClips += [''.join(self.clips[lastBreak+1:i])]
+                lastBreak = i
+
+        self.clips = mergedClips
     
     '''
     ' Returns the current clip.
@@ -90,11 +115,25 @@ class Story:
     def getStoryBytes(self):
         return ''.join(self.clips)
     
+    def getCopy(self, name, student):
+        copy = Story(name, student)
+        copy.clips = [c for c in self.clips]
+        copy.locks = [l for l in self.locks]
+        copy.breaks = [b for b in self.breaks]
+        return copy
+        
+    
     '''
     ' Returns True if the title is empty.  Otherwise, returns False.
     '''
     def needsTitle(self):
         return self.clips[0] == ''
+    
+    def clipIsLocked(self):
+        return self.locks[self.currClip]
+    
+    def clipIsBreak(self):
+        return self.breaks[self.currClip]
     
     def pickleMe(self):
         filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, self.student, self.name)

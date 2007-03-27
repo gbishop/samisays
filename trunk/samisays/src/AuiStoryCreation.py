@@ -6,6 +6,7 @@ from Story import *
 from AuiInsertSound import *
 
 INSTR_DIR = 'instr_text/'
+BREAK_SOUND = 'lilbeep.wav'
 
 '''
 ' Class Name:  StoryCreationAUI
@@ -19,7 +20,7 @@ class AuiStoryCreation:
     ''' 
     ' Constructor initializes object. 
     '''
-    def __init__(self, env):
+    def __init__(self, env, templateMode = True):
         self.env = env
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
         name = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
@@ -31,7 +32,11 @@ class AuiStoryCreation:
         self.deleteConfirmed = False # Flag for whether delete needs confirmation
         self.firstTitle = True # Flag for whether a title has been recorded yet (for first time)
         self.stopPlayBack = False # Flag to interrupt full playback of story
-              
+      
+        self.templateMode = templateMode
+        if templateMode:
+            self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
+        
     ''' 
     ' Handles event when a key is pressed. 
     '''
@@ -68,7 +73,8 @@ class AuiStoryCreation:
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
                         wx.WXK_DOWN : self.insertSound, wx.WXK_UP : self.deleteClip,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
-                        wx.WXK_ESCAPE : self.getHelp, wx.WXK_RETURN: self.exportToMp3}
+                        wx.WXK_ESCAPE : self.getHelp, wx.WXK_RETURN: self.getHelp,
+                        wx.WXK_PAUSE: self.insertBreak}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
             return      
@@ -113,13 +119,10 @@ class AuiStoryCreation:
         
         soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
         soundBytes = normalizeSoundBytes(soundBytes)
+        
         story = self.env['story']
         
-        if story.needsTitle() and self.firstTitle: 
-            self.firstTitle = False
-            story.replaceTitle(soundBytes)
-            soundBytes = soundBytes #+ resampleSoundFile(INSTR_DIR + 'after_title.mp3')
-        elif story.needsTitle():
+        if story.needsTitle():
             story.replaceTitle(soundBytes)
         else:
             story.insertClip(soundBytes)
@@ -148,6 +151,17 @@ class AuiStoryCreation:
         self.env['keyUpFunct'] = AIS.onKeyUp
         self.env['keyDownFunct'] = AIS.onKeyDown
     
+    def insertBreak(self):
+        if not self.templateMode:
+            return
+        
+        story = self.env['story']
+        if story.clipIsBreak():
+            self.env['SoundControl'].speakText('You may not have two breaks in a row.')
+        else:
+            story.insertClip(self.breakSoundBytes, isBreak = True)
+            self.env['SoundControl'].playSoundBytes(self.breakSoundBytes)
+        
     '''
     ' Called when delete key is released.
     ' If previous key pressed was also the delete key, deletes the current clip. Otherwise,
