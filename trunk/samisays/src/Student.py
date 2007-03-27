@@ -28,6 +28,7 @@ class Student:
         self.stories.pop(index)
         
     def loadNames(self,path):
+        self.stories = []
         directory = os.listdir(path)
         for i in directory:
             self.addStory(i[:-4])
