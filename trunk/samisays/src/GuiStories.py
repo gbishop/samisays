@@ -5,7 +5,10 @@
 import wx
 import sys
 import os
+import time
 from SoundControl import SoundControl
+from Story import Story
+from AuiStoryCreation import AuiStoryCreation
 
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -166,12 +169,12 @@ class GuiStories(wx.Frame):
     def newStory(self):
         storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
         studentName = self.env['student'].getName()
-        self.env['story'] = story(studentName, storyName)
+        self.env['story'] = Story(storyName,studentName)
         self.openStory()
    
     def openStory(self):
         self.env['SoundControl'].stopPlay()
-        aSC = auiStoryCreation()
+        aSC = AuiStoryCreation(self.env)
         self.env['keyUpFunct'] = aSC.keyUp()
         self.env['keyDownFunct'] = aSC.keyDown()
         self.env['auiStoryCreation'] = aSC 
