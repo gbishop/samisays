@@ -30,6 +30,7 @@ class SoundControl:
     def __init__(self):
         
         self.tts = pyTTS.Create()
+        self.tts.SetOutputFormat(RATE/1000,BITS,CHANNELS)
         
         # initialize pySonic
         self.w = pySonic.World(44100,32)
