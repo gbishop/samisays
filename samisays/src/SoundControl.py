@@ -146,6 +146,11 @@ class SoundControl:
         text = file(filepath,'r').read()
         self.speakText(text, blocking)
 
+def soundFileToBytes(filePath):
+    soundBytes = resampleSoundFile(filePath)
+    soundBytes = normalizeSoundBytes(soundBytes)
+    return soundBytes
+
 '''
 ' Normalizes sound bytes by finding the peak and scaling everything by it up to the maximum amplitude.
 '''

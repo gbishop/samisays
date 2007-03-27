@@ -1,6 +1,7 @@
 import os
 from numpy import *
 from SoundEffects import *
+from SoundControl import *
 
 SOUND_LIB_DIR  = 'sound_library/'
 
@@ -23,6 +24,7 @@ class SoundLibrary:
         self.catList.sort()
         if '.svn' in self.catList:
             self.catList.remove('.svn') # Ignore SVN files
+
         
         self.soundMatrix = [[] for i in xrange(len(self.catList)+1)]
         for i in xrange(len(self.catList)):
@@ -32,9 +34,10 @@ class SoundLibrary:
                 if sound != 'cat_name.mp3' and sound != '.svn': # Ignore category names and SVN files
                     self.soundMatrix[i] += [sound] 
         
+        self.catList += ['Sound Manipulations']
         self.currCat = -1
         self.currSound = -1
-        self.numCats = len(self.catList)+1
+        self.numCats = len(self.catList)
        
     def onValidCat(self):
         return self.currCat != -1
@@ -43,61 +46,55 @@ class SoundLibrary:
         return self.currSound != -1
     
     '''
-    ' Increments the current category in a circular fashion and returns a path
-    ' to the new category's name sound file.
+    ' Increments the current category in a circular fashion and returns new 
+    ' category's name.
     '''
-    def getNextCatNameFile(self):
+    def getNextCatName(self):
         self.currSound = -1
         self.currCat = (self.currCat + 1)%self.numCats
-        if self.currCat == (self.numCats-1):
-            return SOUND_LIB_DIR + self.catList[self.currCat-1] + '/cat_name.mp3'
-        else:
-            return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
+        return self.catList[self.currCat]
     
     '''
-    ' Decrements the current category in a circular fashion and returns a path
-    ' to the new category's name sound file.  Ensures that the initial case
-    ' is handled correctly.
+    ' Decrements the current category in a circular fashion and returns new
+    ' category's name .  Ensures that the initial case is handled correctly.
     '''
-    def getPrevCatNameFile(self):
+    def getPrevCatName(self):
         self.currSound = -1
         if self.currCat == -1:
             self.currCat = self.numCats-1
         else:
             self.currCat = (self.currCat - 1)%self.numCats
-        if self.currCat == (self.numCats-1):
-            return SOUND_LIB_DIR + self.catList[self.currCat-1] + '/cat_name.mp3'
-        else:
-            return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
-    
+        return self.catList[self.currCat]
+        
     '''
-    ' Increments the current sound in a circular fashion and returns a path
-    ' to the new sound.
+    ' Increments the current sound in a circular fashion and returns the bytes
+    ' of the new sound.
     '''    
-    def getNextSoundFile(self):
+    def getNextSoundBytes(self):
         if self.currCat < self.numCats-1:
             self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
-            return self.getCurrSoundFile()
+            return self.getCurrSoundBytes()
         else:
             return self.SFX.getNextSFXClip()
         
     '''
-    ' Decrements the current category in a circular fashion and returns a path
-    ' to the new sound.  Ensures that the initial case is handled correctly.
+    ' Decrements the current category in a circular fashion and returns the bytes
+    ' of the new sound.  Ensures that the initial case is handled correctly.
     '''
-    def getPrevSoundFile(self):
+    def getPrevSoundBytes(self):
         if self.currCat < self.numCats-1:
             if self.currSound == -1:
                 self.currSound = len(self.soundMatrix[self.currCat])-1
             else:
                 self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
-            return self.getCurrSoundFile()
+            return self.getCurrSoundBytes()
         else:
             return self.SFX.getNextSFXClip()
     
     '''
-    ' Returns a path to the currently selected sound file.  Improper behavior if 
+    ' Returns the bytes of the currently selected sound file.  Improper behavior if 
     ' current category or current sound are -1 (initial settings).
     '''
-    def getCurrSoundFile(self):
-       return SOUND_LIB_DIR + self.catList[self.currCat] + '/' + self.soundMatrix[self.currCat][self.currSound]
+    def getCurrSoundBytes(self):
+       filePath = SOUND_LIB_DIR + self.catList[self.currCat] + '/' + self.soundMatrix[self.currCat][self.currSound]
+       return soundFileToBytes(filePath)
