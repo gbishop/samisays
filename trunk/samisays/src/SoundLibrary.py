@@ -1,11 +1,14 @@
 import os
 from numpy import *
+from SoundEffects import *
 
 SOUND_LIB_DIR  = 'sound_library/'
 
 class SoundLibrary:
     
-    def __init__(self):
+    def __init__(self, env):
+        self.env = env
+        self.SFX = SoundEffects(env)
         self.loadLibrary(SOUND_LIB_DIR)
 
     '''
@@ -21,7 +24,7 @@ class SoundLibrary:
         if '.svn' in self.catList:
             self.catList.remove('.svn') # Ignore SVN files
         
-        self.soundMatrix = [[] for i in xrange(len(self.catList))]
+        self.soundMatrix = [[] for i in xrange(len(self.catList)+1)]
         for i in xrange(len(self.catList)):
             soundList = os.listdir(SOUND_LIB_DIR + self.catList[i])
             soundList.sort()
@@ -31,6 +34,7 @@ class SoundLibrary:
         
         self.currCat = -1
         self.currSound = -1
+        self.numCats = len(self.catList)+1
        
     def onValidCat(self):
         return self.currCat != -1
@@ -44,8 +48,11 @@ class SoundLibrary:
     '''
     def getNextCatNameFile(self):
         self.currSound = -1
-        self.currCat = (self.currCat + 1)%len(self.catList)
-        return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
+        self.currCat = (self.currCat + 1)%self.numCats
+        if self.currCat == (self.numCats-1):
+            return SOUND_LIB_DIR + self.catList[self.currCat-1] + '/cat_name.mp3'
+        else:
+            return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
     
     '''
     ' Decrements the current category in a circular fashion and returns a path
@@ -55,29 +62,38 @@ class SoundLibrary:
     def getPrevCatNameFile(self):
         self.currSound = -1
         if self.currCat == -1:
-            self.currCat = len(self.catList)-1
+            self.currCat = self.numCats-1
         else:
-            self.currCat = (self.currCat - 1)%len(self.catList)
-        return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
+            self.currCat = (self.currCat - 1)%self.numCats
+        if self.currCat == (self.numCats-1):
+            return SOUND_LIB_DIR + self.catList[self.currCat-1] + '/cat_name.mp3'
+        else:
+            return SOUND_LIB_DIR + self.catList[self.currCat] + '/cat_name.mp3'
     
     '''
     ' Increments the current sound in a circular fashion and returns a path
     ' to the new sound.
     '''    
     def getNextSoundFile(self):
-        self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
-        return self.getCurrSoundFile()
+        if self.currCat < self.numCats-1:
+            self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
+            return self.getCurrSoundFile()
+        else:
+            return self.SFX.getNextSFXClip()
         
     '''
     ' Decrements the current category in a circular fashion and returns a path
     ' to the new sound.  Ensures that the initial case is handled correctly.
     '''
     def getPrevSoundFile(self):
-        if self.currSound == -1:
-            self.currSound = len(self.soundMatrix[self.currCat])-1
+        if self.currCat < self.numCats-1:
+            if self.currSound == -1:
+                self.currSound = len(self.soundMatrix[self.currCat])-1
+            else:
+                self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
+            return self.getCurrSoundFile()
         else:
-            self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
-        return self.getCurrSoundFile()
+            return self.SFX.getNextSFXClip()
     
     '''
     ' Returns a path to the currently selected sound file.  Improper behavior if 
