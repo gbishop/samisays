@@ -186,6 +186,12 @@ def resampleSoundFile(filePath):
 
     return soundBytes
 
+def resampleSoundBytes(soundBytes, newRate, newChannels):
+    
+    resampler = sound.Resampler((RATE, CHANNELS),(newRate, newChannels))
+    newBytes = resampler.resample(soundBytes)
+    return newBytes
+
 '''
 ' Encodes sound bytes into mp3 format using pymedia's built-in encoder.  
 ' The sound is expected to have the default sound properties specified above.

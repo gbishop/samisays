@@ -89,7 +89,7 @@ class SoundLibrary:
                 self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
             return self.getCurrSoundBytes()
         else:
-            return self.SFX.getNextSFXClip()
+            return self.SFX.getPrevSFXClip()
     
     '''
     ' Returns the bytes of the currently selected sound file.  Improper behavior if 
