@@ -71,7 +71,7 @@ class AuiStoryCreation:
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
                         wx.WXK_DOWN : self.insertSound, wx.WXK_UP : self.deleteClip,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
-                        wx.WXK_ESCAPE : self.getHelp, wx.WXK_RETURN: self.getHelp,
+                        wx.WXK_ESCAPE : self.quit, wx.WXK_RETURN: self.getHelp,
                         wx.WXK_PAUSE: self.insertBreak}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
@@ -203,6 +203,12 @@ class AuiStoryCreation:
     ''' Test function for exporting to mp3. '''
     def exportToMp3(self):
         encodeToMp3(self.env['story'].getStory(),'test.mp3',64000)
+        
+    ''' Function for gracefully exiting story creation and returning to menu '''
+    def quit(self):
+        self.env['guiWorking'].Hide()
+        self.env['guiStories'].Show()
+        self.env['timer'].Stop()
         
         
 '''
