@@ -1,0 +1,1 @@
+Record more clips with the space bar.  Navigate through clips with the left and right arrows.  Insert sounds with the down arrow.
