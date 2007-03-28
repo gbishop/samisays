@@ -107,7 +107,7 @@ class AuiStoryCreation:
         else:
             textFile += 'creation_instructions.txt'
         
-        self.env['SoundControl'].speakTextFile(soundFile)
+        self.env['SoundControl'].speakTextFile(textFile)
         
     ''' 
     ' Called when record key is lifted.
@@ -168,7 +168,7 @@ class AuiStoryCreation:
     '''    
     def deleteClip(self):
 
-        
+        story = self.env['story']
         if story.clipIsLocked():
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
         elif self.deleteConfirmed:
