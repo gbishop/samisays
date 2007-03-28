@@ -115,7 +115,6 @@ class GuiStories(wx.Frame):
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
         self.env['SoundControl'].stopPlay()
         self.newStory()
-        event.skip()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
         self.populateList(None)
@@ -175,10 +174,11 @@ class GuiStories(wx.Frame):
     def openStory(self):
         self.env['SoundControl'].stopPlay()
         aSC = AuiStoryCreation(self.env)
-        self.env['keyUpFunct'] = aSC.keyUp()
-        self.env['keyDownFunct'] = aSC.keyDown()
+        self.env['keyUpFunct'] = aSC.onKeyUp
+        self.env['keyDownFunct'] = aSC.onKeyDown
         self.env['auiStoryCreation'] = aSC 
-       #change focus to form 
+        self.env['guiWorking'].Show()
+        self.env['guiWorking'].SetFocus()
         
     def playStory(self):
         self.env['SoundControl'].stopPlay()
