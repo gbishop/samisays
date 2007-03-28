@@ -114,7 +114,7 @@ class Story:
     '''
     ' Returns the first clip (title).
     '''
-    def getTitle(self):
+    def getTitleBytes(self):
         return self.clips[0]
     
     '''
@@ -153,7 +153,8 @@ class Story:
         p.dump(self)
         f.close()
         
-def unpickleMe(filepath):
+def unpickleStory(name, student):
+    filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, student, name)
     f = file(filepath,'r')
     return load(f)
         

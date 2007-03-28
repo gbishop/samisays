@@ -165,6 +165,12 @@ class GuiStories(wx.Frame):
         else:
             self.btnSelect.Enable(False)
 
+    def loadStory(self, storyName):
+        self.env['SoundControl'].stopPlay()
+        studentName = self.student.getName()
+        self.env['story'] = unpickleStory(storyName, studentName)
+        self.playTitle()
+        
     def newStory(self):
         storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
         studentName = self.env['student'].getName()
@@ -186,6 +192,11 @@ class GuiStories(wx.Frame):
         self.env['SoundControl'].stopPlay()
         storyBytes = self.env['story'].getStoryBytes()
         self.env['SoundControl'].playSoundBytes(storyBytes)
+    
+    def playTitle(self):
+        self.env['SoundControl'].stopPlay()
+        titleBytes = self.env['story'].getTitleBytes()
+        self.env['SoundControl'].playSoundBytes(titleBytes)
         
         
 # end of class guiStories
