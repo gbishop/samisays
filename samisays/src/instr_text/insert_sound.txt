@@ -1,1 +1,1 @@
-You are now inserting a sound effect.
+Insert selected sound with the space bar.  Hear more sound effects with the Up and down arrows.  Change categories with the Left and right arrows.
