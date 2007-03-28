@@ -23,8 +23,6 @@ class AuiStoryCreation:
     def __init__(self, env, templateMode = True):
         self.env = env
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
-        name = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
-        self.env['story'] = Story(name,'Adam')
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down

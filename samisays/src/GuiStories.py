@@ -169,7 +169,7 @@ class GuiStories(wx.Frame):
     def newStory(self):
         storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
         studentName = self.env['student'].getName()
-        self.env['story'] = Story(storyName,studentName)
+        self.env['story'] = Story(storyName, studentName)
         self.openStory()
    
     def openStory(self):
