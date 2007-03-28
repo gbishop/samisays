@@ -179,6 +179,8 @@ class GuiStories(wx.Frame):
         self.env['auiStoryCreation'] = aSC 
         self.env['guiWorking'].Show()
         self.env['guiWorking'].SetFocus()
+        self.env['timer'].Start(100)
+        self.env['guiStories'].Hide()
         
     def playStory(self):
         self.env['SoundControl'].stopPlay()

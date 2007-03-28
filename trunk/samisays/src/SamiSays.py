@@ -10,6 +10,7 @@ class SamiSays(wx.App):
     def OnInit(self):
         
         self.env = dict()
+        self.env['story'] = Story('Weeee','Adam');
         self.env['SoundControl'] = SoundControl()
         self.frame = wx.Frame(None, -1, 'Sami Says')
         self.env['auiStoryCreation'] = AuiStoryCreation(self.env)
