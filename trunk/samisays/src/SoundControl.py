@@ -186,6 +186,10 @@ def resampleSoundFile(filePath):
 
     return soundBytes
 
+'''
+' Resamples a sound byte stream with the bitrate and # of channels specified.
+' Uses pymedia's built-in resampler.
+'''
 def resampleSoundBytes(soundBytes, newRate, newChannels):
     
     resampler = sound.Resampler((RATE, CHANNELS),(newRate, newChannels))

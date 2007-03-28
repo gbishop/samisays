@@ -10,13 +10,13 @@ class SoundEffects:
     def __init__(self,env):
         self.env = env
     
-        # Define dictionary of functions for sound effects
+        # Define array of functions for sound effects
         self.sfxFunctions = [ self.SpeedUp, self.LargeSpeedUp, self.SlowDown, self.LargeSlowDown, self.Echo ]
         self.currSFX = -1
         
     '''
     ' Increments the current sound effect in a circular fashion
-    ' Calls the relevant sound effect function mapped in self.sfxFunctions dictionary
+    ' Calls the relevant sound effect function mapped in self.sfxFunctions array
     ' Returns modified sound clip for playback
     '''
     def getNextSFXClip(self):
@@ -24,6 +24,11 @@ class SoundEffects:
         currClip = self.env["story"].getCurrClip()
         return self.sfxFunctions[self.currSFX](currClip)
     
+    '''
+    ' Decrements the current sound effect in a circular fashion
+    ' Calls the relevant sound effect function mapped in self.sfxFunctions array
+    ' Returns modified sound clip for playback
+    '''
     def getPrevSFXClip(self):
         self.currSFX = (self.currSFX-1)%len(self.sfxFunctions)
         currClip = self.env["story"].getCurrClip()
@@ -38,6 +43,9 @@ class SoundEffects:
     def doLowPitch(self, clip):
         return clip
     
+    '''
+    ' Applies an echo to the sound clip.
+    '''
     def Echo(self, clip):
         soundArray = fromstring(clip, int16)
         newclip = fromstring(clip, int16)
@@ -49,18 +57,30 @@ class SoundEffects:
         newclip = array(newclip, uint16)
         return newclip.tostring()
     
+    '''
+    ' Resamples sound clip at a faster rate, speeding it up and raising pitch.
+    '''
     def SpeedUp(self, clip):
         newRate = 32000
         return resampleSoundBytes(clip, newRate, DEFAULT_CHANS)
     
+    '''
+    ' Resamples sound clip at a faster rate, speeding it up and raising pitch.
+    '''
     def LargeSpeedUp(self, clip):
         newRate = 25200
         return resampleSoundBytes(clip, newRate, DEFAULT_CHANS)
        
+    '''
+    ' Resamples sound clip at a slower rate, slowing it down and lowering pitch.
+    '''
     def SlowDown(self, clip):
         newRate = 57300
         return resampleSoundBytes(clip, newRate, DEFAULT_CHANS)
     
+    '''
+    ' Resamples sound clip at a slower rate, slowing it down and lowering pitch.
+    '''
     def LargeSlowDown(self, clip):
         newRate = 77175
         return resampleSoundBytes(clip, newRate, DEFAULT_CHANS)
