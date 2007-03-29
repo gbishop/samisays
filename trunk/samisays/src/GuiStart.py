@@ -11,6 +11,10 @@ class GuiStart(wx.Frame):
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self)
+        
+        # Loading the title
+        self.img = wx.Image("SamiSays.jpg", wx.BITMAP_TYPE_JPEG)
+        
         self.picBanner = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
         self.btnStories = wx.Button(self.panel, -1, "Stories")
         self.btnStories.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
@@ -21,6 +25,7 @@ class GuiStart(wx.Frame):
 
         self.Bind(wx.EVT_BUTTON, self.btnStoriesPressed, self.btnStories)
         self.Bind(wx.EVT_BUTTON, self.btnSoundsPressed, self.btnSounds)
+        self.Bind(wx.EVT_SIZING, self.onSize)
         
         # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
@@ -70,6 +75,9 @@ class GuiStart(wx.Frame):
         self.panel.SetAutoLayout(True)
         self.panel.SetSizer(szrPrnt)
         self.panel.Layout()
+        (w,h) = self.picBanner.GetSizeTuple()
+        self.img.Rescale(w,h)
+        self.picBanner.SetBitmap(wx.BitmapFromImage(self.img))
     # end guiStart.__do_layout
 
     def btnStoriesPressed(self, event): # wxGlade: guiStart.<event_handler>
@@ -88,6 +96,13 @@ class GuiStart(wx.Frame):
             sys.exit()
         else:
             dialog.Destroy()
+            
+    def onSize(self, event):
+        self.img = wx.Image("SamiSays.jpg", wx.BITMAP_TYPE_JPEG)
+        (w,h) = self.picBanner.GetSizeTuple()
+        self.img.Rescale(w,h)
+        self.picBanner.SetBitmap(wx.BitmapFromImage(self.img))
+        self.Refresh()
     
     def setEnv(self,env): 
         self.env = env   

@@ -33,6 +33,8 @@ class GuiStories(wx.Frame):
         self.btnPublish.SetFont(wx.Font(16,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.btnBack = wx.Button(self.panel, -1, "Back")
         self.btnBack.SetFont(wx.Font(16,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.lblHead = wx.StaticText(self.panel,-1,"Sami Says")
+        self.lblHead.SetFont(wx.Font(24,wx.SWISS, wx.NORMAL, wx.NORMAL))
 
         self.__set_properties()
         self.__do_layout()
@@ -66,7 +68,8 @@ class GuiStories(wx.Frame):
         szrParent = wx.FlexGridSizer(3, 1, 0, 0)
         szrChildList = wx.FlexGridSizer(1, 6, 0, 0)
         szrChildButtons = wx.FlexGridSizer(13, 1, 0, 0)
-        szrParent.AddSpacer(20)
+        #szrParent.AddSpacer(20)
+        szrParent.Add(self.lblHead,0,wx.ALIGN_CENTRE, 0)
         szrChildList.AddSpacer(30)
         szrChildList.Add(self.lstStories, 1, wx.EXPAND, 0)
         szrChildList.AddSpacer(10)
@@ -164,7 +167,7 @@ class GuiStories(wx.Frame):
         
     def setStudent(self,index):
         self.student = self.env['class'].students[index]
-        self.SetTitle(self.student.getName() + '\'s Stories')
+        self.lblHead.SetLabel(self.student.getName() + '\'s Stories')
         
     def onClose(self, event):
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO)
