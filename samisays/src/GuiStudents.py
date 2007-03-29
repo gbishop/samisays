@@ -22,7 +22,7 @@ class GuiStudents(wx.Frame):
         self.btnRemove.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.btnBack = wx.Button(self.panel, -1, 'Back')
         self.btnBack.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
-        self.lblHead = wx.StaticText(self.panel,-1,"Sami Says")
+        self.lblHead = wx.StaticText(self.panel,-1,"Student Selection")
         self.lblHead.SetFont(wx.Font(24,wx.SWISS, wx.NORMAL, wx.NORMAL))
 
         self.__set_properties()
@@ -40,7 +40,7 @@ class GuiStudents(wx.Frame):
 
     def __set_properties(self):
         # begin wxGlade: guiStudents.__set_properties
-        self.SetTitle("Student Selection")
+        self.SetTitle("Sami Says")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
         self.btnSelect.SetDefault()
