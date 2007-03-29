@@ -11,7 +11,7 @@ class SoundEffects:
         self.env = env
     
         # Define array of functions for sound effects
-        self.sfxFunctions = [ self.SpeedUp, self.LargeSpeedUp, self.SlowDown, self.LargeSlowDown, self.Echo ]
+        self.sfxFunctions = [ self.SpeedUp, self.LargeSpeedUp, self.SlowDown, self.LargeSlowDown, self.Echo, self.Reverse ]
         self.currSFX = -1
         
     '''
@@ -84,6 +84,19 @@ class SoundEffects:
     def LargeSlowDown(self, clip):
         newRate = 77175
         return resampleSoundBytes(clip, newRate, DEFAULT_CHANS)
+    
+    '''
+    ' Reverses a sound clip
+    '''
+    def Reverse(self, clip):
+        soundArray = fromstring(clip, int16)
+        newclip = fromstring(clip, int16)
+        cliplen = len(soundArray)
+        
+        for i in xrange(cliplen) :
+            newclip[i] = soundArray[cliplen-i-1]
+        newclip = array(newclip, uint16)
+        return newclip.tostring()
     
     
     
