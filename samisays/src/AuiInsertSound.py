@@ -1,5 +1,6 @@
 import os
 import wx
+import copy
 from SoundControl import *
 from Story import *
 from SoundLibrary import *
@@ -110,7 +111,7 @@ class AuiInsertSound:
             return
         
         soundBytes = self.SL.getCurrSoundBytes()
-        self.env['story'].insertClip(soundBytes)
+        self.env['story'].insertClip(''.join(soundBytes))
         self.env['SoundControl'].playSoundBytes(soundBytes)
         
         # Return key bindings to StoryCreationAUI class that called me

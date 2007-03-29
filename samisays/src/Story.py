@@ -156,5 +156,5 @@ class Story:
 def unpickleStory(name, student):
     filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, student, name)
     f = file(filepath,'r')
-    return load(f)
+    return cPickle.load(f)
         
