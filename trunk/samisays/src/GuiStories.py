@@ -6,8 +6,9 @@ import wx
 import sys
 import os
 import time
+import shutil
 from SoundControl import SoundControl
-from Story import Story
+from Story import *
 from AuiStoryCreation import AuiStoryCreation
 
 class GuiStories(wx.Frame):
@@ -37,6 +38,7 @@ class GuiStories(wx.Frame):
         self.__do_layout()
 
         self.Bind(wx.EVT_LISTBOX_DCLICK, self.lstStoriesDblClick, self.lstStories)
+        self.Bind(wx.EVT_LISTBOX, self.lstStoriesSelected, self.lstStories)
         self.Bind(wx.EVT_BUTTON, self.btnSelectPressed, self.btnSelect)
         self.Bind(wx.EVT_BUTTON, self.btnCreatePressed, self.btnCreate)
         self.Bind(wx.EVT_BUTTON, self.btnRenamePressed, self.btnRename)
@@ -103,31 +105,51 @@ class GuiStories(wx.Frame):
         self.panel.Layout()
         # end wxGlade
 
+    def lstStoriesSelected(self, event):
+        self.env['SoundControl'].stopPlay()
+        self.loadStory(self.student.stories[self.lstStories.GetSelection()]);
+        self.playTitle()
+        
     def lstStoriesDblClick(self, event): # wxGlade: guiStories.<event_handler>
-        print "Event handler `lstStoriesDblClick' not implemented!"
-        event.Skip()
+        self.env['SoundControl'].stopPlay()
+        self.loadStory(self.student.stories[self.lstStories.GetSelection()]);
+        self.openStory()
 
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
         self.env['SoundControl'].stopPlay()
-        print "Event handler `btnSelectPressed' not implemented!"
-        event.Skip()
+        self.loadStory(self.student.stories[self.lstStories.GetSelection()]);
+        self.openStory()
 
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
         self.env['SoundControl'].stopPlay()
         self.newStory()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
-        self.populateList(None)
-        print "Event handler `btnRenamePressed' not implemented!"
-        event.Skip()
+        dialog = wx.TextEntryDialog(None,'Please enter the story\'s new name:','Sami Says','')
+        if dialog.ShowModal() == wx.ID_OK:
+            newName = dialog.GetValue()
+            if(newName != ''):
+                self.env['story'].name = newName
+                self.env['story'].pickleMe()
+                storyPath = STUDENT_DIR + '/_' + self.env['student'].getName() + '/'
+                os.remove(storyPath + self.student.stories[self.lstStories.GetSelection()] + '.pkl')
+                self.populateList(None)
+                self.lstStories.Select(self.findListItem(newName))
+        else:
+            dialog.Destroy()
 
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
-        print "Event handler `btnDeletePressed' not implemented!"
-        event.Skip()
+        dialog = wx.MessageDialog(None,'Are you sure you want to delete ' + self.student.stories[self.lstStories.GetSelection()]+ '?','Sami Says',wx.YES_NO)
+        if dialog.ShowModal() == wx.ID_YES:
+            dialog.Destroy()
+            os.remove(STUDENT_DIR + '/_' + self.env['student'].getName() + '/' + self.student.stories[self.lstStories.GetSelection()] + '.pkl')
+            self.populateList(None)
+        else:
+            dialog.Destroy()
 
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
-        print "Event handler `btnPlayPressed' not implemented!"
-        event.Skip()
+        self.env['SoundControl'].stopPlay()
+        self.playStory()
 
     def btnPublishPressed(self, event): # wxGlade: guiStories.<event_handler>
         print "Event handler `btnPublishPressed' not implemented!"
@@ -169,7 +191,6 @@ class GuiStories(wx.Frame):
         self.env['SoundControl'].stopPlay()
         studentName = self.student.getName()
         self.env['story'] = unpickleStory(storyName, studentName)
-        self.playTitle()
         
     def newStory(self):
         storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
@@ -197,6 +218,16 @@ class GuiStories(wx.Frame):
         self.env['SoundControl'].stopPlay()
         titleBytes = self.env['story'].getTitleBytes()
         self.env['SoundControl'].playSoundBytes(titleBytes)
+    
+    ''' Helper function for finding an the index of a story '''
+    def findListItem(self, name):
+        count = 0
+        for i in self.student.stories:
+            if (self.student.stories[count] == name):
+                return count
+            else:
+                count += 1
+        return 0
         
         
 # end of class guiStories

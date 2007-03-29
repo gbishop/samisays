@@ -1,31 +1,38 @@
+
+# system imports
 import wx
-from AuiStoryCreation import *
-from SoundControl import *
 
-#AUI is separate thread.  Condition variable on keydown/keyup.  Queue of keys.
-# No, playback whole story is a separate thread.
+# project imports
+from Class import Class
+from GuiStart import GuiStart
+from GuiStories import GuiStories
+from GuiStudents import GuiStudents
+from SoundControl import SoundControl
 
-class SamiSays(wx.App):
+class GuiMain(wx.App):
     
     def OnInit(self):
-        
-        self.env = dict()
-        self.env['story'] = Story('Weeee','Adam');
+        currentClass = Class()
+        currentClass.load()
+        wx.InitAllImageHandlers()
+        self.env = {}
+        start = GuiStart(None, -1, "")
+        students = GuiStudents(None, -1, "")
+        stories = GuiStories(None, -1,"")
+        self.env = {'class': currentClass, 'guiStart': start, 'guiStudents': students, 'guiStories': stories}
         self.env['SoundControl'] = SoundControl()
-        self.frame = wx.Frame(None, -1, 'Sami Says')
-        self.env['auiStoryCreation'] = AuiStoryCreation(self.env)
-        self.env['keyDownFunct'] = self.env['auiStoryCreation'].onKeyDown
-        self.env['keyUpFunct'] = self.env['auiStoryCreation'].onKeyUp
-        self.frame.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.frame.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.frame.Show(True)
-        self.frame.Bind(wx.EVT_TIMER, self.env['SoundControl'].onTimer)
-        self.timer = wx.Timer(self.frame)
-        self.timer.Start(100) # wake up every 100 milliseconds to handle audio
-        
+        self.env['keyDownFunct'] = None
+        self.env['keyUpFunct'] = None
+        self.env['guiWorking'] = wx.Frame(None, -1, 'Recording a Story')
+        self.env['guiWorking'].Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.env['guiWorking'].Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.env['timer'] = wx.Timer(self.env['guiWorking'])
+        self.env['guiWorking'].Bind(wx.EVT_TIMER, self.env['SoundControl'].onTimer)
+        start.setEnv(self.env)
+        students.setEnv(self.env)
+        stories.setEnv(self.env)
         return True
-        
-    
+
     def onKeyDown(self,event):
         self.env['keyDownFunct'](event)
     
@@ -33,5 +40,7 @@ class SamiSays(wx.App):
         self.env['keyUpFunct'](event)
         
 if __name__ == '__main__':
-    app = SamiSays(0)
+    app = GuiMain(0)
+    app.SetTopWindow(app.env['guiStart'])
+    app.env['guiStart'].Show()
     app.MainLoop()
