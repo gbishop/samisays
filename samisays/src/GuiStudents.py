@@ -22,6 +22,8 @@ class GuiStudents(wx.Frame):
         self.btnRemove.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.btnBack = wx.Button(self.panel, -1, 'Back')
         self.btnBack.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.lblHead = wx.StaticText(self.panel,-1,"Sami Says")
+        self.lblHead.SetFont(wx.Font(24,wx.SWISS, wx.NORMAL, wx.NORMAL))
 
         self.__set_properties()
         self.__do_layout()
@@ -50,7 +52,8 @@ class GuiStudents(wx.Frame):
         szrParent = wx.FlexGridSizer(3, 1, 0, 5)
         szrChildList = wx.FlexGridSizer(1, 5, 0, 0)
         szrChildButtons = wx.FlexGridSizer(7, 1, 0, 0)
-        szrParent.AddSpacer(20)
+        #szrParent.AddSpacer(20)
+        szrParent.Add(self.lblHead,0,wx.ALIGN_CENTRE, 0)
         szrChildList.AddSpacer(20)
         szrChildList.Add(self.lstStudents, 0, wx.EXPAND, 0)
         szrChildList.AddSpacer(10)
