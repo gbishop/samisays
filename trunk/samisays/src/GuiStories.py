@@ -7,9 +7,9 @@ import sys
 import os
 import time
 import shutil
-from SoundControl import SoundControl
+from SoundControl import *
 from Story import *
-from AuiStoryCreation import AuiStoryCreation
+from AuiStoryCreation import *
 
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -155,8 +155,12 @@ class GuiStories(wx.Frame):
         self.playStory()
 
     def btnPublishPressed(self, event): # wxGlade: guiStories.<event_handler>
-        print "Event handler `btnPublishPressed' not implemented!"
-        event.Skip()
+        dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
+        if dialog.ShowModal() == wx.ID_OK:
+            dialog.Destroy()
+            encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath(),64000)
+        else:
+            dialog.Destroy()
 
     def btnBackPressed(self, event): # wxGlade: guiStories.<event_handler>
         self.Hide()
