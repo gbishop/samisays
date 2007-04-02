@@ -13,7 +13,7 @@ class GuiStart(wx.Frame):
         self.panel = wx.Panel(self)
         
         # Loading the title
-        self.img = wx.Image("SamiSays.jpg", wx.BITMAP_TYPE_JPEG)
+        self.img = wx.Image("art/banner_1100x400.png", wx.BITMAP_TYPE_PNG)
         
         self.picBanner = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
         self.btnStories = wx.Button(self.panel, -1, "Stories")
