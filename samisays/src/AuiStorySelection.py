@@ -1,64 +1,92 @@
+import threading
+import wx
+import time
+import os
+from SoundControl import *
+from Story import *
 
+INSTR_DIR = 'instr_text/'
 
 class AuiStorySelection:
     
     def __init__(self, env):
         self.env = env
+        self.student = self.env['student']
+        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'selection_welcome.txt') # Play Welcome
+        
+        if(len(self.student.stories) != 0):
+            self.studentIndex = 0
+            self.env['guiStories'].loadStory(self.student.stories[self.env['guiStories'].lstStories.GetSelection()]);
+            self.env['guiStories'].playTitle()
+        else:
+            self.studentIndex = -1
+        
         
     ''' 
     ' Handles event when a key is pressed. 
     '''
     def onKeyDown(self, event):
         
-        if self.keyDown: # Some key is already being held down
-            return
-        
-        self.keyDownCode = event.GetKeyCode()
-        self.keyDown = True
-        
-        if self.keyDownCode == wx.WXK_SPACE: # If key is record button, begin recording
-            self.stopPlayback = True 
-            self.env['SoundControl'].stopPlay()
-            self.env['SoundControl'].startRecord()
-        
-        event.Skip()
+        self.unlockStarted = False
+        keyCode = event.GetKeyCode()
+        if(event.ControlDown() and event.ShiftDown() and (keyCode == wx.WXK_TAB)):
+            self.unlockStarted = True
         
     ''' 
     ' Handles event when a key is released by calling the correct function for 
     ' each valid key.
     '''
     def onKeyUp(self, event):
-
+        
         CTRL = 308 # keyCode for CTRL
         
         keyCode = event.GetKeyCode()
-        if self.keyDownCode != keyCode: # If released key is not the first one pressed, ignore it
-            return
-        
-        self.keyDown = False
         
         # Define dictionary of functions for valid keys
-        keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
-                        wx.WXK_DOWN : self.insertSound, wx.WXK_UP : self.deleteClip,
-                        wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
-                        wx.WXK_ESCAPE : self.quit, wx.WXK_RETURN: self.getHelp,
-                        wx.WXK_PAUSE: self.insertBreak}
+        keyFunctions = {wx.WXK_TAB : self.unlock, wx.WXK_RIGHT : self.goRight, 
+                        wx.WXK_LEFT : self.goLeft, wx.WXK_SPACE : self.selectStory,
+                        CTRL : self.playStory, wx.WXK_ESCAPE : self.exit,
+                        wx.WXK_RETURN : self.newStory}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
-            return      
-        
-        if keyCode != wx.WXK_UP: # If key is not the delete key, a delete is not being confirmed
-            self.deleteConfirmed = False
-        
-        # Stop any sound that is playing
-        self.stopPlayback = True 
-        self.env['SoundControl'].stopPlay()
-        
-        
-        if self.env['story'].needsTitle() and keyCode != wx.WXK_SPACE: 
-            # If no title exists, nothing is to be done until one is recorded
-            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
+            return
         else:
-            # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
+        
+    def unlock(self):
+        if(self.unlockStarted):
+            self.env['guiStories'].unlock()
+            
+    def goRight(self):
+        if self.studentIndex != -1:
+            self.env['SoundControl'].stopPlay()
+            self.studentIndex += 1
+            if(len(self.student.stories) == self.studentIndex):
+                self.studentIndex = 0
+            self.env['guiStories'].lstStories.SetSelection(self.studentIndex)
+            self.env['guiStories'].loadStory(self.student.stories[self.env['guiStories'].lstStories.GetSelection()]);
+            self.env['guiStories'].playTitle()
+    
+    def goLeft(self):
+        if self.studentIndex != -1:
+            self.env['SoundControl'].stopPlay()
+            self.studentIndex -= 1
+            if(self.studentIndex == -1):
+                self.studentIndex = len(self.student.stories) - 1
+            self.env['guiStories'].lstStories.SetSelection(self.studentIndex)
+            self.env['guiStories'].loadStory(self.student.stories[self.env['guiStories'].lstStories.GetSelection()]);
+            self.env['guiStories'].playTitle()
+    
+    def selectStory(self):
+        self.env['guiStories'].btnSelectPressed(None)
+    
+    def playStory(self):
+        self.env['SoundControl'].stopPlay()
+        self.env['guiStories'].playStory()
+        
+    def exit(self):
+        self.env['guiStories'].btnBackPressed(None)
+        
+    def newSotry(self):
+        self.env['guiStories'].btnCreatePressed(None)
             

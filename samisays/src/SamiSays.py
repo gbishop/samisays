@@ -26,6 +26,8 @@ class GuiMain(wx.App):
         self.env['guiWorking'] = wx.Frame(None, -1, 'Recording a Story')
         self.env['guiWorking'].Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.env['guiWorking'].Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.env['guiStories'].Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.env['guiStories'].Bind(wx.EVT_KEY_UP, self.onKeyUp)
         self.env['timer'] = wx.Timer(self.env['guiWorking'])
         self.env['guiWorking'].Bind(wx.EVT_TIMER, self.env['SoundControl'].onTimer)
         start.setEnv(self.env)

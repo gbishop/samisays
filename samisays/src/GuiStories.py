@@ -10,6 +10,7 @@ import shutil
 from SoundControl import *
 from Story import *
 from AuiStoryCreation import *
+from AuiStorySelection import *
 
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -48,11 +49,13 @@ class GuiStories(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnPlayPressed, self.btnPlay)
         self.Bind(wx.EVT_BUTTON, self.btnPublishPressed, self.btnPublish)
         self.Bind(wx.EVT_BUTTON, self.btnBackPressed, self.btnBack)
-        self.Bind(wx.EVT_SHOW, self.populateList, self)
+        self.Bind(wx.EVT_SHOW, self.handleShow, self)
+        self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
         
         # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
         self.env = {}
+        self.visible = False
 
     def __set_properties(self):
         # begin wxGlade: guiStories.__set_properties
@@ -146,7 +149,7 @@ class GuiStories(wx.Frame):
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
             os.remove(STUDENT_DIR + '/_' + self.env['student'].getName() + '/' + self.student.stories[self.lstStories.GetSelection()] + '.pkl')
-            self.populateList(None)
+            self.populateList()
         else:
             dialog.Destroy()
 
@@ -181,7 +184,7 @@ class GuiStories(wx.Frame):
         else:
             dialog.Destroy()
             
-    def populateList(self, event):
+    def populateList(self):
         self.lstStories.Clear()
         self.student.loadNames('students/_' + self.student.getName())
         count = 0;
@@ -235,6 +238,34 @@ class GuiStories(wx.Frame):
             else:
                 count += 1
         return 0
+    
+    def lock(self):
+        self.SetFocus()
+        self.env['storiesLock'] = True
+        aSS = AuiStorySelection(self.env)
+        self.env['keyUpFunct'] = aSS.onKeyUp
+        self.env['keyDownFunct'] = aSS.onKeyDown
+        self.env['auiStorySelection'] = aSS
+        
+    def unlock(self):
+        self.env['storiesLock'] = False
+        self.env['keyUpFunct'] = self.doNothing
+        self.env['keyDownFunct'] = self.doNothing
+        
+    def handleFocus(self, event):
+        if(self.env['storiesLock']):
+            self.SetFocus()
+            
+    def handleShow(self, event):
+        self.populateList()
+        if not self.visible:
+            self.lock()
+            self.visible = True
+        else:
+            self.visible = False
+    
+    def doNothing(self, event):
+        event.Skip()
         
         
 # end of class guiStories
