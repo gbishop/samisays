@@ -139,7 +139,7 @@ class GuiStories(wx.Frame):
                 self.env['story'].pickleMe()
                 storyPath = STUDENT_DIR + '/_' + self.env['student'].getName() + '/'
                 os.remove(storyPath + self.student.stories[self.lstStories.GetSelection()] + '.pkl')
-                self.populateList(None)
+                self.populateList()
                 self.lstStories.Select(self.findListItem(newName))
         else:
             dialog.Destroy()
