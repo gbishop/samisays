@@ -14,7 +14,7 @@ class AuiInsertSound:
         self.env = env
 
     def takeOver(self):
-        self.SL = SoundLibrary(env)
+        self.SL = SoundLibrary(self.env)
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down

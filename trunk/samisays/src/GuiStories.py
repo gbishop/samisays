@@ -152,9 +152,10 @@ class GuiStories(wx.Frame):
         if dialog.ShowModal() == wx.ID_YES:
             selection = self.lstStories.GetSelection()
             self.deleteStory(selection)
-            self.lstStories.SetSelection(max(selection-1,0))
-            self.loadStory()
-            self.playTitle
+            if len(self.env['student'].stories) != 0:
+                self.lstStories.SetSelection(max(selection-1,0))
+                self.loadStory()
+                self.playTitle
         dialog.Destroy()
 
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
@@ -263,6 +264,7 @@ class GuiStories(wx.Frame):
     def onKeyDown(self, event):
         CTRL = 308 # keyCode for CTRL
         
+        print keyCode
         keyCode = event.GetKeyCode()
         
         self.allDowns.union_update([keyCode])
