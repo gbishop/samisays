@@ -12,14 +12,17 @@ class AuiInsertSound:
     
     def __init__(self, env):
         self.env = env
-        
+
+    def takeOver(self):
         self.SL = SoundLibrary(env)
         
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
         self.getHelp()
-        
+        self.env['keyUpFunct'] = self.onKeyUp
+        self.env['keyDownFunct'] = self.onKeyDown
+                
     ''' 
     ' Handles event when a key is pressed. 
     '''
@@ -114,6 +117,4 @@ class AuiInsertSound:
         self.env['story'].insertClip(''.join(soundBytes))
         self.env['SoundControl'].playSoundBytes(soundBytes)
         
-        # Return key bindings to StoryCreationAUI class that called me
-        self.env['keyDownFunct'] = self.env['auiStoryCreation'].onKeyDown
-        self.env['keyUpFunct'] = self.env['auiStoryCreation'].onKeyUp
+        self.env['auiStoryCreation'].takeKeyBindings()
