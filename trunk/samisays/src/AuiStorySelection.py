@@ -87,6 +87,6 @@ class AuiStorySelection:
     def exit(self):
         self.env['guiStories'].btnBackPressed(None)
         
-    def newSotry(self):
+    def newStory(self):
         self.env['guiStories'].btnCreatePressed(None)
             
