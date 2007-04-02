@@ -20,8 +20,10 @@ class AuiStoryCreation:
     ''' 
     ' Constructor initializes object. 
     '''
-    def __init__(self, env, templateMode = True):
+    def __init__(self, env):
         self.env = env
+    
+    def takeOver(self, templateMode = False):
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
         
         self.keyDown = False # Flag to tell if a key is already being held down
@@ -34,6 +36,12 @@ class AuiStoryCreation:
         self.templateMode = templateMode
         if templateMode:
             self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
+        
+        self.takeKeyBindings()
+        
+    def takeKeyBindings(self):
+        self.env['keyUpFunct'] = self.onKeyUp
+        self.env['keyDownFunct'] = self.onKeyDown
         
     ''' 
     ' Handles event when a key is pressed. 
@@ -144,10 +152,7 @@ class AuiStoryCreation:
     '''
     def insertSound(self):
         AIS = AuiInsertSound(self.env)
-        
-        # Pass key bindings to AuiInsertSound
-        self.env['keyUpFunct'] = AIS.onKeyUp
-        self.env['keyDownFunct'] = AIS.onKeyDown
+        AIS.takeOver()
     
     def insertBreak(self):
         if not self.templateMode:
@@ -178,12 +183,13 @@ class AuiStoryCreation:
                 self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
             else:
                 self.env['SoundControl'].playSoundBytes(story.deleteClip())
-        
+            self.deleteConfirmed = False
+            
         else:
             if story.currClip == 0:
                 self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_title.txt')
             else:
-                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_clip.txt')
+                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_confirm.txt')
             self.deleteConfirmed = True
                 
     '''

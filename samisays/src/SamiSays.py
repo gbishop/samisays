@@ -8,6 +8,9 @@ from GuiStart import GuiStart
 from GuiStories import GuiStories
 from GuiStudents import GuiStudents
 from SoundControl import SoundControl
+from AuiStorySelection import *
+from AuiStoryCreation import *
+
 
 class GuiMain(wx.App):
     
@@ -28,6 +31,9 @@ class GuiMain(wx.App):
         self.env['guiWorking'].Bind(wx.EVT_KEY_UP, self.onKeyUp)
         self.env['guiStories'].Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.env['guiStories'].Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.env['auiStorySelection'] = AuiStorySelection(self.env)
+        self.env['auiStoryCreation'] = AuiStoryCreation(self.env)
+        self.env['auiInsertSound'] = AuiInsertSound(self.env)
         self.env['timer'] = wx.Timer(self.env['guiWorking'])
         self.env['guiWorking'].Bind(wx.EVT_TIMER, self.env['SoundControl'].onTimer)
         start.setEnv(self.env)

@@ -4,9 +4,9 @@
 
 import wx
 import sys
-import os
-import time
+import sets
 import shutil
+import os
 from SoundControl import *
 from Story import *
 from AuiStoryCreation import *
@@ -39,6 +39,9 @@ class GuiStories(wx.Frame):
 
         self.__set_properties()
         self.__do_layout()
+        
+        self.panel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.panel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
 
         self.Bind(wx.EVT_LISTBOX_DCLICK, self.lstStoriesDblClick, self.lstStories)
         self.Bind(wx.EVT_LISTBOX, self.lstStoriesSelected, self.lstStories)
@@ -56,7 +59,11 @@ class GuiStories(wx.Frame):
         self.Bind(wx.EVT_CLOSE, self.onClose)
         self.env = {}
         self.visible = False
-
+        
+        self.allDowns = sets.Set([])
+        self.lockStarted = False
+        self.doLock = False
+        
     def __set_properties(self):
         # begin wxGlade: guiStories.__set_properties
         self.SetTitle("Sami's Stories")
@@ -112,22 +119,18 @@ class GuiStories(wx.Frame):
         # end wxGlade
 
     def lstStoriesSelected(self, event):
-        self.env['SoundControl'].stopPlay()
-        self.loadStory(self.student.stories[self.lstStories.GetSelection()]);
-        self.playTitle()
+        self.loadStory();
+        self.env['auiStorySelection'].playTitle()
         
     def lstStoriesDblClick(self, event): # wxGlade: guiStories.<event_handler>
-        self.env['SoundControl'].stopPlay()
-        self.loadStory(self.student.stories[self.lstStories.GetSelection()]);
+        self.loadStory();
         self.openStory()
 
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
-        self.env['SoundControl'].stopPlay()
-        self.loadStory(self.student.stories[self.lstStories.GetSelection()]);
+        self.loadStory();
         self.openStory()
 
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
-        self.env['SoundControl'].stopPlay()
         self.newStory()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
@@ -138,24 +141,24 @@ class GuiStories(wx.Frame):
                 self.env['story'].name = newName
                 self.env['story'].pickleMe()
                 storyPath = STUDENT_DIR + '/_' + self.env['student'].getName() + '/'
-                os.remove(storyPath + self.student.stories[self.lstStories.GetSelection()] + '.pkl')
+                os.remove(storyPath + self.env['student'].stories[self.lstStories.GetSelection()] + '.pkl')
                 self.populateList()
                 self.lstStories.Select(self.findListItem(newName))
         else:
             dialog.Destroy()
 
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
-        dialog = wx.MessageDialog(None,'Are you sure you want to delete ' + self.student.stories[self.lstStories.GetSelection()]+ '?','Sami Says',wx.YES_NO)
+        dialog = wx.MessageDialog(None,'Are you sure you want to delete ' + self.env['student'].stories[self.lstStories.GetSelection()]+ '?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
-            dialog.Destroy()
-            os.remove(STUDENT_DIR + '/_' + self.env['student'].getName() + '/' + self.student.stories[self.lstStories.GetSelection()] + '.pkl')
-            self.populateList()
-        else:
-            dialog.Destroy()
+            selection = lstStories.GetSelection()
+            self.deleteStory(selection)
+            self.lstStories.SetSelection(max(selection-1,0))
+            self.loadStory()
+            self.playTitle
+        dialog.Destroy()
 
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
-        self.env['SoundControl'].stopPlay()
-        self.playStory()
+        self.env['auiStorySelection'].playStory()
 
     def btnPublishPressed(self, event): # wxGlade: guiStories.<event_handler>
         dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
@@ -173,8 +176,8 @@ class GuiStories(wx.Frame):
         self.env = env 
         
     def setStudent(self,index):
-        self.student = self.env['class'].students[index]
-        self.lblHead.SetLabel(self.student.getName() + '\'s Stories')
+        self.env['student'] = self.env['class'].students[index]
+        self.lblHead.SetLabel(self.env['student'].getName() + '\'s Stories')
         
     def onClose(self, event):
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO)
@@ -186,9 +189,9 @@ class GuiStories(wx.Frame):
             
     def populateList(self):
         self.lstStories.Clear()
-        self.student.loadNames('students/_' + self.student.getName())
+        self.env['student'].loadNames('students/_' + self.env['student'].getName())
         count = 0;
-        for i in self.student.stories:
+        for i in self.env['student'].stories:
             self.lstStories.Insert(i,count)
             count+=1
         if(self.lstStories.GetCount() > 0):
@@ -197,9 +200,9 @@ class GuiStories(wx.Frame):
         else:
             self.btnSelect.Enable(False)
 
-    def loadStory(self, storyName):
-        self.env['SoundControl'].stopPlay()
-        studentName = self.student.getName()
+    def loadStory(self):
+        storyName = self.env['student'].stories[self.lstStories.GetSelection()]
+        studentName = self.env['student'].getName()
         self.env['story'] = unpickleStory(storyName, studentName)
         
     def newStory(self):
@@ -210,50 +213,43 @@ class GuiStories(wx.Frame):
    
     def openStory(self):
         self.env['SoundControl'].stopPlay()
-        aSC = AuiStoryCreation(self.env)
-        self.env['keyUpFunct'] = aSC.onKeyUp
-        self.env['keyDownFunct'] = aSC.onKeyDown
-        self.env['auiStoryCreation'] = aSC 
+        self.env['auiStoryCreation'].takeOver()
         self.env['guiWorking'].Show()
         self.env['guiWorking'].SetFocus()
         self.env['timer'].Start(100)
         self.env['guiStories'].Hide()
+    
+    def deleteStory(self, selection):
+        selection = self.lstStories.GetSelection()
+        studentName = self.env['student'].getName()
+        storyName = self.env['student'].stories[selection]
+        os.remove(STUDENT_DIR + '/_' + studentName + '/' + storyName + '.pkl')
+        self.populateList()
         
-    def playStory(self):
-        self.env['SoundControl'].stopPlay()
-        storyBytes = self.env['story'].getStoryBytes()
-        self.env['SoundControl'].playSoundBytes(storyBytes)
-    
-    def playTitle(self):
-        self.env['SoundControl'].stopPlay()
-        titleBytes = self.env['story'].getTitleBytes()
-        self.env['SoundControl'].playSoundBytes(titleBytes)
-    
+        
     ''' Helper function for finding an the index of a story '''
     def findListItem(self, name):
         count = 0
-        for i in self.student.stories:
-            if (self.student.stories[count] == name):
+        for i in self.env['student'].stories:
+            if (self.env['student'].stories[count] == name):
                 return count
             else:
                 count += 1
         return 0
     
     def lock(self):
+        print 'lock'
         self.SetFocus()
+        self.env['auiStorySelection'].takeOver()
         self.env['storiesLock'] = True
-        aSS = AuiStorySelection(self.env)
-        self.env['keyUpFunct'] = aSS.onKeyUp
-        self.env['keyDownFunct'] = aSS.onKeyDown
-        self.env['auiStorySelection'] = aSS
         
     def unlock(self):
+        print 'unlock'
+        self.panel.SetFocus()
         self.env['storiesLock'] = False
-        self.env['keyUpFunct'] = self.doNothing
-        self.env['keyDownFunct'] = self.doNothing
         
     def handleFocus(self, event):
-        if(self.env['storiesLock']):
+        if self.env['storiesLock']:
             self.SetFocus()
             
     def handleShow(self, event):
@@ -264,8 +260,39 @@ class GuiStories(wx.Frame):
         else:
             self.visible = False
     
-    def doNothing(self, event):
-        event.Skip()
+    def onKeyDown(self, event):
+        CTRL = 308 # keyCode for CTRL
+        
+        keyCode = event.GetKeyCode()
+        
+        self.allDowns.union_update([keyCode])
+        
+        if (self.lockStarted and len(self.allDowns) == 3 
+            and CTRL in self.allDowns 
+            and wx.WXK_TAB in self.allDowns
+            and wx.WXK_SHIFT in self.allDowns):
+            self.doLock = True
+            
+        if not (keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT):
+            self.lockStarted = False
+            
+        if (len(self.allDowns) == 1 
+            and (keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT)):
+            self.lockStarted = True
+            
+        event.skip()
+        
+    def onKeyUp(self, event):
+        keyCode = event.GetKeyCode()
+        
+        self.allDowns.remove(keyCode)
+        
+        if self.doLock:
+            if len(self.allDowns) == 0:
+                self.lock()
+                self.doLock = False
+        else:
+            event.skip()
         
         
 # end of class guiStories
