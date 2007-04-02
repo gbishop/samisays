@@ -150,7 +150,7 @@ class GuiStories(wx.Frame):
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
         dialog = wx.MessageDialog(None,'Are you sure you want to delete ' + self.env['student'].stories[self.lstStories.GetSelection()]+ '?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
-            selection = lstStories.GetSelection()
+            selection = self.lstStories.GetSelection()
             self.deleteStory(selection)
             self.lstStories.SetSelection(max(selection-1,0))
             self.loadStory()
