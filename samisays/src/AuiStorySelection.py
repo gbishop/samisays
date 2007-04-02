@@ -103,7 +103,10 @@ class AuiStorySelection:
     ' requests confirmation for delete.
     '''    
     def deleteStory(self):
-
+        if self.storyIndex == -1:
+           self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
+           return
+        
         if self.deleteConfirmed:
             self.env['guiStories'].deleteStory(self.storyIndex)
             self.numStories -= 1
@@ -127,10 +130,9 @@ class AuiStorySelection:
         self.playTitle()
     
     def goLeft(self):
-        self.env['SoundControl'].stopPlay()
         
         if self.storyIndex == -1:
-            self.storyIndex = self.numStories
+            self.storyIndex = self.numStories-1
         else:
             self.storyIndex = (self.storyIndex - 1) % self.numStories
         
@@ -140,7 +142,7 @@ class AuiStorySelection:
     
     def selectStory(self):
         if self.storyIndex == -1:
-            self.env['SoundControl'].speakTextFile('no_story_selected.txt')
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
         else:
             self.env['guiStories'].btnSelectPressed(None)
     
@@ -151,8 +153,11 @@ class AuiStorySelection:
     
     def playStory(self):
         self.env['SoundControl'].stopPlay()
-        storyBytes = self.env['story'].getStoryBytes()
-        self.env['SoundControl'].playSoundBytes(storyBytes)
+        if self.storyIndex == -1:
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
+        else:
+            storyBytes = self.env['story'].getStoryBytes()
+            self.env['SoundControl'].playSoundBytes(storyBytes)
         
     def exit(self):
         self.env['guiStories'].btnBackPressed(None)
