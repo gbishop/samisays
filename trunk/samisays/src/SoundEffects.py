@@ -34,14 +34,16 @@ class SoundEffects:
         currClip = self.env["story"].getCurrClip()
         return self.sfxFunctions[self.currSFX](currClip)
     
-    def doRobot(self, clip):
-        return clip
-    
-    def doHighPitch(self, clip):
-        return clip
-    
-    def doLowPitch(self, clip):
-        return clip
+    '''
+    ' Returns the current sound effect
+    ' Calls the relevant sound effect function mapped in self.sfxFunctions array
+    ' Returns modified sound clip and deletes the current one
+    '''
+    def getCurrSFXClip(self):
+        if self.currSFX != -1:
+            currClip = self.env["story"].getCurrClip()
+            self.env["story"].deleteClip()
+            return self.sfxFunctions[self.currSFX](currClip)
     
     '''
     ' Applies an echo to the sound clip.

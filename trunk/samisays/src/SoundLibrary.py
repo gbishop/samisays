@@ -75,6 +75,7 @@ class SoundLibrary:
             self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
             return self.getCurrSoundBytes()
         else:
+            self.currSound = 0
             return self.SFX.getNextSFXClip()
         
     '''
@@ -89,6 +90,7 @@ class SoundLibrary:
                 self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
             return self.getCurrSoundBytes()
         else:
+            self.currSound = 0
             return self.SFX.getPrevSFXClip()
     
     '''
@@ -96,5 +98,8 @@ class SoundLibrary:
     ' current category or current sound are -1 (initial settings).
     '''
     def getCurrSoundBytes(self):
-       filePath = SOUND_LIB_DIR + self.catList[self.currCat] + '/' + self.soundMatrix[self.currCat][self.currSound]
-       return soundFileToBytes(filePath)
+        if self.currCat < self.numCats-1:
+            filePath = SOUND_LIB_DIR + self.catList[self.currCat] + '/' + self.soundMatrix[self.currCat][self.currSound]
+            return soundFileToBytes(filePath)
+        else:
+            return self.SFX.getCurrSFXClip()
