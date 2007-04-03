@@ -12,6 +12,8 @@ from Story import *
 from AuiStoryCreation import *
 from AuiStorySelection import *
 
+ARTDIR = "art/"
+
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: guiStories.__init__
@@ -36,6 +38,22 @@ class GuiStories(wx.Frame):
         self.btnBack.SetFont(wx.Font(16,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.lblHead = wx.StaticText(self.panel,-1,"Sami Says")
         self.lblHead.SetFont(wx.Font(24,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        
+        # icons
+        self.imgSelect = wx.Image(ARTDIR + "select.png", wx.BITMAP_TYPE_PNG)
+        self.picSelect = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgSelect))
+        self.imgCreate = wx.Image(ARTDIR + "create.png", wx.BITMAP_TYPE_PNG)
+        self.picCreate = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgCreate))
+        self.imgRename = wx.Image(ARTDIR + "rename.png", wx.BITMAP_TYPE_PNG)
+        self.picRename = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgRename))
+        self.imgDelete = wx.Image(ARTDIR + "delete.png", wx.BITMAP_TYPE_PNG)
+        self.picDelete = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgDelete))
+        self.imgPlay = wx.Image(ARTDIR + "play.png", wx.BITMAP_TYPE_PNG)
+        self.picPlay = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgPlay))
+        self.imgPublish = wx.Image(ARTDIR + "publish.png", wx.BITMAP_TYPE_PNG)
+        self.picPublish = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgPublish))
+        self.imgBack = wx.Image(ARTDIR + "back2.png", wx.BITMAP_TYPE_PNG)
+        self.picBack = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgBack))
 
         self.__set_properties()
         self.__do_layout()
@@ -66,7 +84,7 @@ class GuiStories(wx.Frame):
         
     def __set_properties(self):
         # begin wxGlade: guiStories.__set_properties
-        self.SetTitle("Sami's Stories")
+        self.SetTitle("Sami Says")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
         self.btnSelect.SetDefault()
@@ -75,26 +93,39 @@ class GuiStories(wx.Frame):
 
     def __do_layout(self):
         # begin wxGlade: guiStories.__do_layout
-        szrParent = wx.FlexGridSizer(3, 1, 0, 0)
+        szrParent = wx.FlexGridSizer(4, 1, 0, 0)
         szrChildList = wx.FlexGridSizer(1, 6, 0, 0)
-        szrChildButtons = wx.FlexGridSizer(13, 1, 0, 0)
-        #szrParent.AddSpacer(20)
+        szrChildButtons = wx.FlexGridSizer(19, 2, 0, 0)
         szrParent.Add(self.lblHead,0,wx.ALIGN_CENTRE, 0)
+        szrParent.AddSpacer(10)
         szrChildList.AddSpacer(30)
         szrChildList.Add(self.lstStories, 1, wx.EXPAND, 0)
-        szrChildList.AddSpacer(10)
+        szrChildList.AddSpacer(30)
+        szrChildButtons.Add(self.picSelect, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnSelect, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
+        szrChildButtons.AddSpacer(10)
+        szrChildButtons.Add(self.picCreate, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnCreate, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
+        szrChildButtons.AddSpacer(10)
+        szrChildButtons.Add(self.picRename, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnRename, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
+        szrChildButtons.AddSpacer(10)
+        szrChildButtons.Add(self.picDelete, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnDelete, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
+        szrChildButtons.AddSpacer(10)
+        szrChildButtons.Add(self.picPlay, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnPlay, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
+        szrChildButtons.AddSpacer(10)
+        szrChildButtons.Add(self.picPublish, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnPublish, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
+        szrChildButtons.AddSpacer(10)
+        szrChildButtons.Add(self.picBack, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnBack, 1, wx.EXPAND, 0)
         szrChildButtons.AddGrowableRow(0)
         szrChildButtons.AddGrowableRow(2)
@@ -103,18 +134,20 @@ class GuiStories(wx.Frame):
         szrChildButtons.AddGrowableRow(8)
         szrChildButtons.AddGrowableRow(10)
         szrChildButtons.AddGrowableRow(12)
-        szrChildButtons.AddGrowableCol(0)
+        #szrChildButtons.AddGrowableCol(0)
+        szrChildButtons.AddGrowableCol(1)
         szrChildList.Add(szrChildButtons, 1, wx.EXPAND, 0)
         szrChildList.AddSpacer(30)
         szrChildList.AddGrowableRow(0)
         szrChildList.AddGrowableCol(1)
         szrChildList.AddGrowableCol(3)
         szrParent.Add(szrChildList, 1, wx.EXPAND, 0)
-        szrParent.AddSpacer(20)
+        szrParent.AddSpacer(70)
         self.panel.SetAutoLayout(True)
         self.panel.SetSizer(szrParent)
-        szrParent.AddGrowableRow(1)
+        szrParent.AddGrowableRow(2)
         szrParent.AddGrowableCol(0)
+        #szrParent.AddGrowableRow(3)
         self.panel.Layout()
         # end wxGlade
 

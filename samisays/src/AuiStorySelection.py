@@ -161,6 +161,8 @@ class AuiStorySelection:
         
     def exit(self):
         self.env['guiStories'].btnBackPressed(None)
+        self.env['guiStories'].unlock()
+        self.unlock = False
         
     def newStory(self):
         self.env['guiStories'].btnCreatePressed(None)
