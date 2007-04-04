@@ -55,11 +55,11 @@ class GuiStories(wx.Frame):
         self.imgBack = wx.Image(ARTDIR + "back2.png", wx.BITMAP_TYPE_PNG)
         self.picBack = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgBack))
 
+
         self.__set_properties()
         self.__do_layout()
         
-        self.panel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.panel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+
 
         self.Bind(wx.EVT_LISTBOX_DCLICK, self.lstStoriesDblClick, self.lstStories)
         self.Bind(wx.EVT_LISTBOX, self.lstStoriesSelected, self.lstStories)
@@ -279,8 +279,9 @@ class GuiStories(wx.Frame):
         
     def unlock(self):
         print 'unlock'
-        self.panel.SetFocus()
         self.env['storiesLock'] = False
+        self.btnSelect.SetFocus()
+
         
     def handleFocus(self, event):
         if self.env['storiesLock']:
@@ -297,10 +298,11 @@ class GuiStories(wx.Frame):
     def onKeyDown(self, event):
         CTRL = 308 # keyCode for CTRL
         
-        print keyCode
         keyCode = event.GetKeyCode()
         
         self.allDowns.union_update([keyCode])
+        
+        print self.allDowns
         
         if (self.lockStarted and len(self.allDowns) == 3 
             and CTRL in self.allDowns 
@@ -315,7 +317,7 @@ class GuiStories(wx.Frame):
             and (keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT)):
             self.lockStarted = True
             
-        event.skip()
+        event.Skip()
         
     def onKeyUp(self, event):
         keyCode = event.GetKeyCode()
@@ -327,7 +329,7 @@ class GuiStories(wx.Frame):
                 self.lock()
                 self.doLock = False
         else:
-            event.skip()
+            event.Skip()
         
         
 # end of class guiStories

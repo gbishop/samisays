@@ -46,7 +46,7 @@ class AuiInsertSound:
         self.keyDown = False
         
         # Define dictionary of functions for valid keys
-        keyFunctions = {wx.WXK_SPACE : self.select, wx.WXK_ESCAPE : self.getHelp,
+        keyFunctions = {wx.WXK_SPACE : self.select, wx.WXK_RETURN : self.getHelp,
                         wx.WXK_DOWN : self.navDown, wx.WXK_UP : self.navUp,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight}
         
