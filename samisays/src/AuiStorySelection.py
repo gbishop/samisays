@@ -80,7 +80,7 @@ class AuiStorySelection:
         # Define dictionary of functions for valid keys
         keyFunctions = {wx.WXK_RIGHT : self.goRight,
                         wx.WXK_LEFT : self.goLeft, wx.WXK_SPACE : self.selectStory,
-                        CTRL : self.playStory, wx.WXK_ESCAPE : self.exit,
+                        CTRL : self.playStory, #wx.WXK_ESCAPE : self.exit,
                         wx.WXK_DOWN : self.newStory, wx.WXK_UP : self.deleteStory}
         
         if keyCode not in  keyFunctions: # If key has no function, ignore it
