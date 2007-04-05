@@ -119,7 +119,7 @@ class GuiStories(wx.Frame):
         szrChildButtons.Add(self.picRename, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnRename, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
-        szrChildButtons.AddSpacer(10)\
+        szrChildButtons.AddSpacer(10)
         szrChildButtons.Add(self.picPlay, 1, wx.EXPAND, 0)
         szrChildButtons.Add(self.btnPlay, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
