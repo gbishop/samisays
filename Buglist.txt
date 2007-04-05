@@ -1,0 +1,1 @@
+When you load a story, can we get instead of "Welcome..." for it to play the "current clip", maybe the title?
