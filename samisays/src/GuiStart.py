@@ -26,8 +26,6 @@ class GuiStart(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnStoriesPressed, self.btnStories)
         self.Bind(wx.EVT_BUTTON, self.btnSoundsPressed, self.btnSounds)
         self.Bind(wx.EVT_SIZING, self.onSize)
-        
-        # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
         self.env = {}
         

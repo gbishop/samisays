@@ -13,7 +13,7 @@ class GuiStudents(wx.Frame):
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self,-1)
         self.lstStudents = wx.ListBox(self.panel, -1, choices=[])
-        self.lstStudents.SetFont(wx.Font(16,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.lstStudents.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnSelect = wx.Button(self.panel, -1, 'Select')
         self.btnSelect.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnCreate = wx.Button(self.panel, -1, 'Add Student')
@@ -23,7 +23,7 @@ class GuiStudents(wx.Frame):
         self.btnBack = wx.Button(self.panel, -1, 'Back')
         self.btnBack.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.lblHead = wx.StaticText(self.panel,-1,"The Classroom")
-        self.lblHead.SetFont(wx.Font(48,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.lblHead.SetFont(wx.Font(48,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
 
         self.__set_properties()
         self.__do_layout()
