@@ -2,20 +2,29 @@
 # -*- coding: iso-8859-1 -*-
 
 import wx
+import os
 
-class guiAssign(wx.Frame):
+STUDENT_DIR = 'students/'
+
+class GuiAssign(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: guiAssign.__init__
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
         self.sizer_2_staticbox = wx.StaticBox(self.panel, -1, "Students")
-        self.list_box_1 = wx.ListBox(self.panel, -1, choices=[])
+        self.chkLstStudents = wx.CheckListBox(self.panel, -1, choices=[])
         self.btnAssign = wx.Button(self.panel, -1, "Assign")
         self.btnCancel = wx.Button(self.panel, -1, "Cancel")
 
+
         self.__set_properties()
         self.__do_layout()
+
+        self.Bind(wx.EVT_SHOW, self.handleShow, self)
+        self.Bind(wx.EVT_BUTTON, self.btnAssignPressed, self.btnAssign)
+        self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
+        self.Bind(wx.EVT_CLOSE, self.onClose)
         # end wxGlade
 
     def __set_properties(self):
@@ -33,7 +42,7 @@ class guiAssign(wx.Frame):
         grid_sizer_1.AddSpacer(-1)
         grid_sizer_1.AddSpacer(-1)
         grid_sizer_1.AddSpacer(-1)
-        sizer_2.Add(self.list_box_1, 1, wx.EXPAND, 0)
+        sizer_2.Add(self.chkLstStudents, 1, wx.EXPAND, 0)
         grid_sizer_1.Add(sizer_2, 1, wx.EXPAND, 1)
         grid_sizer_1.AddSpacer(-1)
         grid_sizer_1.AddSpacer(-1)
@@ -63,6 +72,64 @@ class guiAssign(wx.Frame):
         self.panel.SetSizer(grid_sizer_1)
         self.Layout()
         # end wxGlade
+    
+    def setEnv(self,env): 
+        self.env = env 
+        
+    def handleShow(self, event):
+        self.populateList()
+        
+    def btnCancelPressed(self, event):
+        self.Hide()
+        
+    def btnAssignPressed(self, event):
+        checkedStudents = self.getCheckedStudents()
+        story = self.env['story']
+        succStudents = []
+        for studentName in checkedStudents:
+            if os.path.exists('%s_%s/%s.pkl' % (STUDENT_DIR, studentName, story.name)):
+                msg = '%s already has a story by this name.  The story will not be added to %s\'s StoryBook.' % (studentName, studentName)
+                msgDialog = wx.MessageDialog(self, msg, 'Error: Story Already Exists', wx.ICON_ERROR)
+                msgDialog.ShowModal()
+                msgDialog.Destroy()
+            else:
+                cStory = story.getCopy(studentName)
+                cStory.mergeAndLockBreaks(True)
+                cStory.pickleMe()
+                succStudents += [studentName]
+        
+        msg = ''
+        if len(succStudents) > 1:
+            msg = 'Assignment succesfully added to %s, and %s\'s StoryBooks.' % (', '.join(succStudents[:-1]), succStudents[-1]) 
+        elif len(succStudents) == 1:
+            msg = 'Assignment succesfully added to %s\'s StoryBook.' % succStudents[0]
+        
+        if msg != '':
+            msgDialog = wx.MessageDialog(self, msg, 'Success!', wx.ICON_INFORMATION)
+            msgDialog.ShowModal()
+            msgDialog.Destroy()
+        
+    def populateList(self):
+        self.chkLstStudents.Clear()
+        count = 0
+        for i in self.env['class'].students:
+            self.chkLstStudents.Insert(i.name,count)
+            count+=1
+        self.chkLstStudents.SetSelection(0)
+                   
+    def onClose(self, event):
+        self.Hide()
+
+    def getCheckedStudents(self):
+        students = self.env['class'].students
+        checkedStudents = []
+        for i in xrange(len(students)):
+            if self.chkLstStudents.IsChecked(i):
+                checkedStudents += [students[i].getName()]
+                
+            
+        return checkedStudents
+
 
 # end of class guiAssign
 

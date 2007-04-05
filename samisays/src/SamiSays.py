@@ -7,6 +7,7 @@ from Class import Class
 from GuiStart import GuiStart
 from GuiStories import GuiStories
 from GuiStudents import GuiStudents
+from GuiAssign import GuiAssign
 from SoundControl import SoundControl
 from AuiStorySelection import *
 from AuiStoryCreation import *
@@ -21,8 +22,10 @@ class GuiMain(wx.App):
         self.env = {}
         start = GuiStart(None, -1, "")
         students = GuiStudents(None, -1, "")
-        stories = GuiStories(None, -1,"")
-        self.env = {'class': currentClass, 'guiStart': start, 'guiStudents': students, 'guiStories': stories}
+        stories = GuiStories(None, -1, "")
+        assign = GuiAssign(None, -1, "")
+        self.env = {'class': currentClass, 'guiStart': start, 'guiStudents': students, 
+                    'guiStories': stories, 'guiAssign': assign}
         self.env['SoundControl'] = SoundControl()
         self.env['keyDownFunct'] = None
         self.env['keyUpFunct'] = None
@@ -39,6 +42,7 @@ class GuiMain(wx.App):
         start.setEnv(self.env)
         students.setEnv(self.env)
         stories.setEnv(self.env)
+        assign.setEnv(self.env)
         return True
 
     def onKeyDown(self,event):
