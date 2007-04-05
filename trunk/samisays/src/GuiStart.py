@@ -16,10 +16,10 @@ class GuiStart(wx.Frame):
         self.img = wx.Image("art/banner_1100x400.png", wx.BITMAP_TYPE_PNG)
         
         self.picBanner = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
-        self.btnStories = wx.Button(self.panel, -1, "Stories")
-        self.btnStories.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.btnStories = wx.Button(self.panel, -1, "The Classroom")
+        self.btnStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnSounds = wx.Button(self.panel, -1, "Sounds")
-        self.btnSounds.SetFont(wx.Font(14,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.btnSounds.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.__set_properties()
         self.__do_layout()
 
