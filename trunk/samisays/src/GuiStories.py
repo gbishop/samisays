@@ -21,7 +21,7 @@ class GuiStories(wx.Frame):
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self)
         self.lstStories = wx.ListBox(self.panel, -1, choices=[])
-        self.lstStories.SetFont(wx.Font(16,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.lstStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnSelect = wx.Button(self.panel, -1, "Open")
         self.btnSelect.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnCreate = wx.Button(self.panel, -1, "Write")
