@@ -126,8 +126,8 @@ class Story:
     '''
     ' Creates and returns a copy of this story object using the specified name and student.
     '''
-    def getCopy(self, name, student):
-        copy = Story(name, student)
+    def getCopy(self, student):
+        copy = Story(self.name, student)
         copy.clips = [c for c in self.clips]
         copy.locks = [l for l in self.locks]
         copy.breaks = [b for b in self.breaks]

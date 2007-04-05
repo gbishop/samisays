@@ -30,8 +30,8 @@ class GuiStories(wx.Frame):
         self.btnRename.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnPlay = wx.Button(self.panel, -1, "Playback")
         self.btnPlay.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
-        self.btnPublish = wx.Button(self.panel, -1, "Publish")
-        self.btnPublish.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
+        self.btnPublishAssign = wx.Button(self.panel, -1, "Publish")
+        self.btnPublishAssign.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnDelete = wx.Button(self.panel, -1, "Delete")
         self.btnDelete.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnBack = wx.Button(self.panel, -1, "Back")
@@ -41,25 +41,25 @@ class GuiStories(wx.Frame):
         
         # icons
         self.imgSelect = wx.Image(ARTDIR + "select.png", wx.BITMAP_TYPE_PNG)
-	#self.imgSelect = self.imgSelect.Scale(64,64,100) # resize to 3/4 of 128x128 at 100% quality
+	    #self.imgSelect = self.imgSelect.Scale(64,64,100) # resize to 3/4 of 128x128 at 100% quality
         self.picSelect = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgSelect))
         self.imgCreate = wx.Image(ARTDIR + "create.png", wx.BITMAP_TYPE_PNG)
         #self.imgCreate = self.imgCreate.Scale(64,64,100)
-	self.picCreate = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgCreate))
+        self.picCreate = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgCreate))
         self.imgRename = wx.Image(ARTDIR + "rename.png", wx.BITMAP_TYPE_PNG)
         #self.imgRename = self.imgRename.Scale(64,64,100)
-	self.picRename = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgRename))
+        self.picRename = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgRename))
         self.imgDelete = wx.Image(ARTDIR + "delete.png", wx.BITMAP_TYPE_PNG)
-	#self.imgDelete = self.imgDelete.Scale(64,64,100)
+	    #self.imgDelete = self.imgDelete.Scale(64,64,100)
         self.picDelete = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgDelete))
         self.imgPlay = wx.Image(ARTDIR + "play.png", wx.BITMAP_TYPE_PNG)
-	#self.imgPlay = self.imgPlay.Scale(64,64,100)
+	    #self.imgPlay = self.imgPlay.Scale(64,64,100)
         self.picPlay = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgPlay))
         self.imgPublish = wx.Image(ARTDIR + "publish.png", wx.BITMAP_TYPE_PNG)
-	#self.imgPublish = self.imgPublish.Scale(64,64,100)
+	    #self.imgPublish = self.imgPublish.Scale(64,64,100)
         self.picPublish = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgPublish))
         self.imgBack = wx.Image(ARTDIR + "back2.png", wx.BITMAP_TYPE_PNG)
-	#self.imgBack = self.imgBack.Scale(64,64,100)
+	    #self.imgBack = self.imgBack.Scale(64,64,100)
         self.picBack = wx.StaticBitmap(self.panel, -1, wx.BitmapFromImage(self.imgBack))
 
 
@@ -75,7 +75,7 @@ class GuiStories(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnRenamePressed, self.btnRename)
         self.Bind(wx.EVT_BUTTON, self.btnDeletePressed, self.btnDelete)
         self.Bind(wx.EVT_BUTTON, self.btnPlayPressed, self.btnPlay)
-        self.Bind(wx.EVT_BUTTON, self.btnPublishPressed, self.btnPublish)
+        self.Bind(wx.EVT_BUTTON, self.btnPublishAssignPressed, self.btnPublishAssign)
         self.Bind(wx.EVT_BUTTON, self.btnBackPressed, self.btnBack)
         self.Bind(wx.EVT_SHOW, self.handleShow, self)
         self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
@@ -88,7 +88,7 @@ class GuiStories(wx.Frame):
         self.allDowns = sets.Set([])
         self.lockStarted = False
         self.doLock = False
-        
+    
     def __set_properties(self):
         # begin wxGlade: guiStories.__set_properties
         self.SetTitle("Sami Says")
@@ -125,7 +125,7 @@ class GuiStories(wx.Frame):
         szrChildButtons.AddSpacer(10)
         szrChildButtons.AddSpacer(10)
         szrChildButtons.Add(self.picPublish, 1, wx.EXPAND, 0)
-        szrChildButtons.Add(self.btnPublish, 1, wx.EXPAND, 0)
+        szrChildButtons.Add(self.btnPublishAssign, 1, wx.EXPAND, 0)
         szrChildButtons.AddSpacer(10)
         szrChildButtons.AddSpacer(10)
         szrChildButtons.Add(self.picDelete, 1, wx.EXPAND, 0)
@@ -158,6 +158,7 @@ class GuiStories(wx.Frame):
         self.panel.Layout()
         # end wxGlade
 
+                
     def lstStoriesSelected(self, event):
         self.loadStory();
         self.env['auiStorySelection'].playTitle()
@@ -201,13 +202,13 @@ class GuiStories(wx.Frame):
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
         self.env['auiStorySelection'].playStory()
 
-    def btnPublishPressed(self, event): # wxGlade: guiStories.<event_handler>
-        dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
-        if dialog.ShowModal() == wx.ID_OK:
-            dialog.Destroy()
-            encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath(),64000)
+    def btnPublishAssignPressed(self, event): # wxGlade: guiStories.<event_handler>
+        if self.env['student'].getName() == 'Teacher':
+            self.env['guiAssign'].Show()
         else:
-            dialog.Destroy()
+            self.publishStory()
+    
+
 
     def btnBackPressed(self, event): # wxGlade: guiStories.<event_handler>
         self.Hide()
@@ -216,10 +217,15 @@ class GuiStories(wx.Frame):
     def setEnv(self,env): 
         self.env = env 
         
-    def setStudent(self,index):
+    def setStudent(self, index):
         self.env['student'] = self.env['class'].students[index]
-        self.lblHead.SetLabel(self.env['student'].getName() + '\'s Stories')
-        
+        if self.env['student'].getName() == 'Teacher':
+            self.lblHead.SetLabel('Teacher Templates')
+            self.btnPublishAssign.SetLabel('Assign')
+        else:
+            self.lblHead.SetLabel(self.env['student'].getName() + '\'s StoryBook')
+            self.btnPublishAssign.SetLabel('Publish')
+            
     def onClose(self, event):
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
@@ -227,7 +233,8 @@ class GuiStories(wx.Frame):
             sys.exit()
         else:
             dialog.Destroy()
-            
+   
+        
     def populateList(self):
         self.lstStories.Clear()
         self.env['student'].loadNames('students/_' + self.env['student'].getName())
@@ -267,7 +274,14 @@ class GuiStories(wx.Frame):
         os.remove(STUDENT_DIR + '/_' + studentName + '/' + storyName + '.pkl')
         self.populateList()
         
-        
+    def publishStory(self):
+        dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
+        if dialog.ShowModal() == wx.ID_OK:
+            dialog.Destroy()
+            encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath(),64000)
+        else:
+            dialog.Destroy()   
+    
     ''' Helper function for finding an the index of a story '''
     def findListItem(self, name):
         count = 0

@@ -17,6 +17,9 @@ class Class:
         for i in range(len(self.students)):
             str += self.students[i] + ' '
     
+    def __len__self(self):
+        return len(self.students)
+    
     def addStudent(self, student = Student()):
         self.students.append(student)
         self.save()
