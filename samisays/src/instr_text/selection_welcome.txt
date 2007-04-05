@@ -1,1 +1,0 @@
-Hello, Please select a story from the list or create a story by pressing Enter.
