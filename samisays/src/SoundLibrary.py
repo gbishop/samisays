@@ -4,6 +4,7 @@ from SoundEffects import *
 from SoundControl import *
 
 SOUND_LIB_DIR  = 'sound_library/'
+SFX_CAT = -2
 
 class SoundLibrary:
     
@@ -34,7 +35,7 @@ class SoundLibrary:
                 if sound != 'cat_name.mp3' and sound != '.svn': # Ignore category names and SVN files
                     self.soundMatrix[i] += [sound] 
         
-        self.catList += ['Sound Manipulations']
+        self.catList += ['Sound Manipulations', 'Trash Can']
         self.currCat = -1
         self.currSound = -1
         self.numCats = len(self.catList)
@@ -71,35 +72,40 @@ class SoundLibrary:
     ' of the new sound.
     '''    
     def getNextSoundBytes(self):
-        if self.currCat < self.numCats-1:
+        if self.currCat < self.numCats + SFX_CAT:
             self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
-            return self.getCurrSoundBytes()
-        else:
+        elif self.currCat == self.numCats-1:
             self.currSound = 0
-            return self.SFX.getNextSFXClip()
+        elif self.currCat == self.numCats + SFX_CAT:
+            self.currSound = 0
+            self.SFX.getNextSFXClip()
+        return self.getCurrSoundBytes()
         
     '''
     ' Decrements the current category in a circular fashion and returns the bytes
     ' of the new sound.  Ensures that the initial case is handled correctly.
     '''
     def getPrevSoundBytes(self):
-        if self.currCat < self.numCats-1:
+        if self.currCat < self.numCats + SFX_CAT:
             if self.currSound == -1:
                 self.currSound = len(self.soundMatrix[self.currCat])-1
             else:
                 self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
-            return self.getCurrSoundBytes()
-        else:
+        elif self.currCat == self.numCats -1:
             self.currSound = 0
-            return self.SFX.getPrevSFXClip()
-    
+        elif self.currCat == self.numCats + SFX_CAT:
+            self.currSound = 0
+            self.SFX.getPrevSFXClip()
+        return self.getCurrSoundBytes()
     '''
     ' Returns the bytes of the currently selected sound file.  Improper behavior if 
     ' current category or current sound are -1 (initial settings).
     '''
     def getCurrSoundBytes(self):
-        if self.currCat < self.numCats-1:
+        if self.currCat < self.numCats-2:
             filePath = SOUND_LIB_DIR + self.catList[self.currCat] + '/' + self.soundMatrix[self.currCat][self.currSound]
             return soundFileToBytes(filePath)
-        else:
+        elif self.currCat == self.numCats -1:
+            return self.env['story'].lastDelete
+        elif self.currCat == self.numCats-2:
             return self.SFX.getCurrSFXClip()

@@ -23,7 +23,7 @@ class AuiStoryCreation:
     def __init__(self, env):
         self.env = env
     
-    def takeOver(self, templateMode = False):
+    def takeOver(self):
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
         
         self.keyDown = False # Flag to tell if a key is already being held down
@@ -33,9 +33,8 @@ class AuiStoryCreation:
         self.firstTitle = True # Flag for whether a title has been recorded yet (for first time)
         self.stopPlayBack = False # Flag to interrupt full playback of story
       
-        self.templateMode = templateMode
-        if templateMode:
-            self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
+
+        self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
         
         self.takeKeyBindings()
         
@@ -155,7 +154,7 @@ class AuiStoryCreation:
         AIS.takeOver()
     
     def insertBreak(self):
-        if not self.templateMode:
+        if not self.env['student'] == self.env['class'].teacher:
             return
         
         story = self.env['story']
@@ -174,7 +173,7 @@ class AuiStoryCreation:
     def deleteClip(self):
 
         story = self.env['story']
-        if story.clipIsLocked():
+        if story.clipIsLocked() and self.env['student'] != self.env['class'].teacher:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
         elif self.deleteConfirmed:
             

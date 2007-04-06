@@ -20,6 +20,7 @@ class Class:
     def __len__self(self):
         return len(self.students)
     
+    
     def addStudent(self, student = Student()):
         self.students.append(student)
         self.save()
@@ -46,7 +47,10 @@ class Class:
         self.students = []
         for i in directory:
             if(i[0] == '_'):
-                self.students.append(Student(i[1:]))
+                if i == '_Teacher':
+                    self.teacher = Student(i[1:])
+                else:
+                    self.students.append(Student(i[1:]))
             
 if __name__ == "__main__":
     print 'The class "Class" is not runnable.'

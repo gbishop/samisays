@@ -42,7 +42,6 @@ class SoundEffects:
     def getCurrSFXClip(self):
         if self.currSFX != -1:
             currClip = self.env["story"].getCurrClip()
-            self.env["story"].deleteClip()
             return self.sfxFunctions[self.currSFX](currClip)
     
     '''

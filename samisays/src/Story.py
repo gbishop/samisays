@@ -22,6 +22,7 @@ class Story:
         self.locks = [lockedTitle]
         self.breaks = [True]
         self.currClip = 0
+        self.lastDelete = ''
         self.pickleMe()
         
     '''
@@ -55,6 +56,7 @@ class Story:
         if self.locks[self.currClip]:
             return
         if self.currClip > 0:
+            self.lastDelete = self.clips[self.currClip]
             del self.clips[self.currClip]
             del self.locks[self.currClip]
             del self.breaks[self.currClip]
@@ -75,7 +77,7 @@ class Story:
     '''
     def mergeAndLockBreaks(self, includeBreakClip):
         mergedClips = []
-        lastBreak = -1
+        lastBreak = 0
         for i in xrange(1, len(self)):
             if self.breaks[i]:
                 if includeBreakClip:
