@@ -11,7 +11,8 @@ class AuiStorySelection:
         self.env = env
 
     def takeOver(self):
-        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'selection_welcome.txt') # Play Welcome
+        welcomeTest = file(INSTR_DIR + 'selection_welcome.txt').read()
+        self.env['SoundControl'].speakText(welcomeTest % self.env['student'].getName()) # Play Welcome
         
         self.storyIndex = -1
         self.env['guiStories'].lstStories.SetSelection(self.storyIndex)
@@ -108,7 +109,7 @@ class AuiStorySelection:
            return
         
         if self.deleteConfirmed:
-            self.env['guiStories'].deleteStory(self.storyIndex)
+            self.env['guiStories'].deleteStory()
             self.numStories -= 1
             if self.numStories == 0:
                 self.storyIndex = -1

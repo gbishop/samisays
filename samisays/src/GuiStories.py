@@ -168,6 +168,8 @@ class GuiStories(wx.Frame):
         self.openStory()
 
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
+        if not self.somethingSelected():
+            return
         self.loadStory();
         self.openStory()
 
@@ -175,6 +177,9 @@ class GuiStories(wx.Frame):
         self.newStory()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
+        if not self.somethingSelected():
+            return
+        
         dialog = wx.TextEntryDialog(None,'Please enter the story\'s new name:','Sami Says','')
         if dialog.ShowModal() == wx.ID_OK:
             newName = dialog.GetValue()
@@ -189,6 +194,9 @@ class GuiStories(wx.Frame):
             dialog.Destroy()
 
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
+        if not self.somethingSelected():
+            return
+        
         dialog = wx.MessageDialog(None,'Are you sure you want to delete ' + self.env['student'].stories[self.lstStories.GetSelection()]+ '?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
             selection = self.lstStories.GetSelection()
@@ -200,16 +208,15 @@ class GuiStories(wx.Frame):
         dialog.Destroy()
 
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
+        if not self.somethingSelected():
+            return
         self.env['auiStorySelection'].playStory()
 
     def btnPublishAssignPressed(self, event): # wxGlade: guiStories.<event_handler>
-        if self.lstStories.GetSelection() == -1:
-                msgDialog = wx.MessageDialog(self, 'You must highlight a story before using this function.', 'Error: No Story Selected', wx.ICON_ERROR)
-                msgDialog.ShowModal()
-                msgDialog.Destroy()
-                return
+        if not self.somethingSelected():
+            return
             
-        if self.env['student'].getName() == 'Teacher':
+        if self.env['student'] == self.env['class'].teacher:
             self.Enable(False)
             self.env['guiAssign'].Show()
         else:
@@ -219,7 +226,11 @@ class GuiStories(wx.Frame):
 
     def btnBackPressed(self, event): # wxGlade: guiStories.<event_handler>
         self.Hide()
-        self.env['guiStudents'].Show()
+        if self.env['student'] == self.env['class'].teacher:
+            self.env['guiStart'].Show()
+        else:
+            self.env['guiStudents'].Show()
+    
     
     def setEnv(self,env): 
         self.env = env 
@@ -263,7 +274,7 @@ class GuiStories(wx.Frame):
         self.env['story'].currClip = 0
         
     def newStory(self):
-        storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
+        storyName = '_'.join([str(time.localtime()[i]) for i in xrange(6)])
         studentName = self.env['student'].getName()
         self.env['story'] = Story(storyName, studentName)
         self.openStory()
@@ -276,7 +287,8 @@ class GuiStories(wx.Frame):
         self.env['timer'].Start(100)
         self.env['guiStories'].Hide()
     
-    def deleteStory(self, selection):
+    def deleteStory(self):
+        
         selection = self.lstStories.GetSelection()
         studentName = self.env['student'].getName()
         storyName = self.env['student'].stories[selection]
@@ -284,6 +296,7 @@ class GuiStories(wx.Frame):
         self.populateList()
         
     def publishStory(self):
+
         dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
         if dialog.ShowModal() == wx.ID_OK:
             dialog.Destroy()
@@ -324,6 +337,14 @@ class GuiStories(wx.Frame):
         #    self.visible = True
         #else:
         #    self.visible = False
+    
+    def somethingSelected(self):
+        if self.lstStories.GetSelection() == -1:
+            msgDialog = wx.MessageDialog(self, 'You must highlight a story before using this function.', 'Error: No Story Selected', wx.ICON_ERROR)
+            msgDialog.ShowModal()
+            msgDialog.Destroy()
+            return False
+        return True
     
     def onKeyDown(self, event):
         CTRL = 308 # keyCode for CTRL
