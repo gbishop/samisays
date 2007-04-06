@@ -22,7 +22,7 @@ class GuiStudents(wx.Frame):
         self.btnRemove.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnBack = wx.Button(self.panel, -1, 'Back')
         self.btnBack.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
-        self.lblHead = wx.StaticText(self.panel,-1,"The Classroom")
+        self.lblHead = wx.StaticText(self.panel,-1,"The Bookshelf")
         self.lblHead.SetFont(wx.Font(48,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
 
         self.__set_properties()
@@ -143,7 +143,7 @@ class GuiStudents(wx.Frame):
             self.lstStudents.Insert(i.name,count)
             count+=1
         if(self.lstStudents.GetCount() > 0):
-            self.lstStudents.SetSelection(0)
+            self.lstStudents.Select(0)
             self.btnSelect.Enable()
         else:
             self.btnSelect.Enable(False)

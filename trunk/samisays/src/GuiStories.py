@@ -31,10 +31,10 @@ class GuiStories(wx.Frame):
         self.btnPlay = wx.Button(self.panel, -1, "Playback")
         self.btnPlay.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnPublishAssign = wx.Button(self.panel, -1, "Publish")
-        self.btnPublishAssign.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
+        self.btnPublishAssign.SetFont(wx.Font(32,-1, wx.NORMAL, wx.NORMAL))
         self.btnDelete = wx.Button(self.panel, -1, "Delete")
         self.btnDelete.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
-        self.btnBack = wx.Button(self.panel, -1, "Back")
+        self.btnBack = wx.Button(self.panel, wx.ID_CANCEL, "Back")
         self.btnBack.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.lblHead = wx.StaticText(self.panel,-1,"The Bookshelf")
         self.lblHead.SetFont(wx.Font(48,wx.SWISS, wx.NORMAL, wx.NORMAL))
@@ -196,7 +196,7 @@ class GuiStories(wx.Frame):
             if len(self.env['student'].stories) != 0:
                 self.lstStories.SetSelection(max(selection-1,0))
                 self.loadStory()
-                self.playTitle
+                self.env['auiStorySelect'].playTitle()
         dialog.Destroy()
 
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
@@ -204,6 +204,7 @@ class GuiStories(wx.Frame):
 
     def btnPublishAssignPressed(self, event): # wxGlade: guiStories.<event_handler>
         if self.env['student'].getName() == 'Teacher':
+            self.Enable(False)
             self.env['guiAssign'].Show()
         else:
             self.publishStory()
@@ -218,11 +219,13 @@ class GuiStories(wx.Frame):
         self.env = env 
         
     def setStudent(self, index):
-        self.env['student'] = self.env['class'].students[index]
-        if self.env['student'].getName() == 'Teacher':
+        
+        if index == -2:
+            self.env['student'] = self.env['class'].teacher
             self.lblHead.SetLabel('Teacher Templates')
             self.btnPublishAssign.SetLabel('Assign')
         else:
+            self.env['student'] = self.env['class'].students[index]
             self.lblHead.SetLabel(self.env['student'].getName() + '\'s StoryBook')
             self.btnPublishAssign.SetLabel('Publish')
             
@@ -243,7 +246,6 @@ class GuiStories(wx.Frame):
             self.lstStories.Insert(i,count)
             count+=1
         if(self.lstStories.GetCount() > 0):
-            self.lstStories.SetSelection(0)
             self.btnSelect.Enable()
         else:
             self.btnSelect.Enable(False)
@@ -252,6 +254,7 @@ class GuiStories(wx.Frame):
         storyName = self.env['student'].stories[self.lstStories.GetSelection()]
         studentName = self.env['student'].getName()
         self.env['story'] = unpickleStory(storyName, studentName)
+        self.env['story'].currClip = 0
         
     def newStory(self):
         storyName = ''.join([str(time.localtime()[i]) + '_' for i in xrange(6)])[0:-1]
@@ -310,11 +313,11 @@ class GuiStories(wx.Frame):
             
     def handleShow(self, event):
         self.populateList()
-        if not self.visible:
-            self.lock()
-            self.visible = True
-        else:
-            self.visible = False
+        #if not self.visible:
+        #    self.lock()
+        #    self.visible = True
+        #else:
+        #    self.visible = False
     
     def onKeyDown(self, event):
         CTRL = 308 # keyCode for CTRL

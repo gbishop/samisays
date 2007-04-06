@@ -81,6 +81,7 @@ class GuiAssign(wx.Frame):
         
     def btnCancelPressed(self, event):
         self.Hide()
+        self.env['guiStories'].Enable()
         
     def btnAssignPressed(self, event):
         checkedStudents = self.getCheckedStudents()
@@ -109,6 +110,9 @@ class GuiAssign(wx.Frame):
             msgDialog.ShowModal()
             msgDialog.Destroy()
         
+        self.Hide()
+        self.env['guiStories'].Enable()
+        
     def populateList(self):
         self.chkLstStudents.Clear()
         count = 0
@@ -119,6 +123,7 @@ class GuiAssign(wx.Frame):
                    
     def onClose(self, event):
         self.Hide()
+        self.env['guiStories'].Enable()
 
     def getCheckedStudents(self):
         students = self.env['class'].students

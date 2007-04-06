@@ -16,15 +16,15 @@ class GuiStart(wx.Frame):
         self.img = wx.Image("art/banner_1100x400.png", wx.BITMAP_TYPE_PNG)
         
         self.picBanner = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
-        self.btnStories = wx.Button(self.panel, -1, "The Classroom")
+        self.btnStories = wx.Button(self.panel, -1, "The Bookshelf")
         self.btnStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
-        self.btnSounds = wx.Button(self.panel, -1, "Sounds")
-        self.btnSounds.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
+        self.btnTemplates = wx.Button(self.panel, -1, "Teacher Templates")
+        self.btnTemplates.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.__set_properties()
         self.__do_layout()
 
         self.Bind(wx.EVT_BUTTON, self.btnStoriesPressed, self.btnStories)
-        self.Bind(wx.EVT_BUTTON, self.btnSoundsPressed, self.btnSounds)
+        self.Bind(wx.EVT_BUTTON, self.btnTemplatesPressed, self.btnTemplates)
         self.Bind(wx.EVT_SIZING, self.onSize)
         self.Bind(wx.EVT_CLOSE, self.onClose)
         self.env = {}
@@ -40,8 +40,8 @@ class GuiStart(wx.Frame):
         self.btnStories.SetToolTipString("Make a story by recording and inserting sounds.")
         self.btnStories.SetDefault()
         self.btnStories.SetFocus()
-        self.btnSounds.SetMinSize((175, 35))
-        self.btnSounds.SetToolTipString("Manage how sounds are organized when making stories.")
+        self.btnTemplates.SetMinSize((175, 35))
+        self.btnTemplates.SetToolTipString("Make story templates for students to fill in.")
     # end guiStart.__set_properties
 
     def __do_layout(self):
@@ -61,7 +61,7 @@ class GuiStart(wx.Frame):
         szrChildStories.AddSpacer(-1)
         szrPrnt.Add(szrChildStories, 0, wx.EXPAND, 0)
         szrChildSounds.AddSpacer(-1)
-        szrChildSounds.Add(self.btnSounds, 1, wx.EXPAND, 0)
+        szrChildSounds.Add(self.btnTemplates, 1, wx.EXPAND, 0)
         szrChildSounds.AddSpacer(-1)
         szrChildSounds.AddSpacer(-1)
         szrChildSounds.AddSpacer(-1)
@@ -83,8 +83,11 @@ class GuiStart(wx.Frame):
         self.env['guiStudents'].Show()
     # end btnStoriesPressed
 
-    def btnSoundsPressed(self, event): # wxGlade: guiStart.<event_handler>
-        print 'btnSoundsPressed not yet implemented'
+    def btnTemplatesPressed(self, event): # wxGlade: guiStart.<event_handler>
+        TEACHER_INDEX = -2
+        self.Hide()
+        self.env['guiStories'].setStudent(TEACHER_INDEX)
+        self.env['guiStories'].Show()
     # end btnSoundPressed
     
     def onClose(self, event):
