@@ -203,6 +203,12 @@ class GuiStories(wx.Frame):
         self.env['auiStorySelection'].playStory()
 
     def btnPublishAssignPressed(self, event): # wxGlade: guiStories.<event_handler>
+        if self.lstStories.GetSelection() == -1:
+                msgDialog = wx.MessageDialog(self, 'You must highlight a story before using this function.', 'Error: No Story Selected', wx.ICON_ERROR)
+                msgDialog.ShowModal()
+                msgDialog.Destroy()
+                return
+            
         if self.env['student'].getName() == 'Teacher':
             self.Enable(False)
             self.env['guiAssign'].Show()
