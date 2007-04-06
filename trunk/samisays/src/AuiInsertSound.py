@@ -113,7 +113,7 @@ class AuiInsertSound:
             return
         
         soundBytes = self.SL.getCurrSoundBytes()
-        if self.SL.currCat = self.SL.numCats + self.SFX_CAT:
+        if self.SL.currCat == + self.sfxCat:
             self.env['story'].deleteClip()
         self.env['story'].insertClip(''.join(soundBytes))
         self.env['SoundControl'].playSoundBytes(soundBytes)
