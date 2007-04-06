@@ -39,7 +39,9 @@ class SoundLibrary:
         self.currCat = -1
         self.currSound = -1
         self.numCats = len(self.catList)
-       
+        self.sfxCat = self.numCats - 2
+        self.trashCat = self.numCats - 1
+        
     def onValidCat(self):
         return self.currCat != -1
     
@@ -72,11 +74,11 @@ class SoundLibrary:
     ' of the new sound.
     '''    
     def getNextSoundBytes(self):
-        if self.currCat < self.numCats + SFX_CAT:
+        if self.currCat < self.sfxCat:
             self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
-        elif self.currCat == self.numCats-1:
+        elif self.currCat == self.trashCat:
             self.currSound = 0
-        elif self.currCat == self.numCats + SFX_CAT:
+        elif self.currCat == self.sfxCat:
             self.currSound = 0
             self.SFX.getNextSFXClip()
         return self.getCurrSoundBytes()
@@ -86,14 +88,14 @@ class SoundLibrary:
     ' of the new sound.  Ensures that the initial case is handled correctly.
     '''
     def getPrevSoundBytes(self):
-        if self.currCat < self.numCats + SFX_CAT:
+        if self.currCat < self.sfxCat:
             if self.currSound == -1:
                 self.currSound = len(self.soundMatrix[self.currCat])-1
             else:
                 self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
-        elif self.currCat == self.numCats -1:
+        elif self.currCat == self.sfxCat:
             self.currSound = 0
-        elif self.currCat == self.numCats + SFX_CAT:
+        elif self.currCat == self.trashCat:
             self.currSound = 0
             self.SFX.getPrevSFXClip()
         return self.getCurrSoundBytes()
@@ -102,10 +104,10 @@ class SoundLibrary:
     ' current category or current sound are -1 (initial settings).
     '''
     def getCurrSoundBytes(self):
-        if self.currCat < self.numCats-2:
+        if self.currCat < self.sfxCat:
             filePath = SOUND_LIB_DIR + self.catList[self.currCat] + '/' + self.soundMatrix[self.currCat][self.currSound]
             return soundFileToBytes(filePath)
-        elif self.currCat == self.numCats -1:
+        elif self.currCat == self.trashCat:
             return self.env['story'].lastDelete
-        elif self.currCat == self.numCats-2:
+        elif self.currCat == self.sfxCat:
             return self.SFX.getCurrSFXClip()
