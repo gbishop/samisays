@@ -24,7 +24,7 @@ class GuiAssign(wx.Frame):
         self.Bind(wx.EVT_SHOW, self.handleShow, self)
         self.Bind(wx.EVT_BUTTON, self.btnAssignPressed, self.btnAssign)
         self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
-        self.Bind(wx.EVT_CLOSE, self.onClose)
+        self.Bind(wx.EVT_CLOSE, self.close)
         # end wxGlade
 
     def __set_properties(self):
@@ -80,8 +80,7 @@ class GuiAssign(wx.Frame):
         self.populateList()
         
     def btnCancelPressed(self, event):
-        self.Hide()
-        self.env['guiStories'].Enable()
+        self.close()
         
     def btnAssignPressed(self, event):
         checkedStudents = self.getCheckedStudents()
@@ -110,8 +109,7 @@ class GuiAssign(wx.Frame):
             msgDialog.ShowModal()
             msgDialog.Destroy()
         
-        self.Hide()
-        self.env['guiStories'].Enable()
+        self.close()
         
     def populateList(self):
         self.chkLstStudents.Clear()
@@ -121,10 +119,11 @@ class GuiAssign(wx.Frame):
             count+=1
         self.chkLstStudents.SetSelection(0)
                    
-    def onClose(self, event):
+    def close(self, event=None):
         self.Hide()
         self.env['guiStories'].Enable()
-
+        self.env['guiStories'].Raise()
+        
     def getCheckedStudents(self):
         students = self.env['class'].students
         checkedStudents = []

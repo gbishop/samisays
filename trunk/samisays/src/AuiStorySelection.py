@@ -153,6 +153,7 @@ class AuiStorySelection:
     
     def playStory(self):
         self.env['SoundControl'].stopPlay()
+        self.storyIndex = self.env['guiStories'].lstStories.GetSelection()
         if self.storyIndex == -1:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
         else:

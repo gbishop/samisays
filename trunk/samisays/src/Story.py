@@ -78,14 +78,15 @@ class Story:
     def mergeAndLockBreaks(self, includeBreakClip):
         mergedClips = []
         lastBreak = 0
+        mergedClips = [self.getTitleBytes()]
         for i in xrange(1, len(self)):
-            if self.breaks[i]:
+            if self.breaks[i] or i == len(self)-1:
                 if includeBreakClip:
                     mergedClips += [''.join(self.clips[lastBreak+1:i+1])]
                 else:
                     mergedClips += [''.join(self.clips[lastBreak+1:i])]
                 lastBreak = i
-
+        
         self.clips = mergedClips
         self.lockStory()
     
