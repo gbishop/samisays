@@ -1,1 +1,1 @@
-Hello %s and welcome to your story book.  Please select a story from the list using the left and right arrow keys or create a story by pressing down.
+Hello %s and welcome to your story book.  Please select a story from the list using the left and right arrow keys, or create a story by pressing down.
