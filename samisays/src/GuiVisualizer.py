@@ -10,7 +10,7 @@ class GuiVisualizer(wx.Frame):
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel_1 = wx.Panel(self, -1)
-        self.title = wx.StaticText(self.panel_1, -1, "Story Creation - Visualizer")
+        self.title = wx.StaticText(self.panel_1, -1, "Story Creation")
         self.tot_len = wx.StaticText(self.panel_1, -1, "Total Length:")
         self.num_effects = wx.StaticText(self.panel_1, -1, "Number of Effects:")
         self.num_recorded = wx.StaticText(self.panel_1, -1, "Recorded Clips:")
@@ -18,13 +18,18 @@ class GuiVisualizer(wx.Frame):
         self.info_label = wx.StaticText(self.panel_1, -1, "Story Information")
         self.instruction_label = wx.StaticText(self.panel_1, -1, "Instructions")
 
+        # binding of events
+        self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
+
         self.__set_properties()
         self.__do_layout()
         # end wxGlade
 
     def __set_properties(self):
         # begin wxGlade: GuiVisualizer.__set_properties
-        self.SetTitle("frame_5")
+        self.SetTitle("Sami Says")
+        self.SetPosition((0,0))
+        self.SetSize(wx.DisplaySize())
         self.title.SetFont(wx.Font(28, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.tot_len.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.num_effects.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
@@ -36,7 +41,6 @@ class GuiVisualizer(wx.Frame):
 
     def __do_layout(self):
         # begin wxGlade: GuiVisualizer.__do_layout
-        master_sizer = wx.BoxSizer(wx.VERTICAL)
         title_boxes_sizer = wx.BoxSizer(wx.VERTICAL)
         labels_sizer = wx.BoxSizer(wx.HORIZONTAL)
         boxes_sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -67,14 +71,15 @@ class GuiVisualizer(wx.Frame):
         labels_sizer.Add((20, 20), 0, 0, 0)
         title_boxes_sizer.Add(labels_sizer, 1, wx.EXPAND, 0)
         self.panel_1.SetSizer(title_boxes_sizer)
-        master_sizer.Add(self.panel_1, 0, wx.EXPAND, 0)
-        self.SetSizer(master_sizer)
-        master_sizer.Fit(self)
         self.Layout()
+        self.panel_1.Layout()
         # end wxGlade
+        
+    def handleFocus(self, event):
+        self.SetFocus()
 
     def setInstructions(self, instructs):
-	self.instructions.WriteText(instructs)
+	    self.instructions.WriteText(instructs)
 
     def setLen(self, len):
         self.tot_len = wx.StaticText(self.panel_1, -1, "Total Length: " + len)
