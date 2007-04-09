@@ -115,3 +115,11 @@ class SoundLibrary:
             return self.env['story'].lastDelete
         elif self.currCat == self.sfxCat:
             return self.SFX.getCurrSFXClip()
+    
+    def getCurrType(self):
+        if self.currCat == self.sfxCat:
+            return SFX
+        else:
+            return SND
+        
+        
