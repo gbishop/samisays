@@ -7,6 +7,7 @@ from AuiInsertSound import *
 
 INSTR_DIR = 'instr_text/'
 BREAK_SOUND = 'lilbeep.wav'
+INTRO_SOUND = 'trumpet_intro.mp3'
 
 '''
 ' Class Name:  StoryCreationAUI
@@ -23,10 +24,16 @@ class AuiStoryCreation:
     def __init__(self, env):
         self.env = env
         self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
+        self.introSound = soundFileToBytes(INTRO_SOUND)
     
     def takeOver(self):
-        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
+        self.env['SoundControl'].playSoundBytes(self.introSound, True)
         
+        if self.env['story'].getTitleBytes() == '':
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt')
+        else:
+            self.env['SoundControl'].playSoundBytes(self.env['story'].getTitleBytes())
+            
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
                 
