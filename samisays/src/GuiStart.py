@@ -99,7 +99,7 @@ class GuiStart(wx.Frame):
             dialog.Destroy()
             
     def onSize(self, event):
-        self.img = wx.Image("SamiSays.jpg", wx.BITMAP_TYPE_JPEG)
+        self.img = wx.Image("art/banner_1100x400.png", wx.BITMAP_TYPE_PNG)
         (w,h) = self.picBanner.GetSizeTuple()
         self.img.Rescale(w,h)
         self.picBanner.SetBitmap(wx.BitmapFromImage(self.img))
