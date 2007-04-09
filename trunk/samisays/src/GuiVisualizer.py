@@ -97,16 +97,23 @@ class GuiVisualizer(wx.Frame):
 	    self.instructions.WriteText(instructs)
 
     def updateStats(self):
-        stats = self.env['story'].getStats()
-        min,sec = getDuration(self.env['story'].getStoryBytes())
+        story = self.env['story']
+        stats = story.getStats()
+        min,sec = getDuration(story.getStoryBytes())
         
-        if (min > 0):
-            self.statsLabel.SetLabel('Duration:  %d m %.2f s\n\nNumber of Clips:  %d\nRecorded Sounds: %d\nInserted Sounds:  %d\nManipulated Sounds:  %d\nLocked (Teacher) Sounds:  %d\nBreaks:  %d'
-                               % (min, sec, len(self.env['story'])-1, stats[REC], stats[SND], stats[SFX], stats[LCK], stats[BRK]))
-        else :
-            self.statsLabel.SetLabel('Duration:  %.2f s\n\nNumber of Clips:  %d\nRecorded Sounds: %d\nInserted Sounds:  %d\nManipulated Sounds:  %d\nLocked (Teacher) Sounds:  %d\nBreaks:  %d'
-                               % (sec, len(self.env['story'])-1, stats[REC], stats[SND], stats[SFX], stats[LCK], stats[BRK]))
+        if min == 0:
+            durInfo = 'Duration:  %.2f s\n\n' % (sec)
+        else:
+            durInfo = 'Duration:  %d m %.2f s\n\n' % (min, sec)
         
+        if story.currClip == 0:
+            clipInfo = 'Current Clip:  Title (of %d)\n\n' % (len(story)-1)
+        else:
+            clipInfo = 'Current Clip:  %d (of %d)\n\n' % (story.currClip, len(story)-1)
+            
+        statsInfo = ('Recorded Sounds: %d\nInserted Sounds:  %d\nManipulated Sounds:  %d\nLocked (Teacher) Sounds:  %d\nBreaks:  %d' 
+                     % (stats[REC], stats[SND], stats[SFX], stats[LCK], stats[BRK]))
+        self.statsLabel.SetLabel(durInfo + clipInfo + statsInfo)
 
 # end of class GuiVisualizer
 

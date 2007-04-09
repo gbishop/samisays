@@ -1,1 +1,1 @@
-Insert selected sound with the space bar.  Hear more sound effects with the Up and down arrows.  Change categories with the Left and right arrows.
+Choose category with Left and Right arrows.  Choose sound in category with Up and Down arrows.  Insert sound with Space Bar.  Cancel with Escape.

@@ -22,6 +22,7 @@ class AuiStoryCreation:
     '''
     def __init__(self, env):
         self.env = env
+        self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
     
     def takeOver(self):
         self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt') # Play Welcome
@@ -30,12 +31,8 @@ class AuiStoryCreation:
         self.keyDownCode = -1 # Code to recognize which key is being held down
                 
         self.deleteConfirmed = False # Flag for whether delete needs confirmation
-        self.firstTitle = True # Flag for whether a title has been recorded yet (for first time)
         self.stopPlayBack = False # Flag to interrupt full playback of story
       
-
-        self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
-        
         self.takeKeyBindings()
         
     def takeKeyBindings(self):
@@ -108,14 +105,7 @@ class AuiStoryCreation:
     ' (len(story) == 0) is already handled in OnKeyUp.
     '''
     def getHelp(self):
-        textFile = INSTR_DIR
-
-        if len(self.env['story']) == 1:
-            textFile += 'after_title.txt'
-        else:
-            textFile += 'creation_instructions.txt'
-        
-        self.env['SoundControl'].speakTextFile(textFile)
+        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_instructions.txt')
         
     ''' 
     ' Called when record key is lifted.
