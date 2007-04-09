@@ -1,4 +1,5 @@
 import cPickle
+import numpy
 
 '''
 ' Class Name:  Story
@@ -10,6 +11,14 @@ import cPickle
 '''
 
 STUDENT_DIR = 'students'
+
+NON = 0
+REC = 1
+SFX = 2
+SND = 3
+LCK = 4
+BRK = 5
+
 class Story:
     
     '''
@@ -19,8 +28,10 @@ class Story:
         self.name = name
         self.student = student
         self.clips = [titleBytes]
-        self.locks = [lockedTitle]
-        self.breaks = [True]
+        if lockedTitle:
+            self.types = [LCK]
+        else:
+            self.types = [REC]
         self.currClip = 0
         self.lastDelete = ''
         self.pickleMe()
@@ -34,11 +45,10 @@ class Story:
     '''
     ' Inserts clip after current clip and makes new clip the current clip.
     '''
-    def insertClip(self, soundBytes, isBreak = False, locked = False):
+    def insertClip(self, soundBytes, type):
         self.currClip += 1
         self.clips.insert(self.currClip, soundBytes)
-        self.locks.insert(self.currClip, locked)
-        self.breaks.insert(self.currClip, isBreak)
+        self.types.insert(self.currClip, type)
         self.pickleMe()
 
     '''
@@ -53,13 +63,12 @@ class Story:
     ' and returns current clip.
     '''
     def deleteClip(self):
-        if self.locks[self.currClip]:
+        if self.types[self.currClip] == LCK:
             return
         if self.currClip > 0:
             self.lastDelete = self.clips[self.currClip]
             del self.clips[self.currClip]
-            del self.locks[self.currClip]
-            del self.breaks[self.currClip]
+            del self.types[self.currClip]
         self.currClip -= 1
         self.pickleMe()
         return self.getCurrClip()
@@ -68,7 +77,7 @@ class Story:
     ' Locks all clips in the story.
     '''
     def lockStory(self):
-        self.locks = [True for i in xrange(len(self))]
+        self.type = [LCK for i in xrange(len(self))]
     
     '''
     ' Merges all clips between breaks into single clips.  Includes break sound if
@@ -80,7 +89,7 @@ class Story:
         lastBreak = 0
         mergedClips = [self.getTitleBytes()]
         for i in xrange(1, len(self)):
-            if self.breaks[i] or i == len(self)-1:
+            if self.types[i] == BRK or i == len(self)-1:
                 if includeBreakClip:
                     mergedClips += [''.join(self.clips[lastBreak+1:i+1])]
                 else:
@@ -132,10 +141,15 @@ class Story:
     def getCopy(self, student):
         copy = Story(self.name, student)
         copy.clips = [c for c in self.clips]
-        copy.locks = [l for l in self.locks]
-        copy.breaks = [b for b in self.breaks]
+        copy.types = [t for t in self.type]
         return copy
         
+    
+    def getStats(self):
+        stats = numpy.zeros(6)
+        for t in self.types[1:]:
+            stats[t] += 1
+        return stats
     
     '''
     ' Returns True if the title is empty.  Otherwise, returns False.
@@ -144,10 +158,10 @@ class Story:
         return self.clips[0] == ''
     
     def clipIsLocked(self):
-        return self.locks[self.currClip]
+        return self.types[self.currClip] == LCK
     
     def clipIsBreak(self):
-        return self.breaks[self.currClip]
+        return self.types[self.currClip] == BRK
     
     def pickleMe(self):
         filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, self.student, self.name)

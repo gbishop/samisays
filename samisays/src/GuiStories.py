@@ -336,10 +336,13 @@ class GuiStories(wx.Frame):
             
     def handleShow(self, event):
         self.populateList()
-        if not self.visible:
-            self.lock()
+        if not self.visible: # Show() called
+            if self.env['storiesLock']:
+                self.lock()
+            else:
+                self.unlock()
             self.visible = True
-        else:
+        else: # Hide() called
             self.visible = False
     
     def somethingSelected(self):

@@ -64,6 +64,7 @@ class AuiInsertSound:
             self.getHelp()
         else:
             keyFunctions[keyCode]() # Call function for valid key
+            self.env['guiWorking'].updateStats()
         
         event.Skip()
      
@@ -116,9 +117,11 @@ class AuiInsertSound:
             return
         
         soundBytes = self.SL.getCurrSoundBytes()
-        if self.SL.currCat == + self.SL.sfxCat:
+        type = SND
+        if self.SL.currCat == self.SL.sfxCat:
             self.env['story'].deleteClip()
-        self.env['story'].insertClip(''.join(soundBytes))
+            type = SFX
+        self.env['story'].insertClip(''.join(soundBytes), type)
         self.env['SoundControl'].playSoundBytes(soundBytes)
         self.quit()
         

@@ -98,6 +98,7 @@ class AuiStoryCreation:
         else:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
+            self.env['guiWorking'].updateStats()
             
         event.Skip()
 
@@ -130,7 +131,7 @@ class AuiStoryCreation:
         if story.needsTitle():
             story.replaceTitle(soundBytes)
         else:
-            story.insertClip(soundBytes)
+            story.insertClip(soundBytes, type = REC)
         
         self.env['SoundControl'].playSoundBytes(soundBytes)
         
@@ -161,7 +162,7 @@ class AuiStoryCreation:
         if story.clipIsBreak():
             self.env['SoundControl'].speakText('You may not have two breaks in a row.')
         else:
-            story.insertClip(self.breakSoundBytes, isBreak = True)
+            story.insertClip(self.breakSoundBytes, type = BRK)
             self.env['SoundControl'].playSoundBytes(self.breakSoundBytes)
         
     '''
@@ -204,11 +205,7 @@ class AuiStoryCreation:
     '''
     def navRight(self):
         self.env['SoundControl'].playSoundBytes(self.env['story'].getNextClip())
-       
-    ''' Test function for exporting to mp3. '''
-    def exportToMp3(self):
-        encodeToMp3(self.env['story'].getStory(),'test.mp3',64000)
-        
+           
     ''' Function for gracefully exiting story creation and returning to menu '''
     def quit(self):
         self.env['guiWorking'].Hide()
