@@ -1,6 +1,7 @@
 import cPickle
 import numpy
 
+
 '''
 ' Class Name:  Story
 ' Description: Contains data structures and methods for a single
@@ -150,6 +151,7 @@ class Story:
         for t in self.types[1:]:
             stats[t] += 1
         return stats
+    
     
     '''
     ' Returns True if the title is empty.  Otherwise, returns False.

@@ -124,7 +124,9 @@ class AuiStoryCreation:
     def recordingFinished(self):
         
         soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
+        soundBytes = soundBytes[5000:]
         soundBytes = normalizeSoundBytes(soundBytes)
+
         
         story = self.env['story']
         
@@ -132,6 +134,7 @@ class AuiStoryCreation:
             story.replaceTitle(soundBytes)
         else:
             story.insertClip(soundBytes, type = REC)
+
         
         self.env['SoundControl'].playSoundBytes(soundBytes)
         
