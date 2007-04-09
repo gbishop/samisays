@@ -30,7 +30,10 @@ class SoundEffects:
     ' Returns modified sound clip for playback
     '''
     def getPrevSFXClip(self):
-        self.currSFX = (self.currSFX-1)%len(self.sfxFunctions)
+        if self.currSFX == -1:
+            self.currSFX = len(self.sfxFunctions)-1
+        else:
+            self.currSFX = (self.currSFX-1)%len(self.sfxFunctions)
         currClip = self.env["story"].getCurrClip()
         return self.sfxFunctions[self.currSFX](currClip)
     
@@ -50,7 +53,7 @@ class SoundEffects:
     def Echo(self, clip):
         soundArray = fromstring(clip, int16)
         newclip = fromstring(clip, int16)
-        delay = 10000
+        delay = 1000
         echoFactor = 0.6
         
         for i in xrange(delay+1,len(soundArray)) :
