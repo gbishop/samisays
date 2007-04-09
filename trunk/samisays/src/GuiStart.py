@@ -17,9 +17,9 @@ class GuiStart(wx.Frame):
         
         self.picBanner = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
         self.btnStories = wx.Button(self.panel, -1, "The Bookshelf")
-        self.btnStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
+        self.btnStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnTemplates = wx.Button(self.panel, -1, "Teacher Templates")
-        self.btnTemplates.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
+        self.btnTemplates.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.__set_properties()
         self.__do_layout()
 
