@@ -48,7 +48,8 @@ class AuiInsertSound:
         # Define dictionary of functions for valid keys
         keyFunctions = {wx.WXK_SPACE : self.select, wx.WXK_RETURN : self.getHelp,
                         wx.WXK_DOWN : self.navDown, wx.WXK_UP : self.navUp,
-                        wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight}
+                        wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
+                        wx.WXK_ESCAPE : self.quit}
         
 
         if not keyCode in keyFunctions: # Ignore invalid keys
@@ -57,7 +58,9 @@ class AuiInsertSound:
         self.env['SoundControl'].stopPlay() # Stop any sound that is playing
         
         # If not yet navigated to a category, ignore keys and repeat instructions
-        if not self.SL.onValidCat() and not (keyCode==wx.WXK_LEFT or keyCode==wx.WXK_RIGHT):
+        if not self.SL.onValidCat() and not (keyCode==wx.WXK_LEFT or 
+                                             keyCode==wx.WXK_RIGHT or 
+                                             keyCode == wx.WXK_ESCAPE):
             self.getHelp()
         else:
             keyFunctions[keyCode]() # Call function for valid key
@@ -117,4 +120,8 @@ class AuiInsertSound:
             self.env['story'].deleteClip()
         self.env['story'].insertClip(''.join(soundBytes))
         self.env['SoundControl'].playSoundBytes(soundBytes)
+        self.quit()
+        
+    def quit(self):
+        self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
         self.env['auiStoryCreation'].takeKeyBindings()

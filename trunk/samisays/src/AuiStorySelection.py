@@ -115,7 +115,9 @@ class AuiStorySelection:
                 self.storyIndex = -1
             else:
                 self.storyIndex = (self.storyIndex - 1) % self.numStories
-            self.env['guiStories'].lstStories.SetSelection(self.storyIndex)
+                self.env['guiStories'].lstStories.SetSelection(self.storyIndex)
+                self.env['guiStories'].loadStory()
+                self.playTitle()
             self.deleteConfirmed = False
         else:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_confirm.txt')

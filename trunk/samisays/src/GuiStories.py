@@ -31,7 +31,7 @@ class GuiStories(wx.Frame):
         self.btnPlay = wx.Button(self.panel, -1, "Playback")
         self.btnPlay.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnPublishAssign = wx.Button(self.panel, -1, "Publish")
-        self.btnPublishAssign.SetFont(wx.Font(32,-1, wx.NORMAL, wx.NORMAL))
+        self.btnPublishAssign.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnDelete = wx.Button(self.panel, -1, "Delete")
         self.btnDelete.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL))
         self.btnBack = wx.Button(self.panel, wx.ID_CANCEL, "Back")
@@ -177,6 +177,7 @@ class GuiStories(wx.Frame):
         self.newStory()
 
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
+        self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
         
@@ -194,6 +195,7 @@ class GuiStories(wx.Frame):
             dialog.Destroy()
 
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
+        self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
         
@@ -213,6 +215,7 @@ class GuiStories(wx.Frame):
         self.env['auiStorySelection'].playStory()
 
     def btnPublishAssignPressed(self, event): # wxGlade: guiStories.<event_handler>
+        self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
             
@@ -225,6 +228,7 @@ class GuiStories(wx.Frame):
 
 
     def btnBackPressed(self, event): # wxGlade: guiStories.<event_handler>
+        self.env['SoundControl'].stopPlay()
         self.Hide()
         if self.env['student'] == self.env['class'].teacher:
             self.env['guiStart'].Show()

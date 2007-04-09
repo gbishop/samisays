@@ -55,6 +55,8 @@ class SoundLibrary:
     def getNextCatName(self):
         self.currSound = -1
         self.currCat = (self.currCat + 1)%self.numCats
+        if self.currCat == self.trashCat and self.env['story'].lastDelete == '':
+            return self.getNextCatName()
         return self.catList[self.currCat]
     
     '''
@@ -67,6 +69,8 @@ class SoundLibrary:
             self.currCat = self.numCats-1
         else:
             self.currCat = (self.currCat - 1)%self.numCats
+        if self.currCat == self.trashCat and self.env['story'].lastDelete == '':
+            return self.getPrevCatName()
         return self.catList[self.currCat]
         
     '''
@@ -93,9 +97,9 @@ class SoundLibrary:
                 self.currSound = len(self.soundMatrix[self.currCat])-1
             else:
                 self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
-        elif self.currCat == self.sfxCat:
-            self.currSound = 0
         elif self.currCat == self.trashCat:
+            self.currSound = 0
+        elif self.currCat == self.sfxCat:
             self.currSound = 0
             self.SFX.getPrevSFXClip()
         return self.getCurrSoundBytes()
