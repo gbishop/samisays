@@ -11,6 +11,7 @@ from GuiAssign import GuiAssign
 from SoundControl import SoundControl
 from AuiStorySelection import *
 from AuiStoryCreation import *
+from GuiVisualizer import *
 
 
 class GuiMain(wx.App):
@@ -30,7 +31,7 @@ class GuiMain(wx.App):
         self.env['SoundControl'] = SoundControl()
         self.env['keyDownFunct'] = None
         self.env['keyUpFunct'] = None
-        self.env['guiWorking'] = wx.Frame(None, -1, 'Recording a Story')
+        self.env['guiWorking'] = GuiVisualizer(None, -1, "")
         self.env['guiWorking'].Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.env['guiWorking'].Bind(wx.EVT_KEY_UP, self.onKeyUp)
         self.env['guiStories'].Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
