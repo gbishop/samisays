@@ -185,11 +185,12 @@ def resampleSoundFile(filePath):
     oNumSamples = oldSample.NumSamples
     oChannels = oldSample.Channels
     
+    
     if oSampleSize == 8:
         oSoundBytes = oldSample.GetBytes(0, oNumSamples)
-        soundBytes = ''
-        for byte in oSoundBytes:
-            soundBytes += '\x00' + byte
+        oSoundArray = fromstring(oSoundBytes, int8)
+        soundArray = array(oSoundArray, int16)
+        soundBytes = oSoundArray.tostring()
     else:
         soundBytes = oldSample.GetBytes(0, oNumSamples*2)
     
