@@ -77,6 +77,9 @@ class GuiVisualizer(wx.Frame):
         
     def handleFocus(self, event):
         self.SetFocus()
+        
+    def setEnv(self,env): 
+        self.env = env
 
     def setInstructions(self, instructs):
 	    self.instructions.WriteText(instructs)
