@@ -17,6 +17,7 @@ class GuiMain(wx.App):
     
     def OnInit(self):
         currentClass = Class()
+        currentClass.save()
         currentClass.load()
         wx.InitAllImageHandlers()
         self.env = {}

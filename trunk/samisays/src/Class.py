@@ -11,6 +11,7 @@ class Class:
      
     def __init__(self, students = []):
         self.students = students
+        self.teacher = Student("Teacher")
         
     def __str__(self):
         str = ''
@@ -34,9 +35,12 @@ class Class:
         shutil.move(STUDENT_DIR + dname, BACKUP_DIR + dname);
         
     def save(self):
+        try:
+            os.mkdir(STUDENT_DIR + '_' + self.teacher.name)
+        except OSError:()
         for i in range(len(self.students)):
             try:
-                os.mkdir(STUDENT_DIR + '_' + self.students[i].name);
+                os.mkdir(STUDENT_DIR + '_' + self.students[i].name)
             except OSError:()
             
     def load(self, path = ''):
