@@ -45,6 +45,7 @@ class GuiMain(wx.App):
         students.setEnv(self.env)
         stories.setEnv(self.env)
         assign.setEnv(self.env)
+        self.env['guiWorking'].setEnv(self.env)
         return True
 
     def onKeyDown(self,event):
