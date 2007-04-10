@@ -206,6 +206,7 @@ class AuiStoryCreation:
             else:
                 self.env['SoundControl'].playSoundBytes(story.deleteClip())
             self.deleteConfirmed = False
+            self.setInstructions()
         else:
             self.deleteConfirmed = True
             self.setInstructions()
