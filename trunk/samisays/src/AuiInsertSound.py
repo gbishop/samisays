@@ -127,7 +127,6 @@ class AuiInsertSound:
             self.env['story'].deleteClip()
             type = SFX
         self.env['story'].insertClip(''.join(soundBytes), type)
-        self.env['SoundControl'].playSoundBytes(soundBytes)
         self.quit()
         
     def quit(self):
