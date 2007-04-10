@@ -55,7 +55,7 @@ class AuiStoryCreation:
             if self.env['story'].currClip == 0:
                 instrFile += 'delete_title.txt'
             else:
-                instrFile += 'delete_clip.txt'
+                instrFile += 'delete_confirm.txt'
         elif self.env['story'].needsTitle():
             instrFile += 'needs_title.txt'
         elif self.teacherMode:
