@@ -87,7 +87,7 @@ class AuiStorySelection:
 		if keyCode not in  keyFunctions: # If key has no function, ignore it
 			return
 		
-		if self.numStories == 0 and not (keyCode == wx.WXK_DOWN or keyCode == wx.WXK_ESCAPE):
+		if self.numStories == 0 and not keyCode in [wx.WXK_DOWN, wx.WXK_ESCAPE]:
 			self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_stories.txt')
 			return
 

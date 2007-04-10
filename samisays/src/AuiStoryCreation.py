@@ -117,7 +117,7 @@ class AuiStoryCreation:
         self.env['SoundControl'].stopPlay()
         
         
-        if self.env['story'].needsTitle() and keyCode != wx.WXK_SPACE: 
+        if self.env['story'].needsTitle() and not (keyCode in [wx.WXK_SPACE, wx.WXK_ESCAPE]): 
             # If no title exists, nothing is to be done until one is recorded
             self.getHelp()
         else:
