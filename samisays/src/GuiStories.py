@@ -341,42 +341,6 @@ class GuiStories(wx.Frame):
             return False
         return True
     
-    def onKeyDown(self, event):
-        CTRL = 308 # keyCode for CTRL
-        
-        keyCode = event.GetKeyCode()
-        
-        self.allDowns.union_update([keyCode])
-        
-        print self.allDowns
-        
-        if (self.lockStarted and len(self.allDowns) == 3 
-            and CTRL in self.allDowns 
-            and wx.WXK_TAB in self.allDowns
-            and wx.WXK_SHIFT in self.allDowns):
-            self.doLock = True
-            
-        if not (keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT):
-            self.lockStarted = False
-            
-        if (len(self.allDowns) == 1 
-            and (keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT)):
-            self.lockStarted = True
-            
-        event.Skip()
-        
-    def onKeyUp(self, event):
-        keyCode = event.GetKeyCode()
-        
-        self.allDowns.remove(keyCode)
-        
-        if self.doLock:
-            if len(self.allDowns) == 0:
-                self.lock()
-                self.doLock = False
-        else:
-            event.Skip()
-        
         
 # end of class guiStories
 
