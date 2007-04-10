@@ -7,7 +7,7 @@ from AuiInsertSound import *
 
 INSTR_DIR = 'instr_text/'
 BREAK_SOUND = 'lilbeep.wav'
-INTRO_SOUND = 'trumpet_intro.mp3'
+INTRO_SOUND = 'xylophone_intro.mp3'
 
 '''
 ' Class Name:  StoryCreationAUI
