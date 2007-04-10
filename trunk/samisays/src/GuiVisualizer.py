@@ -93,8 +93,8 @@ class GuiVisualizer(wx.Frame):
     def setEnv(self,env): 
         self.env = env
 
-    def setInstructions(self, instructs):
-	    self.instructions.WriteText(instructs)
+    def setInstructions(self, instrText):
+        self.instructions.SetLabel(instrText)
 
     def updateStats(self):
         story = self.env['story']
