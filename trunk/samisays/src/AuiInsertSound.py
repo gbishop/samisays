@@ -133,3 +133,4 @@ class AuiInsertSound:
     def quit(self):
         self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
         self.env['auiStoryCreation'].takeKeyBindings()
+        self.env['auiStoryCreation'].setInstructions()
