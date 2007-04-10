@@ -179,7 +179,7 @@ class GuiStories(wx.Frame):
         dialog = wx.MessageDialog(None,'Are you sure you want to delete ' + self.env['student'].stories[self.lstStories.GetSelection()]+ '?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
             selection = self.lstStories.GetSelection()
-            self.deleteStory(selection)
+            self.deleteStory()
             if len(self.env['student'].stories) != 0:
                 self.lstStories.SetSelection(max(selection-1,0))
                 self.loadStory()
