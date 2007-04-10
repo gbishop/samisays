@@ -19,10 +19,15 @@ class AuiInsertSound:
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
+        self.setInstructions()
         self.getHelp()
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
-                
+    
+    def setInstructions(self):
+        self.currInstr = file(INSTR_DIR + 'insert_sound.txt', 'r').read()
+        self.env['guiWorking'].setInstructions(self.currInstr)
+        
     ''' 
     ' Handles event when a key is pressed. 
     '''
@@ -103,7 +108,7 @@ class AuiInsertSound:
     ' Notifies the user of the current options.
     '''
     def getHelp(self):
-        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'insert_sound.txt')
+        self.env['SoundControl'].speakText(self.currInstr)
     
     ''' 
     ' Called when selection key is released.

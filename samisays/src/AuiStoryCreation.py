@@ -33,7 +33,9 @@ class AuiStoryCreation:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt')
         else:
             self.env['SoundControl'].playSoundBytes(self.env['story'].getTitleBytes())
-            
+        
+        self.teacherMode = self.env['student'] == self.env['class'].teacher
+        
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
                 
@@ -41,11 +43,28 @@ class AuiStoryCreation:
         self.stopPlayBack = False # Flag to interrupt full playback of story
       
         self.takeKeyBindings()
+        self.setInstructions()
         
     def takeKeyBindings(self):
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
         
+    def setInstructions(self):
+        instrFile = INSTR_DIR
+        if self.deleteConfirmed:
+            if self.env['story'].currClip == 0:
+                instrFile += 'delete_title.txt'
+            else:
+                instrFile += 'delete_clip.txt'
+        elif self.env['story'].needsTitle():
+            instrFile += 'needs_title.txt'
+        elif self.teacherMode:
+            instrFile += 'template_instructions.txt'
+        else:
+            instrFile += 'creation_instructions.txt'
+        self.currInstr = file(instrFile, 'r').read()
+        self.env['guiWorking'].setInstructions(self.currInstr)
+    
     ''' 
     ' Handles event when a key is pressed. 
     '''
@@ -90,6 +109,7 @@ class AuiStoryCreation:
         
         if keyCode != wx.WXK_UP: # If key is not the delete key, a delete is not being confirmed
             self.deleteConfirmed = False
+            self.setInstructions()
         
         # Stop any sound that is playing
         self.stopPlayback = True 
@@ -98,7 +118,7 @@ class AuiStoryCreation:
         
         if self.env['story'].needsTitle() and keyCode != wx.WXK_SPACE: 
             # If no title exists, nothing is to be done until one is recorded
-            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
+            self.getHelp()
         else:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
@@ -112,7 +132,7 @@ class AuiStoryCreation:
     ' (len(story) == 0) is already handled in OnKeyUp.
     '''
     def getHelp(self):
-        self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_instructions.txt')
+        self.env['SoundControl'].speakText(self.currInstr)
         
     ''' 
     ' Called when record key is lifted.
@@ -129,6 +149,7 @@ class AuiStoryCreation:
         
         if story.needsTitle():
             story.replaceTitle(soundBytes)
+            self.setInstructions()
         else:
             story.insertClip(soundBytes, type = REC)
 
@@ -180,17 +201,15 @@ class AuiStoryCreation:
             
             if story.currClip == 0:
                 story.replaceTitle('')
-                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'needs_title.txt')
+                self.setInstruction()
+                self.getHelp()
             else:
                 self.env['SoundControl'].playSoundBytes(story.deleteClip())
             self.deleteConfirmed = False
-            
         else:
-            if story.currClip == 0:
-                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_title.txt')
-            else:
-                self.env['SoundControl'].speakTextFile(INSTR_DIR + 'delete_confirm.txt')
             self.deleteConfirmed = True
+            self.setInstructions()
+            self.getHelp()
                 
     '''
     ' Called when navigate left key is released.
