@@ -142,7 +142,7 @@ class Story:
     def getCopy(self, student):
         copy = Story(self.name, student)
         copy.clips = [c for c in self.clips]
-        copy.types = [t for t in self.type]
+        copy.types = [t for t in self.types]
         return copy
         
     
