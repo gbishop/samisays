@@ -98,6 +98,7 @@ class GuiAssign(wx.Frame):
                 cStory = story.getCopy(studentName)
                 cStory.mergeAndLockBreaks(True)
                 cStory.pickleMe()
+                cStory.pickleTitle()
                 succStudents += [studentName]
         
         msg = ''

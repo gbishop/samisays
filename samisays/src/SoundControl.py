@@ -7,10 +7,11 @@ import pyTTS
 from numpy import *
 
 # Sound properties
-RATE = 44100    # samples per second
+RATE = 16000    # samples per second
 BITS = 16       # BITS per sample
 CHANNELS = 1    # 1 is mono, 2 is stereo
 BUFF_DURATION = 1 # in seconds
+TTS_RATE = 44000
 
 
 '''
@@ -30,10 +31,10 @@ class SoundControl:
     def __init__(self):
         
         self.tts = pyTTS.Create()
-        self.tts.SetOutputFormat(RATE/1000,BITS,CHANNELS)
+        self.tts.SetOutputFormat(TTS_RATE/1000,BITS,CHANNELS)
         
         # initialize pySonic
-        self.w = pySonic.World(44100,32)
+        self.w = pySonic.World()
         
         # get a recorder object
         self.rec = pySonic.Recorder()
@@ -105,8 +106,8 @@ class SoundControl:
     ''' 
     ' Plays sound given in byte string with or without blocking. 
     '''
-    def playSoundBytes(self, soundBytes, blocking = False):
-        self.src.Sound = pySonic.MemorySample(soundBytes, CHANNELS, BITS, RATE)
+    def playSoundBytes(self, soundBytes, blocking = False, rate = RATE):
+        self.src.Sound = pySonic.MemorySample(soundBytes, CHANNELS, BITS, rate)
         self.src.Play()
         
         if not blocking:
@@ -140,7 +141,7 @@ class SoundControl:
         m = self.tts.SpeakToMemory(text)
         format = m.Format.GetWaveFormatEx()
         soundBytes = m.GetData()
-        self.playSoundBytes(soundBytes, blocking)
+        self.playSoundBytes(soundBytes, blocking, TTS_RATE)
         
     def speakTextFile(self, filepath, blocking = False):
         text = file(filepath,'r').read()
