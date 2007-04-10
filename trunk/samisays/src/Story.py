@@ -78,7 +78,7 @@ class Story:
     ' Locks all clips in the story.
     '''
     def lockStory(self):
-        self.type = [LCK for i in xrange(len(self))]
+        self.types = [LCK for i in xrange(len(self))]
     
     '''
     ' Merges all clips between breaks into single clips.  Includes break sound if
