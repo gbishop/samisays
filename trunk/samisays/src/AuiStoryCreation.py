@@ -176,7 +176,7 @@ class AuiStoryCreation:
         AIS.takeOver()
     
     def insertBreak(self):
-        if not self.env['student'] == self.env['class'].teacher:
+        if not self.teacherMode:
             return
         
         story = self.env['story']
@@ -195,7 +195,7 @@ class AuiStoryCreation:
     def deleteClip(self):
 
         story = self.env['story']
-        if story.clipIsLocked() and self.env['student'] != self.env['class'].teacher:
+        if story.clipIsLocked() and not self.teacherMode:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
         elif self.deleteConfirmed:
             
