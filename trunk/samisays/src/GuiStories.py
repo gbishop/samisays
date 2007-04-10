@@ -40,7 +40,7 @@ class GuiStories(wx.Frame):
         self.lblHead.SetFont(wx.Font(48,wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.btnLock = wx.Button(self.panel,-1,"Lock")
         #self.btnLock.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
-        self.btnLock.SetSize((100,50))
+        self.btnLock.SetSize((200,50))
 
 
         self.__set_properties()
@@ -57,6 +57,7 @@ class GuiStories(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnPlayPressed, self.btnPlay)
         self.Bind(wx.EVT_BUTTON, self.btnPublishAssignPressed, self.btnPublishAssign)
         self.Bind(wx.EVT_BUTTON, self.btnBackPressed, self.btnBack)
+        self.Bind(wx.EVT_BUTTON, self.btnLockPressed, self.btnLock)
         self.Bind(wx.EVT_SHOW, self.handleShow, self)
         self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
         
@@ -143,6 +144,12 @@ class GuiStories(wx.Frame):
         self.loadStory();
         self.openStory()
 
+    def btnLockPressed(self, event):
+        if self.env['storiesLock']:
+            self.unlock()
+        else:
+            self.lock()
+
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
         self.newStory()
 
@@ -204,7 +211,6 @@ class GuiStories(wx.Frame):
             self.env['guiStart'].Show()
         else:
             self.env['guiStudents'].Show()
-    
     
     def setEnv(self,env): 
         self.env = env 
@@ -291,11 +297,13 @@ class GuiStories(wx.Frame):
     def lock(self):
         print 'lock'
         self.SetFocus()
+        self.btnLock.SetLabel('Unlock with CTRL-SHIFT-TAB')
         self.env['auiStorySelection'].takeOver()
         self.env['storiesLock'] = True
         
     def unlock(self):
         print 'unlock'
+        self.btnLock.SetLabel('Lock')
         self.env['storiesLock'] = False
         self.btnSelect.SetFocus()
 
