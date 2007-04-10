@@ -183,7 +183,7 @@ class GuiStories(wx.Frame):
             if len(self.env['student'].stories) != 0:
                 self.lstStories.SetSelection(max(selection-1,0))
                 self.loadStory()
-                self.env['auiStorySelect'].playTitle()
+                self.env['auiStorySelection'].playTitle()
         dialog.Destroy()
 
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
