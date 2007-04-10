@@ -1,7 +1,7 @@
 import cPickle
 import zlib
 import numpy
-
+import threading
 
 '''
 ' Class Name:  Story
@@ -28,20 +28,21 @@ class Story:
     '''
     ' Constructor initializes Story object.  Current clip is title.
     '''
-    def __init__(self, name='', student='', titleBytes = '', lockedTitle = False):
+    def __init__(self, name='', student='', titleBytes = ''):
         self.name = name
         self.student = student
-        #self.clips = [titleBytes]
         self.zipClips = [zlib.compress(titleBytes)]
-        if lockedTitle:
-            self.types = [LCK]
-        else:
-            self.types = [REC]
+        self.types = [NON]
         self.currClip = 0
         self.lastDelete = ''
         self.justTitle = False
-
         
+    
+    def initializeLocks(self):
+        self.pickleMutex = threading.Lock()
+        self.storyMutex = threading.Lock()
+        self.threadSem = threading.Semaphore(2)
+    
     '''
     ' Returns the number of clips currently in the story (including the title).
     '''   
@@ -52,10 +53,12 @@ class Story:
     ' Inserts clip after current clip and makes new clip the current clip.
     '''
     def insertClip(self, soundBytes, type):
+        self.storyMutex.acquire()
         self.currClip += 1
         #self.clips.insert(self.currClip, soundBytes)
         self.zipClips.insert(self.currClip, zlib.compress(soundBytes))
         self.types.insert(self.currClip, type)
+        self.storyMutex.release()
         self.pickleMe()
 
     '''
@@ -63,7 +66,9 @@ class Story:
     '''
     def replaceTitle(self, titleBytes):
         #self.clips[0] = titleBytes
+        self.storyMutex.acquire()
         self.zipClips[0] = zlib.compress(titleBytes)
+        self.storyMutex.release()
         self.pickleMe()
         self.pickleTitle()
     
@@ -74,12 +79,14 @@ class Story:
     def deleteClip(self):
         if self.types[self.currClip] == LCK:
             return
+        self.storyMutex.acquire()
         if self.currClip > 0:
             self.lastDelete = decompress(self.zipClips[self.currClip])
             #del self.clips[self.currClip]
             del self.zipClips[self.currClip]
             del self.types[self.currClip]
         self.currClip -= 1
+        self.storyMutex.release()
         self.pickleMe()
         return self.getCurrClip()
     
@@ -153,10 +160,11 @@ class Story:
     ' Creates and returns a copy of this story object using the specified name and student.
     '''
     def getCopy(self, student):
-        copy = Story(self.name, student)
+        copy = Story(self.name, student, '')
         #copy.clips = [c for c in self.clips]
         copy.zipClips = [z for z in self.zipClips]
         copy.types = [t for t in self.types]
+        copy.lastDelete = self.lastDelete
         return copy
         
     
@@ -196,12 +204,10 @@ class Story:
         f.close()
     
     def pickleMe(self):
-        filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, self.student, self.name)
-        f = file(filepath,'w')
-        p = cPickle.Pickler(f)
-        p.dump(self)
-        f.close()
-
+        if self.threadSem.acquire(blocking = False):
+            ps = PickleStory(self)
+            ps.start()
+        
 def unpickleTitle(name, student):
     filepath = '%s/_%s/%s.ttl' % (STUDENT_DIR, student, name)
     f = file(filepath,'r')
@@ -217,4 +223,33 @@ def compress(byteString):
 
 def decompress(byteString):
     return zlib.decompress(byteString)
+
+
+class PickleStory(threading.Thread):
+    
+    '''
+    ' Constructor initializes thread.
+    '''
+    def __init__(self, story):
+        self.story = story
+        threading.Thread.__init__(self)
+    
+    '''
+    ' 
+    '''
+    def run(self):
+        story = self.story
+        story.pickleMutex.acquire()
+        story.storyMutex.acquire()
+        copy = story.getCopy(story.student)
+        story.storyMutex.release()
+        filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, copy.student, copy.name)
+        f = file(filepath,'w')
+        p = cPickle.Pickler(f)
+        p.dump(copy)
+        f.close()
+        story.threadSem.release()
+        story.pickleMutex.release()
+
+         
         

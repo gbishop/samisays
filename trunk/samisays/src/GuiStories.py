@@ -256,12 +256,14 @@ class GuiStories(wx.Frame):
         storyName = self.env['student'].stories[self.lstStories.GetSelection()]
         studentName = self.env['student'].getName()
         self.env['story'] = unpickleStory(storyName, studentName)
+        self.env['story'].initializeLocks()
         self.env['story'].currClip = 0
         
     def newStory(self):
         storyName = '_'.join([str(time.localtime()[i]) for i in xrange(6)])
         studentName = self.env['student'].getName()
         self.env['story'] = Story(storyName, studentName)
+        self.env['story'].initializeLocks()
         self.openStory()
    
     def openStory(self):
