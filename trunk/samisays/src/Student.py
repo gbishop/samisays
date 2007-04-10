@@ -31,7 +31,8 @@ class Student:
         self.stories = []
         directory = os.listdir(path)
         for i in directory:
-            self.addStory(i[:-4])
+            if i[-3:] == 'pkl':
+                self.addStory(i[:-4])
          
 if __name__ == "__main__":
     print 'The class "Student" is not runnable'

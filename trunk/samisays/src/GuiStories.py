@@ -131,17 +131,16 @@ class GuiStories(wx.Frame):
 
                 
     def lstStoriesSelected(self, event):
-        self.loadStory();
+        self.loadTitle();
         self.env['auiStorySelection'].playTitle()
         
     def lstStoriesDblClick(self, event): # wxGlade: guiStories.<event_handler>
-        self.loadStory();
+        self.loadFullStory();
         self.openStory()
 
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
         if not self.somethingSelected():
             return
-        self.loadStory();
         self.openStory()
 
     def btnLockPressed(self, event):
@@ -182,7 +181,7 @@ class GuiStories(wx.Frame):
             self.deleteStory()
             if len(self.env['student'].stories) != 0:
                 self.lstStories.SetSelection(max(selection-1,0))
-                self.loadStory()
+                self.loadTitle()
                 self.env['auiStorySelection'].playTitle()
         dialog.Destroy()
 
@@ -246,8 +245,14 @@ class GuiStories(wx.Frame):
             self.btnSelect.Enable()
         else:
             self.btnSelect.Enable(False)
-
-    def loadStory(self):
+                  
+    def loadTitle(self):
+        storyName = self.env['student'].stories[self.lstStories.GetSelection()]
+        studentName = self.env['student'].getName()
+        self.env['story'] = unpickleTitle(storyName, studentName)
+        self.env['story'].currClip = 0
+        
+    def loadFullStory(self):
         storyName = self.env['student'].stories[self.lstStories.GetSelection()]
         studentName = self.env['student'].getName()
         self.env['story'] = unpickleStory(storyName, studentName)
@@ -261,6 +266,8 @@ class GuiStories(wx.Frame):
    
     def openStory(self):
         self.env['SoundControl'].stopPlay()
+        if self.env['story'].justTitle:
+            self.loadFullStory()
         self.env['auiStoryCreation'].takeOver()
         self.env['guiWorking'].Show()
         self.env['guiWorking'].SetFocus()
@@ -273,6 +280,7 @@ class GuiStories(wx.Frame):
         studentName = self.env['student'].getName()
         storyName = self.env['student'].stories[selection]
         os.remove(STUDENT_DIR + '/_' + studentName + '/' + storyName + '.pkl')
+        os.remove(STUDENT_DIR + '/_' + studentName + '/' + storyName + '.ttl')
         self.populateList()
         
     def publishStory(self):

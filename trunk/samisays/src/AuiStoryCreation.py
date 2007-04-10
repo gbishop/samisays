@@ -8,6 +8,7 @@ from AuiInsertSound import *
 INSTR_DIR = 'instr_text/'
 BREAK_SOUND = 'lilbeep.wav'
 INTRO_SOUND = 'xylophone_intro.mp3'
+DEFAULT_CROP = 5000
 
 '''
 ' Class Name:  StoryCreationAUI
@@ -140,8 +141,11 @@ class AuiStoryCreation:
     '''
     def recordingFinished(self):
         
+        crop = DEFAULT_CROP*RATE/44100
+        
         soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
-        soundBytes = soundBytes[5000:]
+        
+        soundBytes = soundBytes[crop:]
         soundBytes = normalizeSoundBytes(soundBytes)
 
         
@@ -198,15 +202,15 @@ class AuiStoryCreation:
         if story.clipIsLocked() and not self.teacherMode:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
         elif self.deleteConfirmed:
-            
+            self.deleteConfirmed = False
             if story.currClip == 0:
                 story.replaceTitle('')
-                self.setInstruction()
+                self.setInstructions()
                 self.getHelp()
             else:
                 self.env['SoundControl'].playSoundBytes(story.deleteClip())
-            self.deleteConfirmed = False
-            self.setInstructions()
+                self.setInstructions()
+            
         else:
             self.deleteConfirmed = True
             self.setInstructions()
@@ -262,6 +266,7 @@ class StoryPlayback(threading.Thread):
         
         while not self.env['auiStoryCreation'].stopPlayback and (story.currClip < len(story)-1):
             self.env['SoundControl'].playSoundBytes(story.getNextClip())
+            self.env['guiWorking'].updateStats()
             while (self.env['SoundControl'].isPlaying()):
                 pass
          
