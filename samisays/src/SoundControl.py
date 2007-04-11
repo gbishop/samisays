@@ -12,6 +12,7 @@ BITS = 16       # BITS per sample
 CHANNELS = 1    # 1 is mono, 2 is stereo
 BUFF_DURATION = 1 # in seconds
 TTS_RATE = 44000
+MP3_RATE = 6400
 
 
 '''
@@ -214,7 +215,7 @@ def resampleSoundBytes(soundBytes, newRate, newChannels):
 ' Encodes sound bytes into mp3 format using pymedia's built-in encoder.  
 ' The sound is expected to have the default sound properties specified above.
 '''
-def encodeToMp3(soundBytes, fileName, bitRate):
+def encodeToMp3(soundBytes, fileName, bitRate = MP3_RATE):
     params= {'id': acodec.getCodecID('mp3'),
             'bitrate': bitRate,
             'sample_rate': RATE,
