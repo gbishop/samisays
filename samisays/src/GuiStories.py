@@ -163,10 +163,14 @@ class GuiStories(wx.Frame):
         if dialog.ShowModal() == wx.ID_OK:
             newName = dialog.GetValue()
             if(newName != ''):
+                self.env['auiStoryCreation'].loadFullStory()
+                oldName = self.env['story'].name
                 self.env['story'].name = newName
-                self.env['story'].pickleMe()
-                storyPath = STUDENT_DIR + '/_' + self.env['student'].getName() + '/'
-                os.remove(storyPath + self.env['student'].stories[self.lstStories.GetSelection()] + '.pkl')
+                self.env['story'].pickleMe(True)
+                self.env['story'].pickleTitle()
+                oldPath = '%s/_%s/%s' % (STUDENT_DIR, self.env['student'].getName(), oldName)
+                os.remove(oldPath + '.pkl')
+                os.remove(oldPath + '.ttl')
                 self.populateList()
                 self.lstStories.Select(self.findListItem(newName))
         else:

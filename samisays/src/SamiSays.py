@@ -41,7 +41,7 @@ class GuiMain(wx.App):
         self.env['auiInsertSound'] = AuiInsertSound(self.env)
         self.env['timer'] = wx.Timer(self.env['guiWorking'])
         self.env['guiWorking'].Bind(wx.EVT_TIMER, self.env['SoundControl'].onTimer)
-        self.env['storiesLock'] = True
+        self.env['storiesLock'] = False
         start.setEnv(self.env)
         students.setEnv(self.env)
         stories.setEnv(self.env)
