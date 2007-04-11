@@ -287,10 +287,9 @@ class GuiStories(wx.Frame):
 
         dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
         if dialog.ShowModal() == wx.ID_OK:
-            dialog.Destroy()
-            encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath(),64000)
-        else:
-            dialog.Destroy()   
+            self.env['auiStoryCreation'].loadFullStory()
+            encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath())
+        dialog.Destroy()   
     
     ''' Helper function for finding an the index of a story '''
     def findListItem(self, name):
