@@ -104,7 +104,7 @@ class Story:
     def mergeAndLockBreaks(self, includeBreakClip):
         mergedClips = []
         lastBreak = 0
-        clips = self.decompressClips()
+        clips = self.decompressStory()
         mergedClips = [self.getTitleBytes()]
         for i in xrange(1, len(self)):
             if self.types[i] == BRK or i == len(self)-1:
@@ -203,10 +203,14 @@ class Story:
         p.dump(title)
         f.close()
     
-    def pickleMe(self):
-        if self.threadSem.acquire(blocking = False):
+    def pickleMe(self, blocking = False):
+        if blocking:
+            copy = self.getCopy(self.student)
+            pickleStory(copy)
+        elif self.threadSem.acquire(blocking = False):
             ps = PickleStory(self)
             ps.start()
+        
             
     def loadFullStory(self):
         if self.justTitle:
@@ -224,6 +228,13 @@ def unpickleTitle(name, student):
     f = file(filepath,'r')
     return cPickle.load(f)
     
+def pickleStory(story):
+    filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, story.student, story.name)
+    f = file(filepath,'w')
+    p = cPickle.Pickler(f)
+    p.dump(story)
+    f.close()
+
 def unpickleStory(name, student):
     filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, student, name)
     f = file(filepath,'r')
@@ -254,11 +265,7 @@ class PickleStory(threading.Thread):
         story.storyMutex.acquire()
         copy = story.getCopy(story.student)
         story.storyMutex.release()
-        filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, copy.student, copy.name)
-        f = file(filepath,'w')
-        p = cPickle.Pickler(f)
-        p.dump(copy)
-        f.close()
+        pickleStory(copy)
         story.threadSem.release()
         story.pickleMutex.release()
 
