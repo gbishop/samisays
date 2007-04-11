@@ -207,6 +207,17 @@ class Story:
         if self.threadSem.acquire(blocking = False):
             ps = PickleStory(self)
             ps.start()
+            
+    def loadFullStory(self):
+        if self.justTitle:
+            story = unpickleStory(self.name, self.student)
+        else:
+            story = self
+        story.initializeLocks()
+        story.currClip = 0
+        return story
+
+            
         
 def unpickleTitle(name, student):
     filepath = '%s/_%s/%s.ttl' % (STUDENT_DIR, student, name)

@@ -8,6 +8,7 @@ from AuiInsertSound import *
 INSTR_DIR = 'instr_text/'
 BREAK_SOUND = 'lilbeep.wav'
 INTRO_SOUND = 'xylophone_intro.mp3'
+WAIT_SOUND = 'wait_noise.mp3'
 DEFAULT_CROP = 5000
 
 '''
@@ -26,6 +27,7 @@ class AuiStoryCreation:
         self.env = env
         self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
         self.introSound = soundFileToBytes(INTRO_SOUND)
+        self.waitSound = soundFileToBytes(WAIT_SOUND)*50
     
     def takeOver(self):
         self.env['SoundControl'].playSoundBytes(self.introSound, True)
@@ -49,7 +51,12 @@ class AuiStoryCreation:
     def takeKeyBindings(self):
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
-        
+    
+    def loadFullStory(self):
+        self.env['SoundControl'].playSoundBytes(self.waitSound)
+        self.env['story'] = self.env['story'].loadFullStory()
+        self.env['SoundControl'].stopPlay()
+    
     def setInstructions(self):
         instrFile = INSTR_DIR
         if self.deleteConfirmed:
@@ -232,6 +239,11 @@ class AuiStoryCreation:
            
     ''' Function for gracefully exiting story creation and returning to menu '''
     def quit(self):
+        self.env['SoundControl'].playSoundBytes(self.waitSound)
+        while not self.env['story'].threadSem.acquire(False):
+            pass
+        self.env['story'].pickleMutex.acquire()
+        self.env['SoundControl'].stopPlay()
         self.env['guiWorking'].Hide()
         self.env['guiStories'].Show()
         self.env['timer'].Stop()

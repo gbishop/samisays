@@ -82,7 +82,8 @@ class AuiStorySelection:
 		keyFunctions = {wx.WXK_RIGHT : self.goRight,
 						wx.WXK_LEFT : self.goLeft, wx.WXK_SPACE : self.selectStory,
 						CTRL : self.playStory, #wx.WXK_ESCAPE : self.exit,
-						wx.WXK_DOWN : self.newStory, wx.WXK_UP : self.deleteStory}
+						wx.WXK_DOWN : self.newStory, wx.WXK_UP : self.deleteStory,
+						wx.WXK_RETURN: self.getHelp}
 		
 		if keyCode not in  keyFunctions: # If key has no function, ignore it
 			return
@@ -156,19 +157,21 @@ class AuiStorySelection:
 	
 	def playStory(self):
 		self.env['SoundControl'].stopPlay()
-		self.storyIndex = self.env['guiStories'].lstStories.GetSelection()
-		if self.storyIndex == -1:
+		if self.env['guiStories'].getSelection() == -1:
 			self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
 		else:
-			if self.env['story'].justTitle:
-				self.env['guiStories'].loadFullStory()
+			self.env['auiStoryCreation'].loadFullStory()
 			storyBytes = self.env['story'].getStoryBytes()
 			self.env['SoundControl'].playSoundBytes(storyBytes)
+			
+	def newStory(self):
+		self.env['guiStories'].btnCreatePressed(None)
+		
+	def getHelp(self):
+		self.env['SoundControl'].speakTextFile(INSTR_DIR + 'selection_instructions.txt')
 		
 	def exit(self):
 		self.env['guiStories'].btnBackPressed(None)
 		self.env['guiStories'].unlock()
 		self.unlock = False
-		
-	def newStory(self):
-		self.env['guiStories'].btnCreatePressed(None)
+	
