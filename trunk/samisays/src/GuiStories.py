@@ -135,7 +135,9 @@ class GuiStories(wx.Frame):
         self.env['auiStorySelection'].playTitle()
         
     def lstStoriesDblClick(self, event): # wxGlade: guiStories.<event_handler>
-        self.loadFullStory();
+        storyName = self.env['student'].stories[self.lstStories.GetSelection()]
+        studentName = self.env['student'].getName()
+        self.env['auiStoryCreation'].loadFullStory()
         self.openStory()
 
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
@@ -251,13 +253,7 @@ class GuiStories(wx.Frame):
         studentName = self.env['student'].getName()
         self.env['story'] = unpickleTitle(storyName, studentName)
         self.env['story'].currClip = 0
-        
-    def loadFullStory(self):
-        storyName = self.env['student'].stories[self.lstStories.GetSelection()]
-        studentName = self.env['student'].getName()
-        self.env['story'] = unpickleStory(storyName, studentName)
-        self.env['story'].initializeLocks()
-        self.env['story'].currClip = 0
+
         
     def newStory(self):
         storyName = '_'.join([str(time.localtime()[i]) for i in xrange(6)])
@@ -268,8 +264,7 @@ class GuiStories(wx.Frame):
    
     def openStory(self):
         self.env['SoundControl'].stopPlay()
-        if self.env['story'].justTitle:
-            self.loadFullStory()
+        self.env['auiStoryCreation'].loadFullStory()
         self.env['auiStoryCreation'].takeOver()
         self.env['guiWorking'].Show()
         self.env['guiWorking'].SetFocus()
@@ -277,8 +272,7 @@ class GuiStories(wx.Frame):
         self.env['guiStories'].Hide()
     
     def deleteStory(self):
-        
-        selection = self.lstStories.GetSelection()
+        selection = self.getSelection()
         studentName = self.env['student'].getName()
         storyName = self.env['student'].stories[selection]
         os.remove(STUDENT_DIR + '/_' + studentName + '/' + storyName + '.pkl')
@@ -303,6 +297,9 @@ class GuiStories(wx.Frame):
             else:
                 count += 1
         return 0
+    
+    def getSelection(self):
+        return self.lstStories.GetSelection()
     
     def lock(self):
         print 'lock'
