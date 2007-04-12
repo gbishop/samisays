@@ -52,14 +52,16 @@ class SoundEffects:
     ' Applies an echo to the sound clip.
     '''
     def Echo(self, clip):
-        soundArray = fromstring(clip, int16)
-        newclip = fromstring(clip, int16)
         delay = 1000
         echoFactor = 0.6
-        for i in xrange(delay+1,len(soundArray)) :
-            newclip[i] = soundArray[i] + echoFactor*soundArray[i-delay]
+        
+        soundArray = concatenate(fromstring(clip, int16), zeros(delay, int16))
+        delayArray = numpy.concatenate(zeros(delay, int16), array(soundArray[0:-delay]*echoFactor,int16))
+        sum(soundArray, delayArray, soundArray)
+        #for i in xrange(delay+1,len(soundArray)) :
+        #    newclip[i] = soundArray[i] + echoFactor*soundArray[i-delay]
 
-        return newclip.tostring()
+        return soundArray.tostring()
     
     '''
     ' Resamples sound clip at a faster rate, speeding it up and raising pitch.
