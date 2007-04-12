@@ -320,7 +320,11 @@ class GuiStories(wx.Frame):
         
     def handleFocus(self, event):
         if self.env['storiesLock']:
-            self.SetFocus()
+            if self.btnLock.HasCapture():
+                self.btnLockPressed(None)
+            else:
+                self.SetFocus()
+            
             
     def handleShow(self, event):
         self.populateList()
