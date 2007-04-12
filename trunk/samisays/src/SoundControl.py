@@ -1,7 +1,6 @@
 import pySonic
 import pymedia.audio.sound as sound
 import pymedia.audio.acodec as acodec
-import pymedia.muxer as muxer
 import pyTTS
 
 from numpy import *

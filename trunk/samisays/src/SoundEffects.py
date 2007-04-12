@@ -10,14 +10,14 @@ class SoundEffects:
         self.env = env
     
         # Define array of functions for sound effects
-        self.sfxFunctions = [ self.SpeedUp, self.LargeSpeedUp, self.SlowDown, self.LargeSlowDown, self.Echo, self.Reverse ]
+        self.sfxFunctions = [ SpeedUp, LargeSpeedUp, SlowDown, LargeSlowDown, ShortEcho, LongEcho, Reverse ]
         self.currSFX = -1
         self.currSFXClip = ''
         
     '''
     ' Increments the current sound effect in a circular fashion
     ' Calls the relevant sound effect function mapped in self.sfxFunctions array
-    ' Returns modified sound clip for playback
+    ' Returns modified soundclip for playback
     '''
     def getNextSFXClip(self):
         self.currSFX = (self.currSFX+1)%len(self.sfxFunctions)
@@ -28,7 +28,7 @@ class SoundEffects:
     '''
     ' Decrements the current sound effect in a circular fashion
     ' Calls the relevant sound effect function mapped in self.sfxFunctions array
-    ' Returns modified sound clip for playback
+    ' Returns modified soundclip for playback
     '''
     def getPrevSFXClip(self):
         if self.currSFX == -1:
@@ -42,67 +42,71 @@ class SoundEffects:
     '''
     ' Returns the current sound effect
     ' Calls the relevant sound effect function mapped in self.sfxFunctions array
-    ' Returns modified sound clip and deletes the current one
+    ' Returns modified soundclip and deletes the current one
     '''
     def getCurrSFXClip(self):
         if self.currSFX != -1:
             return self.currSFXClip
     
-    '''
-    ' Applies an echo to the sound clip.
-    '''
-    def Echo(self, clip):
-        delay = 1000
-        echoFactor = 0.6
+    
+def LongEcho(clip):
+        return Echo(clip, delay = 5000)
+    
+def ShortEcho(clip):
+        return Echo(clip, delay = 1000)
         
-        soundArray = concatenate(fromstring(clip, int16), zeros(delay, int16))
-        delayArray = numpy.concatenate(zeros(delay, int16), array(soundArray[0:-delay]*echoFactor,int16))
-        sum(soundArray, delayArray, soundArray)
-        #for i in xrange(delay+1,len(soundArray)) :
-        #    newclip[i] = soundArray[i] + echoFactor*soundArray[i-delay]
+    
+'''
+' Applies an echo to the soundclip.
+'''
+def Echo(clip, delay, echoFactor = 0.5):
+    
+    soundArray = concatenate((fromstring(clip, int16), zeros(delay, int16)))
+    delayArray = array(soundArray[0:-delay]*echoFactor,int16)
+    delayArray = concatenate((zeros(delay, int16), delayArray))
+    soundArray += delayArray
+    return soundArray.tostring()
 
-        return soundArray.tostring()
-    
-    '''
-    ' Resamples sound clip at a faster rate, speeding it up and raising pitch.
-    '''
-    def SpeedUp(self, clip):
-        newRate = int(RATE/1.5)
-        return resampleSoundBytes(clip, newRate, CHANNELS)
-    
-    '''
-    ' Resamples sound clip at a faster rate, speeding it up and raising pitch.
-    '''
-    def LargeSpeedUp(self, clip):
-        newRate = RATE/2
-        return resampleSoundBytes(clip, newRate, CHANNELS)
-       
-    '''
-    ' Resamples sound clip at a slower rate, slowing it down and lowering pitch.
-    '''
-    def SlowDown(self, clip):
-        newRate = int(RATE*1.5)
-        return resampleSoundBytes(clip, newRate, CHANNELS)
-    
-    '''
-    ' Resamples sound clip at a slower rate, slowing it down and lowering pitch.
-    '''
-    def LargeSlowDown(self, clip):
-        newRate = RATE*2
-        return resampleSoundBytes(clip, newRate, CHANNELS)
-    
-    '''
-    ' Reverses a sound clip
-    '''
-    def Reverse(self, clip):
-        soundArray = fromstring(clip, int16)
-        newclip = fromstring(clip, int16)
-        cliplen = len(soundArray)
-        
-        for i in xrange(cliplen) :
-            newclip[i] = soundArray[cliplen-i-1]
-        newclip = array(newclip, uint16)
-        return newclip.tostring()
+'''
+' Resamples soundclip at a faster rate, speeding it up and raising pitch.
+'''
+def SpeedUp(clip):
+    newRate = int(RATE/1.5)
+    return resampleSoundBytes(clip, newRate, CHANNELS)
+
+'''
+' Resamples soundclip at a faster rate, speeding it up and raising pitch.
+'''
+def LargeSpeedUp(clip):
+    newRate = RATE/2
+    return resampleSoundBytes(clip, newRate, CHANNELS)
+   
+'''
+' Resamples soundclip at a slower rate, slowing it down and lowering pitch.
+'''
+def SlowDown(clip):
+    newRate = int(RATE*1.5)
+    return resampleSoundBytes(clip, newRate, CHANNELS)
+
+'''
+' Resamples soundclip at a slower rate, slowing it down and lowering pitch.
+'''
+def LargeSlowDown(clip):
+    newRate = RATE*2
+    return resampleSoundBytes(clip, newRate, CHANNELS)
+
+'''
+' Reverses a soundclip
+'''
+def Reverse(clip):
+    soundArray = fromstring(clip, int16)
+    return soundArray[::-1].tostring()
+    #newclip = fromstring(clip, int16)
+    #cliplen = len(soundArray)
+    #for i in xrange(cliplen) :
+    #    newclip[i] = soundArray[cliplen-i-1]
+    #newclip = array(newclip, uint16)
+    return newclip.tostring()
     
     
     
