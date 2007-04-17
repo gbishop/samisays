@@ -10,6 +10,7 @@ BREAK_SOUND = 'lilbeep.wav'
 INTRO_SOUND = 'xylophone_intro.mp3'
 WAIT_SOUND = 'wait_noise.mp3'
 DEFAULT_CROP = 5000
+CTRL = 308 # keyCode for CTRL
 
 '''
 ' Class Name:  StoryCreationAUI
@@ -31,16 +32,18 @@ class AuiStoryCreation:
     
     def takeOver(self):
         self.env['SoundControl'].playSoundBytes(self.introSound, True)
+        self.teacherMode = self.env['student'] == self.env['class'].teacher
         
-        if self.env['story'].getTitleBytes() == '':
+        if self.teacherMode and self.env['story'].needsTitle():
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'template_welcome.txt')
+        elif self.env['story'].needsTitle():
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'creation_welcome.txt')
         else:
             self.env['SoundControl'].playSoundBytes(self.env['story'].getTitleBytes())
+            
+        self.env['auiInsertSound'].reloadSoundLibrary()
         
-        self.teacherMode = self.env['student'] == self.env['class'].teacher
-        
-        self.keyDown = False # Flag to tell if a key is already being held down
-        self.keyDownCode = -1 # Code to recognize which key is being held down
+        self.firstDown = -1 # Code to remmeber which key was held down first
                 
         self.deleteConfirmed = False # Flag for whether delete needs confirmation
         self.stopPlayBack = False # Flag to interrupt full playback of story
@@ -78,13 +81,12 @@ class AuiStoryCreation:
     '''
     def onKeyDown(self, event):
         
-        if self.keyDown: # Some key is already being held down
+        if self.firstDown != -1: # Some key is already being held down
             return
         
-        self.keyDownCode = event.GetKeyCode()
-        self.keyDown = True
+        self.firstDown = event.GetKeyCode()
         
-        if self.keyDownCode == wx.WXK_SPACE: # If key is record button, begin recording
+        if self.firstDown == wx.WXK_SPACE: # If key is record button, begin recording
             self.stopPlayback = True 
             self.env['SoundControl'].stopPlay()
             self.env['SoundControl'].startRecord()
@@ -96,14 +98,12 @@ class AuiStoryCreation:
     ' each valid key.
     '''
     def onKeyUp(self, event):
-
-        CTRL = 308 # keyCode for CTRL
         
         keyCode = event.GetKeyCode()
-        if self.keyDownCode != keyCode: # If released key is not the first one pressed, ignore it
+        if self.firstDown != keyCode: # If released key is not the first one pressed, ignore it
             return
         
-        self.keyDown = False
+        self.firstDown = -1
         
         # Define dictionary of functions for valid keys
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
@@ -183,8 +183,7 @@ class AuiStoryCreation:
     ' Passes control to the AuiInsertSound class to allow user to insert a sound effect.
     '''
     def insertSound(self):
-        AIS = AuiInsertSound(self.env)
-        AIS.takeOver()
+        self.env['auiInsertSound'].takeOver()
     
     def insertBreak(self):
         if not self.teacherMode:

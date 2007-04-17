@@ -4,6 +4,8 @@ from SoundControl import *
 from Story import *
 
 INSTR_DIR = 'instr_text/'
+CTRL = 308 # keyCode for CTRL
+LOCK_KEYS = sets.Set([CTRL, wx.WXK_SHIFT, wx.WXK_TAB])
 
 class AuiStorySelection:
 	
@@ -11,15 +13,14 @@ class AuiStorySelection:
 		self.env = env
 
 	def takeOver(self):
-		welcomeTest = file(INSTR_DIR + 'selection_welcome.txt').read()
-		self.env['SoundControl'].speakText(welcomeTest % self.env['student'].getName()) # Play Welcome
+		welcomeText = file(INSTR_DIR + 'selection_welcome.txt').read()
+		self.env['SoundControl'].speakText(welcomeText % self.env['student'].getName()) # Play Welcome
 		
 		self.storyIndex = -1
 		self.env['guiStories'].lstStories.SetSelection(self.storyIndex)
 		self.numStories = len(self.env['student'].stories)
 		
-		self.unlock = False
-		self.unlockStarted = False
+		self.doUnlock = False
 		self.firstDown = -1
 		self.allDowns = sets.Set([])
 		self.deleteConfirmed = False
@@ -32,26 +33,18 @@ class AuiStorySelection:
 	'''
 	def onKeyDown(self, event):
 		CTRL = 308 # keyCode for CTRL
-		
+		lockKeys = Set([CTRL, wx.WXK_SHIFT, wx.WXK_TAB])
 		keyCode = event.GetKeyCode()
 		
 		self.allDowns.union_update([keyCode])
 		
-		if (self.unlockStarted and len(self.allDowns) == 3 
-			and CTRL in self.allDowns 
-			and wx.WXK_TAB in self.allDowns
-			and wx.WXK_SHIFT in self.allDowns):
-			self.unlock = True
-			
-		if not (keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT):
-			self.unlockStarted = False
+		if (self.firstDown in LOCK_KEYS and self.allDowns == LOCK_KEYS):
+			self.doUnlock = True
 			
 		if self.firstDown != -1:
 			return
-		
-		if keyCode == CTRL or keyCode == wx.WXK_TAB or keyCode == wx.WXK_SHIFT:
-			self.unlockStarted = True
 			
+		self.doUnlock = False
 		self.firstDown = keyCode
 
 		
@@ -61,21 +54,17 @@ class AuiStorySelection:
 	'''
 	def onKeyUp(self, event):
 		
-		CTRL = 308 # keyCode for CTRL
-		
 		keyCode = event.GetKeyCode()
 		
 		self.allDowns.remove(keyCode)
 		
-		if self.unlock:
-			if len(self.allDowns) == 0:
-				self.env['guiStories'].unlock()
-				self.unlock = False
-			return
+		if len(self.allDowns) == 0 and self.doUnlock:
+			self.env['guiStories'].unlock()
+			self.doUnlock = False
 		
 		if self.firstDown != keyCode:
 			return
-
+		
 		self.firstDown = -1
 		
 		# Define dictionary of functions for valid keys

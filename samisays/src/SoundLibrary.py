@@ -48,6 +48,9 @@ class SoundLibrary:
     def onValidSound(self):
         return self.currSound != -1
     
+    def getCurrCatName(self):
+        return self.catList[self.currCat]
+    
     '''
     ' Increments the current category in a circular fashion and returns new 
     ' category's name.
@@ -57,7 +60,7 @@ class SoundLibrary:
         self.currCat = (self.currCat + 1)%self.numCats
         if self.currCat == self.trashCat and self.env['story'].lastDelete == '':
             return self.getNextCatName()
-        return self.catList[self.currCat]
+        return self.getCurrCatName()
     
     '''
     ' Decrements the current category in a circular fashion and returns new
@@ -71,7 +74,7 @@ class SoundLibrary:
             self.currCat = (self.currCat - 1)%self.numCats
         if self.currCat == self.trashCat and self.env['story'].lastDelete == '':
             return self.getPrevCatName()
-        return self.catList[self.currCat]
+        return self.getCurrCatName()
         
     '''
     ' Increments the current sound in a circular fashion and returns the bytes
