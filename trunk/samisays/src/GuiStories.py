@@ -13,6 +13,9 @@ from AuiStoryCreation import *
 from AuiStorySelection import *
 
 ARTDIR = "art/"
+CTRL = 308 # keyCode for CTRL
+LOCK_KEYS = sets.Set([CTRL, wx.WXK_SHIFT]) # TAB is also included but is handled separately
+                                           # due to wx quirk
 
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -46,8 +49,24 @@ class GuiStories(wx.Frame):
         self.__set_properties()
         self.__do_layout()
         
-
-
+        self.panel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.panel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.lstStories.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.lstStories.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnSelect.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnSelect.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnCreate.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnCreate.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnRename.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnRename.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnPlay.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnPlay.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnPublishAssign.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnPublishAssign.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnDelete.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnDelete.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnLock.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnLock.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.Bind(wx.EVT_LISTBOX_DCLICK, self.lstStoriesDblClick, self.lstStories)
         self.Bind(wx.EVT_LISTBOX, self.lstStoriesSelected, self.lstStories)
         self.Bind(wx.EVT_BUTTON, self.btnSelectPressed, self.btnSelect)
@@ -66,6 +85,7 @@ class GuiStories(wx.Frame):
         self.env = {}
         self.visible = False
         
+        self.firstDown = -1
         self.allDowns = sets.Set([])
         self.lockStarted = False
         self.doLock = False
@@ -315,7 +335,10 @@ class GuiStories(wx.Frame):
         print 'unlock'
         self.btnLock.SetLabel('Lock')
         self.env['storiesLock'] = False
-        self.btnSelect.SetFocus()
+        if self.btnSelect.IsEnabled():
+            self.btnSelect.SetFocus()
+        else:
+            self.btnCreate.SetFocus()
 
         
     def handleFocus(self, event):
@@ -345,7 +368,46 @@ class GuiStories(wx.Frame):
             return False
         return True
     
+    def onKeyDown(self, event):
+
+        keyCode = event.GetKeyCode()
         
+        if not keyCode in LOCK_KEYS or keyCode == wx.WXK_ESCAPE:
+            event.Skip()
+            
+        self.allDowns.union_update([keyCode])
+        
+        if (self.firstDown in LOCK_KEYS and self.allDowns == LOCK_KEYS):
+            self.lockStarted = True
+                  
+        if self.firstDown == -1:       
+            self.lockStarted = False
+            self.doLock = False
+            self.firstDown = keyCode
+        
+    def onKeyUp(self, event):
+        
+        keyCode = event.GetKeyCode()
+        
+        if keyCode == wx.WXK_TAB and self.lockStarted:
+            self.lockStarted = False
+            self.doLock = True    
+        elif keyCode in LOCK_KEYS or keyCode == wx.WXK_ESCAPE:
+            self.allDowns.remove(keyCode)
+        else: 
+            event.Skip()
+        
+        if len(self.allDowns) == 0 and self.doLock:
+            self.doLock = False
+            self.lock()
+        
+        if keyCode == self.firstDown:
+            self.firstDown = -1
+            if keyCode == wx.WXK_ESCAPE:
+                self.btnBackPressed(False)
+        event.Skip()
+        
+            
 # end of class guiStories
 
 

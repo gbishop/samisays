@@ -14,15 +14,21 @@ class AuiInsertSound:
         self.env = env
 
     def takeOver(self):
-        self.SL = SoundLibrary(self.env)
-        
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
         self.setInstructions()
-        self.getHelp()
+
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
+    
+        if self.SL.currCat == -1:
+            self.getHelp()
+        else:
+            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+    
+    def reloadSoundLibrary(self):
+        self.SL = SoundLibrary(self.env)
     
     def setInstructions(self):
         self.currInstr = file(INSTR_DIR + 'insert_sound.txt', 'r').read()
