@@ -4,6 +4,7 @@
 
 from Story import *
 from SoundControl import *
+import sys
 
 import wx
 
@@ -24,6 +25,7 @@ class GuiVisualizer(wx.Frame):
         # binding of events
         self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
         self.Bind(wx.EVT_SHOW, self.handleShow, self)
+        self.Bind(wx.EVT_CLOSE, self.onClose)
         
         self.visible = False
 
@@ -114,6 +116,14 @@ class GuiVisualizer(wx.Frame):
         statsInfo = ('Recorded Sounds: %d\nInserted Sounds:  %d\nManipulated Sounds:  %d\nLocked (Teacher) Sounds:  %d\nBreaks:  %d' 
                      % (stats[REC], stats[SND], stats[SFX], stats[LCK], stats[BRK]))
         self.statsLabel.SetLabel(durInfo + clipInfo + statsInfo)
+        
+    def onClose(self, event):
+        dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO | wx.ICON_EXCLAMATION)
+        if dialog.ShowModal() == wx.ID_YES:
+            dialog.Destroy()
+            sys.exit()
+        else:
+            dialog.Destroy()
 
 # end of class GuiVisualizer
 
