@@ -23,10 +23,20 @@ class GuiAssign(wx.Frame):
         self.__do_layout()
 
         self.Bind(wx.EVT_SHOW, self.handleShow, self)
+        self.panel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.panel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnAssign.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnAssign.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.btnCancel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.btnCancel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        self.chkLstStudents.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+        self.chkLstStudents.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.Bind(wx.EVT_BUTTON, self.btnAssignPressed, self.btnAssign)
         self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
         self.Bind(wx.EVT_CLOSE, self.close)
         # end wxGlade
+        
+        self.firstDown = -1
 
     def __set_properties(self):
         # begin wxGlade: guiAssign.__set_properties
@@ -137,7 +147,22 @@ class GuiAssign(wx.Frame):
             
         return checkedStudents
 
-
+    def onKeyDown(self, event):
+        
+        if self.firstDown == -1:
+            self.firstDown = event.GetKeyCode()
+    
+    def onKeyUp(self, event):
+        
+        keyCode = event.GetKeyCode()
+        if keyCode != self.firstDown:
+            event.Skip()
+        
+        if keyCode == wx.WXK_ESCAPE:
+            self.btnCancelPressed(False)
+        
+        self.firstDown = -1        
+        
 # end of class guiAssign
 
 

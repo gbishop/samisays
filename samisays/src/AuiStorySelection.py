@@ -33,7 +33,6 @@ class AuiStorySelection:
 	'''
 	def onKeyDown(self, event):
 		CTRL = 308 # keyCode for CTRL
-		lockKeys = sets.Set([CTRL, wx.WXK_SHIFT, wx.WXK_TAB])
 		keyCode = event.GetKeyCode()
 		
 		self.allDowns.union_update([keyCode])
