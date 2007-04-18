@@ -12,12 +12,15 @@ class GuiAssign(wx.Frame):
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
-        self.panel.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.sizer_2_staticbox = wx.StaticBox(self.panel, -1, "Students")
+        self.sizer_2_staticbox.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.chkLstStudents = wx.CheckListBox(self.panel, -1, choices=[])
         self.btnAssign = wx.Button(self.panel, -1, "Assign")
+        self.btnAssign.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnCancel = wx.Button(self.panel, -1, "Cancel")
+        self.btnCancel.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.chkBoxBeeps = wx.CheckBox(self.panel, -1, "Insert Beep")
+        self.chkBoxBeeps.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
 
 
         self.__set_properties()
