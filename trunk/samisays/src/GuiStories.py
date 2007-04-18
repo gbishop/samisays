@@ -49,24 +49,13 @@ class GuiStories(wx.Frame):
         self.__set_properties()
         self.__do_layout()
         
-        self.panel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.panel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.lstStories.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.lstStories.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnSelect.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnSelect.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnCreate.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnCreate.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnRename.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnRename.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnPlay.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnPlay.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnPublishAssign.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnPublishAssign.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnDelete.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnDelete.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnLock.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnLock.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        objects = [self.panel, self.lstStories, self.btnSelect, self.btnCreate, 
+                   self.btnRename, self.btnPlay, self.btnPublishAssign, self.btnDelete,
+                   self.btnLock, self.lblHead]
+        for obj in objects:
+            obj.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+            obj.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+            
         self.Bind(wx.EVT_LISTBOX_DCLICK, self.lstStoriesDblClick, self.lstStories)
         self.Bind(wx.EVT_LISTBOX, self.lstStoriesSelected, self.lstStories)
         self.Bind(wx.EVT_BUTTON, self.btnSelectPressed, self.btnSelect)
@@ -325,14 +314,12 @@ class GuiStories(wx.Frame):
         return self.lstStories.GetSelection()
     
     def lock(self):
-        print 'lock'
         self.SetFocus()
         self.btnLock.SetLabel('Unlock with CTRL-SHIFT-TAB')
         self.env['auiStorySelection'].takeOver()
         self.env['storiesLock'] = True
         
     def unlock(self):
-        print 'unlock'
         self.btnLock.SetLabel('Lock')
         self.env['storiesLock'] = False
         if self.btnSelect.IsEnabled():
@@ -384,6 +371,7 @@ class GuiStories(wx.Frame):
             self.lockStarted = False
             self.doLock = False
             self.firstDown = keyCode
+        event.Skip()
         
     def onKeyUp(self, event):
         

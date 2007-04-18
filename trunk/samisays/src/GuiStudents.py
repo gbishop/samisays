@@ -28,6 +28,12 @@ class GuiStudents(wx.Frame):
         self.__set_properties()
         self.__do_layout()
 
+        objects = [self.panel, self.lstStudents, self.btnSelect, self.btnCreate,
+                   self.btnRemove, self.btnBack, self.lblHead]
+        for obj in objects:
+            obj.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+            obj.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+            
         self.Bind(wx.EVT_LISTBOX_DCLICK, self.lstStudentsDblClick, self.lstStudents)
         self.Bind(wx.EVT_BUTTON, self.btnSelectPressed, self.btnSelect)
         self.Bind(wx.EVT_BUTTON, self.btnCreatePressed, self.btnCreate)
@@ -36,6 +42,7 @@ class GuiStudents(wx.Frame):
         
         # Added By Patrick
         self.Bind(wx.EVT_CLOSE, self.onClose)
+        self.firstDown = -1
         self.env = {}
 
     def __set_properties(self):
@@ -148,7 +155,21 @@ class GuiStudents(wx.Frame):
         else:
             self.btnSelect.Enable(False)
         
-
+    def onKeyDown(self, event):
+        
+        if self.firstDown == -1:
+            self.firstDown = event.GetKeyCode()
+    
+    def onKeyUp(self, event):
+        
+        keyCode = event.GetKeyCode()
+        if keyCode != self.firstDown:
+            event.Skip()
+        
+        if keyCode == wx.WXK_ESCAPE:
+            self.btnBackPressed(False)
+        
+        self.firstDown = -1      
 # end of class guiStudents
 
 
