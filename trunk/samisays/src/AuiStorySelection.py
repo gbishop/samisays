@@ -55,8 +55,8 @@ class AuiStorySelection:
 		
 		keyCode = event.GetKeyCode()
 		
-		if len(self.allDowns) > 0:
-		   self.allDowns.remove(keyCode)
+		#if len(self.allDowns) > 0:
+		self.allDowns.remove(keyCode)
 		
 		if len(self.allDowns) == 0 and self.doUnlock:
 			self.env['guiStories'].unlock()

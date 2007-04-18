@@ -359,7 +359,7 @@ class GuiStories(wx.Frame):
 
         keyCode = event.GetKeyCode()
         
-        if not keyCode in LOCK_KEYS or keyCode == wx.WXK_ESCAPE:
+        if not (keyCode in LOCK_KEYS or keyCode == wx.WXK_ESCAPE):
             event.Skip()
             
         self.allDowns.union_update([keyCode])
