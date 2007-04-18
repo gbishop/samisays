@@ -17,6 +17,7 @@ class GuiAssign(wx.Frame):
         self.chkLstStudents = wx.CheckListBox(self.panel, -1, choices=[])
         self.btnAssign = wx.Button(self.panel, -1, "Assign")
         self.btnCancel = wx.Button(self.panel, -1, "Cancel")
+        self.chkBoxBeeps = wx.CheckBox(self.panel, -1, "Insert Beep")
 
 
         self.__set_properties()
@@ -46,7 +47,7 @@ class GuiAssign(wx.Frame):
 
     def __do_layout(self):
         # begin wxGlade: guiAssign.__do_layout
-        grid_sizer_1 = wx.FlexGridSizer(3, 3, 0, 0)
+        grid_sizer_1 = wx.FlexGridSizer(4, 3, 0, 0)
         grid_sizer_2 = wx.FlexGridSizer(3, 5, 0, 0)
         sizer_2 = wx.StaticBoxSizer(self.sizer_2_staticbox, wx.HORIZONTAL)
         grid_sizer_1.AddSpacer(10)
@@ -58,7 +59,8 @@ class GuiAssign(wx.Frame):
         grid_sizer_1.AddSpacer(-1)
         grid_sizer_1.AddSpacer(-1)
         grid_sizer_2.AddSpacer(10)
-        grid_sizer_2.AddSpacer(-1)
+        #grid_sizer_2.AddSpacer(-1)
+        grid_sizer_2.Add(self.chkBoxBeeps, 0, 0, 0)
         grid_sizer_2.AddSpacer(-1)
         grid_sizer_2.AddSpacer(-1)
         grid_sizer_2.AddSpacer(-1)
@@ -169,7 +171,7 @@ class GuiAssign(wx.Frame):
 if __name__ == "__main__":
     app = wx.PySimpleApp(0)
     wx.InitAllImageHandlers()
-    test = guiAssign(None, -1, "")
+    test = GuiAssign(None, -1, "")
     app.SetTopWindow(test)
     test.Show()
     app.MainLoop()
