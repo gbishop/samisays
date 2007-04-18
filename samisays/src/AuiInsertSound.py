@@ -8,6 +8,10 @@ from SoundLibrary import *
 
 INSTR_DIR = 'instr_text/'
 
+# Modes
+CAT = 0
+SND = 1
+
 class AuiInsertSound:
     
     def __init__(self, env):
@@ -17,11 +21,13 @@ class AuiInsertSound:
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
+        self.mode = CAT
+        
         self.setInstructions()
 
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
-    
+        
         if self.SL.currCat == -1:
             self.getHelp()
         else:
@@ -31,7 +37,11 @@ class AuiInsertSound:
         self.SL = SoundLibrary(self.env)
     
     def setInstructions(self):
-        self.currInstr = file(INSTR_DIR + 'insert_sound.txt', 'r').read()
+        if self.mode == CAT:
+            self.currInstr = file(INSTR_DIR + 'insert_sound_cat.txt', 'r').read()
+        elif self.mode == SND:
+            self.currInstr = file(INSTR_DIR + 'insert_sound_snd.txt', 'r').read()
+        
         self.env['guiWorking'].setInstructions(self.currInstr)
         
     ''' 
@@ -57,10 +67,10 @@ class AuiInsertSound:
         self.keyDown = False
         
         # Define dictionary of functions for valid keys
-        keyFunctions = {wx.WXK_SPACE : self.select, wx.WXK_RETURN : self.getHelp,
-                        wx.WXK_DOWN : self.navDown, wx.WXK_UP : self.navUp,
+        keyFunctions = {wx.WXK_UP : self.select, wx.WXK_RETURN : self.getHelp,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
-                        wx.WXK_ESCAPE : self.quit}
+                        wx.WXK_HOME : self.jumpLeft, wx.WXK_END : self.jumpRight,
+                        wx.WXK_DOWN : self.getHelp, wx.WXK_ESCAPE : self.back}
         
 
         if not keyCode in keyFunctions: # Ignore invalid keys
@@ -69,9 +79,7 @@ class AuiInsertSound:
         self.env['SoundControl'].stopPlay() # Stop any sound that is playing
         
         # If not yet navigated to a category, ignore keys and repeat instructions
-        if not self.SL.onValidCat() and not (keyCode==wx.WXK_LEFT or 
-                                             keyCode==wx.WXK_RIGHT or 
-                                             keyCode == wx.WXK_ESCAPE):
+        if not self.SL.onValidCat() and keyCode not in [wx.WXK_LEFT, wx.WXK_RIGHT, wx.WXK_ESCAPE]:
             self.getHelp()
         else:
             keyFunctions[keyCode]() # Call function for valid key
@@ -84,31 +92,39 @@ class AuiInsertSound:
     ' Moves to the category to previous category in cyclical fashion.
     '''
     def navLeft(self):
-        self.env['SoundControl'].speakText(self.SL.getPrevCatName())
+        if self.mode == CAT:
+            self.env['SoundControl'].speakText(self.SL.getPrevCatName())
+        elif self.mode == SND:
+            self.env['SoundControl'].playSoundBytes(self.SL.getPrevSoundBytes())
     
     '''
     ' Called when navigate right key is released.
     ' Moves to the next category in cyclical fashion.
     '''    
     def navRight(self):
-        self.env['SoundControl'].speakText(self.SL.getNextCatName())
+        if self.mode == CAT:
+            self.env['SoundControl'].speakText(self.SL.getNextCatName())
+        elif self.mode == SND:
+            self.env['SoundControl'].playSoundBytes(self.SL.getNextSoundBytes())
  
-    '''
-    ' Called when navigate up key is released.
-    ' Moves to the previous sound of the current category in cyclical fashion.
-    '''   
-    def navUp(self):
+    def jumpLeft(self):
+        if self.mode == CAT:
+            self.SL.currCat = 0
+            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+        elif self.mode == SND:
+            self.SL.currSND = 0
+            self.env['SoundControl'].playSoundBytes(self.SL.getCurrSoundBytes())
         
-        self.env['SoundControl'].playSoundBytes(self.SL.getPrevSoundBytes())
-    
-    '''
-    ' Called when navigate down key is released.
-    ' Moves to the next sound of the current category in cyclical fashion.
-    '''       
-    def navDown(self):
-        self.env['SoundControl'].playSoundBytes(self.SL.getNextSoundBytes())
-
-    
+    def jumpRight(self):
+        if self.mode == CAT and self.env['story'].hasTrash():
+            self.SL.currCat = self.SL.trashCat
+            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+        elif self.mode == CAT:
+            self.SL.currCat = self.SL.sfxCat
+            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+        elif self.mode == SND:
+            self.SL.currSND = self.currCatLen-1
+            self.env['SoundControl'].playSoundBytes(self.SL.getCurrSoundBytes())
     ''' 
     ' Called when help key is released.
     ' Notifies the user of the current options.
@@ -123,17 +139,29 @@ class AuiInsertSound:
     ' this object.
     '''    
     def select(self):
-        if not self.SL.onValidSound():
+        if self.mode == CAT and self.SL.onValidCat():
+            self.mode = SND
+            self.SL.currSound = -1
+            self.setInstructions()
             self.getHelp()
-            return
-        
-        soundBytes = self.SL.getCurrSoundBytes()
-        type = SND
-        if self.SL.currCat == self.SL.sfxCat:
-            self.env['story'].deleteClip()
-            type = SFX
-        self.env['story'].insertClip(''.join(soundBytes), type)
-        self.quit()
+        elif self.mode == SND and self.SL.onValidSound():    
+            soundBytes = self.SL.getCurrSoundBytes()
+            type = SND
+            if self.SL.currCat == self.SL.sfxCat:
+                self.env['story'].deleteClip()
+                type = SFX
+            self.env['story'].insertClip(''.join(soundBytes), type)
+            self.quit()
+        else:
+            self.getHelp()
+            
+    def back(self):
+        if self.mode == CAT:
+            self.quit()
+        elif self.mode == SND:
+            self.mode = CAT
+            self.setInstructions()
+            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
         
     def quit(self):
         self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())

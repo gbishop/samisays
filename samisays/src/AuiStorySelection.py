@@ -6,6 +6,7 @@ from Story import *
 INSTR_DIR = 'instr_text/'
 CTRL = 308 # keyCode for CTRL
 LOCK_KEYS = sets.Set([CTRL, wx.WXK_SHIFT, wx.WXK_TAB])
+DELETE_KEY = wx.WXK_BACK
 
 class AuiStorySelection:
 	
@@ -71,7 +72,7 @@ class AuiStorySelection:
 		keyFunctions = {wx.WXK_RIGHT : self.goRight,
 						wx.WXK_LEFT : self.goLeft, wx.WXK_SPACE : self.selectStory,
 						CTRL : self.playStory, #wx.WXK_ESCAPE : self.exit,
-						wx.WXK_DOWN : self.newStory, wx.WXK_UP : self.deleteStory,
+						wx.WXK_DOWN : self.newStory, DELETE_KEY : self.deleteStory,
 						wx.WXK_RETURN: self.getHelp}
 		
 		if keyCode not in  keyFunctions: # If key has no function, ignore it
@@ -81,7 +82,7 @@ class AuiStorySelection:
 			self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_stories.txt')
 			return
 
-		if keyCode != wx.WXK_UP: # If key is not the delete key, a delete is not being confirmed
+		if keyCode != DELETE_KEY: # If key is not the delete key, a delete is not being confirmed
 			self.deleteConfirmed = False
 
 		

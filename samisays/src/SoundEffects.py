@@ -10,7 +10,7 @@ class SoundEffects:
         self.env = env
     
         # Define array of functions for sound effects
-        self.sfxFunctions = [ SpeedUp, LargeSpeedUp, SlowDown, LargeSlowDown, ShortEcho, LongEcho, Reverse ]
+        self.sfxFunctions = [SpeedUp, LargeSpeedUp, SlowDown, LargeSlowDown, ShortEcho, LongEcho, Reverse]
         self.currSFX = -1
         self.currSFXClip = ''
         

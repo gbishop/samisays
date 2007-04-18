@@ -10,6 +10,7 @@ BREAK_SOUND = 'lilbeep.wav'
 INTRO_SOUND = 'xylophone_intro.mp3'
 WAIT_SOUND = 'wait_noise.mp3'
 DEFAULT_CROP = 5000
+DELETE_KEY = wx.WXK_BACK
 CTRL = 308 # keyCode for CTRL
 
 '''
@@ -106,15 +107,16 @@ class AuiStoryCreation:
         
         # Define dictionary of functions for valid keys
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
-                        wx.WXK_DOWN : self.insertSound, wx.WXK_UP : self.deleteClip,
+                        wx.WXK_DOWN : self.insertSound, DELETE_KEY : self.deleteClip,
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
+                        wx.WXK_HOME : self.jumpLeft, wx.WXK_END : self.jumpRight,
                         wx.WXK_ESCAPE : self.quit, wx.WXK_RETURN: self.getHelp,
-                        wx.WXK_PAUSE: self.insertBreak}
+                        wx.WXK_PAUSE: self.insertBreak, wx.WXK_UP: self.getHelp}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
             return      
         
-        if keyCode != wx.WXK_UP: # If key is not the delete key, a delete is not being confirmed
+        if keyCode != DELETE_KEY: # If key is not the delete key, a delete is not being confirmed
             self.deleteConfirmed = False
             self.setInstructions()
         
@@ -150,6 +152,10 @@ class AuiStoryCreation:
         
         soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
         
+        if len(soundBytes) <= crop:
+            self.env['SoundControl'].speakTextFile(INSTR_DIR + 'hold_space.txt')
+            return
+            
         soundBytes = soundBytes[crop:]
         soundBytes = normalizeSoundBytes(soundBytes)
 
@@ -233,6 +239,15 @@ class AuiStoryCreation:
     '''
     def navRight(self):
         self.env['SoundControl'].playSoundBytes(self.env['story'].getNextClip())
+        
+    def jumpLeft(self):
+        self.env['story'].currClip = 0
+        self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
+    
+    def jumpRight(self):
+        self.env['story'].currClip = len(self.env['story']) - 1
+        self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
+        
            
     ''' Function for gracefully exiting story creation and returning to menu '''
     def quit(self):
