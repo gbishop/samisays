@@ -1,1 +1,0 @@
-Hello %s and welcome to your story book.  Press Enter to hear instructions.

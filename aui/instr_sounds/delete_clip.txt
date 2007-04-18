@@ -1,1 +1,0 @@
-Confirm delete with the up arrow.  Cancel with any other key.

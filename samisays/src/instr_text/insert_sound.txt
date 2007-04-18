@@ -1,1 +1,0 @@
-Choose category with Left and Right arrows.  Choose sound in category with Up and Down arrows.  Insert sound with Space Bar.  Cancel with Escape.

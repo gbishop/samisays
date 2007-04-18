@@ -1,1 +1,0 @@
-Record more clips with Space Bar.  Navigate through clips with Left and Right Arrows.  Insert sound effects with Down Arrow.  Delete clips with Up Arrow.  Playback with Control.  Save and exit with Escape.
