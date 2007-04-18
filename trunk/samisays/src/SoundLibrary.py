@@ -58,7 +58,8 @@ class SoundLibrary:
     def getNextCatName(self):
         self.currSound = -1
         self.currCat = (self.currCat + 1)%self.numCats
-        if self.currCat == self.trashCat and self.env['story'].lastDelete == '':
+        self.currCatLen = self.getCatLen(self.currCat)
+        if self.currCat == self.trashCat and not self.env['story'].hasTrash():
             return self.getNextCatName()
         return self.getCurrCatName()
     
@@ -72,7 +73,8 @@ class SoundLibrary:
             self.currCat = self.numCats-1
         else:
             self.currCat = (self.currCat - 1)%self.numCats
-        if self.currCat == self.trashCat and self.env['story'].lastDelete == '':
+        self.currCatLen = self.getCatLen(self.currCat)
+        if self.currCat == self.trashCat and not self.env['story'].hasTrash():
             return self.getPrevCatName()
         return self.getCurrCatName()
         
@@ -82,7 +84,7 @@ class SoundLibrary:
     '''    
     def getNextSoundBytes(self):
         if self.currCat < self.sfxCat:
-            self.currSound = (self.currSound + 1)%len(self.soundMatrix[self.currCat])
+            self.currSound = (self.currSound + 1)%self.curCatLength
         elif self.currCat == self.trashCat:
             self.currSound = 0
         elif self.currCat == self.sfxCat:
@@ -97,9 +99,9 @@ class SoundLibrary:
     def getPrevSoundBytes(self):
         if self.currCat < self.sfxCat:
             if self.currSound == -1:
-                self.currSound = len(self.soundMatrix[self.currCat])-1
+                self.currSound = self.currCatLen-1
             else:
-                self.currSound = (self.currSound - 1)%len(self.soundMatrix[self.currCat])
+                self.currSound = (self.currSound - 1)%self.currCatLen
         elif self.currCat == self.trashCat:
             self.currSound = 0
         elif self.currCat == self.sfxCat:
@@ -124,5 +126,14 @@ class SoundLibrary:
             return SFX
         else:
             return SND
+        
+    def getCatLen(self, cat):
+        if self.currCat == self.sfxCat:
+            return len(self.SFX.sfxFunctions)
+        elif self.currCat == self.trashCat:
+            return 1
+        else:
+            return len(self.soundMatrix[cat])
+
         
         

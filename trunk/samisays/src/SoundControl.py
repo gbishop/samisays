@@ -157,21 +157,9 @@ def soundFileToBytes(filePath):
 '''
 def normalizeSoundBytes(soundBytes):
     soundArray = fromstring(soundBytes, int16)
-    #f = file('c:/out1.csv','w')
-    #out = ''
-    #for i in soundArray:
-    #    out += str(i) + '\n'
-    #f.write(out[:-1])
-    #f.close()
     m = max(abs(soundArray))
     soundArray = soundArray/float(m)*20000
     soundArray = array(soundArray,int16)
-    #f = file('c:/out2.csv','w')
-    #out = ''
-    #for i in soundArray:
-    #    out += str(i) + '\n'
-    #f.write(out[:-1])
-    #f.close()
     return soundArray.tostring()
 
 '''

@@ -1,0 +1,1 @@
+Find sound with Left and Right arrows.  Insert sound with Up arrow.  Cancel with Escape.

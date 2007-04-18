@@ -1,0 +1,1 @@
+Find category with Left and Right arrows.  Select category with Up arrow.  Cancel with Escape.

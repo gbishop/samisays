@@ -180,6 +180,9 @@ class Story:
     def needsTitle(self):
         return zlib.decompress(self.zipClips[0]) == ''
     
+    def hasTrash(self):
+        return self.lastDelete != ''
+    
     def clipIsLocked(self):
         return self.types[self.currClip] == LCK
     

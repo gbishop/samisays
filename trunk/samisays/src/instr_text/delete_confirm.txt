@@ -1,1 +1,1 @@
-Confirm delete with the up arrow.  Cancel with any other key.
+Confirm delete with Backspace.  Cancel with any other key.
