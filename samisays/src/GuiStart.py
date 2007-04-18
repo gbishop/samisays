@@ -23,10 +23,16 @@ class GuiStart(wx.Frame):
         self.__set_properties()
         self.__do_layout()
 
+        objects = [self.panel, self.picBanner, self.btnStories, self.btnTemplates]
+        for obj in objects:
+            obj.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+            obj.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+
         self.Bind(wx.EVT_BUTTON, self.btnStoriesPressed, self.btnStories)
         self.Bind(wx.EVT_BUTTON, self.btnTemplatesPressed, self.btnTemplates)
         self.Bind(wx.EVT_SIZING, self.onSize)
         self.Bind(wx.EVT_CLOSE, self.onClose)
+        self.firstDown = -1
         self.env = {}
         
     # end guiStart.__init__
@@ -108,6 +114,22 @@ class GuiStart(wx.Frame):
     def setEnv(self,env): 
         self.env = env   
     # end of setEnv
+    
+    def onKeyDown(self, event):
+        
+        if self.firstDown == -1:
+            self.firstDown = event.GetKeyCode()
+    
+    def onKeyUp(self, event):
+        
+        keyCode = event.GetKeyCode()
+        if keyCode != self.firstDown:
+            event.Skip()
+        
+        if keyCode == wx.WXK_ESCAPE:
+            self.onClose(False)
+        
+        self.firstDown = -1      
 
 # end of class guiStart
 

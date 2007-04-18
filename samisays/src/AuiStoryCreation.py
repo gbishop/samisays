@@ -91,7 +91,6 @@ class AuiStoryCreation:
             self.env['SoundControl'].stopPlay()
             self.env['SoundControl'].startRecord()
         
-        event.Skip()
         
     ''' 
     ' Handles event when a key is released by calling the correct function for 
@@ -131,8 +130,7 @@ class AuiStoryCreation:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
             self.env['guiWorking'].updateStats()
-            
-        event.Skip()
+
 
     ''' 
     ' Called when help key is released.
