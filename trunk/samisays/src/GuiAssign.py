@@ -21,7 +21,7 @@ class GuiAssign(wx.Frame):
         self.btnCancel.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.chkBoxBeeps = wx.CheckBox(self.panel, -1, "Insert Beep")
         self.chkBoxBeeps.SetFont(wx.Font(16,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
-
+        self.chkBoxBeeps.SetValue(True)
 
         self.__set_properties()
         self.__do_layout()
@@ -111,7 +111,7 @@ class GuiAssign(wx.Frame):
                 msgDialog.Destroy()
             else:
                 cStory = story.getCopy(studentName)
-                cStory.mergeAndLockBreaks(True)
+                cStory.mergeAndLockBreaks(includeBreakClip = self.chkBoxBeeps.IsChecked())
                 cStory.pickleMe(True)
                 cStory.pickleTitle()
                 succStudents += [studentName]
