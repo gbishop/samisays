@@ -7,6 +7,7 @@ INSTR_DIR = 'instr_text/'
 CTRL = 308 # keyCode for CTRL
 LOCK_KEYS = sets.Set([CTRL, wx.WXK_SHIFT, wx.WXK_TAB])
 DELETE_KEY = wx.WXK_BACK
+NEW_KEY = wx.WXK_SPACE
 
 class AuiStorySelection:
 	
@@ -69,16 +70,15 @@ class AuiStorySelection:
 		self.firstDown = -1
 		
 		# Define dictionary of functions for valid keys
-		keyFunctions = {wx.WXK_RIGHT : self.goRight,
-						wx.WXK_LEFT : self.goLeft, wx.WXK_SPACE : self.selectStory,
-						CTRL : self.playStory, #wx.WXK_ESCAPE : self.exit,
-						wx.WXK_DOWN : self.newStory, DELETE_KEY : self.deleteStory,
-						wx.WXK_RETURN: self.getHelp}
+		keyFunctions = {wx.WXK_RIGHT : self.goRight, wx.WXK_LEFT : self.goLeft, 
+					    NEW_KEY : self.newStory, CTRL : self.playStory,
+						wx.WXK_DOWN : self.getHelp, wx.WXK_UP : self.selectStory,
+						DELETE_KEY : self.deleteStory}
 		
 		if keyCode not in  keyFunctions: # If key has no function, ignore it
 			return
 		
-		if self.numStories == 0 and not keyCode in [wx.WXK_DOWN, wx.WXK_ESCAPE]:
+		if self.numStories == 0 and not keyCode in [NEW_KEY, wx.WXK_ESCAPE]:
 			self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_stories.txt')
 			return
 

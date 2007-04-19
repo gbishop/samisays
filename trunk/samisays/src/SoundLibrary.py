@@ -84,7 +84,7 @@ class SoundLibrary:
     '''    
     def getNextSoundBytes(self):
         if self.currCat < self.sfxCat:
-            self.currSound = (self.currSound + 1)%self.curCatLength
+            self.currSound = (self.currSound + 1)%self.currCatLen
         elif self.currCat == self.trashCat:
             self.currSound = 0
         elif self.currCat == self.sfxCat:
