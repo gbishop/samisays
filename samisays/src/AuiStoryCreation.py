@@ -47,6 +47,7 @@ class AuiStoryCreation:
         self.firstDown = -1 # Code to remmeber which key was held down first
                 
         self.deleteConfirmed = False # Flag for whether delete needs confirmation
+        self.quitConfirmed = False
         self.stopPlayBack = False # Flag to interrupt full playback of story
       
         self.takeKeyBindings()
@@ -68,6 +69,8 @@ class AuiStoryCreation:
                 instrFile += 'delete_title.txt'
             else:
                 instrFile += 'delete_confirm.txt'
+        elif self.quitConfirmed:
+            instrFile += 'quit_confirm.txt'
         elif self.env['story'].needsTitle():
             instrFile += 'needs_title.txt'
         elif self.teacherMode:
@@ -107,17 +110,20 @@ class AuiStoryCreation:
         
         # Define dictionary of functions for valid keys
         keyFunctions = {wx.WXK_SPACE : self.recordingFinished, CTRL : self.playbackStory, 
-                        wx.WXK_DOWN : self.insertSound, DELETE_KEY : self.deleteClip,
+                        wx.WXK_DOWN : self.getHelp, wx.WXK_UP: self.insertSound, 
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
                         wx.WXK_HOME : self.jumpLeft, wx.WXK_END : self.jumpRight,
-                        wx.WXK_ESCAPE : self.quit, wx.WXK_RETURN: self.getHelp,
-                        wx.WXK_PAUSE: self.insertBreak, wx.WXK_UP: self.getHelp}
+                        wx.WXK_ESCAPE : self.quit, DELETE_KEY : self.deleteClip,
+                        wx.WXK_PAUSE: self.insertBreak}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
             return      
         
-        if keyCode != DELETE_KEY: # If key is not the delete key, a delete is not being confirmed
+        if self.deleteConfirmed and keyCode != DELETE_KEY: # If key is not the delete key, a delete is not being confirmed
             self.deleteConfirmed = False
+            self.setInstructions()
+        elif self.quitConfirmed and keyCode != wx.WXK_ESCAPE:
+            self.quitConfirmed = False
             self.setInstructions()
         
         # Stop any sound that is playing
@@ -251,14 +257,19 @@ class AuiStoryCreation:
            
     ''' Function for gracefully exiting story creation and returning to menu '''
     def quit(self):
-        self.env['SoundControl'].playSoundBytes(self.waitSound)
-        while not self.env['story'].threadSem.acquire(False):
-            pass
-        self.env['story'].pickleMutex.acquire()
-        self.env['SoundControl'].stopPlay()
-        self.env['guiWorking'].Hide()
-        self.env['guiStories'].Show()
-        self.env['timer'].Stop()
+        if self.quitConfirmed:
+            self.env['SoundControl'].playSoundBytes(self.waitSound)
+            while not self.env['story'].threadSem.acquire(False):
+                pass
+            self.env['story'].pickleMutex.acquire()
+            self.env['SoundControl'].stopPlay()
+            self.env['guiWorking'].Hide()
+            self.env['guiStories'].Show()
+            self.env['timer'].Stop()
+        else:
+            self.quitConfirmed = True
+            self.setInstructions()
+            self.getHelp()
         
         
 '''
