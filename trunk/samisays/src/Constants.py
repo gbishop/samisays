@@ -29,8 +29,12 @@ NEW_KEY = wx.WXK_SPACE
 STUDENT_DIR = 'students/'
 BACKUP_DIR = STUDENT_DIR + 'removed/'
 
-''' Convert Sounds '''
+''' ConvertSounds '''
 SOUND_DIR = 'sound_library/'
+
+''' GuiStart '''
+BIG_FONT = None
+NORMAL_FONT = None
 
 ''' GuiStories '''
 ARTDIR = "art/"
@@ -56,4 +60,4 @@ SFX = 2
 SND = 3
 LCK = 4
 BRK = 5
-COMPRESS_RATE = 9                                           
+COMPRESS_RATE = 9                                      
