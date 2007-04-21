@@ -45,7 +45,6 @@ class Story:
     def insertClip(self, soundBytes, type):
         self.storyMutex.acquire()
         self.currClip += 1
-        #self.clips.insert(self.currClip, soundBytes)
         self.zipClips.insert(self.currClip, zlib.compress(soundBytes))
         self.types.insert(self.currClip, type)
         self.storyMutex.release()
@@ -72,7 +71,6 @@ class Story:
         self.storyMutex.acquire()
         if self.currClip > 0:
             self.lastDelete = decompress(self.zipClips[self.currClip])
-            #del self.clips[self.currClip]
             del self.zipClips[self.currClip]
             del self.types[self.currClip]
         self.currClip -= 1
@@ -178,6 +176,9 @@ class Story:
     
     def clipIsBreak(self):
         return self.types[self.currClip] == BRK
+    
+    def clipIsTitle(self):
+        return self.currClip == 0
     
     def decompressStory(self):
         clips = []
