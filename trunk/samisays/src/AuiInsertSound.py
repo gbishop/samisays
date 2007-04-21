@@ -132,6 +132,7 @@ class AuiInsertSound:
     ' this object.
     '''    
     def select(self):
+        
         if self.mode == CAT_MODE and self.SL.onValidCat():
             self.mode = SND_MODE
             self.SL.currSound = -1
@@ -141,9 +142,14 @@ class AuiInsertSound:
             soundBytes = self.SL.getCurrSoundBytes()
             type = SND_MODE
             if self.SL.currCat == self.SL.sfxCat:
-                self.env['story'].deleteClip()
-                type = SFX
-            self.env['story'].insertClip(''.join(soundBytes), type)
+                if self.env['story'].isTitle():
+                    self.env['story'].replaceTitle(soundBytes)
+                    self.quit()
+                    return
+                else:
+                    self.env['story'].deleteClip()
+                    type = SFX
+            self.env['story'].insertClip(soundBytes, type)
             self.quit()
         else:
             self.getHelp()

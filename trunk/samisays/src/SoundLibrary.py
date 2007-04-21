@@ -57,7 +57,8 @@ class SoundLibrary:
         self.currSound = -1
         self.currCat = (self.currCat + 1)%self.numCats
         self.currCatLen = self.getCatLen(self.currCat)
-        if self.currCat == self.trashCat and not self.env['story'].hasTrash():
+        if (self.currCat == self.trashCat and not self.env['story'].hasTrash() or
+            self.currCat == self.sfxCat and self.env['story'].clipIsLocked()):
             return self.getNextCatName()
         return self.getCurrCatName()
     
@@ -72,7 +73,8 @@ class SoundLibrary:
         else:
             self.currCat = (self.currCat - 1)%self.numCats
         self.currCatLen = self.getCatLen(self.currCat)
-        if self.currCat == self.trashCat and not self.env['story'].hasTrash():
+        if (self.currCat == self.trashCat and not self.env['story'].hasTrash() or
+            self.currCat == self.sfxCat and self.env['story'].clipIsLocked()):
             return self.getPrevCatName()
         return self.getCurrCatName()
         
