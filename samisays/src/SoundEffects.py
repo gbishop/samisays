@@ -2,7 +2,7 @@ from numpy import *
 from Story import *
 import time
 from SoundControl import *
-
+from Constants import *
 
 class SoundEffects:
     

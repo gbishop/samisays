@@ -1,8 +1,6 @@
 import os
 from SoundControl import *
-
-INSTR_DIR = 'instr_sounds/'
-SOUND_DIR = 'sound_library/'
+from Constants import *
 
 w = pySonic.World()
 

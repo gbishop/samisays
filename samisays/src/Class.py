@@ -2,10 +2,7 @@
 import os
 import shutil
 from Student import Student
-
-# No magic in my code!
-STUDENT_DIR = 'students/'
-BACKUP_DIR = STUDENT_DIR + 'removed/'
+from Constants import *
  
 class Class:
      

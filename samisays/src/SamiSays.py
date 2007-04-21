@@ -12,6 +12,7 @@ from SoundControl import SoundControl
 from AuiStorySelection import *
 from AuiStoryCreation import *
 from GuiVisualizer import *
+from Constants import *
 
 
 class GuiMain(wx.App):

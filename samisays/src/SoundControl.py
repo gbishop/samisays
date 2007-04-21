@@ -2,17 +2,8 @@ import pySonic
 import pymedia.audio.sound as sound
 import pymedia.audio.acodec as acodec
 import pyTTS
-
 from numpy import *
-
-# Sound properties
-RATE = 16000    # samples per second
-BITS = 16       # BITS per sample
-CHANNELS = 1    # 1 is mono, 2 is stereo
-BUFF_DURATION = 1 # in seconds
-TTS_RATE = 44000
-MP3_RATE = 6400
-
+from Constants import *
 
 '''
 ' Class Name:  SoundControl

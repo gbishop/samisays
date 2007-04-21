@@ -5,6 +5,7 @@
 import wx
 import sys
 from Student import Student
+from Constants import *
 
 class GuiStudents(wx.Frame):
     def __init__(self, *args, **kwds):

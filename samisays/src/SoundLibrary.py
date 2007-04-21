@@ -2,9 +2,7 @@ import os
 from numpy import *
 from SoundEffects import *
 from SoundControl import *
-
-SOUND_LIB_DIR  = 'sound_library/'
-SFX_CAT = -2
+from Constants import *
 
 class SoundLibrary:
     

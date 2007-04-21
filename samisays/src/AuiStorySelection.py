@@ -2,12 +2,7 @@ import wx
 import sets
 from SoundControl import *
 from Story import *
-
-INSTR_DIR = 'instr_text/'
-CTRL = 308 # keyCode for CTRL
-LOCK_KEYS = sets.Set([CTRL, wx.WXK_SHIFT, wx.WXK_TAB])
-DELETE_KEY = wx.WXK_BACK
-NEW_KEY = wx.WXK_SPACE
+from Constants import *
 
 class AuiStorySelection:
 	
