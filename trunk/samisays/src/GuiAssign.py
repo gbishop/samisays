@@ -3,8 +3,7 @@
 
 import wx
 import os
-
-STUDENT_DIR = 'students/'
+from Constants import *
 
 class GuiAssign(wx.Frame):
     def __init__(self, *args, **kwds):

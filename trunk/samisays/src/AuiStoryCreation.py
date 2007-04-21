@@ -4,14 +4,7 @@ import time
 from SoundControl import *
 from Story import *
 from AuiInsertSound import *
-
-INSTR_DIR = 'instr_text/'
-BREAK_SOUND = 'lilbeep.wav'
-INTRO_SOUND = 'xylophone_intro.mp3'
-WAIT_SOUND = 'wait_noise.mp3'
-DEFAULT_CROP = 5000
-DELETE_KEY = wx.WXK_BACK
-CTRL = 308 # keyCode for CTRL
+from Constants import *
 
 '''
 ' Class Name:  StoryCreationAUI

@@ -2,6 +2,7 @@ import cPickle
 import zlib
 import numpy
 import threading
+from Constants import *
 
 '''
 ' Class Name:  Story
@@ -11,17 +12,6 @@ import threading
 '              witht the properties (bits, sample rate, etc.)
 '              defined in the SoundControl class.
 '''
-
-STUDENT_DIR = 'students'
-
-NON = 0
-REC = 1
-SFX = 2
-SND = 3
-LCK = 4
-BRK = 5
-
-COMPRESS_RATE = 9
 
 class Story:
     

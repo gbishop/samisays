@@ -5,8 +5,8 @@
 from Story import *
 from SoundControl import *
 import sys
-
 import wx
+from Constants import *
 
 class GuiVisualizer(wx.Frame):
     def __init__(self, *args, **kwds):

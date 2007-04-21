@@ -5,13 +5,6 @@ from SoundControl import *
 from Story import *
 from SoundLibrary import *
 
-
-INSTR_DIR = 'instr_text/'
-
-# Modes
-CAT = 0
-SND = 1
-
 class AuiInsertSound:
     
     def __init__(self, env):
@@ -21,7 +14,7 @@ class AuiInsertSound:
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
-        self.mode = CAT
+        self.mode = CAT_MODE
         
         self.setInstructions()
 
@@ -37,9 +30,9 @@ class AuiInsertSound:
         self.SL = SoundLibrary(self.env)
     
     def setInstructions(self):
-        if self.mode == CAT:
+        if self.mode == CAT_MODE:
             self.currInstr = file(INSTR_DIR + 'insert_sound_cat.txt', 'r').read()
-        elif self.mode == SND:
+        elif self.mode == SND_MODE:
             self.currInstr = file(INSTR_DIR + 'insert_sound_snd.txt', 'r').read()
         
         self.env['guiWorking'].setInstructions(self.currInstr)
@@ -92,9 +85,9 @@ class AuiInsertSound:
     ' Moves to the category to previous category in cyclical fashion.
     '''
     def navLeft(self):
-        if self.mode == CAT:
+        if self.mode == CAT_MODE:
             self.env['SoundControl'].speakText(self.SL.getPrevCatName())
-        elif self.mode == SND:
+        elif self.mode == SND_MODE:
             self.env['SoundControl'].playSoundBytes(self.SL.getPrevSoundBytes())
     
     '''
@@ -102,27 +95,27 @@ class AuiInsertSound:
     ' Moves to the next category in cyclical fashion.
     '''    
     def navRight(self):
-        if self.mode == CAT:
+        if self.mode == CAT_MODE:
             self.env['SoundControl'].speakText(self.SL.getNextCatName())
-        elif self.mode == SND:
+        elif self.mode == SND_MODE:
             self.env['SoundControl'].playSoundBytes(self.SL.getNextSoundBytes())
  
     def jumpLeft(self):
-        if self.mode == CAT:
+        if self.mode == CAT_MODE:
             self.SL.currCat = 0
             self.env['SoundControl'].speakText(self.SL.getCurrCatName())
-        elif self.mode == SND:
+        elif self.mode == SND_MODE:
             self.SL.currSND = 0
             self.env['SoundControl'].playSoundBytes(self.SL.getCurrSoundBytes())
         
     def jumpRight(self):
-        if self.mode == CAT and self.env['story'].hasTrash():
+        if self.mode == CAT_MODE and self.env['story'].hasTrash():
             self.SL.currCat = self.SL.trashCat
             self.env['SoundControl'].speakText(self.SL.getCurrCatName())
-        elif self.mode == CAT:
+        elif self.mode == CAT_MODE:
             self.SL.currCat = self.SL.sfxCat
             self.env['SoundControl'].speakText(self.SL.getCurrCatName())
-        elif self.mode == SND:
+        elif self.mode == SND_MODE:
             self.SL.currSND = self.currCatLen-1
             self.env['SoundControl'].playSoundBytes(self.SL.getCurrSoundBytes())
     ''' 
@@ -139,14 +132,14 @@ class AuiInsertSound:
     ' this object.
     '''    
     def select(self):
-        if self.mode == CAT and self.SL.onValidCat():
-            self.mode = SND
+        if self.mode == CAT_MODE and self.SL.onValidCat():
+            self.mode = SND_MODE
             self.SL.currSound = -1
             self.setInstructions()
             self.getHelp()
-        elif self.mode == SND and self.SL.onValidSound():    
+        elif self.mode == SND_MODE and self.SL.onValidSound():    
             soundBytes = self.SL.getCurrSoundBytes()
-            type = SND
+            type = SND_MODE
             if self.SL.currCat == self.SL.sfxCat:
                 self.env['story'].deleteClip()
                 type = SFX
@@ -156,10 +149,10 @@ class AuiInsertSound:
             self.getHelp()
             
     def back(self):
-        if self.mode == CAT:
+        if self.mode == CAT_MODE:
             self.quit()
-        elif self.mode == SND:
-            self.mode = CAT
+        elif self.mode == SND_MODE:
+            self.mode = CAT_MODE
             self.setInstructions()
             self.env['SoundControl'].speakText(self.SL.getCurrCatName())
         
