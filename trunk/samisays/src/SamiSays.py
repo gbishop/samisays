@@ -1,8 +1,5 @@
-
-# system imports
+''' Imports '''
 import wx
-
-# project imports
 from Class import Class
 from GuiStart import GuiStart
 from GuiStories import GuiStories
@@ -14,9 +11,16 @@ from AuiStoryCreation import *
 from GuiVisualizer import *
 from Constants import *
 
-
-class GuiMain(wx.App):
+'''
+' Class Name: SamiSays
+' Description: This is the Launchpad for the application. All initializations and 
+'              instantiation goes here.
+'''
+class SamiSays(wx.App):
     
+    '''
+    ' OnInit - Does Everything!
+    '''
     def OnInit(self):
         currentClass = Class()
         currentClass.save()
@@ -50,14 +54,21 @@ class GuiMain(wx.App):
         self.env['guiWorking'].setEnv(self.env)
         return True
 
+    '''
+    ' onKeyDown - Placeholder for key down bindings
+    '''
     def onKeyDown(self,event):
         self.env['keyDownFunct'](event)
     
+    '''
+    ' onKeyUp - Placeholder for key up bindings
+    '''
     def onKeyUp(self,event):
         self.env['keyUpFunct'](event)
-        
+
+''' Execute at Runtime '''
 if __name__ == '__main__':
-    app = GuiMain(0)
+    app = SamiSays(0)
     app.SetTopWindow(app.env['guiStart'])
     app.env['guiStart'].Show()
     app.MainLoop()
