@@ -11,8 +11,11 @@ from AuiStorySelection import *
 from Constants import *
 
 '''
-' 
-'
+' Class Name: GuiStories
+' Description: A subclass of the wx Frame class. It is displayed when a student is
+'              selected and has a locked and unlocked mode. All buttons are available
+'              in unlocked mode, whereas only the unlock button is available in locked
+'              mode.
 '''
 class GuiStories(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -37,9 +40,8 @@ class GuiStories(wx.Frame):
         self.btnBack = wx.Button(self.panel, wx.ID_CANCEL, "Back")
         self.btnBack.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.lblHead = wx.StaticText(self.panel,-1,"The Bookshelf")
-        self.lblHead.SetFont(wx.Font(48,wx.SWISS, wx.NORMAL, wx.NORMAL))
+        self.lblHead.SetFont(wx.Font(48,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnLock = wx.Button(self.panel,-1,"Lock")
-        #self.btnLock.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnLock.SetSize((200,50))
 
 
@@ -71,6 +73,7 @@ class GuiStories(wx.Frame):
         self.env = {}
         self.visible = False
         
+        # Necessary for locking
         self.firstDown = -1
         self.allDowns = sets.Set([])
         self.lockStarted = False
