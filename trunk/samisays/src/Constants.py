@@ -47,7 +47,7 @@ BITS = 16       # BITS per sample
 CHANNELS = 1    # 1 is mono, 2 is stereo
 BUFF_DURATION = 1 # in seconds
 TTS_RATE = 44000
-MP3_RATE = 6400
+MP3_RATE = 64000
 
 ''' SoundLibrary '''
 SOUND_LIB_DIR  = 'sound_library/'

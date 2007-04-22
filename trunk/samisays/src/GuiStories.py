@@ -294,7 +294,7 @@ class GuiStories(wx.Frame):
         
     def publishStory(self):
 
-        dialog = wx.FileDialog(None,'Please select a filename to exort.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
+        dialog = wx.FileDialog(None,'Please select a filename to export.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
         if dialog.ShowModal() == wx.ID_OK:
             self.env['auiStoryCreation'].loadFullStory()
             encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath())
