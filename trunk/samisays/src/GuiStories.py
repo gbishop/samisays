@@ -18,8 +18,8 @@ from Constants import *
 '              mode.
 '''
 class GuiStories(wx.Frame):
+    
     def __init__(self, *args, **kwds):
-        # begin wxGlade: guiStories.__init__
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
