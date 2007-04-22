@@ -171,19 +171,26 @@ class GuiStories(wx.Frame):
         dialog = wx.TextEntryDialog(None,'Please enter the story\'s new name:','Sami Says','')
         if dialog.ShowModal() == wx.ID_OK:
             newName = dialog.GetValue()
-            if(newName != ''):
+            studentName = self.env['student'].getName()
+            if os.path.exists('%s_%s/%s.pkl' % (STUDENT_DIR, studentName, newName)):
+                msg = '%s already has a story by this name.  Try a different name.' % (studentName)
+                msgDialog = wx.MessageDialog(self, msg, 'Error: Story Already Exists', wx.ICON_ERROR)
+                msgDialog.ShowModal()
+                msgDialog.Destroy()
+                self.btnRenamePressed(False)
+            elif(newName != ''):
                 self.env['auiStoryCreation'].loadFullStory()
                 oldName = self.env['story'].name
                 self.env['story'].name = newName
                 self.env['story'].pickleMe(True)
                 self.env['story'].pickleTitle()
-                oldPath = '%s/_%s/%s' % (STUDENT_DIR, self.env['student'].getName(), oldName)
+                oldPath = '%s_%s/%s' % (STUDENT_DIR, studentName, oldName)
                 os.remove(oldPath + '.pkl')
                 os.remove(oldPath + '.ttl')
                 self.populateList()
                 self.lstStories.Select(self.findListItem(newName))
-        else:
-            dialog.Destroy()
+                
+        dialog.Destroy()
 
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
         self.env['SoundControl'].stopPlay()
