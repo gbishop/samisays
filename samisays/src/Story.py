@@ -230,7 +230,7 @@ def pickleStory(story):
     f.close()
 
 def unpickleStory(name, student):
-    filepath = '%s/_%s/%s.pkl' % (STUDENT_DIR, student, name)
+    filepath = '%s_%s/%s.pkl' % (STUDENT_DIR, student, name)
     f = file(filepath,'r')
     return cPickle.load(f)
 
