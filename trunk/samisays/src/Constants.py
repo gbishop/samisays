@@ -33,8 +33,8 @@ BACKUP_DIR = STUDENT_DIR + 'removed/'
 SOUND_DIR = 'sound_library/'
 
 ''' GuiStart '''
-BIG_FONT = None
-NORMAL_FONT = None
+#BIG_FONT = wx.Font(48,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS")
+#NORMAL_FONT = wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS")
 
 ''' GuiStories '''
 ARTDIR = "art/"
