@@ -5,6 +5,7 @@ import pyTTS
 from numpy import *
 from Constants import *
 
+
 '''
 ' Class Name:  SoundControl
 ' Description: This object controls all aspects of sound playback, recording, modification,
@@ -129,6 +130,8 @@ class SoundControl:
         event.Skip()
         
     def speakText(self, text, blocking = False):
+        for word, phon in PRONUNCIATIONS:
+            text = text.replace(word, phon)
         m = self.tts.SpeakToMemory(text)
         format = m.Format.GetWaveFormatEx()
         soundBytes = m.GetData()
