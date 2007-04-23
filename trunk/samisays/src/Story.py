@@ -197,7 +197,7 @@ class Story:
         title.zipClips[0] = self.zipClips[0]
         title.types[0] = self.types[0]
         title.justTitle = True
-        filepath = '%s/_%s/%s.ttl' % (STUDENT_DIR, self.student, self.name)
+        filepath = '%s_%s/%s.ttl' % (STUDENT_DIR, self.student, self.name)
         f = file(filepath,'w')
         p = cPickle.Pickler(f)
         p.dump(title)
