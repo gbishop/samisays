@@ -1,1 +1,1 @@
-Press Escape again to save and return to your storybook.  Press any other key to stay in your story.
+Are you sure you want to quit?  Press Escape again to save and return to your storybook.  Press any other key to stay in your story.
