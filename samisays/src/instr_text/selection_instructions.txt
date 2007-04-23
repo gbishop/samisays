@@ -1,1 +1,1 @@
-Find an old story in your book using Left and Right arrow keys. Play the story with Control. Edit the story with Up. Delete the story with Backspace. Create a new story with Down. 
+Find an old story in your book using Left and Right arrow keys. Play the story with Control. Edit the story with Up. Delete the story with Backspace. Create a new story with Space. 
