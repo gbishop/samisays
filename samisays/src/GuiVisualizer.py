@@ -13,11 +13,18 @@ class GuiVisualizer(wx.Frame):
         self.panel = wx.Panel(self, -1)
         self.grpBoxInfo = wx.StaticBox(self.panel, -1, "Story Information")
         self.grpBoxInstruct = wx.StaticBox(self.panel, -1, "Instructions")
+        self.grpBoxClipInfo = wx.StaticBox(self.panel, -1, "Clip Information")
+        self.grpBoxRecording = wx.StaticBox(self.panel, -1, 'Recording')
         self.title = wx.StaticText(self.panel, -1, 'Story Creation')
         self.instructions = wx.TextCtrl(self.panel, -1, 'Record more clips with the [space bar].  Navigate through clips with the [left and right arrows].  Insert sounds with the [down arrow].', style=wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_LINEWRAP)
         self.statsLabel = wx.StaticText(self.panel, -1, '')
-        self.infoLabel = wx.StaticText(self.panel, -1, 'Story Information')
-        self.instructionLabel = wx.StaticText(self.panel, -1, 'Instructions')
+        self.clipLabel = wx.StaticText(self.panel, -1, '')
+        self.imgRecOff = wx.Image("art/rec_off.png", wx.BITMAP_TYPE_PNG)
+        self.imgRecOn = wx.Image("art/rec_on.png", wx.BITMAP_TYPE_PNG)
+        self.picRecord = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
+        self.recOff()
+        #self.infoLabel = wx.StaticText(self.panel, -1, 'Story Information')
+        #self.instructionLabel = wx.StaticText(self.panel, -1, 'Instructions')
         
         # binding of events
         self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
@@ -38,8 +45,8 @@ class GuiVisualizer(wx.Frame):
         self.title.SetFont(wx.Font(28, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.statsLabel.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.instructions.SetFont(wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
-        self.infoLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
-        self.instructionLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
+        #self.infoLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
+        #self.instructionLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         # end wxGlade
 
     def __do_layout(self):
@@ -49,6 +56,14 @@ class GuiVisualizer(wx.Frame):
         boxesSizer = wx.BoxSizer(wx.HORIZONTAL)
         informationSizer = wx.StaticBoxSizer(self.grpBoxInfo,wx.VERTICAL)
         instructionSizer = wx.StaticBoxSizer(self.grpBoxInstruct,wx.HORIZONTAL)
+        clipSizer = wx.StaticBoxSizer(self.grpBoxClipInfo,wx.HORIZONTAL)
+        recBtnSizer = wx.StaticBoxSizer(self.grpBoxRecording,wx.HORIZONTAL)
+        recBtnSizer.Add(self.picRecord,1,wx.EXPAND,0)
+        recSizer = wx.BoxSizer(wx.VERTICAL)
+        recSizer.Add((20, 20), 1, 0, 0)
+        recSizer.Add((20, 20), 2, 0, 0)
+        recSizer.Add(recBtnSizer,0,wx.EXPAND,0)
+        recSizer.Add((20, 20), 1, 0, 0)
         title_sizer = wx.BoxSizer(wx.HORIZONTAL)
         title_sizer.Add((20, 20), 0, 0, 0)
         title_sizer.Add((20, 20), 0, 0, 0)
@@ -63,20 +78,31 @@ class GuiVisualizer(wx.Frame):
         informationSizer.Add((20, 20), 0, 0, 0)
         boxesSizer.Add(informationSizer, 1, wx.EXPAND, 0)
         boxesSizer.Add((20, 20), 0, 0, 0)
+        boxesSizer.Add(recSizer, 0, wx.EXPAND,0)
+        boxesSizer.Add((20, 20), 0, 0, 0)
+        clipSizer.Add(self.clipLabel, 1, wx.EXPAND, 0)
+        boxesSizer.Add(clipSizer,1,wx.EXPAND, 0)
         instructionSizer.Add(self.instructions, 1,wx.EXPAND,0)
-        boxesSizer.Add(instructionSizer, 1, wx.EXPAND, 0)
         boxesSizer.Add((20, 20), 0, 0, 0)
         title_boxesSizer.Add(boxesSizer, 10, wx.EXPAND, 0)
-        labelsSizer.Add((20, 20), 0, 0, 0)
+        '''labelsSizer.Add((20, 20), 0, 0, 0)
         labelsSizer.Add(self.infoLabel, 0, 0, 0)
         labelsSizer.Add((20, 20), 1, 0, 0)
         labelsSizer.Add(self.instructionLabel, 0, 0, 0)
         labelsSizer.Add((20, 20), 0, 0, 0)
-        title_boxesSizer.Add(labelsSizer, 1, wx.EXPAND, 0)
+        title_boxesSizer.Add(labelsSizer, 1, wx.EXPAND, 0) '''
+        title_boxesSizer.Add(instructionSizer, 4, wx.EXPAND, 0)
+        title_boxesSizer.Add((40, 40), 0, 0, 0)
         self.panel.SetSizer(title_boxesSizer)
         self.Layout()
         self.panel.Layout()
         # end wxGlade
+        
+    def recOn(self):
+        self.picRecord.SetBitmap(wx.BitmapFromImage(self.imgRecOn))
+        
+    def recOff(self):
+        self.picRecord.SetBitmap(wx.BitmapFromImage(self.imgRecOff))
         
     def handleFocus(self, event):
         if self.visible:
