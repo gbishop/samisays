@@ -33,7 +33,7 @@ class SoundLibrary:
                 if sound != 'cat_name.mp3' and sound != '.svn': # Ignore category names and SVN files
                     self.soundMatrix[i] += [sound] 
         
-        self.soundMatrix += [self.env['story'].trash]
+        self.soundMatrix += [self.env['story'].getTrash()]
         self.catList += ['Trash Can', 'Sound Manipulations']
         self.currCat = -1
         self.currSound = -1
@@ -69,10 +69,13 @@ class SoundLibrary:
     def getNextCatName(self):
         self.currSound = -1
         self.currCat = (self.currCat + 1)%self.numCats
-        self.currCatLen = self.getCatLen(self.currCat)
         if (self.currCat == self.trashCat and not self.env['story'].hasTrash() or
             self.currCat == self.sfxCat and self.env['story'].clipIsLocked()):
             return self.getNextCatName()
+        elif self.currCat == self.trashCat:
+            self.soundMatrix[self.trashCat] = self.env['story'].getTrash()
+            
+        self.currCatLen = self.getCatLen(self.currCat)
         return self.getCurrCatName()
     
     
@@ -88,10 +91,13 @@ class SoundLibrary:
             self.currCat = self.numCats-1
         else:
             self.currCat = (self.currCat - 1)%self.numCats
-        self.currCatLen = self.getCatLen(self.currCat)
         if (self.currCat == self.trashCat and not self.env['story'].hasTrash() or
             self.currCat == self.sfxCat and self.env['story'].clipIsLocked()):
             return self.getPrevCatName()
+        elif self.currCat == self.trashCat:
+            self.soundMatrix[self.trashCat] = self.env['story'].getTrash()
+            
+        self.currCatLen = self.getCatLen(self.currCat)
         return self.getCurrCatName()
         
     '''
@@ -99,7 +105,7 @@ class SoundLibrary:
     '                     the bytes of the new sound.
     '''    
     def getNextSoundBytes(self):
-        if self.currCat == self.sfxCat:
+        if self.currCat != self.sfxCat:
             self.currSound = (self.currSound + 1)%self.currCatLen
         else:
             self.SFX.getNextSFXClip()
@@ -124,14 +130,16 @@ class SoundLibrary:
     '                     behavior if current category or current sound are -1 (initial settings)
     '''
     def getCurrSoundBytes(self):
-        if self.currCat != self.sfxCat:
+        if self.currCat == self.trashCat:
+            return self.soundMatrix[self.currCat][self.currSound]
+        elif self.currCat == self.sfxCat:
+            return self.SFX.getCurrSFXClip()
+        else:
             catName = self.getCurrCatName()
             soundName = self.soundMatrix[self.currCat][self.currSound]
             filePath = '%s%s/%s' % (SOUND_LIB_DIR, catName, soundName)
             return soundFileToBytes(filePath)
-        else:
-            return self.SFX.getCurrSFXClip()
-    
+       
     '''
     ' getCurrType - Returns whether the current sound is a sound (SND) or a manipulation.
     '''
