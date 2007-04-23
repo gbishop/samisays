@@ -52,7 +52,6 @@ PRONUNCIATIONS = [('record','ree chord'), ('Record', 'Ree chord')]
 
 ''' SoundLibrary '''
 SOUND_LIB_DIR  = 'sound_library/'
-SFX_CAT = -2
 
 ''' Story '''
 NON = 0
@@ -61,4 +60,5 @@ SFX = 2
 SND = 3
 LCK = 4
 BRK = 5
-COMPRESS_RATE = 9                                      
+COMPRESS_RATE = 9
+MAX_TRASH_SIZE = 5                                 
