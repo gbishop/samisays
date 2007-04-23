@@ -1,1 +1,1 @@
-Find category with Left and Right arrows.  Select category with Up arrow.  Cancel with Escape.
+Find sound categories with Left and Right arrows.  Select sound category with Up arrow.  Cancel with Escape.
