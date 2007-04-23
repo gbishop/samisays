@@ -1,11 +1,11 @@
 ''' Imports '''
 import wx
-from Class import Class
-from GuiStart import GuiStart
-from GuiStories import GuiStories
-from GuiStudents import GuiStudents
-from GuiAssign import GuiAssign
-from SoundControl import SoundControl
+from Class import *
+from GuiStart import *
+from GuiStories import *
+from GuiStudents import *
+from GuiAssign import *
+from SoundControl import *
 from AuiStorySelection import *
 from AuiStoryCreation import *
 from GuiVisualizer import *

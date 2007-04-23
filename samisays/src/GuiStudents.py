@@ -90,7 +90,6 @@ class GuiStudents(wx.Frame):
         szrParent.AddGrowableRow(1)
         szrParent.AddGrowableCol(0)
         self.panel.Layout()
-        #    self.Centre()
         # end wxGlade
 
     def handleSelect(self):
