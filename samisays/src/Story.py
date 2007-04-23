@@ -143,6 +143,8 @@ class Story:
         #return self.clips[0]
         return decompress(self.zipClips[0])
     
+    
+    
     '''
     ' Joins the story into a single byte string and returns it.
     '''
@@ -161,6 +163,11 @@ class Story:
         copy.trash = [t for t in self.trash]
         return copy
         
+    def getTrash(self):
+        trash = []
+        for t in self.trash:
+            trash += [decompress(t)]
+        return trash
     
     def getStats(self):
         stats = numpy.zeros(6)
