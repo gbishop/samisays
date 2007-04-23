@@ -87,6 +87,7 @@ class AuiStoryCreation:
             self.stopPlayback = True 
             self.env['SoundControl'].stopPlay()
             self.env['SoundControl'].startRecord()
+            self.env['guiWorking'].recOn()
         
         
     ''' 
@@ -153,6 +154,7 @@ class AuiStoryCreation:
         
         if len(soundBytes) <= crop:
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'hold_space.txt')
+            self.env['guiWorking'].recOff()
             return
             
         soundBytes = soundBytes[crop:]
@@ -169,6 +171,7 @@ class AuiStoryCreation:
 
         
         self.env['SoundControl'].playSoundBytes(soundBytes)
+        self.env['guiWorking'].recOff()
         
     ''' 
     ' Called when Story Playback key is released.
