@@ -32,6 +32,9 @@ BACKUP_DIR = STUDENT_DIR + 'removed/'
 ''' ConvertSounds '''
 SOUND_DIR = 'sound_library/'
 
+''' GuiPrioritize '''
+DRAG_SOURCE = 201
+
 ''' GuiStart '''
 #BIG_FONT = wx.Font(48,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS")
 #NORMAL_FONT = wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS")
@@ -61,4 +64,4 @@ SND = 3
 LCK = 4
 BRK = 5
 COMPRESS_RATE = 9
-MAX_TRASH_SIZE = 5                                 
+MAX_TRASH_SIZE = 5                              
