@@ -138,11 +138,11 @@ class AuiInsertSound:
             self.SL.currSound = -1
             self.setInstructions()
             self.getHelp()
-        elif self.mode == SND_MODE and self.SL.onValidSound():    
+        elif self.mode == SND_MODE and (self.SL.onValidSound() or self.SL.currCat == self.SL.sfxCat):   
             soundBytes = self.SL.getCurrSoundBytes()
             type = SND_MODE
             if self.SL.currCat == self.SL.sfxCat:
-                if self.env['story'].isTitle():
+                if self.env['story'].clipIsTitle():
                     self.env['story'].replaceTitle(soundBytes)
                     self.quit()
                     return
