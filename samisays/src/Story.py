@@ -24,7 +24,7 @@ class Story:
         self.zipClips = [zlib.compress(titleBytes)]
         self.types = [NON]
         self.currClip = 0
-        self.lastDelete = ''
+        self.trash = []
         self.justTitle = False
         
     
@@ -70,13 +70,19 @@ class Story:
             return
         self.storyMutex.acquire()
         if self.currClip > 0:
-            self.lastDelete = decompress(self.zipClips[self.currClip])
+            self.addToTrash(self.zipClips[self.currClip])
             del self.zipClips[self.currClip]
             del self.types[self.currClip]
         self.currClip -= 1
         self.storyMutex.release()
         self.pickleMe()
         return self.getCurrClip()
+    
+    
+    def addToTrash(self, zipClip):
+        if len(self.trash) == MAX_TRASH_SIZE:
+            del self.trash[MAX_TRASH_SIZE-1]
+        self.trash = [zipClip] + self.trash
     
     '''
     ' Locks all clips in the story.
@@ -152,7 +158,7 @@ class Story:
         #copy.clips = [c for c in self.clips]
         copy.zipClips = [z for z in self.zipClips]
         copy.types = [t for t in self.types]
-        copy.lastDelete = self.lastDelete
+        copy.trash = [t for t in self.trash]
         return copy
         
     
@@ -169,7 +175,7 @@ class Story:
         return zlib.decompress(self.zipClips[0]) == ''
     
     def hasTrash(self):
-        return self.lastDelete != ''
+        return self.trash != []
     
     def clipIsLocked(self):
         return self.types[self.currClip] == LCK
