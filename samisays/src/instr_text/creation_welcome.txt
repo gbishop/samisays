@@ -1,1 +1,1 @@
-Welcome to Sami Says story creation.  Press Enter for help.
+Welcome to Sami Says story creation.  Press Down arrow for help.
