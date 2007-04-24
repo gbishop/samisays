@@ -11,6 +11,7 @@ class SoundEffects:
     
         # Define array of functions for sound effects
         self.sfxFunctions = [SpeedUp, LargeSpeedUp, SlowDown, LargeSlowDown, ShortEcho, LongEcho, Reverse]
+        self.sfxList = ["Speed Up", "Super Speed Up", "Slow Down", "Super Slow Down", "Short Echo", "Long Echo", "Reverse"]
         self.currSFX = -1
         self.currSFXClip = ''
         
@@ -47,6 +48,14 @@ class SoundEffects:
     def getCurrSFXClip(self):
         if self.currSFX != -1:
             return self.currSFXClip
+    '''
+    ' getCurrSFXName - returns the name of the currently selected sound effect
+    '''    
+    def getCurrSFXName(self):
+        if self.currSFX != -1:
+            return self.sfxList[self.currSFX]
+        else :
+            return ''
     
     
 def LongEcho(clip):
