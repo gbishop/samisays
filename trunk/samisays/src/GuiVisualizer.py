@@ -1,6 +1,7 @@
 ''' Imports '''
 from Story import *
 from SoundControl import *
+from SoundLibrary import *
 import sys
 import wx
 from Constants import *
@@ -44,6 +45,7 @@ class GuiVisualizer(wx.Frame):
         self.SetSize(wx.DisplaySize())
         self.title.SetFont(wx.Font(28, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.statsLabel.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
+        self.clipLabel.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.instructions.SetFont(wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         #self.infoLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         #self.instructionLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
@@ -111,6 +113,7 @@ class GuiVisualizer(wx.Frame):
     def handleShow(self, event):
         if not self.visible:
             self.updateStats()
+            self.updateLibraryStats()
         self.visible = not self.visible
         
     
@@ -138,6 +141,33 @@ class GuiVisualizer(wx.Frame):
         statsInfo = ('Recorded Sounds: %d\nInserted Sounds:  %d\nManipulated Sounds:  %d\nLocked (Teacher) Sounds:  %d\nBreaks:  %d' 
                      % (stats[REC], stats[SND], stats[SFX], stats[LCK], stats[BRK]))
         self.statsLabel.SetLabel(durInfo + clipInfo + statsInfo)
+        
+    def updateLibraryStats(self):
+        SL = self.env['auiInsertSound'].SL
+        mode = self.env['auiInsertSound'].mode
+        
+        catName = ''
+        soundIndex = ''
+        soundFileName = ''
+        soundName = ''
+        
+        if mode == CAT_MODE:
+            catName = SL.getCurrCatName().capitalize()
+        elif mode == SND_MODE:
+            catName = SL.getCurrCatName().capitalize()
+            if SL.currCat == SL.sfxCat :
+                soundIndex = '%d (of %d)' % (SL.SFX.currSFX+1, len(SL.SFX.sfxList))
+            else :
+                soundIndex = '%d (of %d)' % (SL.currSound+1, SL.getCatLen(SL.currCat))
+            splitFileName = SL.getCurrSoundName().split('.')
+            soundName = splitFileName[0].capitalize()
+            
+        catLabel = 'Category: %s\n\n' % (catName)
+        indexLabel = 'Sound: ' + soundIndex + '\n\n'
+        nameLabel = 'Name: %s\n\n' % (soundName)
+        
+        self.clipLabel.SetLabel(catLabel + indexLabel + nameLabel)
+        
         
     def onClose(self, event):
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO | wx.ICON_EXCLAMATION)

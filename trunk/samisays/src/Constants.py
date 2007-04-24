@@ -11,6 +11,7 @@ import sets
 INSTR_DIR = 'instr_text/'
 CAT_MODE = 0
 SND_MODE = 1
+STORY_MODE = 2
 
 ''' AuiStoryCreation '''
 SYS_SOUND_DIR = 'sys_sounds/'

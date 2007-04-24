@@ -9,6 +9,7 @@ class AuiInsertSound:
     
     def __init__(self, env):
         self.env = env
+        self.mode = STORY_MODE
 
     def takeOver(self):
         self.keyDown = False # Flag to tell if a key is already being held down
@@ -77,6 +78,7 @@ class AuiInsertSound:
         else:
             keyFunctions[keyCode]() # Call function for valid key
             self.env['guiWorking'].updateStats()
+            self.env['guiWorking'].updateLibraryStats()
         
         event.Skip()
      
@@ -149,6 +151,8 @@ class AuiInsertSound:
                 else:
                     self.env['story'].deleteClip()
                     type = SFX
+            self.mode = STORY_MODE
+            self.env['guiWorking'].updateLibraryStats()
             self.env['story'].insertClip(soundBytes, type)
             self.quit()
         else:
@@ -156,6 +160,8 @@ class AuiInsertSound:
             
     def back(self):
         if self.mode == CAT_MODE:
+            self.mode = STORY_MODE
+            self.env['guiWorking'].updateLibraryStats()
             self.quit()
         elif self.mode == SND_MODE:
             self.mode = CAT_MODE

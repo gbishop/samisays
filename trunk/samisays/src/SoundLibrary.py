@@ -59,7 +59,10 @@ class SoundLibrary:
     ' onValidCat - Returns the text name of the current category from the list.
     '''    
     def getCurrCatName(self):
-        return self.catList[self.currCat]
+        if self.currCat != -1 :
+            return self.catList[self.currCat]
+        else:
+            return ''
     
     '''
     ' getNextCatName - Increments the current category in a circular fashion and
@@ -156,6 +159,18 @@ class SoundLibrary:
             return len(self.SFX.sfxFunctions)
         else:
             return len(self.soundMatrix[cat])
+    '''
+    ' getSoundName - Returns the name of the sound file/manipulation/etc you're currently on
+    '''
+    def getCurrSoundName(self):
+        if self.currCat == self.trashCat:
+            return 'Trash'
+        elif self.currCat == self.sfxCat:
+            return self.SFX.getCurrSFXName()
+        elif self.currCat != -1 and self.currSound != -1:
+            return self.soundMatrix[self.currCat][self.currSound]
+        else :
+            return ''
 
         
         
