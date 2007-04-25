@@ -4,4 +4,4 @@ to dos
  * one page w/ source, doc, installer, executable links
  * should be able to figure out what's going on just with documentation
  * important design decisions (keybinds, platform independence..)
- * 
+ * change commenting for pydoc (no fn name in documentation block, put it after the def line)
