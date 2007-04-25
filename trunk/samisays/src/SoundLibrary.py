@@ -169,7 +169,7 @@ class SoundLibrary:
             return self.SFX.getCurrSFXName()
         elif self.currCat != -1 and self.currSound != -1:
             return self.soundMatrix[self.currCat][self.currSound]
-        else :
+        else:
             return ''
 
         

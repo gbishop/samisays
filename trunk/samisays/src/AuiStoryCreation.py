@@ -169,14 +169,11 @@ class AuiStoryCreation:
         else:
             story.insertClip(soundBytes, type = REC)
 
-        
+        if len(story) == 1: # Title is only clip
+            soundBytes += self.env['SoundControl'].speakTextFileToBytes(INSTR_DIR + 'after_title.txt')
         self.env['SoundControl'].playSoundBytes(soundBytes)
         self.env['guiWorking'].recOff()
-# Ed Wrote:
-	if len(self.env['story']) == 1 :
-	    # If only the title exists, it must have just been recorded.
 
-	    self.env['SoundControl'].speakTextFile(INSTR_DIR + 'has_title_play_help.txt')
         
     ''' 
     ' Called when Story Playback key is released.

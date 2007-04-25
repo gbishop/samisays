@@ -260,6 +260,8 @@ class GuiStories(wx.Frame):
         self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
+        
+        self.env['auiStoryCreation'].loadFullStory()
             
         if self.env['student'] == self.env['class'].teacher:
             self.Enable(False)
@@ -380,7 +382,6 @@ class GuiStories(wx.Frame):
 
         dialog = wx.FileDialog(None,'Please select a filename to export.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
         if dialog.ShowModal() == wx.ID_OK:
-            self.env['auiStoryCreation'].loadFullStory()
             encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath())
         dialog.Destroy()   
     
