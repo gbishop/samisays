@@ -14,7 +14,7 @@ class GuiVisualizer(wx.Frame):
         self.panel = wx.Panel(self, -1)
         self.grpBoxInfo = wx.StaticBox(self.panel, -1, "Story Information")
         self.grpBoxInstruct = wx.StaticBox(self.panel, -1, "Instructions")
-        self.grpBoxClipInfo = wx.StaticBox(self.panel, -1, "Clip Information")
+        self.grpBoxClipInfo = wx.StaticBox(self.panel, -1, "Sound Library Information")
         self.grpBoxRecording = wx.StaticBox(self.panel, -1, 'Recording')
         self.title = wx.StaticText(self.panel, -1, 'Story Creation')
         self.instructions = wx.TextCtrl(self.panel, -1, 'Record more clips with the [space bar].  Navigate through clips with the [left and right arrows].  Insert sounds with the [down arrow].', style=wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_LINEWRAP)
@@ -146,25 +146,28 @@ class GuiVisualizer(wx.Frame):
         SL = self.env['auiInsertSound'].SL
         mode = self.env['auiInsertSound'].mode
         
-        catName = ''
         soundIndex = ''
         soundFileName = ''
         soundName = ''
         
-        if mode == CAT_MODE:
-            catName = SL.getCurrCatName().capitalize()
-        elif mode == SND_MODE:
-            catName = SL.getCurrCatName().capitalize()
+        splitCatName = SL.getCurrCatName().split(' ')
+        splitCatName = [w.capitalize() for w in splitCatName]
+        catName = ' '.join(splitCatName)
+        
+        if mode == SND_MODE:
             if SL.currCat == SL.sfxCat :
                 soundIndex = '%d (of %d)' % (SL.SFX.currSFX+1, len(SL.SFX.sfxList))
             else :
                 soundIndex = '%d (of %d)' % (SL.currSound+1, SL.getCatLen(SL.currCat))
-            splitFileName = SL.getCurrSoundName().split('.')
-            soundName = splitFileName[0].capitalize()
+            soundFileName = SL.getCurrSoundName()
+            splitFileName = soundFileName.split('.')
+            splitSoundName = splitFileName[0].split(' ')
+            splitSoundName = [w.capitalize() for w in splitSoundName]
+            soundName = ' '.join(splitSoundName)
             
-        catLabel = 'Category: %s\n\n' % (catName)
-        indexLabel = 'Sound: ' + soundIndex + '\n\n'
-        nameLabel = 'Name: %s\n\n' % (soundName)
+        catLabel = 'Category:  %s\n\n' % (catName)
+        indexLabel = 'Sound:  %s\n\n' % (soundIndex)
+        nameLabel = 'Name:  %s\n\n' % (soundName)
         
         self.clipLabel.SetLabel(catLabel + indexLabel + nameLabel)
         

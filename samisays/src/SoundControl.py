@@ -23,7 +23,7 @@ class SoundControl:
     def __init__(self):
         
         self.tts = pyTTS.Create()
-        self.tts.SetOutputFormat(TTS_RATE/1000,BITS,CHANNELS)
+        self.tts.SetOutputFormat(RATE/1000,BITS,CHANNELS)
         
         # initialize pySonic
         self.w = pySonic.World()
@@ -130,19 +130,24 @@ class SoundControl:
         event.Skip()
         
     def speakText(self, text, blocking = False):
+        soundBytes = self.speakTextToBytes(text)
+        self.playSoundBytes(soundBytes, blocking)
+        
+    def speakTextFile(self, filepath, blocking = False):
+        text = file(filepath,'r').read()
+        self.speakText(text, blocking)
+    
+    def speakTextFileToBytes(self, filepath):
+        text = file(filepath,'r').read()
+        return self.speakTextToBytes(text)
+    
+    def speakTextToBytes(self, text):
         for word, phon in PRONUNCIATIONS:
             text = text.replace(word, phon)
         m = self.tts.SpeakToMemory(text)
-        format = m.Format.GetWaveFormatEx()
-        soundBytes = m.GetData()
-        self.playSoundBytes(soundBytes, blocking, TTS_RATE)
+        soundBytes = ''.join(m.GetData())
+        return soundBytes
         
-    def speakTextFile(self, filepath, blocking = False):
-#Ed Wrote
-	while self.src.IsPlaying() :
-		pass
-        text = file(filepath,'r').read()
-        self.speakText(text, blocking)
 
 def soundFileToBytes(filePath):
     soundBytes = resampleSoundFile(filePath)

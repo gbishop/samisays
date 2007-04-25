@@ -50,7 +50,7 @@ RATE = 16000    # samples per second
 BITS = 16       # BITS per sample
 CHANNELS = 1    # 1 is mono, 2 is stereo
 BUFF_DURATION = 1 # in seconds
-TTS_RATE = 44000
+#TTS_RATE = 44000 #Must match RATE for after_title instr to work.
 MP3_RATE = 64000
 PRONUNCIATIONS = [('record','ree chord'), ('Record', 'Ree chord')]
 
