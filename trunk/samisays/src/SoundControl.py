@@ -138,6 +138,9 @@ class SoundControl:
         self.playSoundBytes(soundBytes, blocking, TTS_RATE)
         
     def speakTextFile(self, filepath, blocking = False):
+#Ed Wrote
+	while self.src.IsPlaying() :
+		pass
         text = file(filepath,'r').read()
         self.speakText(text, blocking)
 
