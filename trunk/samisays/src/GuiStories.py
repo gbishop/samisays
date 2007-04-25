@@ -30,7 +30,7 @@ class GuiStories(wx.Frame):
         self.lstStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnSelect = wx.Button(self.panel, -1, "Open")
         self.btnSelect.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
-        self.btnCreate = wx.Button(self.panel, -1, "Write")
+        self.btnCreate = wx.Button(self.panel, -1, "Write New")
         self.btnCreate.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnRename = wx.Button(self.panel, -1, "Rename")
         self.btnRename.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
