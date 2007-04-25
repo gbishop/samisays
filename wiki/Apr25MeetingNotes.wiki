@@ -1,5 +1,6 @@
 #summary April 25 Meeting Notes
 
+to dos
 * one page w/ source, doc, installer, executable links
 * should be able to figure out what's going on just with documentation
 * important design decisions (keybinds, platform independence..)
