@@ -19,7 +19,7 @@ class GuiVisualizer(wx.Frame):
         self.title = wx.StaticText(self.panel, -1, 'Story Creation')
         self.instructions = wx.TextCtrl(self.panel, -1, 'Record more clips with the [space bar].  Navigate through clips with the [left and right arrows].  Insert sounds with the [down arrow].', style=wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_LINEWRAP)
         self.statsLabel = wx.StaticText(self.panel, -1, '')
-        self.clipLabel = wx.StaticText(self.panel, -1, '')
+        self.soundLibLabel = wx.StaticText(self.panel, -1, '')
         self.imgRecOff = wx.Image("art/rec_off.png", wx.BITMAP_TYPE_PNG)
         self.imgRecOn = wx.Image("art/rec_on.png", wx.BITMAP_TYPE_PNG)
         self.picRecord = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
@@ -45,7 +45,7 @@ class GuiVisualizer(wx.Frame):
         self.SetSize(wx.DisplaySize())
         self.title.SetFont(wx.Font(28, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.statsLabel.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
-        self.clipLabel.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
+        self.soundLibLabel.SetFont(wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         self.instructions.SetFont(wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         #self.infoLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
         #self.instructionLabel.SetFont(wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
@@ -82,7 +82,7 @@ class GuiVisualizer(wx.Frame):
         boxesSizer.Add((20, 20), 0, 0, 0)
         boxesSizer.Add(recSizer, 0, wx.EXPAND,0)
         boxesSizer.Add((20, 20), 0, 0, 0)
-        clipSizer.Add(self.clipLabel, 1, wx.EXPAND, 0)
+        clipSizer.Add(self.soundLibLabel, 1, wx.EXPAND, 0)
         boxesSizer.Add(clipSizer,1,wx.EXPAND, 0)
         instructionSizer.Add(self.instructions, 1,wx.EXPAND,0)
         boxesSizer.Add((20, 20), 0, 0, 0)
@@ -146,6 +146,10 @@ class GuiVisualizer(wx.Frame):
         SL = self.env['auiInsertSound'].SL
         mode = self.env['auiInsertSound'].mode
         
+        if mode == STORY_MODE:
+            self.soundLibLabel.SetLabel('')
+            return
+        
         soundIndex = ''
         soundFileName = ''
         soundName = ''
@@ -169,7 +173,7 @@ class GuiVisualizer(wx.Frame):
         indexLabel = 'Sound:  %s\n\n' % (soundIndex)
         nameLabel = 'Name:  %s\n\n' % (soundName)
         
-        self.clipLabel.SetLabel(catLabel + indexLabel + nameLabel)
+        self.soundLibLabel.SetLabel(catLabel + indexLabel + nameLabel)
         
         
     def onClose(self, event):

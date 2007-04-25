@@ -16,6 +16,7 @@ class AuiInsertSound:
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
         self.mode = CAT_MODE
+        self.env['guiWorking'].updateLibraryStats()
         
         self.setInstructions()
 
@@ -26,6 +27,8 @@ class AuiInsertSound:
             self.getHelp()
         else:
             self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+            
+    
     
     def reloadSoundLibrary(self):
         self.SL = SoundLibrary(self.env)
