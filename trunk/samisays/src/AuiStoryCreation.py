@@ -34,7 +34,7 @@ class AuiStoryCreation:
         else:
             self.env['SoundControl'].playSoundBytes(self.env['story'].getTitleBytes())
             
-        self.env['auiInsertSound'].reloadSoundLibrary()
+        self.env['soundLibrary'].loadLibrary()
         
         self.firstDown = -1 # Code to remmeber which key was held down first
                 
@@ -77,7 +77,7 @@ class AuiStoryCreation:
         else:
             instrFile += 'creation_instructions.txt'
         self.currInstr = file(instrFile, 'r').read()
-        self.env['guiWorking'].setInstructions(self.currInstr)
+        self.env['guiVisualizer'].setInstructions(self.currInstr)
     
     
     def onKeyDown(self, event):
@@ -93,7 +93,7 @@ class AuiStoryCreation:
             self.stopPlayback = True 
             self.env['SoundControl'].stopPlay()
             self.env['SoundControl'].startRecord()
-            self.env['guiWorking'].recOn()
+            self.env['guiVisualizer'].recOn()
         
         
 
@@ -136,7 +136,7 @@ class AuiStoryCreation:
         else:
             # Key and context is valid, go to the function required
             keyFunctions[keyCode]()
-            self.env['guiWorking'].updateStats()
+            self.env['guiVisualizer'].updateStats()
 
 
 
@@ -158,7 +158,7 @@ class AuiStoryCreation:
         
         if len(soundBytes) <= crop: # Space not hold
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'hold_space.txt')
-            self.env['guiWorking'].recOff()
+            self.env['guiVisualizer'].recOff()
             return
             
         soundBytes = soundBytes[crop:] #Crops 
@@ -177,7 +177,7 @@ class AuiStoryCreation:
             soundBytes += self.env['SoundControl'].speakTextFileToBytes(INSTR_DIR + 'after_title.txt')
             
         self.env['SoundControl'].playSoundBytes(soundBytes)
-        self.env['guiWorking'].recOff() # Turns off red record light
+        self.env['guiVisualizer'].recOff() # Turns off red record light
 
         
 
@@ -270,7 +270,7 @@ class AuiStoryCreation:
                 pass
             self.env['story'].pickleMutex.acquire()
             self.env['SoundControl'].stopPlay()
-            self.env['guiWorking'].Hide()
+            self.env['guiVisualizer'].Hide()
             self.env['guiStories'].Show()
             self.env['timer'].Stop()
         else:
@@ -305,7 +305,7 @@ class StoryPlayback(threading.Thread):
         
         while not self.env['auiStoryCreation'].stopPlayback and (story.currClip < len(story)-1):
             self.env['SoundControl'].playSoundBytes(story.getNextClip())
-            self.env['guiWorking'].updateStats()
+            self.env['guiVisualizer'].updateStats()
             while (self.env['SoundControl'].isPlaying()):
                 pass
          

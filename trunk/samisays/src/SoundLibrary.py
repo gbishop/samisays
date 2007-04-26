@@ -8,8 +8,6 @@ class SoundLibrary:
     
     def __init__(self, env):
         self.env = env
-        self.SFX = SoundEffects(env)
-        self.loadLibrary(SOUND_LIB_DIR)
 
     '''
     ' loadLibrary - Loads filenames of soundlibrary into matrix with rows as
@@ -18,8 +16,8 @@ class SoundLibrary:
     '                does not currently have a sound or category to select.  Trash
     '                and SFX categories are added to the end of the category list.
     '''   
-    def loadLibrary(self, libraryDir):
-        self.catList = os.listdir(libraryDir)
+    def loadLibrary(self):
+        self.catList = os.listdir(SOUND_LIB_DIR)
         self.catList.sort()
         if '.svn' in self.catList:
             self.catList.remove('.svn') # Ignore SVN files
@@ -40,6 +38,7 @@ class SoundLibrary:
         self.numCats = len(self.catList)
         self.sfxCat = self.numCats - 1
         self.trashCat = self.numCats -2
+        self.SFX = SoundEffects(self.env)
     
     '''
     ' onValidCat - Returns true if user has moved off -1 category which is used

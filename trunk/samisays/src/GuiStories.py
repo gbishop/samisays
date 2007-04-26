@@ -357,8 +357,8 @@ class GuiStories(wx.Frame):
         self.env['SoundControl'].stopPlay()
         self.env['auiStoryCreation'].loadFullStory()
         self.env['auiStoryCreation'].takeOver()
-        self.env['guiWorking'].Show()
-        self.env['guiWorking'].SetFocus()
+        self.env['guiVisualizer'].Show()
+        self.env['guiVisualizer'].SetFocus()
         self.env['timer'].Start(100)
         self.env['guiStories'].Hide()
 

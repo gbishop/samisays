@@ -143,7 +143,7 @@ class GuiVisualizer(wx.Frame):
         self.statsLabel.SetLabel(durInfo + clipInfo + statsInfo)
         
     def updateLibraryStats(self):
-        SL = self.env['auiInsertSound'].SL
+        SL = self.env['soundLibrary']
         mode = self.env['auiInsertSound'].mode
         
         if mode == STORY_MODE:
