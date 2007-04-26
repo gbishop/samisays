@@ -65,4 +65,4 @@ SND = 3
 LCK = 4
 BRK = 5
 COMPRESS_RATE = 9
-MAX_TRASH_SIZE = 5                              
+MAX_TRASH_SIZE = -1 #-1 == inf                              

@@ -6,27 +6,26 @@ from Story import *
 from AuiInsertSound import *
 from Constants import *
 
-'''
-' Class Name:  StoryCreationAUI
-' Description: Captures keys and gives audio cues to control the creation of a story.
-'              Allows user to create, navigate, and delete the clips of a story.  Also
-'              enables user to enter the module for inserting sound effects.  Exiting
-'              this module returns the user to managing his or her stories.
-'''
+
 class AuiStoryCreation:
+    ''' Captures keys and gives audio cues to control the creation of a story.
+    Allows user to create, navigate, and delete the clips of a story.  Also
+    enables user to enter the module for inserting sound effects.  Exiting
+    this module returns the user to managing his or her stories.'''    
     
-    ''' 
-    ' Constructor initializes object. 
-    '''
     def __init__(self, env):
+        '''Constructor receives global variable and initializes object.'''
+        
         self.env = env
         self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
         self.introSound = soundFileToBytes(INTRO_SOUND)
         self.waitSound = soundFileToBytes(WAIT_SOUND)*50
     
     def takeOver(self):
+        '''Gives user control to AuiStoryCreation by setting key bindings and initializes AUI.'''
+        
         self.env['SoundControl'].playSoundBytes(self.introSound, True)
-        self.teacherMode = self.env['student'] == self.env['class'].teacher
+        self.teacherMode = self.env['student'] == self.env['class'].teacher #teacher template mode
         
         if self.teacherMode and self.env['story'].needsTitle():
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'template_welcome.txt')
@@ -47,15 +46,22 @@ class AuiStoryCreation:
         self.setInstructions()
         
     def takeKeyBindings(self):
+        '''Binds keys to this class.'''
+        
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
     
     def loadFullStory(self):
+        '''Plays wait sound while full story is loaded.  Initially, only title was loaded for story selection.'''
+        
         self.env['SoundControl'].playSoundBytes(self.waitSound)
         self.env['story'] = self.env['story'].loadFullStory()
         self.env['SoundControl'].stopPlay()
     
     def setInstructions(self):
+        '''Sets current instructions based on state of the story.  These will be spoken when user presses help key
+        and displayed on the visualizer gui.'''
+        
         instrFile = INSTR_DIR
         if self.deleteConfirmed:
             if self.env['story'].currClip == 0:
@@ -73,10 +79,10 @@ class AuiStoryCreation:
         self.currInstr = file(instrFile, 'r').read()
         self.env['guiWorking'].setInstructions(self.currInstr)
     
-    ''' 
-    ' Handles event when a key is pressed. 
-    '''
+    
     def onKeyDown(self, event):
+        '''Handles event when a key is pressed.  Keys track of first key to be held down and ignores all others until released.
+        If key is record button, recording is started.'''
         
         if self.firstDown != -1: # Some key is already being held down
             return
@@ -90,11 +96,10 @@ class AuiStoryCreation:
             self.env['guiWorking'].recOn()
         
         
-    ''' 
-    ' Handles event when a key is released by calling the correct function for 
-    ' each valid key.
-    '''
+
     def onKeyUp(self, event):
+        '''Handles event when a key is released by calling the correct function for each valid key that was pressed
+        down while no other keys were already down.'''
         
         keyCode = event.GetKeyCode()
         if self.firstDown != keyCode: # If released key is not the first one pressed, ignore it
@@ -116,7 +121,7 @@ class AuiStoryCreation:
         if self.deleteConfirmed and keyCode != DELETE_KEY: # If key is not the delete key, a delete is not being confirmed
             self.deleteConfirmed = False
             self.setInstructions()
-        elif self.quitConfirmed and keyCode != wx.WXK_ESCAPE:
+        elif self.quitConfirmed and keyCode != wx.WXK_ESCAPE:#If key is not the escape key, quit is not being confirmed
             self.quitConfirmed = False
             self.setInstructions()
         
@@ -134,30 +139,29 @@ class AuiStoryCreation:
             self.env['guiWorking'].updateStats()
 
 
-    ''' 
-    ' Called when help key is released.
-    ' Notifies the user of the current options.  The case where there is no title 
-    ' (len(story) == 0) is already handled in OnKeyUp.
-    '''
+
     def getHelp(self):
+        '''Called when help key is released.  Reads the current instructions to user.'''
+        
         self.env['SoundControl'].speakText(self.currInstr)
         
-    ''' 
-    ' Called when record key is lifted.
-    ' Ends recording of clip, inserts it into the story, and replays it. 
-    '''
+    
     def recordingFinished(self):
-        
+        '''Ends recording of clip and crops the beginning so that the click will not
+        affect normalization.  If clip is longer than crop, inserts it into the story and replays it. Otherwise,
+        notifies the user.  If story was previously empty (this is the title) post-title instructions are appended
+        to the endof the replayed clip.'''
+    
         crop = DEFAULT_CROP*RATE/44100
         
         soundBytes = self.env['SoundControl'].stopRecord() # End record and get recorded bytes
         
-        if len(soundBytes) <= crop:
+        if len(soundBytes) <= crop: # Space not hold
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'hold_space.txt')
             self.env['guiWorking'].recOff()
             return
             
-        soundBytes = soundBytes[crop:]
+        soundBytes = soundBytes[crop:] #Crops 
         soundBytes = normalizeSoundBytes(soundBytes)
 
         
@@ -171,29 +175,32 @@ class AuiStoryCreation:
 
         if len(story) == 1: # Title is only clip
             soundBytes += self.env['SoundControl'].speakTextFileToBytes(INSTR_DIR + 'after_title.txt')
+            
         self.env['SoundControl'].playSoundBytes(soundBytes)
-        self.env['guiWorking'].recOff()
+        self.env['guiWorking'].recOff() # Turns off red record light
 
         
-    ''' 
-    ' Called when Story Playback key is released.
-    ' Starts a thread to play back the entire story in order. If interrupted by a valid key, 
-    ' the current clip is the last to begin being played.  A separate thread is used to allow
-    ' this functionality.
-    '''
+
     def playbackStory(self):
+        '''Starts a thread to play back the entire story in order. If interrupted by a valid key, 
+        thread returns and  current clip is the last to begin being played.  A separate thread is
+        is used to allow this functionality.'''
+        
         self.stopPlayback = False
         spb = StoryPlayback(self.env) 
         spb.start()
         
-    '''
-    ' Called when insert sound key is released. 
-    ' Passes control to the AuiInsertSound class to allow user to insert a sound effect.
-    '''
+
     def insertSound(self):
+        '''Called when insert sound key is released. Passes control to the AuiInsertSound class 
+        to allow user to insert a sound effect.'''
+        
         self.env['auiInsertSound'].takeOver()
     
     def insertBreak(self):
+        '''If in teacher mode, a break is inserted in the template.  When the template is assigned to 
+        a student, clips between breaks will be combined into a single undeletable clip.'''
+        
         if not self.teacherMode:
             return
         
@@ -204,13 +211,11 @@ class AuiStoryCreation:
             story.insertClip(self.breakSoundBytes, type = BRK)
             self.env['SoundControl'].playSoundBytes(self.breakSoundBytes)
         
-    '''
-    ' Called when delete key is released.
-    ' If previous key pressed was also the delete key, deletes the current clip. Otherwise,
-    ' requests confirmation for delete.  If current clip is title, notifies user that a new
-    ' title must be recorded before anything else can be done.
-    '''    
+
     def deleteClip(self):
+        '''Called when delete key is released. If previous key pressed was also the delete key, 
+        deletes the current clip. Otherwise, requests confirmation for delete.  If current clip 
+        is title, notifies user that a new title must be recorded before anything else can be done.'''    
 
         story = self.env['story']
         if story.clipIsLocked() and not self.teacherMode:
@@ -230,31 +235,35 @@ class AuiStoryCreation:
             self.setInstructions()
             self.getHelp()
                 
-    '''
-    ' Called when navigate left key is released.
-    ' Moves to the previous clip in the story and plays it back.
-    '''
+
     def navLeft(self):
+        '''Moves to the previous clip in the story and plays it back.'''
+        
         self.env['SoundControl'].playSoundBytes(self.env['story'].getPreviousClip())
     
-    '''
-    ' Called when navigate right key is released.
-    ' Moves to the next clip in the story and plays it back.
-    '''
+
     def navRight(self):
+        '''Moves to the next clip in the story and plays it back.'''
+        
         self.env['SoundControl'].playSoundBytes(self.env['story'].getNextClip())
         
     def jumpLeft(self):
+        '''Moves to the title of the story and plays it back.'''
+        
         self.env['story'].currClip = 0
         self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
     
     def jumpRight(self):
+        '''Moves to the last clip of the story and plays it back.'''
+        
         self.env['story'].currClip = len(self.env['story']) - 1
         self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
         
-           
-    ''' Function for gracefully exiting story creation and returning to menu '''
     def quit(self):
+        ''' Called when quit key is pressed.  If last key pressed was also quit key, plays wait sound 
+        until all pickling threads have exited then returns to story selection. Otherwise requests
+        confirmation.'''
+        
         if self.quitConfirmed:
             self.env['SoundControl'].playSoundBytes(self.waitSound)
             while not self.env['story'].threadSem.acquire(False):
@@ -270,29 +279,26 @@ class AuiStoryCreation:
             self.getHelp()
         
         
-'''
-' Class Name:  StoryPlayback
-' Description: This class is run as a separate thread. Its only function is to play back
-'              the entire story in order.  If any valid key is pressed during the playback,
-'              a flag is set by the StoryCreationAUI object that causes this thread to exit
-'              early.  Therefore, the current clip will remain the last clip that the thread
-'              began to play.  This class is run as a separate thread in order to facilitate
-'              this functionality.
-'''
+
 class StoryPlayback(threading.Thread):
+    '''This class is run as a separate thread. Its only function is to play back
+    the entire story in order.  If any valid key is pressed during the playback,
+    a flag is set by the StoryCreationAUI object that causes this thread to exit
+    early.  Therefore, the current clip will remain the last clip that the thread
+    began to play.  This class is run as a separate thread in order to facilitate
+    this functionality.'''
     
-    '''
-    ' Constructor initializes thread.
-    '''
+
     def __init__(self, env):
+        '''Constructor receives global variables and initializes thread.'''
         self.env = env
         threading.Thread.__init__(self)
+        
     
-    '''
-    ' Called when thread is started.  Plays back each clip of the story in sequence and exits when
-    ' either the stopPlayback flag is set to True or the last clip in the story has been played.
-    '''
+
     def run(self):
+        '''Called when thread is started.  Plays back each clip of the story in sequence and exits when
+        either the stopPlayback flag is set to True or the last clip in the story has been played.'''
         
         story = self.env['story']
         story.currClip = -1
