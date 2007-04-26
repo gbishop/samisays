@@ -160,7 +160,6 @@ class Story:
         #copy.clips = [c for c in self.clips]
         copy.zipClips = [z for z in self.zipClips]
         copy.types = [t for t in self.types]
-        copy.trash = [t for t in self.trash]
         return copy
         
     def getTrash(self):
@@ -225,7 +224,6 @@ class Story:
         else:
             story = self
         story.initializeLocks()
-        story.currClip = 0
         return story
 
             

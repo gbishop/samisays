@@ -18,10 +18,11 @@ from Constants import *
 '''
 class SamiSays(wx.App):
     
-    '''
-    ' OnInit - Does Everything!
-    '''
+
     def OnInit(self):
+        '''
+        ' OnInit - Does Everything!
+        '''
         currentClass = Class()
         currentClass.save()
         currentClass.load()
