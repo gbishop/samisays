@@ -16,22 +16,18 @@ class AuiInsertSound:
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
         self.mode = CAT_MODE
-        self.env['guiWorking'].updateLibraryStats()
+        self.env['guiVisualizer'].updateLibraryStats()
         
         self.setInstructions()
 
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
         
-        if self.SL.currCat == -1:
+        if self.env['soundLibrary'].currCat == -1:
             self.getHelp()
         else:
-            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
             
-    
-    
-    def reloadSoundLibrary(self):
-        self.SL = SoundLibrary(self.env)
     
     def setInstructions(self):
         if self.mode == CAT_MODE:
@@ -39,7 +35,7 @@ class AuiInsertSound:
         elif self.mode == SND_MODE:
             self.currInstr = file(INSTR_DIR + 'insert_sound_snd.txt', 'r').read()
         
-        self.env['guiWorking'].setInstructions(self.currInstr)
+        self.env['guiVisualizer'].setInstructions(self.currInstr)
         
     ''' 
     ' Handles event when a key is pressed. 
@@ -76,12 +72,12 @@ class AuiInsertSound:
         self.env['SoundControl'].stopPlay() # Stop any sound that is playing
         
         # If not yet navigated to a category, ignore keys and repeat instructions
-        if not self.SL.onValidCat() and keyCode not in [wx.WXK_LEFT, wx.WXK_RIGHT, wx.WXK_ESCAPE]:
+        if not self.env['soundLibrary'].onValidCat() and keyCode not in [wx.WXK_LEFT, wx.WXK_RIGHT, wx.WXK_ESCAPE]:
             self.getHelp()
         else:
             keyFunctions[keyCode]() # Call function for valid key
-            self.env['guiWorking'].updateStats()
-            self.env['guiWorking'].updateLibraryStats()
+            self.env['guiVisualizer'].updateStats()
+            self.env['guiVisualizer'].updateLibraryStats()
         
         event.Skip()
      
@@ -91,9 +87,9 @@ class AuiInsertSound:
     '''
     def navLeft(self):
         if self.mode == CAT_MODE:
-            self.env['SoundControl'].speakText(self.SL.getPrevCatName())
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getPrevCatName())
         elif self.mode == SND_MODE:
-            self.env['SoundControl'].playSoundBytes(self.SL.getPrevSoundBytes())
+            self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getPrevSoundBytes())
     
     '''
     ' Called when navigate right key is released.
@@ -101,28 +97,28 @@ class AuiInsertSound:
     '''    
     def navRight(self):
         if self.mode == CAT_MODE:
-            self.env['SoundControl'].speakText(self.SL.getNextCatName())
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getNextCatName())
         elif self.mode == SND_MODE:
-            self.env['SoundControl'].playSoundBytes(self.SL.getNextSoundBytes())
+            self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getNextSoundBytes())
  
     def jumpLeft(self):
         if self.mode == CAT_MODE:
-            self.SL.currCat = 0
-            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+            self.env['soundLibrary'].currCat = 0
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
         elif self.mode == SND_MODE:
-            self.SL.currSND = 0
-            self.env['SoundControl'].playSoundBytes(self.SL.getCurrSoundBytes())
+            self.env['soundLibrary'].currSND = 0
+            self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getCurrSoundBytes())
         
     def jumpRight(self):
         if self.mode == CAT_MODE and self.env['story'].hasTrash():
-            self.SL.currCat = self.SL.trashCat
-            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+            self.env['soundLibrary'].currCat = self.env['soundLibrary'].trashCat
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
         elif self.mode == CAT_MODE:
-            self.SL.currCat = self.SL.sfxCat
-            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+            self.env['soundLibrary'].currCat = self.env['soundLibrary'].sfxCat
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
         elif self.mode == SND_MODE:
-            self.SL.currSND = self.currCatLen-1
-            self.env['SoundControl'].playSoundBytes(self.SL.getCurrSoundBytes())
+            self.env['soundLibrary'].currSND = self.currCatLen-1
+            self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getCurrSoundBytes())
     ''' 
     ' Called when help key is released.
     ' Notifies the user of the current options.
@@ -138,14 +134,14 @@ class AuiInsertSound:
     '''    
     def select(self):
         
-        if self.mode == CAT_MODE and self.SL.onValidCat():
+        if self.mode == CAT_MODE and self.env['soundLibrary'].onValidCat():
             self.mode = SND_MODE
-            self.SL.currSound = -1
+            self.env['soundLibrary'].currSound = -1
             self.setInstructions()
             self.getHelp()
-        elif self.mode == SND_MODE and (self.SL.onValidSound() or self.SL.currCat == self.SL.sfxCat):   
-            soundBytes = self.SL.getCurrSoundBytes()
-            type = self.SL.getCurrType()
+        elif self.mode == SND_MODE and (self.env['soundLibrary'].onValidSound() or self.env['soundLibrary'].currCat == self.env['soundLibrary'].sfxCat):   
+            soundBytes = self.env['soundLibrary'].getCurrSoundBytes()
+            type = self.env['soundLibrary'].getCurrType()
             self.mode = STORY_MODE
             if type == SFX:
                 if self.env['story'].clipIsTitle():
@@ -154,7 +150,7 @@ class AuiInsertSound:
                     return
                 else:
                     self.env['story'].deleteClip()
-            self.env['guiWorking'].updateLibraryStats()
+            self.env['guiVisualizer'].updateLibraryStats()
             self.env['story'].insertClip(soundBytes, type)
             self.quit()
         else:
@@ -163,12 +159,12 @@ class AuiInsertSound:
     def back(self):
         if self.mode == CAT_MODE:
             self.mode = STORY_MODE
-            self.env['guiWorking'].updateLibraryStats()
+            self.env['guiVisualizer'].updateLibraryStats()
             self.quit()
         elif self.mode == SND_MODE:
             self.mode = CAT_MODE
             self.setInstructions()
-            self.env['SoundControl'].speakText(self.SL.getCurrCatName())
+            self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
         
     def quit(self):
         self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
