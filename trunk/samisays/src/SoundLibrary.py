@@ -21,6 +21,11 @@ class SoundLibrary:
         self.catList.sort()
         if '.svn' in self.catList:
             self.catList.remove('.svn') # Ignore SVN files
+            
+        # casing for prioritized sounds
+        if 'assigned sounds' in self.catList:
+            self.catList.remove('assigned sounds')
+            self.catList = ['assigned sounds'] + self.catList
 
         
         self.soundMatrix = [[] for i in xrange(len(self.catList)+1)]
