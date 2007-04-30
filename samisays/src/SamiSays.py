@@ -9,6 +9,7 @@ from SoundControl import *
 from AuiStorySelection import *
 from AuiStoryCreation import *
 from GuiVisualizer import *
+from GuiPrioritize import *
 from Constants import *
 
 '''
@@ -32,8 +33,9 @@ class SamiSays(wx.App):
         students = GuiStudents(None, -1, "")
         stories = GuiStories(None, -1, "")
         assign = GuiAssign(None, -1, "")
+        prior = GuiPrioritize(None, -1, "")
         self.env = {'class': currentClass, 'guiStart': start, 'guiStudents': students, 
-                    'guiStories': stories, 'guiAssign': assign}
+                    'guiStories': stories, 'guiAssign': assign, 'guiPrioritize': prior}
         self.env['SoundControl'] = SoundControl()
         self.env['keyDownFunct'] = None
         self.env['keyUpFunct'] = None
@@ -53,6 +55,7 @@ class SamiSays(wx.App):
         students.setEnv(self.env)
         stories.setEnv(self.env)
         assign.setEnv(self.env)
+        prior.setEnv(self.env)
         self.env['guiVisualizer'].setEnv(self.env)
         return True
 

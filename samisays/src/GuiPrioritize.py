@@ -1,7 +1,7 @@
 ''' Imports '''
 import wx
 import os
-from SoundDropTarget import *
+import sys
 from Constants import *
 
 class GuiPrioritize(wx.Frame):
@@ -14,17 +14,25 @@ class GuiPrioritize(wx.Frame):
         self.boxPrioritized = wx.StaticBox(self.panel, -1, "Prioritized Sounds")
         self.boxLibrary = wx.StaticBox(self.panel, -1, "Sound Library")
         self.lblTitle = wx.StaticText(self.panel, -1, "Prioritize Sounds", style=wx.ALIGN_CENTRE)
+        self.lblTitle.SetFont(wx.Font(26,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.treeLibrary = wx.TreeCtrl(self.panel, DRAG_SOURCE, style=wx.TR_HAS_BUTTONS|wx.TR_LINES_AT_ROOT|wx.TR_DEFAULT_STYLE|wx.SUNKEN_BORDER)
+        self.treeLibrary.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.lstPriority = wx.wx.ListBox(self.panel, -1, choices=[])
+        self.lstPriority.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnAccept = wx.Button(self.panel, -1, "Accept")
+        self.btnAccept.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnCancel = wx.Button(self.panel, -1, "Cancel")
-        self.btnAdd = wx.Button(self.panel, -1, " Add\n-->")
-        self.btnRemove = wx.Button(self.panel, -1, "Remove\n<--")
+        self.btnCancel.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
+        self.btnAdd = wx.Button(self.panel, -1, " Add-->")
+        self.btnAdd.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
+        self.btnRemove = wx.Button(self.panel, -1, "<--Remove")
+        self.btnRemove.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         
         self.Bind(wx.EVT_BUTTON, self.btnAcceptPressed, self.btnAccept)
         self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
         self.Bind(wx.EVT_BUTTON, self.btnAddPressed, self.btnAdd)
         self.Bind(wx.EVT_BUTTON, self.btnRemovePressed, self.btnRemove)
+        self.Bind(wx.EVT_CLOSE, self.onClose)
         
         self.__set_properties()
         self.__do_layout()
@@ -72,6 +80,23 @@ class GuiPrioritize(wx.Frame):
         self.panel.Layout()
         self.Layout()
         self.populateTree()
+        
+    '''
+    ' setEnv - sets self.env to the specified dictionary
+    '''
+    def setEnv(self,env): 
+        self.env = env 
+        
+    '''
+    ' onClose - Function for handing the close event.
+    '''
+    def onClose(self, event):
+        dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO | wx.ICON_EXCLAMATION)
+        if dialog.ShowModal() == wx.ID_YES:
+            dialog.Destroy()
+            sys.exit()
+        else:
+            dialog.Destroy()
         
     def populateTree(self):
         self.treeRoot = self.treeLibrary.AddRoot("Sound Library")
