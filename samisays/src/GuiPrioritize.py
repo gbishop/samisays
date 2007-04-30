@@ -2,6 +2,7 @@
 import wx
 import os
 import sys
+import shutil
 from SoundControl import *
 from Constants import *
 
@@ -12,7 +13,7 @@ class GuiPrioritize(wx.Frame):
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
-        self.priorityCat = []
+        self.priorityCat = {}
         self.boxPrioritized = wx.StaticBox(self.panel, -1, "Prioritized Sounds")
         self.boxLibrary = wx.StaticBox(self.panel, -1, "Sound Library")
         self.lblTitle = wx.StaticText(self.panel, -1, "Prioritize Sounds", style=wx.ALIGN_CENTRE)
@@ -36,7 +37,7 @@ class GuiPrioritize(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnRemovePressed, self.btnRemove)
         self.Bind(wx.EVT_TREE_SEL_CHANGED, self.treeLibrarySelected, self.treeLibrary)
         self.Bind(wx.EVT_TREE_ITEM_ACTIVATED, self.treeLibrarySelected, self.treeLibrary)
-        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.lstPrioritySelected, self.lstPriority)
+        self.Bind(wx.EVT_LISTBOX, self.lstPrioritySelected, self.lstPriority)
         self.Bind(wx.EVT_SHOW, self.onShow)
         self.Bind(wx.EVT_CLOSE, self.onClose)
         
@@ -106,7 +107,7 @@ class GuiPrioritize(wx.Frame):
     
     def onShow(self, event):
         self.populateTree()
-        self.priorityCat = []
+        self.populateList()
         
     def populateTree(self):
         self.treeLibrary.DeleteAllItems()
@@ -129,17 +130,41 @@ class GuiPrioritize(wx.Frame):
     
     def populateList(self):
         directory = os.listdir(SOUND_DIR + "assigned sounds/")
+        if '.svn' in directory:
+            directory.remove('.svn')
         self.lstPriority.SetItems(directory)
+        for file in directory:
+            self.priorityCat[file] = "assigned sounds/" + file
         
-    def lstPrioritySelected(self,event):()
+    def lstPrioritySelected(self,event):
+        fileName = self.lstPriority.GetItems()[self.lstPriority.GetSelection()]
+        if fileName in self.priorityCat.keys():
+            self.env['SoundControl'].stopPlay()
+            self.env['SoundControl'].playSoundFile(SOUND_DIR + self.priorityCat[fileName])
+        else:()
         
     def btnAcceptPressed(self, event):()
         
-    def btnCancelPressed(self, event):()
+    def btnCancelPressed(self, event):
+        self.Hide()
+        self.env['guiStart'].Show()
     
-    def btnAddPressed(self, event):()
+    def btnAddPressed(self, event):
+        selectId = self.treeLibrary.GetSelection()
+        fileName = self.treeLibrary.GetItemText(selectId)
+        if fileName[-4:] == ".mp3":
+            parentId = self.treeLibrary.GetItemParent(selectId)
+            itemList = self.lstPriority.GetItems()
+            if fileName in itemList:
+                return
+            else:
+                itemList = itemList + [fileName]
+                self.lstPriority.SetItems(itemList)
+                self.priorityCat[fileName] = self.treeLibrary.GetItemText(parentId) + "/" + fileName
+                
     
     def btnRemovePressed(self, event):()
+        
     
     def treeLibrarySelected(self, event):
         selectId = self.treeLibrary.GetSelection()
