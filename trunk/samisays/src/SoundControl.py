@@ -6,21 +6,20 @@ from numpy import *
 from Constants import *
 
 
-'''
-' Class Name:  SoundControl
-' Description: This object controls all aspects of sound playback, recording, modification,
-'              and exporting.  A single SoundControl object should be used for each instance
-'              of Sami Says so that only one sound will be played or recorded at a time.  
-' Dependencies: pySonic - for recording and playback
-'               pymedia - for resampling, converting, and exporting
-'               numpy - for normalizing
-'''
-class SoundControl:
 
-    '''
-    ' Constructor initializes object.
-    '''
+class SoundControl:
+    '''This object controls all aspects of sound playback, recording, modification,
+    and exporting.  A single SoundControl object should be used for each instance
+    of Sami Says so that only one sound will be played or recorded at a time.  
+    
+    Dependencies: pySonic - for recording and playback
+                  pymedia - for resampling, converting, and exporting
+                  numpy - for normalizing
+                  pyTTS - for text to speech'''
+
+
     def __init__(self):
+        '''Constructor initializes object variables and dependencies.'''
         
         self.tts = pyTTS.Create()
         self.tts.SetOutputFormat(RATE/1000,BITS,CHANNELS)
@@ -43,10 +42,8 @@ class SoundControl:
         self.isRecording = False
         
         
-    ''' 
-    ' Grabs last chunk of recorded audio and appends it to the current recording. 
-    '''
     def grabAudio(self):
+        '''Grab last chunk of recorded audio and append it to the current recording.'''
 
         pos = self.rec.CurrentSample
 
@@ -56,10 +53,10 @@ class SoundControl:
         self.recData.append(self.sample.GetBytes(self.lastPos, N))
         self.lastPos = pos
     
-    ''' 
-    ' Start recording sound.  If already recording, do nothing. 
-    '''
+
     def startRecord(self):  
+        '''Start recording sound.  If already recording, do nothing.'''
+        
         if self.isRecording:
             return
         
@@ -67,11 +64,9 @@ class SoundControl:
         self.lastPos = 0
         self.rec.Start(self.sample, loopit=True)
         self.isRecording = True
-        
-    ''' 
-    ' Stop recording and return sound bytes.  If not recording, do nothing. 
-    '''
+
     def stopRecord(self):
+        '''Stop recording and return sound bytes.  If not recording, do nothing.'''
         
         if not self.isRecording:
             return
@@ -82,10 +77,10 @@ class SoundControl:
         soundBytes = ''.join(self.recData) # join all the chunks together into one string
         return soundBytes
     
-    ''' 
-    ' Plays specified file (wav, aiff, mp3, ogg, etc.) with or without blocking. 
-    '''
+
     def playSoundFile(self, filePath, blocking = False):
+        ''' Play specified file (wav, aiff, mp3, ogg, etc.) with or without blocking.'''
+        
         self.src.Sound = pySonic.FileSample(filePath)
         self.src.Play()
         
@@ -95,10 +90,9 @@ class SoundControl:
         while self.src.IsPlaying():
             pass
     
-    ''' 
-    ' Plays sound given in byte string with or without blocking. 
-    '''
     def playSoundBytes(self, soundBytes, blocking = False, rate = RATE):
+        '''Play sound given in byte string with or without blocking at specified rate.'''
+        
         self.src.Sound = pySonic.MemorySample(soundBytes, CHANNELS, BITS, rate)
         self.src.Play()
         
@@ -108,40 +102,48 @@ class SoundControl:
         while self.src.IsPlaying():
             pass
     
-    ''' 
-    ' Stops whatever is playing. If not playing, does nothing. 
-    '''
+
     def stopPlay(self):
+        '''Stop whatever sound is playing. If not playing, do nothing.'''
+        
         if self.src.IsPlaying():
             self.src.Stop()
     
-    ''' Returns True if a sound is being played.  Otherwise, returns False. '''
     def isPlaying(self):
+        ''' Return True if a sound is being played.  Otherwise, False.'''
+        
         return self.src.IsPlaying()
     
-    ''' 
-    ' Called every 1000 seconds.  If recording, this is when the buffer should be full.
-    ' Audio in buffer is grabbed to make room for more. 
-    '''
+
     def onTimer(self, event):
+        '''Called every 1000 seconds.  If recording, this is when the buffer should be full.
+        Audio in buffer is grabbed to make room for more.'''
 
         if self.isRecording:
             self.grabAudio()
         event.Skip()
         
     def speakText(self, text, blocking = False):
+        '''Use TTS to speak given text with or without blocking.'''
+        
         soundBytes = self.speakTextToBytes(text)
         self.playSoundBytes(soundBytes, blocking)
         
     def speakTextFile(self, filepath, blocking = False):
+        '''Use TTS to speak text in given text file with or without blocking.'''
+        
         text = file(filepath,'r').read()
         self.speakText(text, blocking)
     
     def speakTextFileToBytes(self, filepath):
+        '''Use TTS to get sound bytes of spoken text in given text file.'''
+        
         text = file(filepath,'r').read()
         return self.speakTextToBytes(text)
     
     def speakTextToBytes(self, text):
+        '''Use TTS to get sound bytes of spoken text in given string.'''
+        
         for word, phon in PRONUNCIATIONS:
             text = text.replace(word, phon)
         m = self.tts.SpeakToMemory(text)
@@ -150,26 +152,28 @@ class SoundControl:
         
 
 def soundFileToBytes(filePath):
+    '''Resample and normalizes sound file and returns bytes.'''
+    
     soundBytes = resampleSoundFile(filePath)
     soundBytes = normalizeSoundBytes(soundBytes)
     return soundBytes
 
-'''
-' Normalizes sound bytes by finding the peak and scaling everything by it up to the maximum amplitude.
-'''
+
 def normalizeSoundBytes(soundBytes):
+    '''Normalize sound bytes by finding the peak and scaling everything by it up to 
+    the maximum amplitude.'''
+    
     soundArray = fromstring(soundBytes, int16)
     m = max(abs(soundArray))
     soundArray = soundArray/float(m)*20000
     soundArray = array(soundArray,int16)
     return soundArray.tostring()
 
-'''
-' Resamples the sound file into the default sound properties specified above and returns as bytes.
-' Uses pymedia's built-in resampler.
-'''      
+   
 def resampleSoundFile(filePath):
-    
+    '''Resample the sound file into the default sound properties specified in Constant
+    and return as bytes. Uses pymedia's built-in resampler.'''
+           
     oldSample = pySonic.FileSample(filePath)
     oRate = oldSample.Frequency
     oSampleSize = oldSample.SampleSize
@@ -190,21 +194,20 @@ def resampleSoundFile(filePath):
 
     return soundBytes
 
-'''
-' Resamples a sound byte stream with the bitrate and # of channels specified.
-' Uses pymedia's built-in resampler.
-'''
+
 def resampleSoundBytes(soundBytes, newRate, newChannels):
+    '''Resample a sound byte stream with the bitrate and num of channels specified.
+    Uses pymedia's built-in resampler.'''
     
     resampler = sound.Resampler((RATE, CHANNELS),(newRate, newChannels))
     newBytes = resampler.resample(soundBytes)
     return newBytes
 
-'''
-' Encodes sound bytes into mp3 format using pymedia's built-in encoder.  
-' The sound is expected to have the default sound properties specified above.
-'''
+
 def encodeToMp3(soundBytes, fileName, bitRate = MP3_RATE):
+    '''Encode sound bytes into mp3 format using pymedia's built-in encoder.  
+    The sound is expected to have the default sound properties specified in Constants.'''
+    
     params= {'id': acodec.getCodecID('mp3'),
             'bitrate': bitRate,
             'sample_rate': RATE,
@@ -221,6 +224,9 @@ def encodeToMp3(soundBytes, fileName, bitRate = MP3_RATE):
     f.close()
     
 def getDuration(soundBytes):
+    '''Find duration (in min,sec) of sound bytes assuming properties in Constants (except
+    assumes single channel).'''
+    
     BITS_PER_BYTE = 8
     numBytes = len(soundBytes)
     numSamples = BITS_PER_BYTE * numBytes/BITS

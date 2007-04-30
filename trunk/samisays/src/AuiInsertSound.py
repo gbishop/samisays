@@ -6,12 +6,17 @@ from Story import *
 from SoundLibrary import *
 
 class AuiInsertSound:
+    ''' Captures keys and gives audio cues to control the insert of a sound.
+    User navigates through categories in the sound library, selects one,
+    navigates the sounds in the category, and selects to insert into story. '''    
     
     def __init__(self, env):
+        '''Constructor receives global variables and initializes object.'''
         self.env = env
         self.mode = STORY_MODE
 
     def takeOver(self):
+        '''Gives user control to AuiInsertSound by setting key bindings and initializes AUI.'''
         self.keyDown = False # Flag to tell if a key is already being held down
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
@@ -30,6 +35,8 @@ class AuiInsertSound:
             
     
     def setInstructions(self):
+        '''Sets current instructions based on state of the story.  These will be spoken when user presses help key
+        and displayed on the visualizer gui.'''
         if self.mode == CAT_MODE:
             self.currInstr = file(INSTR_DIR + 'insert_sound_cat.txt', 'r').read()
         elif self.mode == SND_MODE:
@@ -37,22 +44,20 @@ class AuiInsertSound:
         
         self.env['guiVisualizer'].setInstructions(self.currInstr)
         
-    ''' 
-    ' Handles event when a key is pressed. 
-    '''
     def onKeyDown(self, event):
+        '''Handles event when a key is pressed.  Keys track of first key to be held down and ignores all others until released.'''
+        
         if not self.keyDown:
             self.keyDown = True
             self.keyDownCode = event.GetKeyCode()
             
         event.Skip()
     
-    ''' 
-    ' Handles event when a key is released by calling the correct function for 
-    ' each valid key.
-    '''
+
     def onKeyUp(self, event):
-        
+        '''Handles event when a key is released by calling the correct function for each valid key that was pressed
+        down while no other keys were already down.'''
+                
         keyCode = event.GetKeyCode()
         if self.keyDownCode != keyCode: # If released key is not the first one pressed, ignore it
             return
@@ -86,22 +91,25 @@ class AuiInsertSound:
     ' Moves to the category to previous category in cyclical fashion.
     '''
     def navLeft(self):
+        '''Moves to the previous category/sound in cyclical fashion and plays name/sound.'''
+
         if self.mode == CAT_MODE:
             self.env['SoundControl'].speakText(self.env['soundLibrary'].getPrevCatName())
         elif self.mode == SND_MODE:
             self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getPrevSoundBytes())
-    
-    '''
-    ' Called when navigate right key is released.
-    ' Moves to the next category in cyclical fashion.
-    '''    
+
+
     def navRight(self):
+        '''Moves to the next category/sound in cyclical fashion and plays name/sound.'''
+        
         if self.mode == CAT_MODE:
             self.env['SoundControl'].speakText(self.env['soundLibrary'].getNextCatName())
         elif self.mode == SND_MODE:
             self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getNextSoundBytes())
  
     def jumpLeft(self):
+        '''Moves to the first category/sound and plays name/sound.'''
+        
         if self.mode == CAT_MODE:
             self.env['soundLibrary'].currCat = 0
             self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
@@ -110,6 +118,8 @@ class AuiInsertSound:
             self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getCurrSoundBytes())
         
     def jumpRight(self):
+        '''Moves to the first category/sound and plays name/sound.'''
+                
         if self.mode == CAT_MODE and self.env['story'].hasTrash():
             self.env['soundLibrary'].currCat = self.env['soundLibrary'].trashCat
             self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
@@ -119,20 +129,17 @@ class AuiInsertSound:
         elif self.mode == SND_MODE:
             self.env['soundLibrary'].currSND = self.currCatLen-1
             self.env['SoundControl'].playSoundBytes(self.env['soundLibrary'].getCurrSoundBytes())
-    ''' 
-    ' Called when help key is released.
-    ' Notifies the user of the current options.
-    '''
+    
     def getHelp(self):
+        '''Called when help key is released.  Reads the current instructions to user.'''
+        
         self.env['SoundControl'].speakText(self.currInstr)
     
-    ''' 
-    ' Called when selection key is released.
-    ' If a sound has been navigated to, it is inserted into the story
-    ' and control is returned to the StoryCreationAUI class that called
-    ' this object.
-    '''    
+
     def select(self):
+        '''If a category has been navigated to, sets to SND_MODE.
+        If a sound has been navigated to, inserts into story and returns
+        to Story Creation.'''
         
         if self.mode == CAT_MODE and self.env['soundLibrary'].onValidCat():
             self.mode = SND_MODE
@@ -157,6 +164,9 @@ class AuiInsertSound:
             self.getHelp()
             
     def back(self):
+        '''Moves back a level.  If in sound mode, returns to category mode.  If in
+        category mode, returns to story creation.'''
+        
         if self.mode == CAT_MODE:
             self.mode = STORY_MODE
             self.env['guiVisualizer'].updateLibraryStats()
@@ -167,6 +177,8 @@ class AuiInsertSound:
             self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
         
     def quit(self):
+        '''Returns to Story Creation.'''
+        
         self.env['SoundControl'].playSoundBytes(self.env['story'].getCurrClip())
         self.env['auiStoryCreation'].takeKeyBindings()
         self.env['auiStoryCreation'].setInstructions()
