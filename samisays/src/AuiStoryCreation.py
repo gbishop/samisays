@@ -14,7 +14,7 @@ class AuiStoryCreation:
     this module returns the user to managing his or her stories.'''    
     
     def __init__(self, env):
-        '''Constructor receives global variable and initializes object.'''
+        '''Constructor receives global variables and initializes object.'''
         
         self.env = env
         self.breakSoundBytes = soundFileToBytes(BREAK_SOUND)
