@@ -24,6 +24,8 @@ class GuiStart(wx.Frame):
         self.btnStories.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.btnTemplates = wx.Button(self.panel, -1, "Teacher Templates")
         self.btnTemplates.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
+        self.btnPrioritize = wx.Button(self.panel, -1, "Prioritize Sounds")
+        self.btnPrioritize.SetFont(wx.Font(32,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.__set_properties()
         self.__do_layout()
 
@@ -34,6 +36,7 @@ class GuiStart(wx.Frame):
 
         self.Bind(wx.EVT_BUTTON, self.btnStoriesPressed, self.btnStories)
         self.Bind(wx.EVT_BUTTON, self.btnTemplatesPressed, self.btnTemplates)
+        self.Bind(wx.EVT_BUTTON, self.btnPrioritizePressed, self.btnPrioritize)
         self.Bind(wx.EVT_SIZING, self.onSize)
         self.Bind(wx.EVT_CLOSE, self.onClose)
         self.firstDown = -1
@@ -60,33 +63,24 @@ class GuiStart(wx.Frame):
     '''
     def __do_layout(self):
         # begin wxGlade: guiStart.__do_layout
-        szrPrnt = wx.GridSizer(3, 1, 0, 0)
-        szrChildSounds = wx.GridSizer(3, 3, 0, 0)
-        szrChildStories = wx.GridSizer(3, 3, 0, 0)
-        szrPrnt.Add(self.picBanner, 0, wx.EXPAND, 0)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.Add(self.btnStories, 1, wx.EXPAND, 0)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.AddSpacer(-1)
-        szrChildStories.AddSpacer(-1)
-        szrPrnt.Add(szrChildStories, 0, wx.EXPAND, 0)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.Add(self.btnTemplates, 1, wx.EXPAND, 0)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.AddSpacer(-1)
-        szrChildSounds.AddSpacer(-1)
-        szrPrnt.Add(szrChildSounds, 0, wx.EXPAND, 0)
-        self.panel.SetAutoLayout(True)
+        szrPrnt = wx.BoxSizer(wx.VERTICAL)
+        szrChildH = wx.BoxSizer(wx.HORIZONTAL)
+        szrChildV = wx.BoxSizer(wx.VERTICAL)
+        szrChildV.Add((10, 10), 2, 0, 0)
+        szrChildV.Add(self.btnStories, 2, wx.EXPAND, 0)
+        szrChildV.Add((10, 10), 1, 0, 0)
+        szrChildV.Add(self.btnTemplates, 2, wx.EXPAND, 0)
+        szrChildV.Add((10, 10), 1, 0, 0)
+        szrChildV.Add(self.btnPrioritize, 2, wx.EXPAND, 0)
+        szrChildV.Add((10, 10), 2, 0, 0)
+        szrChildH.Add((10, 10), 1, 0, 0)
+        szrChildH.Add(szrChildV, 3, wx.EXPAND, 0)
+        szrChildH.Add((10, 10), 1, 0, 0)
+        szrPrnt.Add(self.picBanner, 1, wx.EXPAND, 0)
+        szrPrnt.Add(szrChildH, 2, wx.EXPAND, 0)
         self.panel.SetSizer(szrPrnt)
         self.panel.Layout()
+        self.panel.SetAutoLayout(True)
         (w,h) = self.picBanner.GetSizeTuple()
         self.img.Rescale(w,h)
         self.picBanner.SetBitmap(wx.BitmapFromImage(self.img))
@@ -103,11 +97,15 @@ class GuiStart(wx.Frame):
     ' btnTemplatesPressed - Function for moving to the guiStories frame in teacher
     '                       mode. Bound to the Teacher Templates button.
     '''
-    def btnTemplatesPressed(self, event): # wxGlade: guiStart.<event_handler>
+    def btnTemplatesPressed(self, event):
         TEACHER_INDEX = -2
         self.Hide()
         self.env['guiStories'].setStudent(TEACHER_INDEX)
         self.env['guiStories'].Show()
+        
+    def btnPrioritizePressed(self,event):
+        self.Hide()
+        self.env['guiPrioritize'].Show()
     
     '''
     ' onClose - Function for handing the close event.
