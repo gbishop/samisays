@@ -2,6 +2,7 @@
 import wx
 import os
 import sys
+from SoundControl import *
 from Constants import *
 
 class GuiPrioritize(wx.Frame):
@@ -11,6 +12,7 @@ class GuiPrioritize(wx.Frame):
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
+        self.priorityCat = []
         self.boxPrioritized = wx.StaticBox(self.panel, -1, "Prioritized Sounds")
         self.boxLibrary = wx.StaticBox(self.panel, -1, "Sound Library")
         self.lblTitle = wx.StaticText(self.panel, -1, "Prioritize Sounds", style=wx.ALIGN_CENTRE)
@@ -32,6 +34,10 @@ class GuiPrioritize(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
         self.Bind(wx.EVT_BUTTON, self.btnAddPressed, self.btnAdd)
         self.Bind(wx.EVT_BUTTON, self.btnRemovePressed, self.btnRemove)
+        self.Bind(wx.EVT_TREE_SEL_CHANGED, self.treeLibrarySelected, self.treeLibrary)
+        self.Bind(wx.EVT_TREE_ITEM_ACTIVATED, self.treeLibrarySelected, self.treeLibrary)
+        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.lstPrioritySelected, self.lstPriority)
+        self.Bind(wx.EVT_SHOW, self.onShow)
         self.Bind(wx.EVT_CLOSE, self.onClose)
         
         self.__set_properties()
@@ -75,7 +81,7 @@ class GuiPrioritize(wx.Frame):
         szrBody.Add(szrButtons, 1, wx.EXPAND, 0)
         szrBody.Add((10, 10), 0, 0, 0)
         szrMain.Add(szrBody, 0, wx.EXPAND, 0)
-        szrMain.Add((20,20), 0, 0, 0)
+        szrMain.Add((20, 20), 0, 0, 0)
         self.panel.SetSizer(szrMain)
         self.panel.Layout()
         self.Layout()
@@ -97,13 +103,20 @@ class GuiPrioritize(wx.Frame):
             sys.exit()
         else:
             dialog.Destroy()
+    
+    def onShow(self, event):
+        self.populateTree()
+        self.priorityCat = []
         
     def populateTree(self):
+        self.treeLibrary.DeleteAllItems()
         self.treeRoot = self.treeLibrary.AddRoot("Sound Library")
         self.treeNodes = []
         directory = os.listdir(SOUND_DIR)
         if '.svn' in directory:
             directory.remove('.svn') # Ignore SVN files
+        if 'assigned sounds' in directory:
+            directory.remove('assigned sounds')
         for i in directory:
             self.treeNodes.append(self.treeLibrary.AppendItem(self.treeRoot,i))
         for i in self.treeNodes:
@@ -113,6 +126,12 @@ class GuiPrioritize(wx.Frame):
             for e in dir:
                 self.treeLibrary.AppendItem(i,e)
         self.treeLibrary.Expand(self.treeRoot)
+    
+    def populateList(self):
+        directory = os.listdir(SOUND_DIR + "assigned sounds/")
+        self.lstPriority.SetItems(directory)
+        
+    def lstPrioritySelected(self,event):()
         
     def btnAcceptPressed(self, event):()
         
@@ -121,6 +140,14 @@ class GuiPrioritize(wx.Frame):
     def btnAddPressed(self, event):()
     
     def btnRemovePressed(self, event):()
+    
+    def treeLibrarySelected(self, event):
+        selectId = self.treeLibrary.GetSelection()
+        fileName = self.treeLibrary.GetItemText(selectId)
+        if fileName[-4:] == ".mp3":
+            parentId = self.treeLibrary.GetItemParent(selectId)
+            self.env['SoundControl'].stopPlay()
+            self.env['SoundControl'].playSoundFile(SOUND_DIR + self.treeLibrary.GetItemText(parentId) + "/" + fileName)
         
 
 if __name__ == "__main__":
