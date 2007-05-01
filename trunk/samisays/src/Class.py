@@ -4,46 +4,43 @@ import shutil
 from Student import *
 from Constants import *
 
-'''
-' Class Name: Class
-' Description: This class represents a set of students and does the necessary file
-'              I/O that they require.
-'''
 class Class:
+    '''
+    This class represents a set of students and does the necessary file I/O that they require.
+    '''
      
-    '''
-    ' Constructor
-    '''
     def __init__(self, students = []):
+        '''
+        Constructor
+        '''
         self.students = students
         self.teacher = Student("Teacher")
     
-    '''
-    ' __str__ - For console output (system function)
-    '''
     def __str__(self):
+        '''
+        For console output (system function)
+        '''
         str = ''
         for i in range(len(self.students)):
             str += self.students[i] + ' '
     
-    '''
-    ' __len__ - For length checking (system function)
-    '''
     def __len__self(self):
+        '''
+        For length checking (system function)
+        '''
         return len(self.students)
     
-    '''
-    ' addStudent - Adds a student to the class and saves the class to disk.
-    '''
     def addStudent(self, student = Student()):
+        '''
+        Adds a student to the class and saves the class to disk.
+        '''
         self.students.append(student)
         self.save()
     
-    '''
-    ' delStudent - Removes a student from the class and moves the folder to a backup
-    '              directory.
-    '''
     def delStudent(self,index):
+        '''
+        Removes a student from the class and moves the folder to a backup directory.
+        '''
         dname = '_' + self.students[index].name
         self.students.pop(index)
         try:
@@ -51,10 +48,10 @@ class Class:
         except OSError:()
         shutil.move(STUDENT_DIR + dname, BACKUP_DIR + dname);
     
-    '''
-    ' save - Saves the class to disk.
-    '''
     def save(self):
+        '''
+        Saves the class to disk.
+        '''
         try:
             os.mkdir(STUDENT_DIR + '_' + self.teacher.name)
         except OSError:()
@@ -62,11 +59,11 @@ class Class:
             try:
                 os.mkdir(STUDENT_DIR + '_' + self.students[i].name)
             except OSError:()
-     
-    '''
-    ' load - Loads the class from disk.
-    '''
+ 
     def load(self, path = ''):
+        '''
+        Loads the class from disk.
+        '''
         try:
             os.mkdir(STUDENT_DIR)
         except OSError:()
