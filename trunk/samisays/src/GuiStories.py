@@ -445,9 +445,8 @@ class GuiStories(wx.Frame):
                 self.lock()
             else:
                 self.unlock()
-            self.visible = True
-        else: # Hide() called
-            self.visible = False
+
+        self.visible = not self.visible
 
     '''
     ' someThingSelect - Helper function that detects whether something is selected in 
