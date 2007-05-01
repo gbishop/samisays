@@ -18,7 +18,7 @@ class GuiPrioritize(wx.Frame):
         self.boxLibrary = wx.StaticBox(self.panel, -1, "Sound Library")
         self.lblTitle = wx.StaticText(self.panel, -1, "Prioritize Sounds", style=wx.ALIGN_CENTRE)
         self.lblTitle.SetFont(wx.Font(26,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
-        self.treeLibrary = wx.TreeCtrl(self.panel, DRAG_SOURCE, style=wx.TR_HAS_BUTTONS|wx.TR_LINES_AT_ROOT|wx.TR_DEFAULT_STYLE|wx.SUNKEN_BORDER)
+        self.treeLibrary = wx.TreeCtrl(self.panel, -1, style=wx.TR_HAS_BUTTONS|wx.TR_LINES_AT_ROOT|wx.TR_DEFAULT_STYLE|wx.SUNKEN_BORDER)
         self.treeLibrary.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         self.lstPriority = wx.wx.ListBox(self.panel, -1, choices=[])
         self.lstPriority.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
@@ -129,12 +129,12 @@ class GuiPrioritize(wx.Frame):
         self.treeLibrary.Expand(self.treeRoot)
     
     def populateList(self):
-        directory = os.listdir(SOUND_DIR + "assigned sounds/")
+        directory = os.listdir(SOUND_DIR + ASSIGN_DIR)
         if '.svn' in directory:
             directory.remove('.svn')
         self.lstPriority.SetItems(directory)
         for file in directory:
-            self.priorityCat[file] = "assigned sounds/" + file
+            self.priorityCat[file] = ASSIGN_DIR + file
         
     def lstPrioritySelected(self,event):
         fileName = self.lstPriority.GetItems()[self.lstPriority.GetSelection()]
@@ -144,28 +144,28 @@ class GuiPrioritize(wx.Frame):
         else:()
         
     def btnAcceptPressed(self, event):
-        directory = os.listdir(SOUND_DIR + "assigned sounds/")
+        directory = os.listdir(SOUND_DIR + ASSIGN_DIR)
         if '.svn' in directory:
             directory.remove('.svn')
         for file in directory:
             try:
                 if file in self.priorityCat.keys():
-                    if "assigned sounds/" in self.priorityCat[file]:()
+                    if ASSIGN_DIR in self.priorityCat[file]:()
                         # do nothinng
                     else:()
                         # do nothing
                 else:
-                    if "assigned sounds/" in self.priorityCat[file]:()
+                    if ASSIGN_DIR in self.priorityCat[file]:()
                         # do nothing
                     else:
-                        os.remove(SOUND_DIR + "assigned sounds/" + file)
+                        os.remove(SOUND_DIR + ASSIGN_DIR + file)
             except(KeyError):
-                os.remove(SOUND_DIR + "assigned sounds/" + file)
+                os.remove(SOUND_DIR + ASSIGN_DIR + file)
         for file in self.priorityCat.values():
-            if "assigned sounds/" in file:()
+            if ASSIGN_DIR in file:()
                 # do nothing
             else:
-                shutil.copy(SOUND_DIR + file,SOUND_DIR + "assigned sounds/")
+                shutil.copy(SOUND_DIR + file,SOUND_DIR + ASSIGN_DIR)
         self.btnCancelPressed(None)
         
         
