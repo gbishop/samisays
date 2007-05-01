@@ -143,7 +143,32 @@ class GuiPrioritize(wx.Frame):
             self.env['SoundControl'].playSoundFile(SOUND_DIR + self.priorityCat[fileName])
         else:()
         
-    def btnAcceptPressed(self, event):()
+    def btnAcceptPressed(self, event):
+        directory = os.listdir(SOUND_DIR + "assigned sounds/")
+        if '.svn' in directory:
+            directory.remove('.svn')
+        for file in directory:
+            try:
+                if file in self.priorityCat.keys():
+                    if "assigned sounds/" in self.priorityCat[file]:()
+                        # do nothinng
+                    else:()
+                        # do nothing
+                else:
+                    if "assigned sounds/" in self.priorityCat[file]:()
+                        # do nothing
+                    else:
+                        os.remove(SOUND_DIR + "assigned sounds/" + file)
+            except(KeyError):
+                os.remove(SOUND_DIR + "assigned sounds/" + file)
+        for file in self.priorityCat.values():
+            if "assigned sounds/" in file:()
+                # do nothing
+            else:
+                shutil.copy(SOUND_DIR + file,SOUND_DIR + "assigned sounds/")
+        self.btnCancelPressed(None)
+        
+        
         
     def btnCancelPressed(self, event):
         self.Hide()
@@ -152,7 +177,7 @@ class GuiPrioritize(wx.Frame):
     def btnAddPressed(self, event):
         selectId = self.treeLibrary.GetSelection()
         fileName = self.treeLibrary.GetItemText(selectId)
-        if fileName[-4:] == ".mp3":
+        if fileName[-4:] == ".mp3": # handling file adds
             parentId = self.treeLibrary.GetItemParent(selectId)
             itemList = self.lstPriority.GetItems()
             if fileName in itemList:
@@ -161,10 +186,28 @@ class GuiPrioritize(wx.Frame):
                 itemList = itemList + [fileName]
                 self.lstPriority.SetItems(itemList)
                 self.priorityCat[fileName] = self.treeLibrary.GetItemText(parentId) + "/" + fileName
+        elif fileName == "Sound Library": # handling attempted add of everything
+            return
+        else: # handling category adds
+            children = os.listdir(SOUND_DIR + fileName)
+            if '.svn' in children:
+                children.remove('.svn')
+            itemList = self.lstPriority.GetItems()
+            for child in children:
+                 if child in itemList:()
+                 else:
+                     itemList = itemList + [child]
+                     self.priorityCat[child] = fileName + "/" + child
+            self.lstPriority.SetItems(itemList)
+            
                 
     
-    def btnRemovePressed(self, event):()
-        
+    def btnRemovePressed(self, event):
+        itemList = self.lstPriority.GetItems()
+        self.priorityCat.pop(itemList[self.lstPriority.GetSelection()])
+        itemList.pop(self.lstPriority.GetSelection())
+        self.lstPriority.SetItems(itemList)
+                
     
     def treeLibrarySelected(self, event):
         selectId = self.treeLibrary.GetSelection()
