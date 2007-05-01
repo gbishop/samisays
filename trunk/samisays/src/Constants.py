@@ -1,6 +1,6 @@
 ''' 
-'   This file is for holding constants. Any repeated constants are eliminated in the
-'   subsequent sections.
+This file is for holding constants. Any repeated constants are eliminated in the
+subsequent sections.
 ''' 
 
 ''' Imports '''
@@ -34,7 +34,7 @@ BACKUP_DIR = STUDENT_DIR + 'removed/'
 SOUND_DIR = 'sound_library/'
 
 ''' GuiPrioritize '''
-DRAG_SOURCE = 201
+ASSIGN_DIR = 'assigned sounds/'
 
 ''' GuiStart '''
 #BIG_FONT = wx.Font(48,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS")
