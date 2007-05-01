@@ -38,11 +38,13 @@ class GuiPrioritize(wx.Frame):
         self.Bind(wx.EVT_TREE_SEL_CHANGED, self.treeLibrarySelected, self.treeLibrary)
         self.Bind(wx.EVT_TREE_ITEM_ACTIVATED, self.treeLibrarySelected, self.treeLibrary)
         self.Bind(wx.EVT_LISTBOX, self.lstPrioritySelected, self.lstPriority)
-        self.Bind(wx.EVT_SHOW, self.onShow)
+        self.Bind(wx.EVT_SHOW, self.handleShow)
         self.Bind(wx.EVT_CLOSE, self.onClose)
         
         self.__set_properties()
         self.__do_layout()
+        
+        self.visible = False
 
     def __set_properties(self):
         self.SetTitle("Sami Says")
@@ -105,9 +107,11 @@ class GuiPrioritize(wx.Frame):
         else:
             dialog.Destroy()
     
-    def onShow(self, event):
-        self.populateTree()
-        self.populateList()
+    def handleShow(self, event):
+        if not self.visible: # Show() called
+            self.populateTree()
+            self.populateList()
+        self.visible = not self.visible
         
     def populateTree(self):
         self.treeLibrary.DeleteAllItems()
@@ -133,6 +137,7 @@ class GuiPrioritize(wx.Frame):
         if '.svn' in directory:
             directory.remove('.svn')
         self.lstPriority.SetItems(directory)
+        self.btnRemove.Enable(len(directory)>0)
         for file in directory:
             self.priorityCat[file] = ASSIGN_DIR + file
         
@@ -168,8 +173,6 @@ class GuiPrioritize(wx.Frame):
                 shutil.copy(SOUND_DIR + file,SOUND_DIR + ASSIGN_DIR)
         self.btnCancelPressed(None)
         
-        
-        
     def btnCancelPressed(self, event):
         self.Hide()
         self.env['guiStart'].Show()
@@ -186,6 +189,7 @@ class GuiPrioritize(wx.Frame):
                 itemList = itemList + [fileName]
                 self.lstPriority.SetItems(itemList)
                 self.priorityCat[fileName] = self.treeLibrary.GetItemText(parentId) + "/" + fileName
+            self.btnRemove.Enable(True)
         elif fileName == "Sound Library": # handling attempted add of everything
             return
         else: # handling category adds
@@ -199,15 +203,16 @@ class GuiPrioritize(wx.Frame):
                      itemList = itemList + [child]
                      self.priorityCat[child] = fileName + "/" + child
             self.lstPriority.SetItems(itemList)
+            self.btnRemove.Enable(True)
             
-                
-    
+            
     def btnRemovePressed(self, event):
         itemList = self.lstPriority.GetItems()
         self.priorityCat.pop(itemList[self.lstPriority.GetSelection()])
         itemList.pop(self.lstPriority.GetSelection())
         self.lstPriority.SetItems(itemList)
-                
+        if len(itemList) == 0:
+            self.btnRemove.Enable(False)
     
     def treeLibrarySelected(self, event):
         selectId = self.treeLibrary.GetSelection()
