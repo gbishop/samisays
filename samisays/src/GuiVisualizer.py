@@ -183,6 +183,7 @@ class GuiVisualizer(wx.Frame):
             dialog.Destroy()
             sys.exit()
         else:
+            self.SetFocus()
             dialog.Destroy()
 
 # end of class GuiVisualizer
