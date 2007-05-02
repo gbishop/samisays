@@ -11,8 +11,8 @@
 
  * It is expected that the students creating stories may be visually impaired, so the interface is designed to accommodate their needs using audio prompts.
 
- * All interactions should be designed with a novice computer user in mind.  File interactions, such as when a user imports a sound library, should be simple and not assume any knowledge or understanding of directory structure or other advanced topics.
+ * All common interactions should be designed with a novice computer user in mind.  File interactions, such as when a user prioritizes sounds in the library, should be simple and not assume any knowledge or understanding of directory structure or other advanced topics.  More advanced interactions can assume a higher level of understanding with support from detailed manual instructions.
 
  * The entire program should be kept simple - avoid "modes" and heavy modularization of the design.
 
- * Two uses should be kept in mind throughout design - "free" and "guided" use.  While the primary purpose is educational with the classroom in mind, users should be able to play on their own without any hassle introduced by managing multiple student profiles.
+ * Two uses should be kept in mind throughout design - "free" and "guided" use.  While the primary purpose is educational with the classroom and teacher templates in mind, users should be able to create stories from scratch.
