@@ -15,4 +15,4 @@
 
  * The entire program should be kept simple - avoid "modes" and heavy modularization of the design.
 
- * Two uses should be kept in mind throughout design - "free" and "guided" use.  While the primary purpose is educational with the classroom and teacher templates in mind, users should be able to create stories from scratch.
+ * Two uses should be kept in mind throughout design - "free" and "guided" use.  While the primary purpose is educational with the classroom and teacher templates in mind, users should be able to create stories from scratch without limits on the sound effects they can use.
