@@ -7,7 +7,7 @@
 
  * No more than six buttons should be used to navigate through the audio interface.  Buttons should perform in a consistent, predictable fashion at all times.
 
- * It is expected that the teacher will be launching the program and navigate to story creation.  It is also expected that the teacher will not be visually impaired and capable of navigating through a GUI.
+ * It is expected that the teacher will be launching the program and navigate to story creation.  It is also expected that the teacher will either not be visually impaired or be capable of navigating through a GUI with JAWS.
 
  * It is expected that the students creating stories may be visually impaired, so the interface is designed to accomodate their needs using audio prompts.
 
