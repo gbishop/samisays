@@ -9,7 +9,7 @@
 
  * It is expected that the teacher will be launching the program and navigate to story creation.  It is also expected that the teacher will either not be visually impaired or be capable of navigating through a GUI with JAWS.
 
- * It is expected that the students creating stories may be visually impaired, so the interface is designed to accomodate their needs using audio prompts.
+ * It is expected that the students creating stories may be visually impaired, so the interface is designed to accommodate their needs using audio prompts.
 
  * All interactions should be designed with a novice computer user in mind.  File interactions, such as when a user imports a sound library, should be simple and not assume any knowledge or understanding of directory structure or other advanced topics.
 
