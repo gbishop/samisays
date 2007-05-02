@@ -1,3 +1,5 @@
+#stop playing sounds
+
 ''' Imports '''
 import wx
 import os
