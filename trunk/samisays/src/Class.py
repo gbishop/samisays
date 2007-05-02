@@ -47,7 +47,14 @@ class Class:
         try:
             os.mkdir(BACKUP_DIR)
         except OSError:()
-        shutil.move(STUDENT_DIR + dname, BACKUP_DIR + dname);
+        
+        i = 1
+        while True:
+            if not os.path.exists('%s%s_%d' % (BACKUP_DIR, dname, i)):
+                break
+            i += 1
+            
+        shutil.move(STUDENT_DIR + dname, '%s%s_%d' % (BACKUP_DIR, dname, i))
     
     def save(self):
         '''
