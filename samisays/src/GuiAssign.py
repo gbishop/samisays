@@ -31,15 +31,13 @@ class GuiAssign(wx.Frame):
         self.__set_properties()
         self.__do_layout()
 
+        # Catch keys on all objects
+        objects = [self.panel, self.btnAssign, self.btnCancel, self.chkLstStudents, self.chkBoxBeeps]
+        for obj in objects:
+            obj.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+            obj.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+            
         self.Bind(wx.EVT_SHOW, self.handleShow, self)
-        self.panel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.panel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnAssign.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnAssign.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.btnCancel.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.btnCancel.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
-        self.chkLstStudents.Bind(wx.EVT_KEY_UP, self.onKeyUp)
-        self.chkLstStudents.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
         self.Bind(wx.EVT_BUTTON, self.btnAssignPressed, self.btnAssign)
         self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
         self.Bind(wx.EVT_CLOSE, self.close)
@@ -101,7 +99,7 @@ class GuiAssign(wx.Frame):
     
     def setEnv(self,env):
         '''
-        Sets self.env to the specified dictionary
+        Sets self.env (global variables) to the specified dictionary
         '''
         self.env = env 
 
@@ -122,18 +120,18 @@ class GuiAssign(wx.Frame):
         
     def btnAssignPressed(self, event):
         '''
-        Function for handling the pressing of the Assign Button.
+        Function for handling the pressing of the Assign Button.  Assigns stories to checked students.
         '''
         checkedStudents = self.getCheckedStudents()
         story = self.env['story']
         succStudents = []
         for studentName in checkedStudents:
-            if os.path.exists('%s_%s/%s.pkl' % (STUDENT_DIR, studentName, story.name)):
+            if os.path.exists('%s_%s/%s.pkl' % (STUDENT_DIR, studentName, story.name)): # Collision
                 msg = '%s already has a story by this name.  The story will not be added to %s\'s StoryBook.' % (studentName, studentName)
                 msgDialog = wx.MessageDialog(self, msg, 'Error: Story Already Exists', wx.ICON_ERROR)
                 msgDialog.ShowModal()
                 msgDialog.Destroy()
-            else:
+            else: # Assign story
                 cStory = story.getCopy(studentName)
                 cStory.mergeAndLockBreaks(includeBreakClip = self.chkBoxBeeps.IsChecked())
                 cStory.pickleMe(True)
@@ -141,12 +139,12 @@ class GuiAssign(wx.Frame):
                 succStudents += [studentName]
         
         msg = ''
-        if len(succStudents) > 1:
+        if len(succStudents) > 1: # List students who received assignment
             msg = 'Assignment succesfully added to %s, and %s\'s StoryBooks.' % (', '.join(succStudents[:-1]), succStudents[-1]) 
-        elif len(succStudents) == 1:
+        elif len(succStudents) == 1: # List student who received assignment
             msg = 'Assignment succesfully added to %s\'s StoryBook.' % succStudents[0]
         
-        if msg != '':
+        if msg != '': # Nobody received assignment
             msgDialog = wx.MessageDialog(self, msg, 'Success!', wx.ICON_INFORMATION)
             msgDialog.ShowModal()
             msgDialog.Destroy()

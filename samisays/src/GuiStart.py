@@ -29,6 +29,7 @@ class GuiStart(wx.Frame):
         self.__set_properties()
         self.__do_layout()
 
+        # Catch keys on all objects
         objects = [self.panel, self.picBanner, self.btnStories, self.btnTemplates]
         for obj in objects:
             obj.Bind(wx.EVT_KEY_UP, self.onKeyUp)
