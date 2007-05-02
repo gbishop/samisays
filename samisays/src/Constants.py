@@ -18,7 +18,7 @@ SYS_SOUND_DIR = 'sys_sounds/'
 BREAK_SOUND = SYS_SOUND_DIR + 'lilbeep.wav'
 INTRO_SOUND = SYS_SOUND_DIR + 'xylophone_intro.mp3'
 WAIT_SOUND = SYS_SOUND_DIR + 'wait_noise.mp3'
-DEFAULT_CROP = 5000
+DEFAULT_CROP = 5000 # samples
 DELETE_KEY = wx.WXK_BACK
 CTRL = 308 # keyCode for CTRL
 
@@ -50,19 +50,20 @@ RATE = 16000    # samples per second
 BITS = 16       # BITS per sample
 CHANNELS = 1    # 1 is mono, 2 is stereo
 BUFF_DURATION = 1 # in seconds
-#TTS_RATE = 44000 #Must match RATE for after_title instr to work.
-MP3_RATE = 64000
-PRONUNCIATIONS = [('record','ree chord'), ('Record', 'Ree chord')]
+MP3_RATE = 128000
+PRONUNCIATIONS = [('record','ree chord'), ('Record', 'Ree chord')] # Words to replace with proper pronunciations
 
 ''' SoundLibrary '''
 SOUND_LIB_DIR  = 'sound_library/'
 
 ''' Story '''
-NON = 0
+#Types of clips
+NON = 0 
 REC = 1
 SFX = 2
 SND = 3
 LCK = 4
 BRK = 5
+
 COMPRESS_RATE = 9
 MAX_TRASH_SIZE = -1 #-1 == inf                              
