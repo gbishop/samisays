@@ -4,21 +4,16 @@ import numpy
 import threading
 from Constants import *
 
-'''
-' Class Name:  Story
-' Description: Contains data structures and methods for a single
-'              story made up of a title and multiple sound clips.
-'              Sound clips are strings of bytes in wave format
-'              witht the properties (bits, sample rate, etc.)
-'              defined in the SoundControl class.
-'''
 
 class Story:
+    '''Contains data structures and methods for a single
+    story made up of a title and multiple sound clips.
+    Sound clips are strings of bytes in wave format
+    with the properties (bits, sample rate, etc.)
+    defined in the SoundControl class.'''
     
-    '''
-    ' Constructor initializes Story object.  Current clip is title.
-    '''
     def __init__(self, name='', student='', titleBytes = ''):
+        '''Constructor initializes Story object.  Current clip is title.'''
         self.name = name
         self.student = student
         self.zipClips = [zlib.compress(titleBytes)]
@@ -33,16 +28,14 @@ class Story:
         self.storyMutex = threading.Lock()
         self.threadSem = threading.Semaphore(2)
     
-    '''
-    ' Returns the number of clips currently in the story (including the title).
-    '''   
+       
     def __len__(self):
+        ''' Returns the number of clips currently in the story (including the title).'''
         return len(self.zipClips)
     
-    '''
-    ' Inserts clip after current clip and makes new clip the current clip.
-    '''
+
     def insertClip(self, soundBytes, type):
+        '''Inserts clip after current clip and makes new clip the current clip.'''
         self.storyMutex.acquire()
         self.currClip += 1
         self.zipClips.insert(self.currClip, zlib.compress(soundBytes))
@@ -50,10 +43,9 @@ class Story:
         self.storyMutex.release()
         self.pickleMe()
 
-    '''
-    ' Replaces the first clip (the title) with new bytes.
-    '''
+  
     def replaceTitle(self, titleBytes):
+        '''Replaces the first clip (the title) with new bytes.'''
         #self.clips[0] = titleBytes
         self.storyMutex.acquire()
         self.zipClips[0] = zlib.compress(titleBytes)
@@ -61,11 +53,11 @@ class Story:
         self.pickleMe()
         self.pickleTitle()
     
-    '''
-    ' Deletes the current clip, makes clip before deleted clip the current clip,
-    ' and returns current clip.
-    '''
+ 
     def deleteClip(self):
+        '''' Deletes the current clip, makes clip before deleted clip the current clip,
+        and returns current clip.'''
+        
         if self.types[self.currClip] == LCK:
             return
         self.storyMutex.acquire()
@@ -80,22 +72,21 @@ class Story:
     
     
     def addToTrash(self, zipClip):
+        '''Adds a sound file to the trash can'''
         if len(self.trash) == MAX_TRASH_SIZE:
             del self.trash[MAX_TRASH_SIZE-1]
         self.trash = [zipClip] + self.trash
     
-    '''
-    ' Locks all clips in the story.
-    '''
     def lockStory(self):
+        ''' Locks all clips in the story.'''
         self.types = [LCK for i in xrange(len(self))]
     
-    '''
-    ' Merges all clips between breaks into single clips.  Includes break sound if
-    ' specified.  Locks all clips in newly merged story (otherwise, would need to handle
-    ' conditions for when some clips between a break are locked and some aren't).
-    '''
+    
     def mergeAndLockBreaks(self, includeBreakClip):
+        '''' Merges all clips between breaks into single clips.  Includes break sound if
+        specified.  Locks all clips in newly merged story (otherwise, would need to handle
+        conditions for when some clips between a break are locked and some aren't)'''
+        
         mergedClips = []
         lastBreak = 0
         clips = self.decompressStory()
@@ -112,50 +103,41 @@ class Story:
         self.zipClips = [compress(clip) for clip in mergedClips]
         self.lockStory()
     
-    '''
-    ' Returns the current clip.
-    '''
     def getCurrClip(self):
+        ''' Returns the current clip.'''
         return decompress(self.zipClips[self.currClip])
     
-    '''
-    ' If not on the last clip, makes the next clip the current clip and returns it.  
-    ' If on the last clip, returns the current clip.
-    '''
+    
     def getNextClip(self):
+        ''' If not on the last clip, makes the next clip the current clip and returns it.  
+        If on the last clip, returns the current clip.'''
         if self.currClip < len(self)-1:
             self.currClip += 1
         return self.getCurrClip()
     
-    '''
-    ' If not on the first clip, makes the previous clip the current clip and returns it.
-    ' If on the first clip, returns the current clip.
-    '''
+  
     def getPreviousClip(self):
+        ''' If not on the first clip, makes the previous clip the current clip and returns it.
+        If on the first clip, returns the current clip.'''
         if self.currClip > 0:
             self.currClip -= 1
         return self.getCurrClip()
     
-    '''
-    ' Returns the first clip (title).
-    '''
+   
     def getTitleBytes(self):
+        ''' Returns the first clip (title).'''
         #return self.clips[0]
         return decompress(self.zipClips[0])
     
     
-    
-    '''
-    ' Joins the story into a single byte string and returns it.
-    '''
     def getStoryBytes(self):
+        '''Joins the story into a single byte string and returns it.'''
         clips = self.decompressStory()
         return ''.join(clips)
     
-    '''
-    ' Creates and returns a copy of this story object using the specified name and student.
-    '''
+
     def getCopy(self, student):
+        ''' Creates and returns a copy of this story object using the specified name and student.'''
         copy = Story(self.name, student, '')
         #copy.clips = [c for c in self.clips]
         copy.zipClips = [z for z in self.zipClips]
@@ -174,10 +156,9 @@ class Story:
             stats[t] += 1
         return stats
     
-    '''
-    ' Returns True if the title is empty.  Otherwise, returns False.
-    '''
+
     def needsTitle(self):
+        ''' Returns True if the title is empty.  Otherwise, returns False.'''
         return zlib.decompress(self.zipClips[0]) == ''
     
     def hasTrash(self):
@@ -254,16 +235,12 @@ def decompress(byteString):
 
 class PickleStory(threading.Thread):
     
-    '''
-    ' Constructor initializes thread.
-    '''
     def __init__(self, story):
+        ''' Constructor initializes thread.'''
         self.story = story
         threading.Thread.__init__(self)
     
-    '''
-    ' 
-    '''
+
     def run(self):
         story = self.story
         story.pickleMutex.acquire()
