@@ -120,6 +120,7 @@ class GuiPrioritize(wx.Frame):
         self.treeRoot = self.treeLibrary.AddRoot("Sound Library")
         self.treeNodes = []
         directory = os.listdir(SOUND_DIR)
+        directory.sort()
         if '.svn' in directory:
             directory.remove('.svn') # Ignore SVN files
         if 'assigned sounds' in directory:
