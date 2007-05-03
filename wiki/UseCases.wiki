@@ -25,7 +25,7 @@
   * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher selects "Add Student".
   * The teacher enters the student's name.
-  * The teacher presses Accept.
+  * The teacher presses Ok.
 
 
 *T3.  Deleting a Student*
