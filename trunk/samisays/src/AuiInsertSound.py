@@ -27,17 +27,21 @@ class AuiInsertSound:
         self.keyDownCode = -1 # Code to recognize which key is being held down
         
         self.mode = CAT_MODE
-        self.env['guiVisualizer'].updateLibraryStats()
         
         self.setInstructions()
 
         self.env['keyUpFunct'] = self.onKeyUp
         self.env['keyDownFunct'] = self.onKeyDown
         
-        if self.env['soundLibrary'].currCat == -1:
+        SL = self.env['soundLibrary']
+        if SL.currCat == -1:
             self.getHelp()
+        elif SL.currCat == SL.sfxCat and self.env['story'].clipIsLocked():
+            self.env['SoundControl'].speakText(SL.getPrevCatName())
         else:
-            self.env['SoundControl'].speakText(self.env['soundLibrary'].getCurrCatName())
+            self.env['SoundControl'].speakText(SL.getCurrCatName())
+            
+        self.env['guiVisualizer'].updateLibraryStats()
             
     
     def setInstructions(self):

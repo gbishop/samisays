@@ -36,6 +36,13 @@ class GuiPrioritize(wx.Frame):
         self.btnRemove = wx.Button(self.panel, -1, "<--Remove")
         self.btnRemove.SetFont(wx.Font(18,wx.DECORATIVE, wx.NORMAL, wx.NORMAL, 0, "Comic Sans MS"))
         
+        # Catch keys on all objects
+        objects = [self.panel, self.lblTitle, self.treeLibrary, self.lstPriority, self.btnAccept,
+                   self.btnCancel, self.btnAdd, self.btnRemove, self]
+        for obj in objects:
+            obj.Bind(wx.EVT_KEY_UP, self.onKeyUp)
+            obj.Bind(wx.EVT_KEY_DOWN, self.onKeyDown)
+        
         self.Bind(wx.EVT_BUTTON, self.btnAcceptPressed, self.btnAccept)
         self.Bind(wx.EVT_BUTTON, self.btnCancelPressed, self.btnCancel)
         self.Bind(wx.EVT_BUTTON, self.btnAddPressed, self.btnAdd)
@@ -50,6 +57,7 @@ class GuiPrioritize(wx.Frame):
         self.__do_layout()
         
         self.visible = False
+        self.firstDown = -1
 
     def __set_properties(self):
         self.SetTitle("Sami Says")
@@ -232,6 +240,21 @@ class GuiPrioritize(wx.Frame):
             self.env['SoundControl'].stopPlay()
             self.env['SoundControl'].playSoundFile(SOUND_DIR + self.treeLibrary.GetItemText(parentId) + "/" + fileName)
         
+    def onKeyDown(self, event):
+        
+        if self.firstDown == -1:
+            self.firstDown = event.GetKeyCode()
+    
+    def onKeyUp(self, event):
+        
+        keyCode = event.GetKeyCode()
+        if keyCode != self.firstDown:
+            event.Skip()
+        
+        if keyCode == wx.WXK_ESCAPE:
+            self.btnCancelPressed(False)
+        
+        self.firstDown = -1      
 
 if __name__ == "__main__":
     app = wx.PySimpleApp(0)

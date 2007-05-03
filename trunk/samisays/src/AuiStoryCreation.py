@@ -129,7 +129,7 @@ class AuiStoryCreation:
                         wx.WXK_LEFT : self.navLeft, wx.WXK_RIGHT : self.navRight,
                         wx.WXK_HOME : self.jumpLeft, wx.WXK_END : self.jumpRight,
                         wx.WXK_ESCAPE : self.quit, DELETE_KEY : self.deleteClip,
-                        wx.WXK_PAUSE: self.insertBreak}
+                        wx.WXK_RETURN: self.insertBreak}
         
         if keyCode not in keyFunctions: # If key has no function, ignore it
             return      
