@@ -46,9 +46,21 @@ class SoundLibrary:
             soundList = os.listdir(SOUND_LIB_DIR + self.catList[i])
             soundList.sort()
             for sound in soundList:
-                if sound != '.svn': # Ignore SVN files
-                    self.soundMatrix[i] += [sound] 
-        
+                sFormat = sound.split('.')[1]
+                if sFormat.lower() in SOUND_FORMATS:
+                    self.soundMatrix[i] += [sound]
+             
+        # Remove empty categories
+        i = 0
+        while True:
+            if i == len(self.catList):
+                break
+            if len(self.soundMatrix[i]) == 0:
+                del self.soundMatrix[i]
+                del self.catList[i]
+            else:
+                i += 1
+                        
         self.soundMatrix += [self.env['story'].getTrash()]
         self.catList += ['Trash Can', 'Sound Manipulations']
         self.currCat = -1
