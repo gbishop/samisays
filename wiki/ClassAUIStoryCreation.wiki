@@ -1,4 +1,4 @@
-#summary AUIStoryCreation Class Breakdown
+=Class AUIStoryCreation=
 
 *Description*
 
@@ -11,4 +11,3 @@ Because we wanted all sounds to be interruptible and we wanted the interrupt to 
 *Teacher Template Mode*
 
 The AuiStoryCreation operates in both teacher template mode and student story mode as specified by the teacherMode flag.  Teacher mode can only be accessed using the “Teacher Template” button on GuiStart.  In teacher mode, stories are called templates and breaks can be inserted between clips.  The template can be assigned as stories to students.  The clips between breaks are combined into a single clip and are locked so that students may not alter them.
-
