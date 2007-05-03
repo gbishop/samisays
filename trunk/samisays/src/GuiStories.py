@@ -89,6 +89,13 @@ class GuiStories(wx.Frame):
         '''
         # begin wxGlade: guiStories.__set_properties
         self.SetTitle("Sami Says")
+        self.btnSelect.SetToolTipString("Open the story for editting.")
+        self.btnCreate.SetToolTipString("Create a new story.")
+        self.btnRename.SetToolTipString("Rename the selected story.")
+        self.btnPlay.SetToolTipString("Playback the entire selected story.")
+        self.btnPublishAssign.SetToolTipString("Publish a story or assign a template to students")
+        self.btnBack.SetToolTipString("Go back to Student selection.")
+	self.btnDelete.SetToolTipString("Delete the selected story.")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
         self.btnSelect.SetDefault()

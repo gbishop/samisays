@@ -57,6 +57,7 @@ class GuiStart(wx.Frame):
         self.btnStories.SetFocus()
         self.btnTemplates.SetMinSize((175, 35))
         self.btnTemplates.SetToolTipString("Make story templates for students to fill in.")
+        self.btnPrioritize.SetToolTipString("Manage the sound library.")
     # end guiStart.__set_properties
 
     '''
