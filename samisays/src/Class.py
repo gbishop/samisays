@@ -42,19 +42,8 @@ class Class:
         '''
         Removes a student from the class and moves the folder to a backup directory.
         '''
-        dname = '_' + self.students[index].name
-        self.students.pop(index)
-        try:
-            os.mkdir(BACKUP_DIR)
-        except OSError:()
-        
-        i = 1
-        while True:
-            if not os.path.exists('%s%s_%d' % (BACKUP_DIR, dname, i)):
-                break
-            i += 1
-            
-        shutil.move(STUDENT_DIR + dname, '%s%s_%d' % (BACKUP_DIR, dname, i))
+        studentName = self.students.pop(index).name         
+        shutil.rmtree('%s_%s' % (STUDENT_DIR, studentName), True)   
     
     def save(self):
         '''
