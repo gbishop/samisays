@@ -2,7 +2,7 @@
 
 = SamiSays Installers =
 
-_===For Windows XP:===_
+===For Windows XP:===
  * link goes here
 
 ===For All Other Versions:===
