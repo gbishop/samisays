@@ -1,14 +1,21 @@
 ''' Imports '''
+import sys
+import wx
 from Story import *
 from SoundControl import *
 from SoundLibrary import *
-import sys
-import wx
 from Constants import *
 
 class GuiVisualizer(wx.Frame):
+    '''
+    This is a subclass of the wx Frame class. GuiVisualizer communicates with the story 
+    object to display statistics and catches the key events for the story creation aui.
+    '''
     
     def __init__(self, *args, **kwds):
+        '''
+        Contructor for setting up form elements and binding key events.
+        '''
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
@@ -24,8 +31,6 @@ class GuiVisualizer(wx.Frame):
         self.imgRecOn = wx.Image("art/rec_on.png", wx.BITMAP_TYPE_PNG)
         self.picRecord = wx.StaticBitmap(self.panel, -1, wx.NullBitmap)
         self.recOff()
-        #self.infoLabel = wx.StaticText(self.panel, -1, 'Story Information')
-        #self.instructionLabel = wx.StaticText(self.panel, -1, 'Instructions')
         
         # binding of events
         self.Bind(wx.EVT_KILL_FOCUS, self.handleFocus, self)
@@ -39,7 +44,9 @@ class GuiVisualizer(wx.Frame):
 
         
     def __set_properties(self):
-        # begin wxGlade: GuiVisualizer.__set_properties
+        '''
+        Function for setting form properties. (wxGlade generated)
+        '''
         self.SetTitle("Sami Says")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
@@ -52,7 +59,9 @@ class GuiVisualizer(wx.Frame):
         # end wxGlade
 
     def __do_layout(self):
-        # begin wxGlade: GuiVisualizer.__do_layout
+        '''
+        Function for laying out a window. (wxGlade generated)
+        '''
         title_boxesSizer = wx.BoxSizer(wx.VERTICAL)
         labelsSizer = wx.BoxSizer(wx.HORIZONTAL)
         boxesSizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -88,12 +97,6 @@ class GuiVisualizer(wx.Frame):
         instructionSizer.Add(self.instructions, 1,wx.EXPAND,0)
         boxesSizer.Add((20, 20), 0, 0, 0)
         title_boxesSizer.Add(boxesSizer, 10, wx.EXPAND, 0)
-        '''labelsSizer.Add((20, 20), 0, 0, 0)
-        labelsSizer.Add(self.infoLabel, 0, 0, 0)
-        labelsSizer.Add((20, 20), 1, 0, 0)
-        labelsSizer.Add(self.instructionLabel, 0, 0, 0)
-        labelsSizer.Add((20, 20), 0, 0, 0)
-        title_boxesSizer.Add(labelsSizer, 1, wx.EXPAND, 0) '''
         title_boxesSizer.Add(instructionSizer, 4, wx.EXPAND, 0)
         title_boxesSizer.Add((40, 40), 0, 0, 0)
         self.panel.SetSizer(title_boxesSizer)
@@ -102,16 +105,29 @@ class GuiVisualizer(wx.Frame):
         # end wxGlade
         
     def recOn(self):
+        '''
+        Function for 'lighting' the record image.
+        '''
         self.picRecord.SetBitmap(wx.BitmapFromImage(self.imgRecOn))
         
     def recOff(self):
+        '''
+        Function for 'dimming' the record image.
+        '''
         self.picRecord.SetBitmap(wx.BitmapFromImage(self.imgRecOff))
         
     def handleFocus(self, event):
+        '''
+        Callback function for re-grabbing focus to the frame when focus is lost.
+        '''
         if self.visible:
             self.SetFocus()
     
     def handleShow(self, event):
+        '''
+        Callback function for handling the show events. It also decides whether
+        you are in template creation or story creation.
+        '''
         if not self.visible:
             if self.env['auiStoryCreation'].teacherMode:
                 self.title = wx.StaticText(self.panel, -1, 'Template Creation')
@@ -123,12 +139,22 @@ class GuiVisualizer(wx.Frame):
         
     
     def setEnv(self,env): 
+        '''
+        Function for setting up the Sami Says environment.
+        '''
         self.env = env
 
     def setInstructions(self, instrText):
+        '''
+        Function for setting the instruction text.
+        '''
         self.instructions.SetLabel(instrText)
 
     def updateStats(self):
+        '''
+        Function for updating the story statistics from the currently referenced 
+        story.
+        '''
         story = self.env['story']
         stats = story.getStats()
         min,sec = getDuration(story.getStoryBytes())
@@ -148,6 +174,10 @@ class GuiVisualizer(wx.Frame):
         self.statsLabel.SetLabel(durInfo + clipInfo + statsInfo)
         
     def updateLibraryStats(self):
+        '''
+        Function for updating the library statistcs from the currently referenced sound
+        or categories.
+        '''
         SL = self.env['soundLibrary']
         mode = self.env['auiInsertSound'].mode
         
@@ -182,6 +212,9 @@ class GuiVisualizer(wx.Frame):
         
         
     def onClose(self, event):
+        '''
+        Function for handling close events.
+        '''
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO | wx.ICON_EXCLAMATION)
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
@@ -190,13 +223,7 @@ class GuiVisualizer(wx.Frame):
             self.SetFocus()
             dialog.Destroy()
 
-# end of class GuiVisualizer
 
-
+''' Handling an attempt at standalone running '''           
 if __name__ == "__main__":
-    app = wx.PySimpleApp(0)
-    wx.InitAllImageHandlers()
-    frame_5 = GuiVisualizer(None, -1, "")
-    app.SetTopWindow(frame_5)
-    frame_5.Show()
-    app.MainLoop()
+    print 'The class "GuiVisualizer" is not runnable.'
