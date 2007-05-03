@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>AuiStorySelection</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;AuiStorySelection
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="AuiStorySelection-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="AuiStorySelection-module.html">Module AuiStorySelection</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">''' Imports '''</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">wx</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sets</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module SoundControl=SoundControl-module.html,Class SoundControl.SoundControl=SoundControl.SoundControl-class.html"><a title="SoundControl
+SoundControl.SoundControl" class="py-name" href="#" onclick="return doclink('link-0', 'SoundControl', 'link-0');">SoundControl</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Module Story=Story-module.html,Class Story.Story=Story.Story-class.html"><a title="Story
+Story.Story" class="py-name" href="#" onclick="return doclink('link-1', 'Story', 'link-1');">Story</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Module Constants=Constants-module.html"><a title="Constants" class="py-name" href="#" onclick="return doclink('link-2', 'Constants', 'link-2');">Constants</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="AuiStorySelection"></a><div id="AuiStorySelection-def"><a name="L9"></a><tt class="py-lineno">  9</tt> <a class="py-toggle" href="#" id="AuiStorySelection-toggle" onclick="return toggle('AuiStorySelection');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html">AuiStorySelection</a><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="AuiStorySelection-expanded"><a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">        The Audio User Interface for the story selection frame. It is active when said </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">        frame is in 'locked' mode. Enables students to navigate and access functionality </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        of their StoryBook.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">         </tt>
+<a name="AuiStorySelection.__init__"></a><div id="AuiStorySelection.__init__-def"><a name="L16"></a><tt class="py-lineno"> 16</tt> <a class="py-toggle" href="#" id="AuiStorySelection.__init__-toggle" onclick="return toggle('AuiStorySelection.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">env</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.__init__-expanded"><a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">                Constructor receives global objects.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-name">env</tt> </tt>
+</div><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="AuiStorySelection.takeOver"></a><div id="AuiStorySelection.takeOver-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="AuiStorySelection.takeOver-toggle" onclick="return toggle('AuiStorySelection.takeOver');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#takeOver">takeOver</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.takeOver-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.takeOver-expanded"><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">                Gives AuiStorySelection the key bindings it needs and initializes essential </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">                variables.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">                 </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">                <tt class="py-name">welcomeText</tt> <tt class="py-op">=</tt> <tt class="py-name">file</tt><tt class="py-op">(</tt><tt id="link-3" class="py-name" targets="Variable AuiInsertSound.INSTR_DIR=AuiInsertSound-module.html#INSTR_DIR,Variable AuiStoryCreation.INSTR_DIR=AuiStoryCreation-module.html#INSTR_DIR,Variable AuiStorySelection.INSTR_DIR=AuiStorySelection-module.html#INSTR_DIR,Variable Class.INSTR_DIR=Class-module.html#INSTR_DIR,Variable Constants.INSTR_DIR=Constants-module.html#INSTR_DIR,Variable GuiAssign.INSTR_DIR=GuiAssign-module.html#INSTR_DIR,Variable GuiPrioritize.INSTR_DIR=GuiPrioritize-module.html#INSTR_DIR,Variable GuiStart.INSTR_DIR=GuiStart-module.html#INSTR_DIR,Variable GuiStories.INSTR_DIR=GuiStories-module.html#INSTR_DIR,Variable GuiStudents.INSTR_DIR=GuiStudents-module.html#INSTR_DIR,Variable GuiVisualizer.INSTR_DIR=GuiVisualizer-module.html#INSTR_DIR,Variable SamiSays.INSTR_DIR=SamiSays-module.html#INSTR_DIR,Variable SoundControl.INSTR_DIR=SoundControl-module.html#INSTR_DIR,Variable SoundEffects.INSTR_DIR=SoundEffects-module.html#INSTR_DIR,Variable SoundLibrary.INSTR_DIR=SoundLibrary-module.html#INSTR_DIR,Variable Story.INSTR_DIR=Story-module.html#INSTR_DIR,Variable Student.INSTR_DIR=Student-module.html#INSTR_DIR"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-3', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'selection_welcome.txt'</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method SoundControl.SoundControl.speakText()=SoundControl.SoundControl-class.html#speakText"><a title="SoundControl.SoundControl.speakText" class="py-name" href="#" onclick="return doclink('link-4', 'speakText', 'link-4');">speakText</a></tt><tt class="py-op">(</tt><tt class="py-name">welcomeText</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'student'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method Student.Student.getName()=Student.Student-class.html#getName"><a title="Student.Student.getName" class="py-name" href="#" onclick="return doclink('link-5', 'getName', 'link-5');">getName</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-comment"># Play Welcome</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">                 </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">lstStories</tt><tt class="py-op">.</tt><tt class="py-name">SetSelection</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'student'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">stories</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">                 </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doUnlock</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">allDowns</tt> <tt class="py-op">=</tt> <tt class="py-name">sets</tt><tt class="py-op">.</tt><tt class="py-name">Set</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">deleteConfirmed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">                 </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'keyUpFunct'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.onKeyUp()=AuiInsertSound.AuiInsertSound-class.html#onKeyUp,Method AuiStoryCreation.AuiStoryCreation.onKeyUp()=AuiStoryCreation.AuiStoryCreation-class.html#onKeyUp,Method AuiStorySelection.AuiStorySelection.onKeyUp()=AuiStorySelection.AuiStorySelection-class.html#onKeyUp,Method GuiAssign.GuiAssign.onKeyUp()=GuiAssign.GuiAssign-class.html#onKeyUp,Method GuiPrioritize.GuiPrioritize.onKeyUp()=GuiPrioritize.GuiPrioritize-class.html#onKeyUp,Method GuiStart.GuiStart.onKeyUp()=GuiStart.GuiStart-class.html#onKeyUp,Method GuiStories.GuiStories.onKeyUp()=GuiStories.GuiStories-class.html#onKeyUp,Method GuiStudents.GuiStudents.onKeyUp()=GuiStudents.GuiStudents-class.html#onKeyUp,Method SamiSays.SamiSays.onKeyUp()=SamiSays.SamiSays-class.html#onKeyUp"><a title="AuiInsertSound.AuiInsertSound.onKeyUp
+AuiStoryCreation.AuiStoryCreation.onKeyUp
+AuiStorySelection.AuiStorySelection.onKeyUp
+GuiAssign.GuiAssign.onKeyUp
+GuiPrioritize.GuiPrioritize.onKeyUp
+GuiStart.GuiStart.onKeyUp
+GuiStories.GuiStories.onKeyUp
+GuiStudents.GuiStudents.onKeyUp
+SamiSays.SamiSays.onKeyUp" class="py-name" href="#" onclick="return doclink('link-6', 'onKeyUp', 'link-6');">onKeyUp</a></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'keyDownFunct'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.onKeyDown()=AuiInsertSound.AuiInsertSound-class.html#onKeyDown,Method AuiStoryCreation.AuiStoryCreation.onKeyDown()=AuiStoryCreation.AuiStoryCreation-class.html#onKeyDown,Method AuiStorySelection.AuiStorySelection.onKeyDown()=AuiStorySelection.AuiStorySelection-class.html#onKeyDown,Method GuiAssign.GuiAssign.onKeyDown()=GuiAssign.GuiAssign-class.html#onKeyDown,Method GuiPrioritize.GuiPrioritize.onKeyDown()=GuiPrioritize.GuiPrioritize-class.html#onKeyDown,Method GuiStart.GuiStart.onKeyDown()=GuiStart.GuiStart-class.html#onKeyDown,Method GuiStories.GuiStories.onKeyDown()=GuiStories.GuiStories-class.html#onKeyDown,Method GuiStudents.GuiStudents.onKeyDown()=GuiStudents.GuiStudents-class.html#onKeyDown,Method SamiSays.SamiSays.onKeyDown()=SamiSays.SamiSays-class.html#onKeyDown"><a title="AuiInsertSound.AuiInsertSound.onKeyDown
+AuiStoryCreation.AuiStoryCreation.onKeyDown
+AuiStorySelection.AuiStorySelection.onKeyDown
+GuiAssign.GuiAssign.onKeyDown
+GuiPrioritize.GuiPrioritize.onKeyDown
+GuiStart.GuiStart.onKeyDown
+GuiStories.GuiStories.onKeyDown
+GuiStudents.GuiStudents.onKeyDown
+SamiSays.SamiSays.onKeyDown" class="py-name" href="#" onclick="return doclink('link-7', 'onKeyDown', 'link-7');">onKeyDown</a></tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">                 </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">                 </tt>
+<a name="AuiStorySelection.onKeyDown"></a><div id="AuiStorySelection.onKeyDown-def"><a name="L45"></a><tt class="py-lineno"> 45</tt> <a class="py-toggle" href="#" id="AuiStorySelection.onKeyDown-toggle" onclick="return toggle('AuiStorySelection.onKeyDown');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#onKeyDown">onKeyDown</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.onKeyDown-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.onKeyDown-expanded"><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">                Handles key down events.  </tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                 </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                <tt class="py-name">keyCode</tt> <tt class="py-op">=</tt> <tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">GetKeyCode</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                 </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">allDowns</tt><tt class="py-op">.</tt><tt class="py-name">union_update</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-name">keyCode</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                 </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-keyword">in</tt> <tt id="link-8" class="py-name" targets="Variable AuiInsertSound.LOCK_KEYS=AuiInsertSound-module.html#LOCK_KEYS,Variable AuiStoryCreation.LOCK_KEYS=AuiStoryCreation-module.html#LOCK_KEYS,Variable AuiStorySelection.LOCK_KEYS=AuiStorySelection-module.html#LOCK_KEYS,Variable Class.LOCK_KEYS=Class-module.html#LOCK_KEYS,Variable Constants.LOCK_KEYS=Constants-module.html#LOCK_KEYS,Variable GuiAssign.LOCK_KEYS=GuiAssign-module.html#LOCK_KEYS,Variable GuiPrioritize.LOCK_KEYS=GuiPrioritize-module.html#LOCK_KEYS,Variable GuiStart.LOCK_KEYS=GuiStart-module.html#LOCK_KEYS,Variable GuiStories.LOCK_KEYS=GuiStories-module.html#LOCK_KEYS,Variable GuiStudents.LOCK_KEYS=GuiStudents-module.html#LOCK_KEYS,Variable GuiVisualizer.LOCK_KEYS=GuiVisualizer-module.html#LOCK_KEYS,Variable SamiSays.LOCK_KEYS=SamiSays-module.html#LOCK_KEYS,Variable SoundControl.LOCK_KEYS=SoundControl-module.html#LOCK_KEYS,Variable SoundEffects.LOCK_KEYS=SoundEffects-module.html#LOCK_KEYS,Variable SoundLibrary.LOCK_KEYS=SoundLibrary-module.html#LOCK_KEYS,Variable Story.LOCK_KEYS=Story-module.html#LOCK_KEYS,Variable Student.LOCK_KEYS=Student-module.html#LOCK_KEYS"><a title="AuiInsertSound.LOCK_KEYS
+AuiStoryCreation.LOCK_KEYS
+AuiStorySelection.LOCK_KEYS
+Class.LOCK_KEYS
+Constants.LOCK_KEYS
+GuiAssign.LOCK_KEYS
+GuiPrioritize.LOCK_KEYS
+GuiStart.LOCK_KEYS
+GuiStories.LOCK_KEYS
+GuiStudents.LOCK_KEYS
+GuiVisualizer.LOCK_KEYS
+SamiSays.LOCK_KEYS
+SoundControl.LOCK_KEYS
+SoundEffects.LOCK_KEYS
+SoundLibrary.LOCK_KEYS
+Story.LOCK_KEYS
+Student.LOCK_KEYS" class="py-name" href="#" onclick="return doclink('link-8', 'LOCK_KEYS', 'link-8');">LOCK_KEYS</a></tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">allDowns</tt> <tt class="py-op">==</tt> <tt id="link-9" class="py-name"><a title="AuiInsertSound.LOCK_KEYS
+AuiStoryCreation.LOCK_KEYS
+AuiStorySelection.LOCK_KEYS
+Class.LOCK_KEYS
+Constants.LOCK_KEYS
+GuiAssign.LOCK_KEYS
+GuiPrioritize.LOCK_KEYS
+GuiStart.LOCK_KEYS
+GuiStories.LOCK_KEYS
+GuiStudents.LOCK_KEYS
+GuiVisualizer.LOCK_KEYS
+SamiSays.LOCK_KEYS
+SoundControl.LOCK_KEYS
+SoundEffects.LOCK_KEYS
+SoundLibrary.LOCK_KEYS
+Story.LOCK_KEYS
+Student.LOCK_KEYS" class="py-name" href="#" onclick="return doclink('link-9', 'LOCK_KEYS', 'link-8');">LOCK_KEYS</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doUnlock</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                         </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">!=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> <tt class="py-comment"># some key is already down</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                         </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doUnlock</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">=</tt> <tt class="py-name">keyCode</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">                 </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                 </tt>
+<a name="AuiStorySelection.onKeyUp"></a><div id="AuiStorySelection.onKeyUp-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="AuiStorySelection.onKeyUp-toggle" onclick="return toggle('AuiStorySelection.onKeyUp');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#onKeyUp">onKeyUp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.onKeyUp-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.onKeyUp-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">                Handles event when a key is released by calling the correct function</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">                for each valid key.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                 </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt class="py-name">keyCode</tt> <tt class="py-op">=</tt> <tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">GetKeyCode</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                 </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">allDowns</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">keyCode</tt><tt class="py-op">)</tt>  </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                 </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">allDowns</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doUnlock</tt><tt class="py-op">:</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method GuiStories.GuiStories.unlock()=GuiStories.GuiStories-class.html#unlock"><a title="GuiStories.GuiStories.unlock" class="py-name" href="#" onclick="return doclink('link-10', 'unlock', 'link-10');">unlock</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">doUnlock</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                 </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">!=</tt> <tt class="py-name">keyCode</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">                 </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                 </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">                <tt class="py-comment"># Define dictionary of functions for valid keys</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-comment"></tt>                <tt class="py-name">keyFunctions</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">WXK_RIGHT</tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.goRight()=AuiStorySelection.AuiStorySelection-class.html#goRight"><a title="AuiStorySelection.AuiStorySelection.goRight" class="py-name" href="#" onclick="return doclink('link-11', 'goRight', 'link-11');">goRight</a></tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">WXK_LEFT</tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.goLeft()=AuiStorySelection.AuiStorySelection-class.html#goLeft"><a title="AuiStorySelection.AuiStorySelection.goLeft" class="py-name" href="#" onclick="return doclink('link-12', 'goLeft', 'link-12');">goLeft</a></tt><tt class="py-op">,</tt>  </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                                            <tt id="link-13" class="py-name" targets="Variable AuiInsertSound.NEW_KEY=AuiInsertSound-module.html#NEW_KEY,Variable AuiStoryCreation.NEW_KEY=AuiStoryCreation-module.html#NEW_KEY,Variable AuiStorySelection.NEW_KEY=AuiStorySelection-module.html#NEW_KEY,Variable Class.NEW_KEY=Class-module.html#NEW_KEY,Variable Constants.NEW_KEY=Constants-module.html#NEW_KEY,Variable GuiAssign.NEW_KEY=GuiAssign-module.html#NEW_KEY,Variable GuiPrioritize.NEW_KEY=GuiPrioritize-module.html#NEW_KEY,Variable GuiStart.NEW_KEY=GuiStart-module.html#NEW_KEY,Variable GuiStories.NEW_KEY=GuiStories-module.html#NEW_KEY,Variable GuiStudents.NEW_KEY=GuiStudents-module.html#NEW_KEY,Variable GuiVisualizer.NEW_KEY=GuiVisualizer-module.html#NEW_KEY,Variable SamiSays.NEW_KEY=SamiSays-module.html#NEW_KEY,Variable SoundControl.NEW_KEY=SoundControl-module.html#NEW_KEY,Variable SoundEffects.NEW_KEY=SoundEffects-module.html#NEW_KEY,Variable SoundLibrary.NEW_KEY=SoundLibrary-module.html#NEW_KEY,Variable Story.NEW_KEY=Story-module.html#NEW_KEY,Variable Student.NEW_KEY=Student-module.html#NEW_KEY"><a title="AuiInsertSound.NEW_KEY
+AuiStoryCreation.NEW_KEY
+AuiStorySelection.NEW_KEY
+Class.NEW_KEY
+Constants.NEW_KEY
+GuiAssign.NEW_KEY
+GuiPrioritize.NEW_KEY
+GuiStart.NEW_KEY
+GuiStories.NEW_KEY
+GuiStudents.NEW_KEY
+GuiVisualizer.NEW_KEY
+SamiSays.NEW_KEY
+SoundControl.NEW_KEY
+SoundEffects.NEW_KEY
+SoundLibrary.NEW_KEY
+Story.NEW_KEY
+Student.NEW_KEY" class="py-name" href="#" onclick="return doclink('link-13', 'NEW_KEY', 'link-13');">NEW_KEY</a></tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.newStory()=AuiStorySelection.AuiStorySelection-class.html#newStory,Method GuiStories.GuiStories.newStory()=GuiStories.GuiStories-class.html#newStory"><a title="AuiStorySelection.AuiStorySelection.newStory
+GuiStories.GuiStories.newStory" class="py-name" href="#" onclick="return doclink('link-14', 'newStory', 'link-14');">newStory</a></tt><tt class="py-op">,</tt> <tt id="link-15" class="py-name" targets="Variable AuiInsertSound.CTRL=AuiInsertSound-module.html#CTRL,Variable AuiStoryCreation.CTRL=AuiStoryCreation-module.html#CTRL,Variable AuiStorySelection.CTRL=AuiStorySelection-module.html#CTRL,Variable Class.CTRL=Class-module.html#CTRL,Variable Constants.CTRL=Constants-module.html#CTRL,Variable GuiAssign.CTRL=GuiAssign-module.html#CTRL,Variable GuiPrioritize.CTRL=GuiPrioritize-module.html#CTRL,Variable GuiStart.CTRL=GuiStart-module.html#CTRL,Variable GuiStories.CTRL=GuiStories-module.html#CTRL,Variable GuiStudents.CTRL=GuiStudents-module.html#CTRL,Variable GuiVisualizer.CTRL=GuiVisualizer-module.html#CTRL,Variable SamiSays.CTRL=SamiSays-module.html#CTRL,Variable SoundControl.CTRL=SoundControl-module.html#CTRL,Variable SoundEffects.CTRL=SoundEffects-module.html#CTRL,Variable SoundLibrary.CTRL=SoundLibrary-module.html#CTRL,Variable Story.CTRL=Story-module.html#CTRL,Variable Student.CTRL=Student-module.html#CTRL"><a title="AuiInsertSound.CTRL
+AuiStoryCreation.CTRL
+AuiStorySelection.CTRL
+Class.CTRL
+Constants.CTRL
+GuiAssign.CTRL
+GuiPrioritize.CTRL
+GuiStart.CTRL
+GuiStories.CTRL
+GuiStudents.CTRL
+GuiVisualizer.CTRL
+SamiSays.CTRL
+SoundControl.CTRL
+SoundEffects.CTRL
+SoundLibrary.CTRL
+Story.CTRL
+Student.CTRL" class="py-name" href="#" onclick="return doclink('link-15', 'CTRL', 'link-15');">CTRL</a></tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.playStory()=AuiStorySelection.AuiStorySelection-class.html#playStory"><a title="AuiStorySelection.AuiStorySelection.playStory" class="py-name" href="#" onclick="return doclink('link-16', 'playStory', 'link-16');">playStory</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                                                <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">WXK_DOWN</tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.getHelp()=AuiInsertSound.AuiInsertSound-class.html#getHelp,Method AuiStoryCreation.AuiStoryCreation.getHelp()=AuiStoryCreation.AuiStoryCreation-class.html#getHelp,Method AuiStorySelection.AuiStorySelection.getHelp()=AuiStorySelection.AuiStorySelection-class.html#getHelp"><a title="AuiInsertSound.AuiInsertSound.getHelp
+AuiStoryCreation.AuiStoryCreation.getHelp
+AuiStorySelection.AuiStorySelection.getHelp" class="py-name" href="#" onclick="return doclink('link-17', 'getHelp', 'link-17');">getHelp</a></tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">WXK_UP</tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.selectStory()=AuiStorySelection.AuiStorySelection-class.html#selectStory"><a title="AuiStorySelection.AuiStorySelection.selectStory" class="py-name" href="#" onclick="return doclink('link-18', 'selectStory', 'link-18');">selectStory</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                                                <tt id="link-19" class="py-name" targets="Variable AuiInsertSound.DELETE_KEY=AuiInsertSound-module.html#DELETE_KEY,Variable AuiStoryCreation.DELETE_KEY=AuiStoryCreation-module.html#DELETE_KEY,Variable AuiStorySelection.DELETE_KEY=AuiStorySelection-module.html#DELETE_KEY,Variable Class.DELETE_KEY=Class-module.html#DELETE_KEY,Variable Constants.DELETE_KEY=Constants-module.html#DELETE_KEY,Variable GuiAssign.DELETE_KEY=GuiAssign-module.html#DELETE_KEY,Variable GuiPrioritize.DELETE_KEY=GuiPrioritize-module.html#DELETE_KEY,Variable GuiStart.DELETE_KEY=GuiStart-module.html#DELETE_KEY,Variable GuiStories.DELETE_KEY=GuiStories-module.html#DELETE_KEY,Variable GuiStudents.DELETE_KEY=GuiStudents-module.html#DELETE_KEY,Variable GuiVisualizer.DELETE_KEY=GuiVisualizer-module.html#DELETE_KEY,Variable SamiSays.DELETE_KEY=SamiSays-module.html#DELETE_KEY,Variable SoundControl.DELETE_KEY=SoundControl-module.html#DELETE_KEY,Variable SoundEffects.DELETE_KEY=SoundEffects-module.html#DELETE_KEY,Variable SoundLibrary.DELETE_KEY=SoundLibrary-module.html#DELETE_KEY,Variable Story.DELETE_KEY=Story-module.html#DELETE_KEY,Variable Student.DELETE_KEY=Student-module.html#DELETE_KEY"><a title="AuiInsertSound.DELETE_KEY
+AuiStoryCreation.DELETE_KEY
+AuiStorySelection.DELETE_KEY
+Class.DELETE_KEY
+Constants.DELETE_KEY
+GuiAssign.DELETE_KEY
+GuiPrioritize.DELETE_KEY
+GuiStart.DELETE_KEY
+GuiStories.DELETE_KEY
+GuiStudents.DELETE_KEY
+GuiVisualizer.DELETE_KEY
+SamiSays.DELETE_KEY
+SoundControl.DELETE_KEY
+SoundEffects.DELETE_KEY
+SoundLibrary.DELETE_KEY
+Story.DELETE_KEY
+Student.DELETE_KEY" class="py-name" href="#" onclick="return doclink('link-19', 'DELETE_KEY', 'link-19');">DELETE_KEY</a></tt> <tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.deleteStory()=AuiStorySelection.AuiStorySelection-class.html#deleteStory,Method GuiStories.GuiStories.deleteStory()=GuiStories.GuiStories-class.html#deleteStory"><a title="AuiStorySelection.AuiStorySelection.deleteStory
+GuiStories.GuiStories.deleteStory" class="py-name" href="#" onclick="return doclink('link-20', 'deleteStory', 'link-20');">deleteStory</a></tt><tt class="py-op">}</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                 </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">keyCode</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt>  <tt class="py-name">keyFunctions</tt><tt class="py-op">:</tt> <tt class="py-comment"># If key has no function, ignore it</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                 </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-keyword">not</tt> <tt class="py-name">keyCode</tt> <tt class="py-keyword">in</tt> <tt class="py-op">[</tt><tt id="link-21" class="py-name"><a title="AuiInsertSound.NEW_KEY
+AuiStoryCreation.NEW_KEY
+AuiStorySelection.NEW_KEY
+Class.NEW_KEY
+Constants.NEW_KEY
+GuiAssign.NEW_KEY
+GuiPrioritize.NEW_KEY
+GuiStart.NEW_KEY
+GuiStories.NEW_KEY
+GuiStudents.NEW_KEY
+GuiVisualizer.NEW_KEY
+SamiSays.NEW_KEY
+SoundControl.NEW_KEY
+SoundEffects.NEW_KEY
+SoundLibrary.NEW_KEY
+Story.NEW_KEY
+Student.NEW_KEY" class="py-name" href="#" onclick="return doclink('link-21', 'NEW_KEY', 'link-13');">NEW_KEY</a></tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">WXK_ESCAPE</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method SoundControl.SoundControl.speakTextFile()=SoundControl.SoundControl-class.html#speakTextFile"><a title="SoundControl.SoundControl.speakTextFile" class="py-name" href="#" onclick="return doclink('link-22', 'speakTextFile', 'link-22');">speakTextFile</a></tt><tt class="py-op">(</tt><tt id="link-23" class="py-name"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-23', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'no_stories.txt'</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">keyCode</tt> <tt class="py-op">!=</tt> <tt id="link-24" class="py-name"><a title="AuiInsertSound.DELETE_KEY
+AuiStoryCreation.DELETE_KEY
+AuiStorySelection.DELETE_KEY
+Class.DELETE_KEY
+Constants.DELETE_KEY
+GuiAssign.DELETE_KEY
+GuiPrioritize.DELETE_KEY
+GuiStart.DELETE_KEY
+GuiStories.DELETE_KEY
+GuiStudents.DELETE_KEY
+GuiVisualizer.DELETE_KEY
+SamiSays.DELETE_KEY
+SoundControl.DELETE_KEY
+SoundEffects.DELETE_KEY
+SoundLibrary.DELETE_KEY
+Story.DELETE_KEY
+Student.DELETE_KEY" class="py-name" href="#" onclick="return doclink('link-24', 'DELETE_KEY', 'link-19');">DELETE_KEY</a></tt><tt class="py-op">:</tt> <tt class="py-comment"># If key is not the delete key, a delete is not being confirmed</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">deleteConfirmed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                 </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Method SoundControl.SoundControl.stopPlay()=SoundControl.SoundControl-class.html#stopPlay"><a title="SoundControl.SoundControl.stopPlay" class="py-name" href="#" onclick="return doclink('link-25', 'stopPlay', 'link-25');">stopPlay</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                <tt class="py-name">keyFunctions</tt><tt class="py-op">[</tt><tt class="py-name">keyCode</tt><tt class="py-op">]</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                 </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                 </tt>
+<a name="AuiStorySelection.deleteStory"></a><div id="AuiStorySelection.deleteStory-def"><a name="L104"></a><tt class="py-lineno">104</tt> <a class="py-toggle" href="#" id="AuiStorySelection.deleteStory-toggle" onclick="return toggle('AuiStorySelection.deleteStory');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#deleteStory">deleteStory</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.deleteStory-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.deleteStory-expanded"><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"><tt class="py-docstring">                Called when delete key is released. If previous key pressed was </tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt class="py-docstring">                also the delete key, deletes the current story. Otherwise, requests </tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring">                confirmation for delete.</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                 </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                   <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="SoundControl.SoundControl.speakTextFile" class="py-name" href="#" onclick="return doclink('link-26', 'speakTextFile', 'link-22');">speakTextFile</a></tt><tt class="py-op">(</tt><tt id="link-27" class="py-name"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-27', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'no_story_selected.txt'</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">                   <tt class="py-keyword">return</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">                 </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">deleteConfirmed</tt><tt class="py-op">:</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="AuiStorySelection.AuiStorySelection.deleteStory
+GuiStories.GuiStories.deleteStory" class="py-name" href="#" onclick="return doclink('link-28', 'deleteStory', 'link-20');">deleteStory</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> <tt class="py-op">-=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">lstStories</tt><tt class="py-op">.</tt><tt class="py-name">SetSelection</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method GuiStories.GuiStories.loadTitle()=GuiStories.GuiStories-class.html#loadTitle"><a title="GuiStories.GuiStories.loadTitle" class="py-name" href="#" onclick="return doclink('link-29', 'loadTitle', 'link-29');">loadTitle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.playTitle()=AuiStorySelection.AuiStorySelection-class.html#playTitle"><a title="AuiStorySelection.AuiStorySelection.playTitle" class="py-name" href="#" onclick="return doclink('link-30', 'playTitle', 'link-30');">playTitle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">deleteConfirmed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="SoundControl.SoundControl.speakTextFile" class="py-name" href="#" onclick="return doclink('link-31', 'speakTextFile', 'link-22');">speakTextFile</a></tt><tt class="py-op">(</tt><tt id="link-32" class="py-name"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-32', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'delete_confirm.txt'</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">deleteConfirmed</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                         </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                         </tt>
+<a name="AuiStorySelection.goRight"></a><div id="AuiStorySelection.goRight-def"><a name="L131"></a><tt class="py-lineno">131</tt> <a class="py-toggle" href="#" id="AuiStorySelection.goRight-toggle" onclick="return toggle('AuiStorySelection.goRight');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#goRight">goRight</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.goRight-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.goRight-expanded"><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">                Called when the right arrow is released. It moves between stories in circular fashion.</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">                 </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">lstStories</tt><tt class="py-op">.</tt><tt class="py-name">SetSelection</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="GuiStories.GuiStories.loadTitle" class="py-name" href="#" onclick="return doclink('link-33', 'loadTitle', 'link-29');">loadTitle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">;</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="AuiStorySelection.AuiStorySelection.playTitle" class="py-name" href="#" onclick="return doclink('link-34', 'playTitle', 'link-30');">playTitle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">                 </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                 </tt>
+<a name="AuiStorySelection.goLeft"></a><div id="AuiStorySelection.goLeft-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="AuiStorySelection.goLeft-toggle" onclick="return toggle('AuiStorySelection.goLeft');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#goLeft">goLeft</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.goLeft-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.goLeft-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">                Called when the left arrow is released. It moves between stories in circular fashion.</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt><tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">numStories</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">                 </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">lstStories</tt><tt class="py-op">.</tt><tt class="py-name">SetSelection</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="GuiStories.GuiStories.loadTitle" class="py-name" href="#" onclick="return doclink('link-35', 'loadTitle', 'link-29');">loadTitle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">;</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="AuiStorySelection.AuiStorySelection.playTitle" class="py-name" href="#" onclick="return doclink('link-36', 'playTitle', 'link-30');">playTitle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">                 </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">                 </tt>
+<a name="AuiStorySelection.selectStory"></a><div id="AuiStorySelection.selectStory-def"><a name="L156"></a><tt class="py-lineno">156</tt> <a class="py-toggle" href="#" id="AuiStorySelection.selectStory-toggle" onclick="return toggle('AuiStorySelection.selectStory');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#selectStory">selectStory</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.selectStory-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.selectStory-expanded"><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring">                Called when the up key is pressed. It selects a story for editing.</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">                 </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">storyIndex</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="SoundControl.SoundControl.speakTextFile" class="py-name" href="#" onclick="return doclink('link-37', 'speakTextFile', 'link-22');">speakTextFile</a></tt><tt class="py-op">(</tt><tt id="link-38" class="py-name"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-38', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'no_story_selected.txt'</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method GuiStories.GuiStories.btnSelectPressed()=GuiStories.GuiStories-class.html#btnSelectPressed,Method GuiStudents.GuiStudents.btnSelectPressed()=GuiStudents.GuiStudents-class.html#btnSelectPressed"><a title="GuiStories.GuiStories.btnSelectPressed
+GuiStudents.GuiStudents.btnSelectPressed" class="py-name" href="#" onclick="return doclink('link-39', 'btnSelectPressed', 'link-39');">btnSelectPressed</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">         </tt>
+<a name="AuiStorySelection.playTitle"></a><div id="AuiStorySelection.playTitle-def"><a name="L166"></a><tt class="py-lineno">166</tt> <a class="py-toggle" href="#" id="AuiStorySelection.playTitle-toggle" onclick="return toggle('AuiStorySelection.playTitle');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#playTitle">playTitle</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.playTitle-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.playTitle-expanded"><a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"><tt class="py-docstring">                Called whenever a story is focused. It simply plays the title.</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">                 </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="SoundControl.SoundControl.stopPlay" class="py-name" href="#" onclick="return doclink('link-40', 'stopPlay', 'link-25');">stopPlay</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">                <tt class="py-name">titleBytes</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'story'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Method Story.Story.getTitleBytes()=Story.Story-class.html#getTitleBytes"><a title="Story.Story.getTitleBytes" class="py-name" href="#" onclick="return doclink('link-41', 'getTitleBytes', 'link-41');">getTitleBytes</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method SoundControl.SoundControl.playSoundBytes()=SoundControl.SoundControl-class.html#playSoundBytes"><a title="SoundControl.SoundControl.playSoundBytes" class="py-name" href="#" onclick="return doclink('link-42', 'playSoundBytes', 'link-42');">playSoundBytes</a></tt><tt class="py-op">(</tt><tt class="py-name">titleBytes</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">         </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">         </tt>
+<a name="AuiStorySelection.playStory"></a><div id="AuiStorySelection.playStory-def"><a name="L176"></a><tt class="py-lineno">176</tt> <a class="py-toggle" href="#" id="AuiStorySelection.playStory-toggle" onclick="return toggle('AuiStorySelection.playStory');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#playStory">playStory</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.playStory-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.playStory-expanded"><a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"><tt class="py-docstring">                Called whenever the ctrl key is pressed. It plays the entire story.</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">                 </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="SoundControl.SoundControl.stopPlay" class="py-name" href="#" onclick="return doclink('link-43', 'stopPlay', 'link-25');">stopPlay</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Method GuiStories.GuiStories.getSelection()=GuiStories.GuiStories-class.html#getSelection"><a title="GuiStories.GuiStories.getSelection" class="py-name" href="#" onclick="return doclink('link-44', 'getSelection', 'link-44');">getSelection</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="SoundControl.SoundControl.speakTextFile" class="py-name" href="#" onclick="return doclink('link-45', 'speakTextFile', 'link-22');">speakTextFile</a></tt><tt class="py-op">(</tt><tt id="link-46" class="py-name"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-46', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'no_story_selected.txt'</tt><tt class="py-op">)</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'auiStoryCreation'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Method AuiStoryCreation.AuiStoryCreation.loadFullStory()=AuiStoryCreation.AuiStoryCreation-class.html#loadFullStory,Method Story.Story.loadFullStory()=Story.Story-class.html#loadFullStory"><a title="AuiStoryCreation.AuiStoryCreation.loadFullStory
+Story.Story.loadFullStory" class="py-name" href="#" onclick="return doclink('link-47', 'loadFullStory', 'link-47');">loadFullStory</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">                        <tt class="py-name">storyBytes</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'story'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Method Story.Story.getStoryBytes()=Story.Story-class.html#getStoryBytes"><a title="Story.Story.getStoryBytes" class="py-name" href="#" onclick="return doclink('link-48', 'getStoryBytes', 'link-48');">getStoryBytes</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="SoundControl.SoundControl.playSoundBytes" class="py-name" href="#" onclick="return doclink('link-49', 'playSoundBytes', 'link-42');">playSoundBytes</a></tt><tt class="py-op">(</tt><tt class="py-name">storyBytes</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">                         </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">                         </tt>
+<a name="AuiStorySelection.newStory"></a><div id="AuiStorySelection.newStory-def"><a name="L190"></a><tt class="py-lineno">190</tt> <a class="py-toggle" href="#" id="AuiStorySelection.newStory-toggle" onclick="return toggle('AuiStorySelection.newStory');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#newStory">newStory</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.newStory-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.newStory-expanded"><a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-docstring">                Called whenever 'new key' is pressed. It creates a new story for immediate </tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-docstring">                editing.</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">                 </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method GuiStories.GuiStories.btnCreatePressed()=GuiStories.GuiStories-class.html#btnCreatePressed,Method GuiStudents.GuiStudents.btnCreatePressed()=GuiStudents.GuiStudents-class.html#btnCreatePressed"><a title="GuiStories.GuiStories.btnCreatePressed
+GuiStudents.GuiStudents.btnCreatePressed" class="py-name" href="#" onclick="return doclink('link-50', 'btnCreatePressed', 'link-50');">btnCreatePressed</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">                 </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">                 </tt>
+<a name="AuiStorySelection.getHelp"></a><div id="AuiStorySelection.getHelp-def"><a name="L199"></a><tt class="py-lineno">199</tt> <a class="py-toggle" href="#" id="AuiStorySelection.getHelp-toggle" onclick="return toggle('AuiStorySelection.getHelp');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#getHelp">getHelp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.getHelp-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.getHelp-expanded"><a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"><tt class="py-docstring">                Called whenever the 'help key' is pressed. It (re)plays the relevant prompt.</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">                 </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="SoundControl.SoundControl.speakTextFile" class="py-name" href="#" onclick="return doclink('link-51', 'speakTextFile', 'link-22');">speakTextFile</a></tt><tt class="py-op">(</tt><tt id="link-52" class="py-name"><a title="AuiInsertSound.INSTR_DIR
+AuiStoryCreation.INSTR_DIR
+AuiStorySelection.INSTR_DIR
+Class.INSTR_DIR
+Constants.INSTR_DIR
+GuiAssign.INSTR_DIR
+GuiPrioritize.INSTR_DIR
+GuiStart.INSTR_DIR
+GuiStories.INSTR_DIR
+GuiStudents.INSTR_DIR
+GuiVisualizer.INSTR_DIR
+SamiSays.INSTR_DIR
+SoundControl.INSTR_DIR
+SoundEffects.INSTR_DIR
+SoundLibrary.INSTR_DIR
+Story.INSTR_DIR
+Student.INSTR_DIR" class="py-name" href="#" onclick="return doclink('link-52', 'INSTR_DIR', 'link-3');">INSTR_DIR</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'selection_instructions.txt'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">         </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">         </tt>
+<a name="AuiStorySelection.exit"></a><div id="AuiStorySelection.exit-def"><a name="L207"></a><tt class="py-lineno">207</tt> <a class="py-toggle" href="#" id="AuiStorySelection.exit-toggle" onclick="return toggle('AuiStorySelection.exit');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="AuiStorySelection.AuiStorySelection-class.html#exit">exit</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuiStorySelection.exit-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="AuiStorySelection.exit-expanded"><a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">                <tt class="py-docstring">'''</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring">                Called whenever the 'exit key' is pressed. It goes back to the previous frame.</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">                 </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method GuiStories.GuiStories.btnBackPressed()=GuiStories.GuiStories-class.html#btnBackPressed,Method GuiStudents.GuiStudents.btnBackPressed()=GuiStudents.GuiStudents-class.html#btnBackPressed"><a title="GuiStories.GuiStories.btnBackPressed
+GuiStudents.GuiStudents.btnBackPressed" class="py-name" href="#" onclick="return doclink('link-53', 'btnBackPressed', 'link-53');">btnBackPressed</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">)</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="GuiStories.GuiStories.unlock" class="py-name" href="#" onclick="return doclink('link-54', 'unlock', 'link-10');">unlock</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="GuiStories.GuiStories.unlock" class="py-name" href="#" onclick="return doclink('link-55', 'unlock', 'link-10');">unlock</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+</div></div><a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Thu May 03 15:13:58 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

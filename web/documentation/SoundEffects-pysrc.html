@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SoundEffects</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;SoundEffects
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SoundEffects-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="SoundEffects-module.html">Module SoundEffects</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">numpy</tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module Story=Story-module.html,Class Story.Story=Story.Story-class.html"><a title="Story
+Story.Story" class="py-name" href="#" onclick="return doclink('link-0', 'Story', 'link-0');">Story</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Module SoundControl=SoundControl-module.html,Class SoundControl.SoundControl=SoundControl.SoundControl-class.html"><a title="SoundControl
+SoundControl.SoundControl" class="py-name" href="#" onclick="return doclink('link-1', 'SoundControl', 'link-1');">SoundControl</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Module Constants=Constants-module.html"><a title="Constants" class="py-name" href="#" onclick="return doclink('link-2', 'Constants', 'link-2');">Constants</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"> </tt>
+<a name="SoundEffects"></a><div id="SoundEffects-def"><a name="L7"></a><tt class="py-lineno">  7</tt> <a class="py-toggle" href="#" id="SoundEffects-toggle" onclick="return toggle('SoundEffects');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="SoundEffects.SoundEffects-class.html">SoundEffects</a><tt class="py-op">:</tt> </tt>
+</div><div id="SoundEffects-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SoundEffects-expanded"><a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">    This class implements sound manipulations in the sound library.</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">    Supplies the sound library with manipulations of the current story clip</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">     </tt>
+<a name="SoundEffects.__init__"></a><div id="SoundEffects.__init__-def"><a name="L13"></a><tt class="py-lineno"> 13</tt> <a class="py-toggle" href="#" id="SoundEffects.__init__-toggle" onclick="return toggle('SoundEffects.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects.SoundEffects-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">env</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SoundEffects.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SoundEffects.__init__-expanded"><a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">        <tt class="py-docstring">''' </tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">        Constructor </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-name">env</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">     </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-comment"># Define array of functions for sound effects</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxFunctions</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt id="link-3" class="py-name" targets="Function SoundEffects.SpeedUp()=SoundEffects-module.html#SpeedUp"><a title="SoundEffects.SpeedUp" class="py-name" href="#" onclick="return doclink('link-3', 'SpeedUp', 'link-3');">SpeedUp</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Function SoundEffects.LargeSpeedUp()=SoundEffects-module.html#LargeSpeedUp"><a title="SoundEffects.LargeSpeedUp" class="py-name" href="#" onclick="return doclink('link-4', 'LargeSpeedUp', 'link-4');">LargeSpeedUp</a></tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name" targets="Function SoundEffects.SlowDown()=SoundEffects-module.html#SlowDown"><a title="SoundEffects.SlowDown" class="py-name" href="#" onclick="return doclink('link-5', 'SlowDown', 'link-5');">SlowDown</a></tt><tt class="py-op">,</tt> <tt id="link-6" class="py-name" targets="Function SoundEffects.LargeSlowDown()=SoundEffects-module.html#LargeSlowDown"><a title="SoundEffects.LargeSlowDown" class="py-name" href="#" onclick="return doclink('link-6', 'LargeSlowDown', 'link-6');">LargeSlowDown</a></tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Function SoundEffects.ShortEcho()=SoundEffects-module.html#ShortEcho"><a title="SoundEffects.ShortEcho" class="py-name" href="#" onclick="return doclink('link-7', 'ShortEcho', 'link-7');">ShortEcho</a></tt><tt class="py-op">,</tt> <tt id="link-8" class="py-name" targets="Function SoundEffects.LongEcho()=SoundEffects-module.html#LongEcho"><a title="SoundEffects.LongEcho" class="py-name" href="#" onclick="return doclink('link-8', 'LongEcho', 'link-8');">LongEcho</a></tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name" targets="Function SoundEffects.Reverse()=SoundEffects-module.html#Reverse"><a title="SoundEffects.Reverse" class="py-name" href="#" onclick="return doclink('link-9', 'Reverse', 'link-9');">Reverse</a></tt><tt class="py-op">,</tt> <tt id="link-10" class="py-name" targets="Function SoundEffects.Robot()=SoundEffects-module.html#Robot"><a title="SoundEffects.Robot" class="py-name" href="#" onclick="return doclink('link-10', 'Robot', 'link-10');">Robot</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxList</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">"Speed Up"</tt><tt class="py-op">,</tt> <tt class="py-string">"Super Speed Up"</tt><tt class="py-op">,</tt> <tt class="py-string">"Slow Down"</tt><tt class="py-op">,</tt> <tt class="py-string">"Super Slow Down"</tt><tt class="py-op">,</tt> <tt class="py-string">"Short Echo"</tt><tt class="py-op">,</tt> <tt class="py-string">"Long Echo"</tt><tt class="py-op">,</tt> <tt class="py-string">"Reverse"</tt><tt class="py-op">,</tt> <tt class="py-string">"Robot"</tt><tt class="py-op">]</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFXClip</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+</div><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">         </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">     </tt>
+<a name="SoundEffects.getNextSFXClip"></a><div id="SoundEffects.getNextSFXClip-def"><a name="L26"></a><tt class="py-lineno"> 26</tt> <a class="py-toggle" href="#" id="SoundEffects.getNextSFXClip-toggle" onclick="return toggle('SoundEffects.getNextSFXClip');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects.SoundEffects-class.html#getNextSFXClip">getNextSFXClip</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SoundEffects.getNextSFXClip-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SoundEffects.getNextSFXClip-expanded"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        Increments the current sound effect in a circular fashion</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        Calls the relevant sound effect function mapped in self.sfxFunctions array</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">        Returns modified soundclip for playback</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">         </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">%</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxFunctions</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">currClip</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">"story"</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method Story.Story.getCurrClip()=Story.Story-class.html#getCurrClip"><a title="Story.Story.getCurrClip" class="py-name" href="#" onclick="return doclink('link-11', 'getCurrClip', 'link-11');">getCurrClip</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFXClip</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxFunctions</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt><tt class="py-op">]</tt><tt class="py-op">(</tt><tt class="py-name">currClip</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method SoundEffects.SoundEffects.getCurrSFXClip()=SoundEffects.SoundEffects-class.html#getCurrSFXClip"><a title="SoundEffects.SoundEffects.getCurrSFXClip" class="py-name" href="#" onclick="return doclink('link-12', 'getCurrSFXClip', 'link-12');">getCurrSFXClip</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">     </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">    </tt>
+<a name="SoundEffects.getPrevSFXClip"></a><div id="SoundEffects.getPrevSFXClip-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="SoundEffects.getPrevSFXClip-toggle" onclick="return toggle('SoundEffects.getPrevSFXClip');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects.SoundEffects-class.html#getPrevSFXClip">getPrevSFXClip</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SoundEffects.getPrevSFXClip-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SoundEffects.getPrevSFXClip-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        Decrements the current sound effect in a circular fashion</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        Calls the relevant sound effect function mapped in self.sfxFunctions array</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        Returns modified soundclip for playback</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">         </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxFunctions</tt><tt class="py-op">)</tt><tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">%</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxFunctions</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">currClip</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">"story"</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="Story.Story.getCurrClip" class="py-name" href="#" onclick="return doclink('link-13', 'getCurrClip', 'link-11');">getCurrClip</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFXClip</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxFunctions</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt><tt class="py-op">]</tt><tt class="py-op">(</tt><tt class="py-name">currClip</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="SoundEffects.SoundEffects.getCurrSFXClip" class="py-name" href="#" onclick="return doclink('link-14', 'getCurrSFXClip', 'link-12');">getCurrSFXClip</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">     </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">     </tt>
+<a name="SoundEffects.getCurrSFXClip"></a><div id="SoundEffects.getCurrSFXClip-def"><a name="L55"></a><tt class="py-lineno"> 55</tt> <a class="py-toggle" href="#" id="SoundEffects.getCurrSFXClip-toggle" onclick="return toggle('SoundEffects.getCurrSFXClip');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects.SoundEffects-class.html#getCurrSFXClip">getCurrSFXClip</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SoundEffects.getCurrSFXClip-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SoundEffects.getCurrSFXClip-expanded"><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">        Returns the current sound effect</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">        Calls the relevant sound effect function mapped in self.sfxFunctions array</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">        Returns modified soundclip and deletes the current one</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">!=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFXClip</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">     </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        </tt>
+<a name="SoundEffects.getCurrSFXName"></a><div id="SoundEffects.getCurrSFXName-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="SoundEffects.getCurrSFXName-toggle" onclick="return toggle('SoundEffects.getCurrSFXName');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects.SoundEffects-class.html#getCurrSFXName">getCurrSFXName</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SoundEffects.getCurrSFXName-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SoundEffects.getCurrSFXName-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        Returns the name of the currently selected sound effect</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt> <tt class="py-op">!=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sfxList</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">currSFX</tt><tt class="py-op">]</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt> <tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-string">''</tt> </tt>
+</div></div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">     </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">     </tt>
+<a name="LongEcho"></a><div id="LongEcho-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="LongEcho-toggle" onclick="return toggle('LongEcho');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#LongEcho">LongEcho</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="LongEcho-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="LongEcho-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-docstring">''' </tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">    Adds a long echo to the clip</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-15" class="py-name" targets="Function SoundEffects.Echo()=SoundEffects-module.html#Echo"><a title="SoundEffects.Echo" class="py-name" href="#" onclick="return doclink('link-15', 'Echo', 'link-15');">Echo</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt> <tt class="py-op">=</tt> <tt class="py-number">5000</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">     </tt>
+<a name="ShortEcho"></a><div id="ShortEcho-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="ShortEcho-toggle" onclick="return toggle('ShortEcho');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#ShortEcho">ShortEcho</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ShortEcho-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ShortEcho-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">    Adds a long echo to the clip</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-16" class="py-name"><a title="SoundEffects.Echo" class="py-name" href="#" onclick="return doclink('link-16', 'Echo', 'link-15');">Echo</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">delay</tt> <tt class="py-op">=</tt> <tt class="py-number">1000</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">         </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">     </tt>
+<a name="Echo"></a><div id="Echo-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="Echo-toggle" onclick="return toggle('Echo');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#Echo">Echo</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">,</tt> <tt class="py-param">delay</tt><tt class="py-op">,</tt> <tt class="py-param">echoFactor</tt> <tt class="py-op">=</tt> <tt class="py-number">0.5</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Echo-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Echo-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">    Applies an echo to the soundclip.</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">     </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-name">soundArray</tt> <tt class="py-op">=</tt> <tt class="py-name">concatenate</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">fromstring</tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">int16</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">zeros</tt><tt class="py-op">(</tt><tt class="py-name">delay</tt><tt class="py-op">,</tt> <tt class="py-name">int16</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-name">delayArray</tt> <tt class="py-op">=</tt> <tt class="py-name">array</tt><tt class="py-op">(</tt><tt class="py-name">soundArray</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">:</tt><tt class="py-op">-</tt><tt class="py-name">delay</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">echoFactor</tt><tt class="py-op">,</tt><tt class="py-name">int16</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-name">delayArray</tt> <tt class="py-op">=</tt> <tt class="py-name">concatenate</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">zeros</tt><tt class="py-op">(</tt><tt class="py-name">delay</tt><tt class="py-op">,</tt> <tt class="py-name">int16</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">delayArray</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">    <tt class="py-name">soundArray</tt> <tt class="py-op">+=</tt> <tt class="py-name">delayArray</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">soundArray</tt><tt class="py-op">.</tt><tt class="py-name">tostring</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="SpeedUp"></a><div id="SpeedUp-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="SpeedUp-toggle" onclick="return toggle('SpeedUp');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#SpeedUp">SpeedUp</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SpeedUp-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SpeedUp-expanded"><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">    Resamples soundclip at a faster rate, speeding it up and raising pitch.</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-name">newRate</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-17" class="py-name" targets="Variable AuiInsertSound.RATE=AuiInsertSound-module.html#RATE,Variable AuiStoryCreation.RATE=AuiStoryCreation-module.html#RATE,Variable AuiStorySelection.RATE=AuiStorySelection-module.html#RATE,Variable Class.RATE=Class-module.html#RATE,Variable Constants.RATE=Constants-module.html#RATE,Variable GuiAssign.RATE=GuiAssign-module.html#RATE,Variable GuiPrioritize.RATE=GuiPrioritize-module.html#RATE,Variable GuiStart.RATE=GuiStart-module.html#RATE,Variable GuiStories.RATE=GuiStories-module.html#RATE,Variable GuiStudents.RATE=GuiStudents-module.html#RATE,Variable GuiVisualizer.RATE=GuiVisualizer-module.html#RATE,Variable SamiSays.RATE=SamiSays-module.html#RATE,Variable SoundControl.RATE=SoundControl-module.html#RATE,Variable SoundEffects.RATE=SoundEffects-module.html#RATE,Variable SoundLibrary.RATE=SoundLibrary-module.html#RATE,Variable Story.RATE=Story-module.html#RATE,Variable Student.RATE=Student-module.html#RATE"><a title="AuiInsertSound.RATE
+AuiStoryCreation.RATE
+AuiStorySelection.RATE
+Class.RATE
+Constants.RATE
+GuiAssign.RATE
+GuiPrioritize.RATE
+GuiStart.RATE
+GuiStories.RATE
+GuiStudents.RATE
+GuiVisualizer.RATE
+SamiSays.RATE
+SoundControl.RATE
+SoundEffects.RATE
+SoundLibrary.RATE
+Story.RATE
+Student.RATE" class="py-name" href="#" onclick="return doclink('link-17', 'RATE', 'link-17');">RATE</a></tt><tt class="py-op">/</tt><tt class="py-number">1.5</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-18" class="py-name" targets="Function SoundControl.resampleSoundBytes()=SoundControl-module.html#resampleSoundBytes"><a title="SoundControl.resampleSoundBytes" class="py-name" href="#" onclick="return doclink('link-18', 'resampleSoundBytes', 'link-18');">resampleSoundBytes</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">newRate</tt><tt class="py-op">,</tt> <tt id="link-19" class="py-name" targets="Variable AuiInsertSound.CHANNELS=AuiInsertSound-module.html#CHANNELS,Variable AuiStoryCreation.CHANNELS=AuiStoryCreation-module.html#CHANNELS,Variable AuiStorySelection.CHANNELS=AuiStorySelection-module.html#CHANNELS,Variable Class.CHANNELS=Class-module.html#CHANNELS,Variable Constants.CHANNELS=Constants-module.html#CHANNELS,Variable GuiAssign.CHANNELS=GuiAssign-module.html#CHANNELS,Variable GuiPrioritize.CHANNELS=GuiPrioritize-module.html#CHANNELS,Variable GuiStart.CHANNELS=GuiStart-module.html#CHANNELS,Variable GuiStories.CHANNELS=GuiStories-module.html#CHANNELS,Variable GuiStudents.CHANNELS=GuiStudents-module.html#CHANNELS,Variable GuiVisualizer.CHANNELS=GuiVisualizer-module.html#CHANNELS,Variable SamiSays.CHANNELS=SamiSays-module.html#CHANNELS,Variable SoundControl.CHANNELS=SoundControl-module.html#CHANNELS,Variable SoundEffects.CHANNELS=SoundEffects-module.html#CHANNELS,Variable SoundLibrary.CHANNELS=SoundLibrary-module.html#CHANNELS,Variable Story.CHANNELS=Story-module.html#CHANNELS,Variable Student.CHANNELS=Student-module.html#CHANNELS"><a title="AuiInsertSound.CHANNELS
+AuiStoryCreation.CHANNELS
+AuiStorySelection.CHANNELS
+Class.CHANNELS
+Constants.CHANNELS
+GuiAssign.CHANNELS
+GuiPrioritize.CHANNELS
+GuiStart.CHANNELS
+GuiStories.CHANNELS
+GuiStudents.CHANNELS
+GuiVisualizer.CHANNELS
+SamiSays.CHANNELS
+SoundControl.CHANNELS
+SoundEffects.CHANNELS
+SoundLibrary.CHANNELS
+Story.CHANNELS
+Student.CHANNELS" class="py-name" href="#" onclick="return doclink('link-19', 'CHANNELS', 'link-19');">CHANNELS</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="LargeSpeedUp"></a><div id="LargeSpeedUp-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="LargeSpeedUp-toggle" onclick="return toggle('LargeSpeedUp');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#LargeSpeedUp">LargeSpeedUp</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="LargeSpeedUp-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="LargeSpeedUp-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">    Resamples soundclip at a faster rate, speeding it up and raising pitch.</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-name">newRate</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="AuiInsertSound.RATE
+AuiStoryCreation.RATE
+AuiStorySelection.RATE
+Class.RATE
+Constants.RATE
+GuiAssign.RATE
+GuiPrioritize.RATE
+GuiStart.RATE
+GuiStories.RATE
+GuiStudents.RATE
+GuiVisualizer.RATE
+SamiSays.RATE
+SoundControl.RATE
+SoundEffects.RATE
+SoundLibrary.RATE
+Story.RATE
+Student.RATE" class="py-name" href="#" onclick="return doclink('link-20', 'RATE', 'link-17');">RATE</a></tt><tt class="py-op">/</tt><tt class="py-number">2</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-21" class="py-name"><a title="SoundControl.resampleSoundBytes" class="py-name" href="#" onclick="return doclink('link-21', 'resampleSoundBytes', 'link-18');">resampleSoundBytes</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">newRate</tt><tt class="py-op">,</tt> <tt id="link-22" class="py-name"><a title="AuiInsertSound.CHANNELS
+AuiStoryCreation.CHANNELS
+AuiStorySelection.CHANNELS
+Class.CHANNELS
+Constants.CHANNELS
+GuiAssign.CHANNELS
+GuiPrioritize.CHANNELS
+GuiStart.CHANNELS
+GuiStories.CHANNELS
+GuiStudents.CHANNELS
+GuiVisualizer.CHANNELS
+SamiSays.CHANNELS
+SoundControl.CHANNELS
+SoundEffects.CHANNELS
+SoundLibrary.CHANNELS
+Story.CHANNELS
+Student.CHANNELS" class="py-name" href="#" onclick="return doclink('link-22', 'CHANNELS', 'link-19');">CHANNELS</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="SlowDown"></a><div id="SlowDown-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="SlowDown-toggle" onclick="return toggle('SlowDown');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#SlowDown">SlowDown</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SlowDown-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SlowDown-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">    Resamples soundclip at a slower rate, slowing it down and lowering pitch.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-name">newRate</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-23" class="py-name"><a title="AuiInsertSound.RATE
+AuiStoryCreation.RATE
+AuiStorySelection.RATE
+Class.RATE
+Constants.RATE
+GuiAssign.RATE
+GuiPrioritize.RATE
+GuiStart.RATE
+GuiStories.RATE
+GuiStudents.RATE
+GuiVisualizer.RATE
+SamiSays.RATE
+SoundControl.RATE
+SoundEffects.RATE
+SoundLibrary.RATE
+Story.RATE
+Student.RATE" class="py-name" href="#" onclick="return doclink('link-23', 'RATE', 'link-17');">RATE</a></tt><tt class="py-op">*</tt><tt class="py-number">1.5</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-24" class="py-name"><a title="SoundControl.resampleSoundBytes" class="py-name" href="#" onclick="return doclink('link-24', 'resampleSoundBytes', 'link-18');">resampleSoundBytes</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">newRate</tt><tt class="py-op">,</tt> <tt id="link-25" class="py-name"><a title="AuiInsertSound.CHANNELS
+AuiStoryCreation.CHANNELS
+AuiStorySelection.CHANNELS
+Class.CHANNELS
+Constants.CHANNELS
+GuiAssign.CHANNELS
+GuiPrioritize.CHANNELS
+GuiStart.CHANNELS
+GuiStories.CHANNELS
+GuiStudents.CHANNELS
+GuiVisualizer.CHANNELS
+SamiSays.CHANNELS
+SoundControl.CHANNELS
+SoundEffects.CHANNELS
+SoundLibrary.CHANNELS
+Story.CHANNELS
+Student.CHANNELS" class="py-name" href="#" onclick="return doclink('link-25', 'CHANNELS', 'link-19');">CHANNELS</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="LargeSlowDown"></a><div id="LargeSlowDown-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="LargeSlowDown-toggle" onclick="return toggle('LargeSlowDown');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#LargeSlowDown">LargeSlowDown</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="LargeSlowDown-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="LargeSlowDown-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">    Resamples soundclip at a slower rate, slowing it down and lowering pitch.</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt class="py-name">newRate</tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="AuiInsertSound.RATE
+AuiStoryCreation.RATE
+AuiStorySelection.RATE
+Class.RATE
+Constants.RATE
+GuiAssign.RATE
+GuiPrioritize.RATE
+GuiStart.RATE
+GuiStories.RATE
+GuiStudents.RATE
+GuiVisualizer.RATE
+SamiSays.RATE
+SoundControl.RATE
+SoundEffects.RATE
+SoundLibrary.RATE
+Story.RATE
+Student.RATE" class="py-name" href="#" onclick="return doclink('link-26', 'RATE', 'link-17');">RATE</a></tt><tt class="py-op">*</tt><tt class="py-number">2</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-27" class="py-name"><a title="SoundControl.resampleSoundBytes" class="py-name" href="#" onclick="return doclink('link-27', 'resampleSoundBytes', 'link-18');">resampleSoundBytes</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">newRate</tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name"><a title="AuiInsertSound.CHANNELS
+AuiStoryCreation.CHANNELS
+AuiStorySelection.CHANNELS
+Class.CHANNELS
+Constants.CHANNELS
+GuiAssign.CHANNELS
+GuiPrioritize.CHANNELS
+GuiStart.CHANNELS
+GuiStories.CHANNELS
+GuiStudents.CHANNELS
+GuiVisualizer.CHANNELS
+SamiSays.CHANNELS
+SoundControl.CHANNELS
+SoundEffects.CHANNELS
+SoundLibrary.CHANNELS
+Story.CHANNELS
+Student.CHANNELS" class="py-name" href="#" onclick="return doclink('link-28', 'CHANNELS', 'link-19');">CHANNELS</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="Reverse"></a><div id="Reverse-def"><a name="L131"></a><tt class="py-lineno">131</tt> <a class="py-toggle" href="#" id="Reverse-toggle" onclick="return toggle('Reverse');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#Reverse">Reverse</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Reverse-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Reverse-expanded"><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">    Reverses a soundclip</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt class="py-name">soundArray</tt> <tt class="py-op">=</tt> <tt class="py-name">fromstring</tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">,</tt> <tt class="py-name">int16</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">soundArray</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">:</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">tostring</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">newclip</tt><tt class="py-op">.</tt><tt class="py-name">tostring</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="Robot"></a><div id="Robot-def"><a name="L139"></a><tt class="py-lineno">139</tt> <a class="py-toggle" href="#" id="Robot-toggle" onclick="return toggle('Robot');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="SoundEffects-module.html#Robot">Robot</a><tt class="py-op">(</tt><tt class="py-param">clip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Robot-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Robot-expanded"><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring">    Roboticizes a sound clip</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-29" class="py-name"><a title="SoundEffects.Reverse" class="py-name" href="#" onclick="return doclink('link-29', 'Reverse', 'link-9');">Reverse</a></tt><tt class="py-op">(</tt><tt id="link-30" class="py-name"><a title="SoundEffects.ShortEcho" class="py-name" href="#" onclick="return doclink('link-30', 'ShortEcho', 'link-7');">ShortEcho</a></tt><tt class="py-op">(</tt><tt id="link-31" class="py-name"><a title="SoundEffects.Reverse" class="py-name" href="#" onclick="return doclink('link-31', 'Reverse', 'link-9');">Reverse</a></tt><tt class="py-op">(</tt><tt id="link-32" class="py-name"><a title="SoundEffects.ShortEcho" class="py-name" href="#" onclick="return doclink('link-32', 'ShortEcho', 'link-7');">ShortEcho</a></tt><tt class="py-op">(</tt><tt class="py-name">clip</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Thu May 03 15:13:58 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
