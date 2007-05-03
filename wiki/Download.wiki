@@ -1,9 +1,11 @@
 #summary Downloads
 
-= SamiSays Installers =
+http://samisays.googlecode.com/svn/web/sami.jpg
+
+== SamiSays Installers ==
 
 ===For Windows XP:===
- * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe SamiSays Setup.exe]
+ * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe http://samisays.googlecode.com/svn/web/download.jpg]
 
 ===For Windows 98 / 2000 / NT:===
- * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe SamiSays Setup.exe]
+ * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe http://samisays.googlecode.com/svn/web/download.jpg]
