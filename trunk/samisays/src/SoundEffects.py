@@ -5,6 +5,10 @@ from SoundControl import *
 from Constants import *
 
 class SoundEffects:
+    '''
+    This class implements sound manipulations in the sound library.
+    Supplies the sound library with manipulations of the current story clip
+    '''
     
     def __init__(self,env):
         ''' Constructor '''
