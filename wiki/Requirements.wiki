@@ -21,4 +21,3 @@
 ===Tertiary Requirements===
 
  # Students should be able to complete various fill-in-the-blank story forms.
- # Teachers should be able to see and modify the sound via a time-line gui.
