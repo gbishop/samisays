@@ -17,7 +17,7 @@ class AuiStoryCreation:
     
     def __init__(self, env):
         '''
-        Constructor receives global variables and initializes object.
+        Constructor receives global objects and initializes object.
         '''
         
         self.env = env
@@ -240,13 +240,14 @@ class AuiStoryCreation:
 
     def deleteClip(self):
         '''
-        Called when delete key is released. If previous key pressed was also the delete key, 
-        deletes the current clip. Otherwise, requests confirmation for delete.  If current clip 
-        is title, notifies user that a new title must be recorded before anything else can be done.
+        Called when delete key is released. If clip is locked, notifies user. If previous key pressed 
+        was also the delete key, deletes the current clip. Otherwise, requests confirmation for delete.  
+        If current clip is title, notifies user that a new title must be recorded before anything else 
+        can be done.
         '''    
 
         story = self.env['story']
-        if story.clipIsLocked() and not self.teacherMode:
+        if story.clipIsLocked():
             self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_delete_locked.txt')
         elif self.deleteConfirmed:
             self.deleteConfirmed = False

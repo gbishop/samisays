@@ -9,12 +9,13 @@ from Constants import *
 class AuiStorySelection:
 	'''
 	The Audio User Interface for the story selection frame. It is active when said 
-	frame is in 'locked' mode.
+	frame is in 'locked' mode. Enables students to navigate and access functionality 
+	of their ÒStoryBookÓ.
 	'''
 	
 	def __init__(self, env):
 		'''
-		Constructor
+		Constructor receives global objects.
 		'''
 		self.env = env
 
@@ -24,6 +25,7 @@ class AuiStorySelection:
 		Gives AuiStorySelection the key bindings it needs and initializes essential 
 		variables.
 		'''
+		
 		welcomeText = file(INSTR_DIR + 'selection_welcome.txt').read()
 		self.env['SoundControl'].speakText(welcomeText % self.env['student'].getName()) # Play Welcome
 		
@@ -42,9 +44,9 @@ class AuiStorySelection:
 		
 	def onKeyDown(self, event):
 		'''
-		Handles key down events 
+		Handles key down events.  
 		'''
-		CTRL = 308 # keyCode for CTRL
+		
 		keyCode = event.GetKeyCode()
 		
 		self.allDowns.union_update([keyCode])
@@ -52,7 +54,7 @@ class AuiStorySelection:
 		if (self.firstDown in LOCK_KEYS and self.allDowns == LOCK_KEYS):
 			self.doUnlock = True
 			
-		if self.firstDown != -1:
+		if self.firstDown != -1: # some key is already down
 			return
 			
 		self.doUnlock = False
@@ -64,10 +66,10 @@ class AuiStorySelection:
 		Handles event when a key is released by calling the correct function
 		for each valid key.
 		'''
+		
 		keyCode = event.GetKeyCode()
 		
-		#if len(self.allDowns) > 0:
-		self.allDowns.remove(keyCode)
+		self.allDowns.remove(keyCode) 
 		
 		if len(self.allDowns) == 0 and self.doUnlock:
 			self.env['guiStories'].unlock()
@@ -105,6 +107,7 @@ class AuiStorySelection:
 		also the delete key, deletes the current story. Otherwise, requests 
 		confirmation for delete.
 		'''
+		
 		if self.storyIndex == -1:
 		   self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
 		   return
@@ -127,7 +130,7 @@ class AuiStorySelection:
 			
 	def goRight(self):
 		'''
-		Called when the right arrow is released. It moves between stories.
+		Called when the right arrow is released. It moves between stories in circular fashion.
 		'''
 		self.storyIndex = (self.storyIndex + 1) % self.numStories
 		
@@ -138,7 +141,7 @@ class AuiStorySelection:
 		
 	def goLeft(self):
 		'''
-		Called when the left arrow is released. It moves between stories.
+		Called when the left arrow is released. It moves between stories in circular fashion.
 		'''
 		if self.storyIndex == -1:
 			self.storyIndex = self.numStories-1
@@ -154,6 +157,7 @@ class AuiStorySelection:
 		'''
 		Called when the up key is pressed. It selects a story for editing.
 		'''
+		
 		if self.storyIndex == -1:
 			self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
 		else:
@@ -163,6 +167,7 @@ class AuiStorySelection:
 		'''
 		Called whenever a story is focused. It simply plays the title.
 		'''
+		
 		self.env['SoundControl'].stopPlay()
 		titleBytes = self.env['story'].getTitleBytes()
 		self.env['SoundControl'].playSoundBytes(titleBytes)
@@ -172,6 +177,7 @@ class AuiStorySelection:
 		'''
 		Called whenever the ctrl key is pressed. It plays the entire story.
 		'''
+		
 		self.env['SoundControl'].stopPlay()
 		if self.env['guiStories'].getSelection() == -1:
 			self.env['SoundControl'].speakTextFile(INSTR_DIR + 'no_story_selected.txt')
@@ -186,6 +192,7 @@ class AuiStorySelection:
 		Called whenever 'new key' is pressed. It creates a new story for immediate 
 		editing.
 		'''
+		
 		self.env['guiStories'].btnCreatePressed(None)
 		
 		
@@ -193,6 +200,7 @@ class AuiStorySelection:
 		'''
 		Called whenever the 'help key' is pressed. It (re)plays the relevant prompt.
 		'''
+		
 		self.env['SoundControl'].speakTextFile(INSTR_DIR + 'selection_instructions.txt')
 	
 	
@@ -200,7 +208,7 @@ class AuiStorySelection:
 		'''
 		Called whenever the 'exit key' is pressed. It goes back to the previous frame.
 		'''
+		
 		self.env['guiStories'].btnBackPressed(None)
 		self.env['guiStories'].unlock()
 		self.unlock = False
-	

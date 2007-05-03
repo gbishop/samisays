@@ -99,7 +99,7 @@ class GuiAssign(wx.Frame):
     
     def setEnv(self,env):
         '''
-        Sets self.env (global variables) to the specified dictionary
+        Sets self.env (global objects) to the specified dictionary
         '''
         self.env = env 
 
@@ -133,7 +133,7 @@ class GuiAssign(wx.Frame):
                 msgDialog.Destroy()
             else: # Assign story
                 cStory = story.getCopy(studentName)
-                cStory.mergeAndLockBreaks(includeBreakClip = self.chkBoxBeeps.IsChecked())
+                cStory.mergeBreaksAndLock(includeBreakClip = self.chkBoxBeeps.IsChecked())
                 cStory.pickleMe(True)
                 cStory.pickleTitle()
                 succStudents += [studentName]

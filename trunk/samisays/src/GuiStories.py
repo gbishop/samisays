@@ -300,7 +300,7 @@ class GuiStories(wx.Frame):
             self.btnPublishAssign.SetLabel('Assign')
         else:
             self.env['student'] = self.env['class'].students[index]
-            self.lblHead.SetLabel(self.env['student'].getName() + '\'s StoryBook')
+            self.lblHead.SetLabel(self.env['student'].getName() + '\'s Storybook')
             self.btnPublishAssign.SetLabel('Publish')
  
     '''
