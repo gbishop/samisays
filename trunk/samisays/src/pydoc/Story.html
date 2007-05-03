@@ -1,0 +1,223 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Story</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Story</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C|/documents%20and%20settings/adam%20roberts/desktop/sami%20says/trunk/samisays/src/story.py">c:\documents and settings\adam roberts\desktop\sami says\trunk\samisays\src\story.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="cPickle.html">cPickle</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="sets.html">sets</a><br>
+<a href="threading.html">threading</a><br>
+</td><td width="25%" valign=top><a href="wx.html">wx</a><br>
+<a href="zlib.html">zlib</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="Story.html#Story">Story</a>
+</font></dt><dt><font face="helvetica, arial"><a href="threading.html#Thread">threading.Thread</a>(<a href="threading.html#_Verbose">threading._Verbose</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Story.html#PickleStory">PickleStory</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PickleStory">class <strong>PickleStory</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;threaded&nbsp;class&nbsp;is&nbsp;used&nbsp;to&nbsp;allow&nbsp;for&nbsp;nonblocking&nbsp;pickles&nbsp;(saves)&nbsp;of&nbsp;a&nbsp;story.&nbsp;&nbsp;A&nbsp;maximum<br>
+of&nbsp;two&nbsp;of&nbsp;these&nbsp;treads&nbsp;are&nbsp;necessary&nbsp;at&nbsp;any&nbsp;one&nbsp;time&nbsp;(as&nbsp;is&nbsp;ensured&nbsp;in&nbsp;pickleMe).&nbsp;&nbsp;One&nbsp;thread<br>
+may&nbsp;be&nbsp;pickling&nbsp;at&nbsp;a&nbsp;time&nbsp;and&nbsp;possibly&nbsp;another&nbsp;waiting.&nbsp;&nbsp;The&nbsp;thread&nbsp;waits&nbsp;to&nbsp;copy&nbsp;the&nbsp;story<br>
+until&nbsp;it&nbsp;is&nbsp;about&nbsp;to&nbsp;pickle&nbsp;so&nbsp;any&nbsp;save&nbsp;requested&nbsp;after&nbsp;a&nbsp;waiting&nbsp;thread&nbsp;is&nbsp;spawned&nbsp;and&nbsp;<br>
+before&nbsp;it&nbsp;acquires&nbsp;the&nbsp;pickling&nbsp;lock&nbsp;will&nbsp;be&nbsp;covered&nbsp;by&nbsp;that&nbsp;thread.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Story.html#PickleStory">PickleStory</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PickleStory-__init__"><strong>__init__</strong></a>(self, story)</dt><dd><tt>Constructor&nbsp;initializes&nbsp;thread.</tt></dd></dl>
+
+<dl><dt><a name="PickleStory-run"><strong>run</strong></a>(self)</dt><dd><tt>Once&nbsp;the&nbsp;pickling&nbsp;lock&nbsp;is&nbsp;acquired,&nbsp;a&nbsp;copy&nbsp;is&nbsp;made&nbsp;of&nbsp;the&nbsp;story,&nbsp;the&nbsp;story&nbsp;is&nbsp;pickled,&nbsp;and<br>
+the&nbsp;lock&nbsp;released.&nbsp;&nbsp;Before&nbsp;a&nbsp;copy&nbsp;occurs,&nbsp;the&nbsp;story&nbsp;lock&nbsp;must&nbsp;be&nbsp;acquired.&nbsp;&nbsp;It&nbsp;is&nbsp;released<br>
+after&nbsp;to&nbsp;allow&nbsp;story&nbsp;creation&nbsp;to&nbsp;continue.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="PickleStory-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickleStory-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickleStory-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickleStory-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickleStory-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="PickleStory-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="PickleStory-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="PickleStory-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of '_Verbose' objects&gt;<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Story">class <strong>Story</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Contains&nbsp;data&nbsp;structures&nbsp;and&nbsp;methods&nbsp;for&nbsp;a&nbsp;single<br>
+story&nbsp;made&nbsp;up&nbsp;of&nbsp;a&nbsp;title&nbsp;and&nbsp;multiple&nbsp;sound&nbsp;clips.<br>
+Sound&nbsp;clips&nbsp;are&nbsp;strings&nbsp;of&nbsp;bytes&nbsp;in&nbsp;wave&nbsp;format<br>
+with&nbsp;the&nbsp;properties&nbsp;(bits,&nbsp;sample&nbsp;rate,&nbsp;etc.)<br>
+defined&nbsp;in&nbsp;Contants.&nbsp;&nbsp;Mutual&nbsp;exclusion&nbsp;is&nbsp;sometimes<br>
+required&nbsp;due&nbsp;to&nbsp;save&nbsp;threading&nbsp;(see&nbsp;PickleThread&nbsp;class).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Story-__init__"><strong>__init__</strong></a>(self, name<font color="#909090">=''</font>, student<font color="#909090">=''</font>, titleBytes<font color="#909090">=''</font>)</dt><dd><tt>Constructor&nbsp;initializes&nbsp;<a href="#Story">Story</a>&nbsp;object.&nbsp;&nbsp;Current&nbsp;clip&nbsp;is&nbsp;title.</tt></dd></dl>
+
+<dl><dt><a name="Story-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;clips&nbsp;currently&nbsp;in&nbsp;the&nbsp;story&nbsp;(including&nbsp;the&nbsp;title).</tt></dd></dl>
+
+<dl><dt><a name="Story-addToTrash"><strong>addToTrash</strong></a>(self, zipClip)</dt><dd><tt>Adds&nbsp;a&nbsp;sound&nbsp;file&nbsp;to&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;trash&nbsp;can.</tt></dd></dl>
+
+<dl><dt><a name="Story-clipIsBreak"><strong>clipIsBreak</strong></a>(self)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;current&nbsp;clip&nbsp;is&nbsp;a&nbsp;break.</tt></dd></dl>
+
+<dl><dt><a name="Story-clipIsLocked"><strong>clipIsLocked</strong></a>(self)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;current&nbsp;clip&nbsp;is&nbsp;locked.</tt></dd></dl>
+
+<dl><dt><a name="Story-clipIsTitle"><strong>clipIsTitle</strong></a>(self)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;current&nbsp;clip&nbsp;is&nbsp;the&nbsp;title&nbsp;(first&nbsp;clip).</tt></dd></dl>
+
+<dl><dt><a name="Story-decompressStory"><strong>decompressStory</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;decompressed&nbsp;version&nbsp;of&nbsp;the&nbsp;clip&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Story-deleteClip"><strong>deleteClip</strong></a>(self)</dt><dd><tt>'&nbsp;<br>
+Deletes&nbsp;the&nbsp;current&nbsp;clip,&nbsp;makes&nbsp;clip&nbsp;before&nbsp;deleted&nbsp;clip&nbsp;the&nbsp;current&nbsp;clip,<br>
+and&nbsp;returns&nbsp;current&nbsp;clip.&nbsp;Requires&nbsp;mutual&nbsp;exclusion.</tt></dd></dl>
+
+<dl><dt><a name="Story-getCopy"><strong>getCopy</strong></a>(self, student)</dt><dd><tt>Creates&nbsp;and&nbsp;returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;this&nbsp;story&nbsp;object&nbsp;using&nbsp;the&nbsp;specified&nbsp;name&nbsp;and&nbsp;student.</tt></dd></dl>
+
+<dl><dt><a name="Story-getCurrClip"><strong>getCurrClip</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;current&nbsp;clip.</tt></dd></dl>
+
+<dl><dt><a name="Story-getNextClip"><strong>getNextClip</strong></a>(self)</dt><dd><tt>If&nbsp;not&nbsp;on&nbsp;the&nbsp;last&nbsp;clip,&nbsp;makes&nbsp;the&nbsp;next&nbsp;clip&nbsp;the&nbsp;current&nbsp;clip&nbsp;and&nbsp;returns&nbsp;it.&nbsp;&nbsp;<br>
+If&nbsp;on&nbsp;the&nbsp;last&nbsp;clip,&nbsp;returns&nbsp;the&nbsp;current&nbsp;clip.</tt></dd></dl>
+
+<dl><dt><a name="Story-getPreviousClip"><strong>getPreviousClip</strong></a>(self)</dt><dd><tt>If&nbsp;not&nbsp;on&nbsp;the&nbsp;first&nbsp;clip,&nbsp;makes&nbsp;the&nbsp;previous&nbsp;clip&nbsp;the&nbsp;current&nbsp;clip&nbsp;and&nbsp;returns&nbsp;it.<br>
+If&nbsp;on&nbsp;the&nbsp;first&nbsp;clip,&nbsp;returns&nbsp;the&nbsp;current&nbsp;clip.</tt></dd></dl>
+
+<dl><dt><a name="Story-getStats"><strong>getStats</strong></a>(self)</dt><dd><tt>Returns&nbsp;an&nbsp;array&nbsp;with&nbsp;the&nbsp;counts&nbsp;of&nbsp;each&nbsp;clip&nbsp;type&nbsp;in&nbsp;the&nbsp;story.</tt></dd></dl>
+
+<dl><dt><a name="Story-getStoryBytes"><strong>getStoryBytes</strong></a>(self)</dt><dd><tt>Joins&nbsp;the&nbsp;story&nbsp;into&nbsp;a&nbsp;single&nbsp;byte&nbsp;string&nbsp;and&nbsp;returns&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="Story-getTitleBytes"><strong>getTitleBytes</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;first&nbsp;clip&nbsp;(title).</tt></dd></dl>
+
+<dl><dt><a name="Story-getTrash"><strong>getTrash</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;decompressed&nbsp;version&nbsp;of&nbsp;the&nbsp;trash&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Story-hasTrash"><strong>hasTrash</strong></a>(self)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;trash&nbsp;is&nbsp;not&nbsp;empty&nbsp;(i.e.&nbsp;a&nbsp;clip&nbsp;has&nbsp;been&nbsp;deleted&nbsp;since&nbsp;the&nbsp;story&nbsp;was&nbsp;opened).</tt></dd></dl>
+
+<dl><dt><a name="Story-initializeLocks"><strong>initializeLocks</strong></a>(self)</dt><dd><tt>Initializes&nbsp;the&nbsp;locks&nbsp;and&nbsp;semaphore&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;save&nbsp;threading&nbsp;(see&nbsp;PickleThread&nbsp;class).</tt></dd></dl>
+
+<dl><dt><a name="Story-insertClip"><strong>insertClip</strong></a>(self, soundBytes, type)</dt><dd><tt>Inserts&nbsp;clip&nbsp;after&nbsp;current&nbsp;clip&nbsp;and&nbsp;makes&nbsp;new&nbsp;clip&nbsp;the&nbsp;current&nbsp;clip.&nbsp;Requires&nbsp;mutual&nbsp;exclusion.</tt></dd></dl>
+
+<dl><dt><a name="Story-loadFullStory"><strong>loadFullStory</strong></a>(self)</dt><dd><tt>If&nbsp;self&nbsp;is&nbsp;the&nbsp;full&nbsp;story&nbsp;returns&nbsp;self.&nbsp;&nbsp;If&nbsp;self&nbsp;only&nbsp;has&nbsp;the&nbsp;title,&nbsp;loads&nbsp;(unpickles)&nbsp;<br>
+the&nbsp;full&nbsp;story&nbsp;and&nbsp;returns&nbsp;the&nbsp;full&nbsp;story.&nbsp;&nbsp;In&nbsp;either&nbsp;case,&nbsp;initializes&nbsp;mutex&nbsp;locks&nbsp;before<br>
+returning.</tt></dd></dl>
+
+<dl><dt><a name="Story-lockStory"><strong>lockStory</strong></a>(self)</dt><dd><tt>Locks&nbsp;all&nbsp;clips&nbsp;in&nbsp;the&nbsp;story.&nbsp;Requires&nbsp;mutual&nbsp;exclusion.</tt></dd></dl>
+
+<dl><dt><a name="Story-mergeBreaksAndLock"><strong>mergeBreaksAndLock</strong></a>(self, includeBreakClip)</dt><dd><tt>Merges&nbsp;all&nbsp;clips&nbsp;between&nbsp;breaks&nbsp;into&nbsp;single&nbsp;clips.&nbsp;&nbsp;Includes&nbsp;break&nbsp;sound&nbsp;if<br>
+specified.&nbsp;&nbsp;Locks&nbsp;all&nbsp;clips&nbsp;in&nbsp;newly&nbsp;merged&nbsp;story&nbsp;(otherwise,&nbsp;would&nbsp;need&nbsp;to&nbsp;handle<br>
+conditions&nbsp;for&nbsp;when&nbsp;some&nbsp;clips&nbsp;between&nbsp;a&nbsp;break&nbsp;are&nbsp;locked&nbsp;and&nbsp;some&nbsp;aren't).</tt></dd></dl>
+
+<dl><dt><a name="Story-needsTitle"><strong>needsTitle</strong></a>(self)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;title&nbsp;is&nbsp;empty.&nbsp;&nbsp;Otherwise,&nbsp;returns&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Story-pickleMe"><strong>pickleMe</strong></a>(self, blocking<font color="#909090">=False</font>)</dt><dd><tt>Pickles&nbsp;the&nbsp;story&nbsp;object.&nbsp;&nbsp;If&nbsp;blocking&nbsp;==&nbsp;False,&nbsp;and&nbsp;there&nbsp;is&nbsp;not&nbsp;already&nbsp;a&nbsp;PickleThread&nbsp;waiting&nbsp;to<br>
+begin&nbsp;pickling,&nbsp;spawns&nbsp;a&nbsp;PickleThread.&nbsp;&nbsp;Otherwise,&nbsp;does&nbsp;nothing.&nbsp;&nbsp;If&nbsp;blocking==True,&nbsp;makes&nbsp;a&nbsp;copy<br>
+of&nbsp;the&nbsp;story&nbsp;and&nbsp;pickles&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="Story-pickleTitle"><strong>pickleTitle</strong></a>(self)</dt><dd><tt>Pickles&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;story&nbsp;for&nbsp;quick&nbsp;access&nbsp;(blocking&nbsp;only).</tt></dd></dl>
+
+<dl><dt><a name="Story-replaceTitle"><strong>replaceTitle</strong></a>(self, titleBytes)</dt><dd><tt>Replaces&nbsp;the&nbsp;first&nbsp;clip&nbsp;(the&nbsp;title)&nbsp;with&nbsp;new&nbsp;bytes.&nbsp;Requires&nbsp;mutual&nbsp;exclusion.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-compress"><strong>compress</strong></a>(byteString)</dt><dd><tt>Returns&nbsp;zlib&nbsp;compressed&nbsp;version&nbsp;of&nbsp;bytestring.</tt></dd></dl>
+ <dl><dt><a name="-decompress"><strong>decompress</strong></a>(byteString)</dt><dd><tt>Returns&nbsp;decompressed&nbsp;version&nbsp;of&nbsp;bytestring&nbsp;(using&nbsp;zlib).</tt></dd></dl>
+ <dl><dt><a name="-pickleStory"><strong>pickleStory</strong></a>(story)</dt><dd><tt>Pickles&nbsp;the&nbsp;given&nbsp;(full)&nbsp;story&nbsp;in&nbsp;the&nbsp;student's&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-unpickleStory"><strong>unpickleStory</strong></a>(name, student)</dt><dd><tt>Unpickles&nbsp;and&nbsp;returns&nbsp;the&nbsp;(full)&nbsp;story&nbsp;specified&nbsp;by&nbsp;the&nbsp;text&nbsp;story&nbsp;name&nbsp;and&nbsp;student&nbsp;name.</tt></dd></dl>
+ <dl><dt><a name="-unpickleTitle"><strong>unpickleTitle</strong></a>(name, student)</dt><dd><tt>Unpickles&nbsp;and&nbsp;returns&nbsp;the&nbsp;justTitle&nbsp;version&nbsp;of&nbsp;the&nbsp;story&nbsp;specified&nbsp;by&nbsp;the&nbsp;text&nbsp;story&nbsp;name&nbsp;and&nbsp;student&nbsp;name.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ARTDIR</strong> = 'art/'<br>
+<strong>ASSIGN_DIR</strong> = 'assigned sounds/'<br>
+<strong>BACKUP_DIR</strong> = 'students/removed/'<br>
+<strong>BITS</strong> = 16<br>
+<strong>BREAK_SOUND</strong> = 'sys_sounds/lilbeep.wav'<br>
+<strong>BRK</strong> = 5<br>
+<strong>BUFF_DURATION</strong> = 1<br>
+<strong>CAT_MODE</strong> = 0<br>
+<strong>CHANNELS</strong> = 1<br>
+<strong>COMPRESS_RATE</strong> = 9<br>
+<strong>CTRL</strong> = 308<br>
+<strong>DEFAULT_CROP</strong> = 5000<br>
+<strong>DELETE_KEY</strong> = 8<br>
+<strong>INSTR_DIR</strong> = 'instr_text/'<br>
+<strong>INTRO_SOUND</strong> = 'sys_sounds/xylophone_intro.mp3'<br>
+<strong>LCK</strong> = 4<br>
+<strong>LOCK_KEYS</strong> = Set([9, 306, 308])<br>
+<strong>LOCK_KEYS_NO_TAB</strong> = Set([306, 308])<br>
+<strong>MAX_TRASH_SIZE</strong> = -1<br>
+<strong>MP3_RATE</strong> = 128000<br>
+<strong>NEW_KEY</strong> = 32<br>
+<strong>NON</strong> = 0<br>
+<strong>PRONUNCIATIONS</strong> = [('record', 'ree chord'), ('Record', 'Ree chord')]<br>
+<strong>RATE</strong> = 16000<br>
+<strong>REC</strong> = 1<br>
+<strong>SFX</strong> = 2<br>
+<strong>SND</strong> = 3<br>
+<strong>SND_MODE</strong> = 1<br>
+<strong>SOUND_DIR</strong> = 'sound_library/'<br>
+<strong>SOUND_LIB_DIR</strong> = 'sound_library/'<br>
+<strong>STORY_MODE</strong> = 2<br>
+<strong>STUDENT_DIR</strong> = 'students/'<br>
+<strong>SYS_SOUND_DIR</strong> = 'sys_sounds/'<br>
+<strong>WAIT_SOUND</strong> = 'sys_sounds/wait_noise.mp3'</td></tr></table>
+</body></html>
