@@ -142,6 +142,9 @@ class GuiPrioritize(wx.Frame):
         self.visible = not self.visible
         
     def populateTree(self):
+        '''
+        Function for populating the tree control with file names from the sound library.
+        '''
         self.treeLibrary.DeleteAllItems()
         self.treeRoot = self.treeLibrary.AddRoot("Sound Library")
         self.treeNodes = []
@@ -162,6 +165,9 @@ class GuiPrioritize(wx.Frame):
         self.treeLibrary.Expand(self.treeRoot)
     
     def populateList(self):
+        '''
+        Function for populating the priority list from its directory.
+        '''
         directory = os.listdir(SOUND_DIR + ASSIGN_DIR)
         if '.svn' in directory:
             directory.remove('.svn')
@@ -171,6 +177,10 @@ class GuiPrioritize(wx.Frame):
             self.priorityCat[file] = ASSIGN_DIR + file
         
     def lstPrioritySelected(self,event):
+        '''
+        Callback function for selecting elements of the priority list. It plays the
+        selected sounds.
+        '''
         fileName = self.lstPriority.GetItems()[self.lstPriority.GetSelection()]
         if fileName in self.priorityCat.keys():
             self.env['SoundControl'].stopPlay()
@@ -178,6 +188,10 @@ class GuiPrioritize(wx.Frame):
         else:()
         
     def btnAcceptPressed(self, event):
+        '''
+        Callback function for pressing the accept button. It uses the dictionary
+        priorityCat to decide which sounds to add and remove.
+        '''
         directory = os.listdir(SOUND_DIR + ASSIGN_DIR)
         if '.svn' in directory:
             directory.remove('.svn')
@@ -203,10 +217,18 @@ class GuiPrioritize(wx.Frame):
         self.btnCancelPressed(None)
         
     def btnCancelPressed(self, event):
+        '''
+        Callback function for pressing the cancel button. It disregards changes and
+        takes the user back to the start GUI.
+        '''
         self.Hide()
         self.env['guiStart'].Show()
     
     def btnAddPressed(self, event):
+        '''
+        Callback function for pressing the add button. It adds the selected sound or
+        category to the priority sounds list. It doesn't add already added sounds.
+        '''
         selectId = self.treeLibrary.GetSelection()
         fileName = self.treeLibrary.GetItemText(selectId)
         if fileName[-4:] == ".mp3": # handling file adds
@@ -236,6 +258,10 @@ class GuiPrioritize(wx.Frame):
             
             
     def btnRemovePressed(self, event):
+        '''
+        Callback funtion for pressing the remove button. It takes items out of the 
+        priority list and the priorityCat dictionary.
+        '''
         itemList = self.lstPriority.GetItems()
         self.priorityCat.pop(itemList[self.lstPriority.GetSelection()])
         itemList.pop(self.lstPriority.GetSelection())
@@ -244,6 +270,10 @@ class GuiPrioritize(wx.Frame):
             self.btnRemove.Enable(False)
     
     def treeLibrarySelected(self, event):
+        '''
+        Callback function for selecting items in the tree control. It plays the selected
+        sound.
+        '''
         selectId = self.treeLibrary.GetSelection()
         fileName = self.treeLibrary.GetItemText(selectId)
         if fileName[-4:] == ".mp3":
@@ -252,12 +282,16 @@ class GuiPrioritize(wx.Frame):
             self.env['SoundControl'].playSoundFile(SOUND_DIR + self.treeLibrary.GetItemText(parentId) + "/" + fileName)
         
     def onKeyDown(self, event):
-        
+        '''
+        Callback function for handling key down enents.
+        '''
         if self.firstDown == -1:
             self.firstDown = event.GetKeyCode()
     
     def onKeyUp(self, event):
-        
+        '''
+        Callback function for handling key up events. This one simply handles escape.
+        '''
         keyCode = event.GetKeyCode()
         if keyCode != self.firstDown:
             event.Skip()
