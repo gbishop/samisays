@@ -30,7 +30,7 @@
 
 *T3.  Deleting a Student*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher highlights the student to be deleted.
   * The teacher clicks the "Delete" button.
   * A confirm dialog appears to avoid unplanned deletion.
