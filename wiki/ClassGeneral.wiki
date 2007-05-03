@@ -1,0 +1,13 @@
+#summary General Class Breakdown
+
+= General Principles =
+
+*Global Objects*
+Due to the complex interactions between objects in our design (i.e., some interfaces have both a GUI and an AUI), we store most of our objects in a dictionary called env that is passed to most of the objects.  Thus, almost any object can access any other object.  Env also keeps track of the functions for key bindings so that control can be more easily passed between objects.   
+
+*Key Bindings*
+We chose to use a minimal number of prominent keys near the edges of the keyboard.  We also attempted to make the function of the keys consistent throughout the application as well as with Hark the Sound.  Specific key bindings can be found in the user manual.  All key bindings are done using dictionaries keyed by the key code that return a function to be executed for the key press.
+
+*Sounds*
+All sounds that are playing should be interruptible by a valid key press.
+
