@@ -12,7 +12,8 @@ category is also supported through the SoundEffects class.  A trashcan is suppor
 The sound library is stored in the file system in a directory specified by SOUND_LIB.  All directories in SOUND_LIB are treated as sound categories and the directory names are used as the category name.  The sound files (wav, mp3, ogg, aiff, midi) in each directory are listed as sounds in those categories and the filename (as well as the sound itself) are used to identify each sound.  
 
 *Organizing Library (Importing sounds, etc.)*
-The primary interface to the sound library is the file system.  Advanced users can make new categories by adding directories and input sounds by copy and pasting sound files into the directories.  Sami Says includes a simple GUI for organizing the assigned (prioritized) sounds, however.  See ClassGUIPrioritize for more info.
+
+The primary interface to the sound library is the file system.  Advanced users can make new categories by adding directories and input sounds by copy and pasting sound files into the directories.  Sami Says includes a simple GUI for organizing the assigned (prioritized) sounds, however.  See GuiPrioritize for more info.
 
 *Special Categories*
 
