@@ -113,6 +113,10 @@ class GuiVisualizer(wx.Frame):
     
     def handleShow(self, event):
         if not self.visible:
+            if self.env['auiStoryCreation'].teacherMode:
+                self.title = wx.StaticText(self.panel, -1, 'Template Creation')
+            else:
+                self.title = wx.StaticText(self.panel, -1, 'Story Creation')
             self.updateStats()
             self.updateLibraryStats()
         self.visible = not self.visible

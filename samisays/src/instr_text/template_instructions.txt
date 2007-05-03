@@ -1,1 +1,1 @@
-Record another spoken clip by holding down Space Bar.  Move through clips with Left and Right Arrows.  Insert sound effects with Up Arrow.  Delete clips with Backspace.  Insert break with Pause/Break. Playback with Control.  Save and exit with Escape.
+Record another spoken clip by holding down Space Bar.  Move through clips with Left and Right Arrows.  Insert sound effects with Up Arrow.  Delete clips with Backspace.  Insert break with Enter. Playback with Control.  Save and exit with Escape.

@@ -99,14 +99,6 @@ class Story:
             del self.trash[MAX_TRASH_SIZE-1]
         self.trash = [zipClip] + self.trash
     
-    def lockStory(self):
-        '''
-        Locks all clips in the story. Requires mutual exclusion.
-        '''
-        
-        self.storyMutex.acquire()
-        self.types = [LCK for i in xrange(len(self))]
-        self.storyMutex.release()
     
     
     def mergeBreaksAndLock(self, includeBreakClip):
@@ -114,6 +106,7 @@ class Story:
         Merges all clips between breaks into single clips.  Includes break sound if
         specified.  Locks all clips in newly merged story (otherwise, would need to handle
         conditions for when some clips between a break are locked and some aren't).
+        Does not require mutual exclusion because only called on copies.
         '''
         
         mergedClips = []
@@ -128,8 +121,9 @@ class Story:
                     mergedClips += [''.join(clips[lastBreak+1:i])]
                 lastBreak = i
         
-        self.zipClips = [compress(clip) for clip in mergedClips]
-        self.lockStory()
+        self.zipClips = [compress(clip) for clip in mergedClips]        
+        self.types = [LCK for i in xrange(len(self))]
+
     
     def getCurrClip(self):
         ''' 
