@@ -8,6 +8,7 @@ The structure can be traversed easily with navigation methods.  A sound manipula
 category is also supported through the SoundEffects class.  A trashcan is supported through the Story class.
 
 *Sound Library Organization*
+
 The sound library is stored in the file system in a directory specified by SOUND_LIB.  All directories in SOUND_LIB are treated as sound categories and the directory names are used as the category name.  The sound files (wav, mp3, ogg, aiff, midi) in each directory are listed as sounds in those categories and the filename (as well as the sound itself) are used to identify each sound.  
 
 *Special Categories*
