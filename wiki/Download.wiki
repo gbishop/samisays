@@ -3,10 +3,10 @@
 = SamiSays Installers =
 
 ===For Windows XP:===
- * link goes here
+ * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe SamiSays Setup.exe]
 
 ===For All Other Versions:===
- * Link Goes here
+ * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe SamiSays Setup.exe]
 
 = Installation Instructions =
 
