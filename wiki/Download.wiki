@@ -2,13 +2,12 @@
 
 = SamiSays Installers =
 
-For Windows XP:
+===For Windows XP:===
  * link goes here
 
-For All Other Versions:
+===For All Other Versions:===
  * Link Goes here
 
 = Installation Instructions =
 
 double click the installer
-
