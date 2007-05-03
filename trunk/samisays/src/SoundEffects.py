@@ -17,8 +17,8 @@ class SoundEffects:
         self.env = env
     
         # Define array of functions for sound effects
-        self.sfxFunctions = [SpeedUp, LargeSpeedUp, SlowDown, LargeSlowDown, ShortEcho, LongEcho, Reverse]
-        self.sfxList = ["Speed Up", "Super Speed Up", "Slow Down", "Super Slow Down", "Short Echo", "Long Echo", "Reverse"]
+        self.sfxFunctions = [SpeedUp, LargeSpeedUp, SlowDown, LargeSlowDown, ShortEcho, LongEcho, Reverse, Robot]
+        self.sfxList = ["Speed Up", "Super Speed Up", "Slow Down", "Super Slow Down", "Short Echo", "Long Echo", "Reverse", "Robot"]
         self.currSFX = -1
         self.currSFXClip = ''
         
@@ -135,6 +135,12 @@ def Reverse(clip):
     soundArray = fromstring(clip, int16)
     return soundArray[::-1].tostring()
     return newclip.tostring()
+
+def Robot(clip):
+    '''
+    Roboticizes a sound clip
+    '''
+    return Reverse(ShortEcho(Reverse(ShortEcho(clip))))
     
     
     
