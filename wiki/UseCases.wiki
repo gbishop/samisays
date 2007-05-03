@@ -45,43 +45,42 @@
 
 *T5.  Letting the Student Resume Work on an Existing Assignment*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher then selects the student from the list.
   * The teacher can select a specific story to work on or allow the student to choose it through the audio interface.
   * The teacher gives control of the application to the student.
 
 *T6.  Prioritizing Sounds*
   * The teacher starts the application with a click.
-  * The teacher selects "Manage Sounds" from the splash screen.
-  * The teacher selects "Prioritize Sounds".
+  * The teacher selects "Sound Prioritization" from the splash screen.
   * The teacher selects specific sounds and/or entire sound categories to prioritize.
 
 *T7.  Playing a Student's Story*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher then selects the student from the list.
   * The teacher selects the story to be played.
   * The teacher clicks the "Play" button.
 
 *T8.  Giving a Text Name to a Student's Story*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher then selects the student from the list.
   * The teacher selects the story to be named.
-  * The teacher clicks the "Add Text Title" button
+  * The teacher clicks the "Rename" button
   * The teacher types the text title into the dialog box and clicks "OK".
 
 *T9.  Exporting a Student's Story*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher then selects the student from the list.
   * The teacher highlights the story to be exported.
-  * The teacher clicks the "Export" button.
-  * The teacher selects the file type and file name and clicks save on the export dialog.
+  * The teacher clicks the "Publish" button.
+  * The teacher names the file and clicks save on the export dialog.
 
 *T10. Deleting a Student's Story*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher then selects the student from the list.
   * The teacher selects the story and clicks the "Delete" button.
   * A confirm dialog appears to avoid unplanned deletion.
