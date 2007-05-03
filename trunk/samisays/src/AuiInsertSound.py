@@ -169,6 +169,7 @@ class AuiInsertSound:
         if self.mode == CAT_MODE and self.env['soundLibrary'].onValidCat():
             self.mode = SND_MODE
             self.env['soundLibrary'].currSound = -1
+            self.env['soundLibrary'].SFX.currSFX = -1
             self.setInstructions()
             self.getHelp()
         elif self.mode == SND_MODE and (self.env['soundLibrary'].onValidSound() or self.env['soundLibrary'].currCat == self.env['soundLibrary'].sfxCat):   

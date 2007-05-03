@@ -161,10 +161,10 @@ class GuiPrioritize(wx.Frame):
             self.treeNodes.append(self.treeLibrary.AppendItem(self.treeRoot,i))
         for i in self.treeNodes:
             dir = os.listdir(SOUND_DIR + self.treeLibrary.GetItemText(i))
-            if '.svn' in dir:
-                dir.remove('.svn') # Ignore SVN files
             for e in dir:
-                self.treeLibrary.AppendItem(i,e)
+                sFormat = e.split('.')[1]
+                if sFormat in SOUND_FORMATS:
+                    self.treeLibrary.AppendItem(i,e)
         self.treeLibrary.Expand(self.treeRoot)
     
     def populateList(self):
@@ -277,6 +277,7 @@ class GuiPrioritize(wx.Frame):
         Callback function for selecting items in the tree control. It plays the selected
         sound.
         '''
+        
         selectId = self.treeLibrary.GetSelection()
         fileName = self.treeLibrary.GetItemText(selectId)
         if fileName[-4:] == ".mp3":
