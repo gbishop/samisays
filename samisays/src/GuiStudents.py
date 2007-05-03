@@ -47,6 +47,10 @@ class GuiStudents(wx.Frame):
     def __set_properties(self):
         # begin wxGlade: guiStudents.__set_properties
         self.SetTitle("Sami Says")
+        self.btnSelect.SetToolTipString("Go to this student's Storybook.")
+        self.btnCreate.SetToolTipString("Add a new student.")
+        self.btnRemove.SetToolTipString("Remove the student from the class.")
+        self.btnBack.SetToolTipString("Go back to the title page.")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
         self.btnSelect.SetDefault()
