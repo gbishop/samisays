@@ -1,7 +1,5 @@
 #summary Story Class Breakdown
 
-= Class Story =
-
 *Description*
 
 Contains data structures and methods for a single story made up of a title and multiple sound clips. Sound clips are strings of bytes in wave format with the properties (bits, sample rate, etc.) defined in Constants.
