@@ -3,10 +3,17 @@
 = A class-by-class breakdown of Sami Says =
 
 [ClassGeneral General Principles]
+
 [ClassStory Story]
+
 [ClassSoundCtrl SoundControl]
+
 [ClassAUIStoryCreation AUIStoryCreation]
+
 [ClassAUIStorySelection AUIStorySelection/GUIStories]
+
 [ClassSoundLibrary SoundLibrary]
+
 [ClassSoundEffects SoundEffects]
+
 [ClassAUIInsertSound AUIInsertSound]
