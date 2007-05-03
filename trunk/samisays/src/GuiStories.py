@@ -10,19 +10,19 @@ from AuiStoryCreation import *
 from AuiStorySelection import *
 from Constants import *
 
-'''
-' Class Name: GuiStories
-' Description: A subclass of the wx Frame class. It is displayed when a student is
-'              selected and has a locked and unlocked mode. All buttons are available
-'              in unlocked mode, whereas only the unlock button is available in locked
-'              mode.
-'''
+
 class GuiStories(wx.Frame):
+    '''
+    A subclass of the wx Frame class. It is displayed when a student is selected and 
+    has a locked and unlocked mode. All buttons are available in unlocked mode, 
+    whereas only the unlock button is available in locked mode.
+    '''
     
-    '''
-    ' Constructor for initializing frame elements and binding window events
-    '''
+
     def __init__(self, *args, **kwds):
+        '''
+        Constructor for initializing frame elements and binding window events.
+        '''
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
@@ -173,38 +173,43 @@ class GuiStories(wx.Frame):
         self.env['auiStoryCreation'].loadFullStory()
         self.openStory()
     
-    '''
-    ' btnSelectPressed - Function that loads the story denoted by the current list 
-    '                    choice and transitions the user into story creation. This
-    '                    function is bound to the select button.
-    '''
+
     def btnSelectPressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that loads the story denoted by the current list choice and 
+        transitions the user into story creation. This function is bound to the 
+        select button.
+        '''
         if not self.somethingSelected():
             return
         self.openStory()
         
-    '''
-    ' btnLockPressed - Function that toggles the gui lock. This function is bound 
-    '                  to the lock button.
-    '''
+
     def btnLockPressed(self, event):
+        '''
+        Function that toggles the gui lock. This function is bound to the lock button.
+        '''
         if self.env['storiesLock']:
             self.unlock()
         else:
             self.lock()
 
-    '''
-    ' btnCreatePressed - Function that creates a new story and transitions the user
-    '                    into story creation. This function is bound the create button.
-    '''
+
     def btnCreatePressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that creates a new story and transitions the user into story 
+        creation. This function is bound the create button.
+        '''
         self.newStory()
 
     '''
-    ' btnRenamePressed - Function that renames the selected story and repopulates the 
-    '                    story list. This function is bound to the rename button.
+    ' btnRenamePressed - 
     '''
     def btnRenamePressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that renames the selected story and repopulates the story list. 
+        This function is bound to the rename button.
+        '''
         self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
@@ -233,11 +238,12 @@ class GuiStories(wx.Frame):
                 
         dialog.Destroy()
 
-    '''
-    ' btnDeletePressed - Function that deletes the selected story and repopulates the
-    '                    list. This function is bound to the delete button.
-    '''
+
     def btnDeletePressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that deletes the selected story and repopulates the list. This 
+        function is bound to the delete button.
+        '''
         self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
@@ -252,21 +258,22 @@ class GuiStories(wx.Frame):
                 self.env['auiStorySelection'].playTitle()
         dialog.Destroy()
 
-    '''
-    ' btnPlayPressed - Function that plays the entirety of the selected story. This 
-    '                  function is bound to the play button.
-    '''
+
     def btnPlayPressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that plays the entirety of the selected story. This function is 
+        bound to the play button.
+        '''
         if not self.somethingSelected():
             return
         self.env['auiStorySelection'].playStory()
 
-    '''
-    ' btnPublishAssignPressed - Function that displays the publish or assign dialog
-    '                           based on the role of the user. This function is bound
-    '                           to the publish/assign button.
-    '''
+
     def btnPublishAssignPressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that displays the publish or assign dialog based on the role of 
+        the user. This function is bound to the publish/assign button.
+        '''
         self.env['SoundControl'].stopPlay()
         if not self.somethingSelected():
             return
@@ -279,12 +286,13 @@ class GuiStories(wx.Frame):
         else:
             self.publishStory()
     
-    '''
-    ' btnBackPressed - Function that moves the user back to the guiStudents frame or 
-    '                  the guiStart Frame depending on the role of the user. This 
-    '                  function is bound to the back button.
-    '''
+
     def btnBackPressed(self, event): # wxGlade: guiStories.<event_handler>
+        '''
+        Function that moves the user back to the guiStudents frame or the guiStart 
+        Frame depending on the role of the user. This function is bound to the back 
+        button.
+        '''
         self.env['SoundControl'].stopPlay()
         self.Hide()
         if self.env['student'] == self.env['class'].teacher:
@@ -292,17 +300,19 @@ class GuiStories(wx.Frame):
         else:
             self.env['guiStudents'].Show()
  
-    '''
-    ' setEnv - sets self.env to the specified dictionary.
-    '''   
-    def setEnv(self,env): 
+ 
+    def setEnv(self,env):
+        '''
+        Sets self.env to the specified dictionary.
+        '''
         self.env = env 
     
-    '''
-    ' setStudent - Function that sets the label of the frame and the text of the 
-    '              publish/assign button according to the value of index.
-    '''    
+
     def setStudent(self, index):
+        '''
+        Function that sets the label of the frame and the text of the publish/assign 
+        button according to the value of index.
+        '''
         
         if index == -2:
             self.env['student'] = self.env['class'].teacher
@@ -313,10 +323,11 @@ class GuiStories(wx.Frame):
             self.lblHead.SetLabel(self.env['student'].getName() + '\'s Storybook')
             self.btnPublishAssign.SetLabel('Publish')
  
-    '''
-    ' onClose - Function that deals with a frame close event.
-    '''           
+ 
     def onClose(self, event):
+        '''
+        Function that deals with a frame close event.
+        '''
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
@@ -324,11 +335,11 @@ class GuiStories(wx.Frame):
         else:
             dialog.Destroy()
    
-    '''
-    ' populateList - Helper function that poplates the list of stories from the file
-    '                system.
-    '''      
+   
     def populateList(self):
+        '''
+        Helper function that poplates the list of stories from the file system.
+        '''
         self.lstStories.Clear()
         self.env['student'].loadNames('students/_' + self.env['student'].getName())
         count = 0;
@@ -340,30 +351,33 @@ class GuiStories(wx.Frame):
         else:
             self.btnSelect.Enable(False)
 
-    '''
-    ' loadTitle - Function that loads the title of the selected story from the disk.
-    '''                 
+
     def loadTitle(self):
+        '''
+        Function that loads the title of the selected story from the disk.
+        '''
         storyName = self.env['student'].stories[self.lstStories.GetSelection()]
         studentName = self.env['student'].getName()
         self.env['story'] = unpickleTitle(storyName, studentName)
         self.env['story'].currClip = 0
 
-    '''
-    ' newStory - Function that creates a new story.
-    '''    
+
     def newStory(self):
+        '''
+        Function that creates a new story.
+        '''
         storyName = '_'.join([str(time.localtime()[i]) for i in xrange(6)])
         studentName = self.env['student'].getName()
         self.env['story'] = Story(storyName, studentName)
         self.env['story'].initializeLocks()
         self.openStory()
 
-    '''
-    ' openStory - Function that opens a story from the file system and transitions the
-    '             user into story creation.
-    '''  
+
     def openStory(self):
+        '''
+        Function that opens a story from the file system and transitions the user 
+        into story creation.
+        '''
         self.env['SoundControl'].stopPlay()
         self.env['auiStoryCreation'].loadFullStory()
         self.env['auiStoryCreation'].takeOver()
@@ -372,11 +386,12 @@ class GuiStories(wx.Frame):
         self.env['timer'].Start(100)
         self.env['guiStories'].Hide()
 
-    '''
-    ' deleteStory - Function that deletes the selected story from the file system and
-    '               repopulates the list.
-    ''' 
+
     def deleteStory(self):
+        '''
+        Function that deletes the selected story from the file system and 
+        repopulates the list.
+        '''
         selection = self.getSelection()
         studentName = self.env['student'].getName()
         storyName = self.env['student'].stories[selection]
@@ -384,21 +399,21 @@ class GuiStories(wx.Frame):
         os.remove(STUDENT_DIR + '/_' + studentName + '/' + storyName + '.ttl')
         self.populateList()
 
-    '''
-    ' publishStory - Function that displays a dialog for publishing the current clip
-    '                as an mp3.
-    '''        
-    def publishStory(self):
 
+    def publishStory(self):
+        '''
+        Function that displays a dialog for publishing the current clip as an mp3.
+        '''
         dialog = wx.FileDialog(None,'Please select a filename to export.','',self.env['story'].name,'*.mp3',wx.FD_SAVE)
         if dialog.ShowModal() == wx.ID_OK:
             encodeToMp3(self.env['story'].getStoryBytes(),dialog.GetPath())
         dialog.Destroy()   
     
-    ''' 
-    ' findListItem - Helper function for finding an the index of a story. 
-    '''
+
     def findListItem(self, name):
+        '''
+        Helper function for finding an the index of a story. 
+        '''
         count = 0
         for i in self.env['student'].stories:
             if (self.env['student'].stories[count] == name):
@@ -407,25 +422,28 @@ class GuiStories(wx.Frame):
                 count += 1
         return 0
 
-    '''
-    ' getSelection - Helper function that gets the selected element of the list.
-    '''
+
     def getSelection(self):
+        '''
+        Helper function that gets the selected element of the list.
+        '''
         return self.lstStories.GetSelection()
 
-    '''
-    ' lock - Function that locks the GUI.
-    ''' 
+
     def lock(self):
+        '''
+        Function that locks the GUI.
+        '''
         self.SetFocus()
         self.btnLock.SetLabel('Unlock with CTRL-SHIFT-TAB')
         self.env['auiStorySelection'].takeOver()
         self.env['storiesLock'] = True
 
-    '''
-    ' unlock - Function that unlocks the GUI.
-    '''       
+   
     def unlock(self):
+        '''
+        Function that unlocks the GUI.
+        '''
         self.btnLock.SetLabel('Lock')
         self.env['storiesLock'] = False
         if self.btnSelect.IsEnabled():
@@ -433,22 +451,24 @@ class GuiStories(wx.Frame):
         else:
             self.btnCreate.SetFocus()
 
-    '''
-    ' handleFocus - Function that handles what to do when the frame loses focus. This
-    '               function is bound to EVT_KILL_FOCUS on the frame.
-    '''        
+
     def handleFocus(self, event):
+        '''
+        Function that handles what to do when the frame loses focus. This 
+        function is bound to EVT_KILL_FOCUS on the frame.
+        '''
         if self.env['storiesLock']:
             if self.btnLock.HasCapture():
                 self.btnLockPressed(None)
             else:
                 self.SetFocus()
             
-    '''
-    ' handleShow - Function for handling when the frame is shown or hidden. This
-    '              function is bound to EVT_SHOW.
-    '''            
+    
     def handleShow(self, event):
+        '''
+        Function for handling when the frame is shown or hidden. This function is 
+        bound to EVT_SHOW.
+        '''
         self.populateList()
         if not self.visible: # Show() called
             if self.env['storiesLock']:
@@ -458,11 +478,11 @@ class GuiStories(wx.Frame):
 
         self.visible = not self.visible
 
-    '''
-    ' someThingSelect - Helper function that detects whether something is selected in 
-    '                   in the list.
-    '''    
+
     def somethingSelected(self):
+        '''
+        Helper function that detects whether something is selected in in the list.
+        '''
         if self.lstStories.GetSelection() == -1:
             msgDialog = wx.MessageDialog(self, 'You must highlight a story before using this function.', 'Error: No Story Selected', wx.ICON_ERROR)
             msgDialog.ShowModal()
@@ -470,11 +490,12 @@ class GuiStories(wx.Frame):
             return False
         return True
 
-    '''
-    ' onKeyDown - Function for handles keydown events. This function handles escape and
-    '             Alt+Shift+Tab downs.
-    '''    
+   
     def onKeyDown(self, event):
+        '''
+        Function for handles keydown events. This function handles escape and 
+        Alt+Shift+Tab downs.
+        '''
 
         keyCode = event.GetKeyCode()
         
@@ -492,12 +513,12 @@ class GuiStories(wx.Frame):
             self.firstDown = keyCode
         event.Skip()
 
-    '''
-    ' onKeyUp - Function for handles keyup events. This function handles escape and
-    '           Alt+Shift+Tab ups.
-    '''        
+   
     def onKeyUp(self, event):
-        
+        '''
+        Function for handles keyup events. This function handles escape and 
+        Alt+Shift+Tab ups.
+        '''
         keyCode = event.GetKeyCode()
         
         if keyCode == wx.WXK_TAB and self.lockStarted:
