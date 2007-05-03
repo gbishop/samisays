@@ -14,7 +14,7 @@ class AuiInsertSound:
     
     def __init__(self, env):
         '''
-        Constructor receives global variables and initializes object.
+        Constructor receives global objects and initializes object.
         '''
         self.env = env
         self.mode = STORY_MODE
