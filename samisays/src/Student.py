@@ -2,6 +2,10 @@ import os
 from Constants import *
 
 class Student:
+    '''
+    The student class represents a student. The purpose of the student class is
+    to handle student metadate and handle student file I/O.
+    '''
     
     def __init__(self, name = 'Sami'):
         '''
