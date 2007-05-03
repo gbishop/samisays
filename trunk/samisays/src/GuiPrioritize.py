@@ -53,6 +53,10 @@ class GuiPrioritize(wx.Frame):
 
     def __set_properties(self):
         self.SetTitle("Sami Says")
+        self.btnAccept.SetToolTipString("Set these sounds as prioritzed.")
+        self.btnCancel.SetToolTipString("Return to title screen without saving.")
+        self.btnAdd.SetToolTipString("Add selected sound or category to the prioritized.")
+        self.btnRemove.SetToolTipString("Remove selected sound from the prioritized.")
         self.SetPosition((0,0))
         self.SetSize(wx.DisplaySize())
 
