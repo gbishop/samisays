@@ -1,0 +1,3 @@
+#summary Architecture Diagram for Sami Says
+
+http://samisays.googlecode.com/files/architecture%20diagram.jpg
