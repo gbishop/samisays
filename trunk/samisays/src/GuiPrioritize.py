@@ -60,6 +60,9 @@ class GuiPrioritize(wx.Frame):
         self.firstDown = -1
 
     def __set_properties(self):
+        '''
+        Helper function for setting frame properties. (wxGlade)
+        '''
         self.SetTitle("Sami Says")
         self.btnAccept.SetToolTipString("Set these sounds as prioritzed.")
         self.btnCancel.SetToolTipString("Return to title screen without saving.")
@@ -69,6 +72,9 @@ class GuiPrioritize(wx.Frame):
         self.SetSize(wx.DisplaySize())
 
     def __do_layout(self):
+        '''
+        Helper function for laying out widgets in the frame. (wxGlade)
+        '''
         szrMain = wx.BoxSizer(wx.VERTICAL)
         szrBody = wx.BoxSizer(wx.VERTICAL)
         szrButtons = wx.BoxSizer(wx.HORIZONTAL)
@@ -107,16 +113,18 @@ class GuiPrioritize(wx.Frame):
         self.Layout()
         self.populateTree()
         
-    '''
-    ' setEnv - sets self.env to the specified dictionary
-    '''
+
     def setEnv(self,env): 
+        '''
+        Sets self.env to the specified dictionary.
+        '''
         self.env = env 
         
-    '''
-    ' onClose - Function for handing the close event.
-    '''
+
     def onClose(self, event):
+        '''
+        Function for handing the close event.
+        '''
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO | wx.ICON_EXCLAMATION)
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
@@ -125,6 +133,9 @@ class GuiPrioritize(wx.Frame):
             dialog.Destroy()
     
     def handleShow(self, event):
+        '''
+        Function for populating the list and tree on show events.
+        '''
         if not self.visible: # Show() called
             self.populateTree()
             self.populateList()

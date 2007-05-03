@@ -12,17 +12,16 @@ from GuiVisualizer import *
 from GuiPrioritize import *
 from Constants import *
 
-'''
-' Class Name: SamiSays
-' Description: This is the Launchpad for the application. All initializations and 
-'              instantiation goes here.
-'''
 class SamiSays(wx.App):
+    '''
+    This is the Launchpad for the application. All initializations and 
+    instantiation goes here.
+    '''
     
 
     def OnInit(self):
         '''
-        ' OnInit - Does Everything!
+        Does Everything!
         '''
         currentClass = Class()
         currentClass.save()
@@ -59,16 +58,18 @@ class SamiSays(wx.App):
         self.env['guiVisualizer'].setEnv(self.env)
         return True
 
-    '''
-    ' onKeyDown - Placeholder for key down bindings
-    '''
+
     def onKeyDown(self,event):
+        '''
+        Placeholder for key down bindings.
+        '''
         self.env['keyDownFunct'](event)
     
-    '''
-    ' onKeyUp - Placeholder for key up bindings
-    '''
+
     def onKeyUp(self,event):
+        '''
+        Placeholder for key up bindings.
+        '''
         self.env['keyUpFunct'](event)
 
 ''' Execute at Runtime '''
