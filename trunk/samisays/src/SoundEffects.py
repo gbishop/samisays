@@ -11,7 +11,9 @@ class SoundEffects:
     '''
     
     def __init__(self,env):
-        ''' Constructor '''
+        ''' 
+        Constructor 
+        '''
         self.env = env
     
         # Define array of functions for sound effects
@@ -22,9 +24,11 @@ class SoundEffects:
         
     
     def getNextSFXClip(self):
-        '''Increments the current sound effect in a circular fashion
+        '''
+        Increments the current sound effect in a circular fashion
         Calls the relevant sound effect function mapped in self.sfxFunctions array
-        Returns modified soundclip for playback'''
+        Returns modified soundclip for playback
+        '''
         
         self.currSFX = (self.currSFX+1)%len(self.sfxFunctions)
         currClip = self.env["story"].getCurrClip()
@@ -33,9 +37,11 @@ class SoundEffects:
     
    
     def getPrevSFXClip(self):
-        '''Decrements the current sound effect in a circular fashion
+        '''
+        Decrements the current sound effect in a circular fashion
         Calls the relevant sound effect function mapped in self.sfxFunctions array
-        Returns modified soundclip for playback'''
+        Returns modified soundclip for playback
+        '''
         
         if self.currSFX == -1:
             self.currSFX = len(self.sfxFunctions)-1
@@ -47,15 +53,19 @@ class SoundEffects:
     
     
     def getCurrSFXClip(self):
-        '''Returns the current sound effect
+        '''
+        Returns the current sound effect
         Calls the relevant sound effect function mapped in self.sfxFunctions array
-        Returns modified soundclip and deletes the current one'''
+        Returns modified soundclip and deletes the current one
+        '''
         if self.currSFX != -1:
             return self.currSFXClip
     
        
     def getCurrSFXName(self):
-        '''Returns the name of the currently selected sound effect'''
+        '''
+        Returns the name of the currently selected sound effect
+        '''
         if self.currSFX != -1:
             return self.sfxList[self.currSFX]
         else :
@@ -63,16 +73,22 @@ class SoundEffects:
     
     
 def LongEcho(clip):
-    ''' Adds a long echo to the clip'''
+    ''' 
+    Adds a long echo to the clip
+    '''
     return Echo(clip, delay = 5000)
     
 def ShortEcho(clip):
-    '''Adds a long echo to the clip'''
+    '''
+    Adds a long echo to the clip
+    '''
     return Echo(clip, delay = 1000)
         
     
 def Echo(clip, delay, echoFactor = 0.5):
-    '''Applies an echo to the soundclip.'''
+    '''
+    Applies an echo to the soundclip.
+    '''
     
     soundArray = concatenate((fromstring(clip, int16), zeros(delay, int16)))
     delayArray = array(soundArray[0:-delay]*echoFactor,int16)
@@ -82,30 +98,40 @@ def Echo(clip, delay, echoFactor = 0.5):
 
 
 def SpeedUp(clip):
-    '''Resamples soundclip at a faster rate, speeding it up and raising pitch.'''
+    '''
+    Resamples soundclip at a faster rate, speeding it up and raising pitch.
+    '''
     newRate = int(RATE/1.5)
     return resampleSoundBytes(clip, newRate, CHANNELS)
 
 
 def LargeSpeedUp(clip):
-    '''Resamples soundclip at a faster rate, speeding it up and raising pitch.'''
+    '''
+    Resamples soundclip at a faster rate, speeding it up and raising pitch.
+    '''
     newRate = RATE/2
     return resampleSoundBytes(clip, newRate, CHANNELS)
    
 
 def SlowDown(clip):
-    '''Resamples soundclip at a slower rate, slowing it down and lowering pitch.'''
+    '''
+    Resamples soundclip at a slower rate, slowing it down and lowering pitch.
+    '''
     newRate = int(RATE*1.5)
     return resampleSoundBytes(clip, newRate, CHANNELS)
 
 
 def LargeSlowDown(clip):
-    '''Resamples soundclip at a slower rate, slowing it down and lowering pitch.'''
+    '''
+    Resamples soundclip at a slower rate, slowing it down and lowering pitch.
+    '''
     newRate = RATE*2
     return resampleSoundBytes(clip, newRate, CHANNELS)
 
 def Reverse(clip):
-    '''Reverses a soundclip'''
+    '''
+    Reverses a soundclip
+    '''
     soundArray = fromstring(clip, int16)
     return soundArray[::-1].tostring()
     return newclip.tostring()
