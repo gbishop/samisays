@@ -2,7 +2,7 @@
 
 http://samisays.googlecode.com/svn/web/sami.jpg
 
-== SamiSays Installers ==
+= SamiSays Installers =
 
 ===For Windows XP:===
  * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe http://samisays.googlecode.com/svn/web/download.jpg]
