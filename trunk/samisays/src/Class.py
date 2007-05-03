@@ -73,7 +73,5 @@ class Class:
                 else:
                     self.students.append(Student(i[1:]))
 
-''' Handling an attempt at standalone running '''           
-if __name__ == "__main__":
-    print 'The class "Class" is not runnable.'
+
     

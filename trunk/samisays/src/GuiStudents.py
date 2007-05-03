@@ -6,8 +6,17 @@ from Student import *
 from Constants import *
 
 class GuiStudents(wx.Frame):
+    '''
+    This is a subclass of the wx Frame class. GuiStudents allows the teacher to create,
+    remove, and manage students in their class. Currently Sami Says only supports one
+    class.
+    '''
+    
+        
     def __init__(self, *args, **kwds):
-        # begin wxGlade: guiStudents.__init__
+        '''
+        Contructor for setting up form elements and binding key events.
+        '''
         kwds['style'] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self,-1)
@@ -45,7 +54,9 @@ class GuiStudents(wx.Frame):
         self.env = {}
 
     def __set_properties(self):
-        # begin wxGlade: guiStudents.__set_properties
+        '''
+        Function for setting form properties. (wxGlade generated)
+        '''
         self.SetTitle("Sami Says")
         self.btnSelect.SetToolTipString("Go to this student's Storybook.")
         self.btnCreate.SetToolTipString("Add a new student.")
@@ -58,6 +69,9 @@ class GuiStudents(wx.Frame):
         # end wxGlade
 
     def __do_layout(self):
+        '''
+        Function for laying out a window. (wxGlade generated)
+        '''
         # begin wxGlade: guiStudents.__do_layout
         szrParent = wx.FlexGridSizer(3, 1, 0, 5)
         szrChildList = wx.FlexGridSizer(1, 5, 0, 0)
@@ -97,18 +111,32 @@ class GuiStudents(wx.Frame):
         # end wxGlade
 
     def handleSelect(self):
+        '''
+        Function for handling the select button being pressed. It moves the user to
+        the next form.
+        '''
         self.Hide()
         self.env['student'] = self.env['class'].students[self.lstStudents.GetSelection()]
         self.env['guiStories'].setStudent(self.lstStudents.GetSelection())
         self.env['guiStories'].Show()
 
     def lstStudentsDblClick(self, event): # wxGlade: guiStudents.<event_handler>
+        '''
+        Callback function for a list double-click. It calls handleSelect.
+        '''
         self.handleSelect()
 
     def btnSelectPressed(self, event): # wxGlade: guiStudents.<event_handler>
+        '''
+        Callback function for the select button. It calles handleSelect.
+        '''
         self.handleSelect()
 
     def btnCreatePressed(self, event): # wxGlade: guiStudents.<event_handler>
+        '''
+        Callback function for the create button. It handles the creating of a new
+        student. It also handles name collisions.
+        '''
         dialog = wx.TextEntryDialog(None,'Please enter the student\'s name:','Sami Says','')
         if dialog.ShowModal() == wx.ID_OK:
             newName = dialog.GetValue()
@@ -125,6 +153,10 @@ class GuiStudents(wx.Frame):
         dialog.Destroy()
 
     def btnRemovePressed(self, event): # wxGlade: guiStudents.<event_handler>
+        '''
+        Callback function for the remove button. It handles the removal of students
+        by deleting their folder.
+        '''
         dialog = wx.MessageDialog(None,'Are you sure you want delete ' + 
                                   self.env['class'].students[self.lstStudents.GetSelection()].getName() + 
                                   ' from the class?','Sami Says',wx.YES_NO)
@@ -136,14 +168,23 @@ class GuiStudents(wx.Frame):
             dialog.Destroy()
 
     def btnBackPressed(self, event): # wxGlade: guiStudents.<event_handler>
+        '''
+        Callback function for the back button. It moves the user back to guiStart.
+        '''
         self.Hide()
         self.env['guiStart'].Show()
         
-    def setEnv(self,env): 
+    def setEnv(self,env):
+        '''
+        Function for setting up the sami says environment.
+        ''' 
         self.env = env
         self.populateList()
         
     def onClose(self, event):
+        '''
+        Callback function for handling close events.
+        '''
         dialog = wx.MessageDialog(None,'Are you sure you want to leave?','Sami Says',wx.YES_NO)
         if dialog.ShowModal() == wx.ID_YES:
             dialog.Destroy()
@@ -152,6 +193,10 @@ class GuiStudents(wx.Frame):
             dialog.Destroy()
             
     def populateList(self):
+        '''
+        Helper function for populating the student list. It does so by polling the
+        'class' environment variable.
+        '''
         self.lstStudents.Clear()
         count = 0;
         for i in self.env['class'].students:
@@ -164,12 +209,16 @@ class GuiStudents(wx.Frame):
             self.btnSelect.Enable(False)
         
     def onKeyDown(self, event):
-        
+        '''
+        Function for handling key down events.
+        '''
         if self.firstDown == -1:
             self.firstDown = event.GetKeyCode()
     
     def onKeyUp(self, event):
-        
+        '''
+        Function for handling keyup events. This one simply handles the escape key.
+        '''
         keyCode = event.GetKeyCode()
         if keyCode != self.firstDown:
             event.Skip()
@@ -177,14 +226,9 @@ class GuiStudents(wx.Frame):
         if keyCode == wx.WXK_ESCAPE:
             self.btnBackPressed(False)
         
-        self.firstDown = -1      
-# end of class guiStudents
+        self.firstDown = -1
 
 
+''' Handling an attempt at standalone running '''           
 if __name__ == "__main__":
-    app = wx.PySimpleApp(0)
-    wx.InitAllImageHandlers()
-    frmMain = GuiStudents(None, -1, "")
-    app.SetTopWindow(frmMain)
-    frmMain.Show()
-    app.MainLoop()
+    print 'The class "GuiStudents" is not runnable.'
