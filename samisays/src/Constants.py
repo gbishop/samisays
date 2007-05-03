@@ -52,6 +52,7 @@ CHANNELS = 1    # 1 is mono, 2 is stereo
 BUFF_DURATION = 1 # in seconds
 MP3_RATE = 128000
 PRONUNCIATIONS = [('record','ree chord'), ('Record', 'Ree chord')] # Words to replace with proper pronunciations
+SOUND_FORMATS = ['wav','mp3','ogg','midi','aiff']
 
 ''' SoundLibrary '''
 SOUND_LIB_DIR  = 'sound_library/'
