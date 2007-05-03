@@ -36,10 +36,11 @@
 
 *T4.  Assigning the Student a New Assignment*
   * The teacher starts the application with a click.
-  * THe teacher selects "Stories" from the splash screen.
-  * The teacher then selects the student from the list.
-  * The teacher selects "New Story".
-  * The teacher gives control of the application to the student.
+  * The teacher selects "Teacher Templates" from the splash screen.
+  * The teacher then selects the assignment from the list.
+  * The teacher selects "Assign".
+  * The teacher checks the students that should receive the assignment.
+  * The teacher presses accept.
 
 *T5.  Letting the Student Resume Work on an Existing Assignment*
   * The teacher starts the application with a click.
