@@ -1,0 +1,46 @@
+#summary Schedule
+#labels AssignedDocuments
+
+= The Schedule =
+
+|| _*Task*_ || _*Planned Date*_ || _*Date Completed*_ || _*Person Responsible*_ ||
+|| ~~Web Site~~ || 1/29 || 1/29 || Ed ||
+|| ~~Team Rules~~ || 1/29 || 1/29 || Everyone ||
+|| ~~Functional Spec~~ || 1/30 || 1/30 || Everyone ||
+|| ~~Project Schedule~~ || 1/31 || 2/1 || Corey & Ed ||
+|| ~~Draft Contract~~ || 2/2 || 2/2 || Everyone ||
+|| ~~Draft Story Creation Module Design Doc~~ || 2/7 || 2/10 || Ed ||
+|| ~~Sign Contract~~ || 2/7 || 2/26 || Everyone ||
+|| ~~Story Creation Code Intermediate Checkpoint~~ || 2/14 || 2/12 || Adam ||
+|| Story Creation Test Plan || 2/26 || _N/A_ || Corey ||
+|| ~~Story Creation Code Freeze~~ || 2/28 || 2/28 || Adam ||
+|| ~~*First Deliverable*~~ || 3/2 || 3/2 || Everyone ||
+|| ~~*Midterm Presentation*~~ || 3/6 || 3/6 || Everyone ||
+|| Teacher GUI Code Intermediate Checkpoint || 3/21 || 3/23 || Patrick ||
+|| GUI / AUI Integrated || 3/26 || _N/A_ || Patrick and Adam ||
+|| Teacher GUI Code Complete || 3/30 || _N/A_ || Patrick ||
+|| Draft Teacher GUI Design Doc || 3/30 || _N/A_ || Patrick ||
+|| Teacher GUI Test Plan || 3/30 || _N/A_ || Adam ||
+|| Teacher Template Final Checkpoint || 3/30 || _N/A_ || Adam ||
+|| Visualizer Code Final Checkpoint || 3/30 || _N/A_ || Ed ||
+|| Sound Library Manager Code Final Checkpoint || 3/30 || _N/A_ || Corey ||
+|| Sound Library GUI Final Checkpoint || 3/30 || _N/A_ || Patrick ||
+|| Draft File System Design Doc || 3/30 || _N/A_ || Corey ||
+|| Story Creation Documentation Outline || 3/30 || _N/A_ || Ed ||
+|| Teacher GUI Documentation Outline || 3/30 || _N/A_ || Ed ||
+|| Teacher GUI Documentation Complete || 4/2 || _N/A_ || Ed ||
+|| Story Creation Documentation Complete || 4/2 || _N/A_ || Ed ||
+|| Teacher GUI Code Freeze || 4/2 || _N/A_ || Patrick ||
+|| Sound Library Manager (GUI and Code) Complete || 4/2 || _N/A_ || P and C ||
+|| Sound Clips are Modifiable || 4/2 || _N/A_ || Corey ||
+|| Visualizer (GUI and Code) Complete || 4/2 || _N/A_ || E and P ||
+|| Filled out Sound Library || 4/2 || _N/A_ || Ed ||
+|| Rigorous Testing || 4/2 || _N/A_ || All members ||
+|| Teacher Template Complete || 4/3 || _N/A_ || Adam ||
+|| Story Creation Code Complete (and Normalized) || 4/3 || _N/A_ || Adam ||
+|| Final Story Creation Module Design Doc || 4/10 || _N/A_ || Ed ||
+|| Final File System Design Doc || 4/10 || _N/A_ || Corey ||
+|| Final Teacher GUI Design Doc || 4/10 || _N/A_ || Patrick ||
+|| *Second Deliverable* || 4/5 || _N/A_ || Everyone ||
+|| *In-class testing* || 4/17 || _N/A_ || Everyone ||
+|| *Final Presentation* || 5/3 || _N/A_ || Everyone ||

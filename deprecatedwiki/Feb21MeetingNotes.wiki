@@ -1,0 +1,21 @@
+#summary Feb 21 Meeting Notes
+#labels Meetings
+
+= Feb 21 Meeting =
+
+Things to do:
+ * Can do contract via email.  Send Gary/Diane contract as attachment.
+ * Meet with Diane ASAP!!
+ * AUI Design Doc
+   * Make a distinction between data flow and control flow
+   * Modules: 
+     * Student Mgmt, Sound Mgmt, Story Mgmt
+     * Story Creation
+     * Sound Library, Story Library
+     * GUI, AUI w/ Teacher, Student Interfaces
+   * Sound Library:
+     * Decide between starting at a consistent place when entering library and starting where you last were
+     * What button to insert sound? Space is bad!
+     * When entering a category/library, play first sound after category name.
+ * Are timeline boxes in GUI useful?  Could maybe just give numbers (# of voice clips, # of sounds inserted..)
+   

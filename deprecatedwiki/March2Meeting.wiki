@@ -1,0 +1,16 @@
+#summary Meeting with Diane B
+#labels Meetings
+
+  * Enter Button for Help
+  * Escape for Exit according to Diane
+  * Insert sound menu typo involving escape needs to be fixed
+  * Diane really wants a method of testing the students
+  * Patrick thinks a folder that persists across students
+  * Template creation mode
+  * Moving stories from one student to another
+  * Possible sharing of stories via a Gary Bishop Website
+  * Do you really want to delete (hit delete again)
+
+
+
+
