@@ -145,16 +145,16 @@
  * After recording a title, the student may use the LEFT and RIGHT arrow keys to navigate between the story's segments.
  * Each segment will begin playing as it is navigatd to.
  * The playing will be interrupted by any of the following key actions:
-  * UP to delete the segment, after which the previous segment will automatically be navigated to and begin playing.
-  * DOWN to insert a sound effect as described in S4.
+  * BACKSPACE to delete the segment, after which the previous segment will automatically be navigated to and begin playing.
+  * UP to insert a sound effect as described in S4.
   * LEFT or RIGHT to navigate.
   * CTRL to play the full story and (possibly) save and exit as described in S5.
+  * DOWN to hear instructions.
+  * ESCAPE to save and exit.
  * Any added sounds or recordings will be placed after the segment that has last been repeated.
  * If the student attempts to navigate past the end or beginning, the last or first segment will be repeated respectively. 
  * If the student deletes the title, s/he will be prompted to record a new one.
 
 *S6.  Saving and Exiting a Story*
  * The student creates their story as in S3, S4, and S5.
- * When ready to save, the student presses CTRL to have the story played back in its entirety.
- * After the story is played, the student will be asked to press CTRL again if s/he would like to save and exit.  Otherwise the student is to continue creating as before.
- * If the student presses CTRL, s/he is notified that the story has been succesfully saved and is returned to the project or Free Play menu.
+ * When ready to save, the student may press ESCAPE to save and exit
