@@ -130,14 +130,13 @@
 
 *S4.  Inserting Sound Effects in a Consecutive Segment Story*
  * The student begins recording a story as in S3.
- * When the student desires to insert a sound effect, s/he presses the DOWN arrow key.
+ * When the student desires to insert a sound effect, s/he presses the UP arrow key.
  * The student uses the LEFT and RIGHT arrow keys to navigate through the different categories.
  * The name of each category is played as the student navigates, and the student may interrupt the name at any time to move to the next category.
- * When the student finds the desired category, the s/he navigates with the UP and DOWN keys between the different sounds in the category.
- * Each sound is played as the student navigates, and the student may interrupt the sound at any time to move to the next sound.
- * The student may also press the LEFT or RIGHT arrow keys to again navigate between categories.
- * When the desired sound is found, the student presses the SPACE BAR to insert the sound in the story.
- * The sound is repeated and the student may press the DOWN arrow key to delete the sound.
+ * When the student finds the desired category, the s/he selects the category with the UP arrow.
+ * The student navigates through the sounds with the LEFT and RIGHT keys.
+ * When the desired sound is found, the student presses the UP ARROW to insert the sound in the story.
+ * The sound is repeated and the student may press the BACKSPACE key to delete the sound.
  * At this point, the student continues as in S3.
 
 *S5.  _Advanced:_ Recording and Editing a Story*
