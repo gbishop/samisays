@@ -9,7 +9,10 @@ from SoundControl import *
 from Constants import *
 
 class GuiPrioritize(wx.Frame):
-    
+    '''
+    A subclass of the wx Frame class. GuiPrioritize is used to copy sounds into the
+    "assigned sounds" folder.
+    '''
     
     def __init__(self, *args, **kwds):
         '''
