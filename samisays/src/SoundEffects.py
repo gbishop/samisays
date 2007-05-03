@@ -7,6 +7,7 @@ from Constants import *
 class SoundEffects:
     
     def __init__(self,env):
+        ''' Constructor '''
         self.env = env
     
         # Define array of functions for sound effects
