@@ -10,6 +10,5 @@ For All Other Versions:
 
 = Installation Instructions =
 
-Poop
-
+double click the installer
 
