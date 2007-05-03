@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SoundControl.SoundControl</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="SoundControl-module.html">Module&nbsp;SoundControl</a> ::
+        Class&nbsp;SoundControl
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SoundControl.SoundControl-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class SoundControl</h1><span class="codelink"><a href="SoundControl-pysrc.html#SoundControl">source&nbsp;code</a></span><br /><br />
+<pre class="literalblock">
+
+This object controls all aspects of sound playback, recording, modification,
+and exporting.  A single SoundControl object should be used for each instance
+of Sami Says so that only one sound will be played or recorded at a time.  
+
+Dependencies: pySonic - for recording and playback
+              pymedia - for resampling, converting, and exporting
+              numpy - for normalizing
+
+</pre><br /><br />
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__init__"></a><span class="summary-sig-name">__init__</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Constructor initializes object variables and dependencies.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="grabAudio"></a><span class="summary-sig-name">grabAudio</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Grabs last chunk of recorded audio and appends it to the current 
+      recording.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.grabAudio">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SoundControl.SoundControl-class.html#startRecord" class="summary-sig-name">startRecord</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Starts recording sound.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.startRecord">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SoundControl.SoundControl-class.html#stopRecord" class="summary-sig-name">stopRecord</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops recording and returns sound bytes.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.stopRecord">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="playSoundFile"></a><span class="summary-sig-name">playSoundFile</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filePath</span>,
+        <span class="summary-sig-arg">blocking</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Plays specified file (wav, aiff, mp3, ogg, etc.) with or without 
+      blocking.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.playSoundFile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="playSoundBytes"></a><span class="summary-sig-name">playSoundBytes</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">soundBytes</span>,
+        <span class="summary-sig-arg">blocking</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">rate</span>=<span class="summary-sig-default">16000</span>)</span><br />
+      Plays sound given in byte string with or without blocking at 
+      specified rate.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.playSoundBytes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SoundControl.SoundControl-class.html#stopPlay" class="summary-sig-name">stopPlay</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops whatever sound is playing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.stopPlay">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SoundControl.SoundControl-class.html#isPlaying" class="summary-sig-name">isPlaying</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns True if a sound is being played.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.isPlaying">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SoundControl.SoundControl-class.html#onTimer" class="summary-sig-name">onTimer</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">event</span>)</span><br />
+      Called every 1000 seconds.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.onTimer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="speakText"></a><span class="summary-sig-name">speakText</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">text</span>,
+        <span class="summary-sig-arg">blocking</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Uses TTS to speak given text with or without blocking.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.speakText">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="speakTextFile"></a><span class="summary-sig-name">speakTextFile</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filepath</span>,
+        <span class="summary-sig-arg">blocking</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Uses TTS to speak text in given text file with or without 
+      blocking.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.speakTextFile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="speakTextFileToBytes"></a><span class="summary-sig-name">speakTextFileToBytes</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filepath</span>)</span><br />
+      Uses TTS to get sound bytes of spoken text in given text file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.speakTextFileToBytes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="speakTextToBytes"></a><span class="summary-sig-name">speakTextToBytes</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">text</span>)</span><br />
+      Uses TTS to get sound bytes of spoken text in given string.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.speakTextToBytes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="startRecord"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">startRecord</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.startRecord">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Starts recording sound.  If already recording, does nothing.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="stopRecord"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stopRecord</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.stopRecord">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Stops recording and returns sound bytes.  If not recording, does 
+  nothing.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="stopPlay"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stopPlay</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.stopPlay">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Stops whatever sound is playing. If not playing, does nothing.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="isPlaying"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">isPlaying</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.isPlaying">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Returns True if a sound is being played.  Otherwise, False.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="onTimer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">onTimer</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">event</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SoundControl-pysrc.html#SoundControl.onTimer">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  Called every 1000 seconds.  If recording, this is when the buffer 
+  should be full. Audio in buffer is grabbed to make room for more.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Thu May 03 15:13:57 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

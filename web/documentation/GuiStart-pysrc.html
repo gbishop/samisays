@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>GuiStart</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;GuiStart
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="GuiStart-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="GuiStart-module.html">Module GuiStart</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">''' Imports '''</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">wx</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module Constants=Constants-module.html"><a title="Constants" class="py-name" href="#" onclick="return doclink('link-0', 'Constants', 'link-0');">Constants</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart"></a><div id="GuiStart-def"><a name="L7"></a><tt class="py-lineno">  7</tt> <a class="py-toggle" href="#" id="GuiStart-toggle" onclick="return toggle('GuiStart');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html">GuiStart</a><tt class="py-op">(</tt><tt class="py-base-class">wx</tt><tt class="py-op">.</tt><tt class="py-base-class">Frame</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="GuiStart-expanded"><a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">    A subclass of the wx Frame class. It is diplayed when the program is loaded </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">    as a welcome frame and a gateway to the rest of Sami Says.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">     </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.__init__"></a><div id="GuiStart.__init__-def"><a name="L14"></a><tt class="py-lineno"> 14</tt> <a class="py-toggle" href="#" id="GuiStart.__init__-toggle" onclick="return toggle('GuiStart.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwds</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.__init__-expanded"><a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">        Constructor for initializing frame elements and binding window events.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">        <tt class="py-name">kwds</tt><tt class="py-op">[</tt><tt class="py-string">"style"</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">DEFAULT_FRAME_STYLE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Frame</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.__init__()=AuiInsertSound.AuiInsertSound-class.html#__init__,Method AuiStoryCreation.AuiStoryCreation.__init__()=AuiStoryCreation.AuiStoryCreation-class.html#__init__,Method AuiStoryCreation.StoryPlayback.__init__()=AuiStoryCreation.StoryPlayback-class.html#__init__,Method AuiStorySelection.AuiStorySelection.__init__()=AuiStorySelection.AuiStorySelection-class.html#__init__,Method Class.Class.__init__()=Class.Class-class.html#__init__,Method GuiAssign.GuiAssign.__init__()=GuiAssign.GuiAssign-class.html#__init__,Method GuiPrioritize.GuiPrioritize.__init__()=GuiPrioritize.GuiPrioritize-class.html#__init__,Method GuiStart.GuiStart.__init__()=GuiStart.GuiStart-class.html#__init__,Method GuiStories.GuiStories.__init__()=GuiStories.GuiStories-class.html#__init__,Method GuiStudents.GuiStudents.__init__()=GuiStudents.GuiStudents-class.html#__init__,Method GuiVisualizer.GuiVisualizer.__init__()=GuiVisualizer.GuiVisualizer-class.html#__init__,Method SoundControl.SoundControl.__init__()=SoundControl.SoundControl-class.html#__init__,Method SoundEffects.SoundEffects.__init__()=SoundEffects.SoundEffects-class.html#__init__,Method SoundLibrary.SoundLibrary.__init__()=SoundLibrary.SoundLibrary-class.html#__init__,Method Story.PickleStory.__init__()=Story.PickleStory-class.html#__init__,Method Story.Story.__init__()=Story.Story-class.html#__init__,Method Student.Student.__init__()=Student.Student-class.html#__init__"><a title="AuiInsertSound.AuiInsertSound.__init__
+AuiStoryCreation.AuiStoryCreation.__init__
+AuiStoryCreation.StoryPlayback.__init__
+AuiStorySelection.AuiStorySelection.__init__
+Class.Class.__init__
+GuiAssign.GuiAssign.__init__
+GuiPrioritize.GuiPrioritize.__init__
+GuiStart.GuiStart.__init__
+GuiStories.GuiStories.__init__
+GuiStudents.GuiStudents.__init__
+GuiVisualizer.GuiVisualizer.__init__
+SoundControl.SoundControl.__init__
+SoundEffects.SoundEffects.__init__
+SoundLibrary.SoundLibrary.__init__
+Story.PickleStory.__init__
+Story.Story.__init__
+Student.Student.__init__" class="py-name" href="#" onclick="return doclink('link-1', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwds</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Panel</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">         </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">img</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Image</tt><tt class="py-op">(</tt><tt class="py-string">"art/banner_1100x400.png"</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BITMAP_TYPE_PNG</tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">StaticBitmap</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NullBitmap</tt><tt class="py-op">)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Button</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">"The Bookshelf"</tt><tt class="py-op">)</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">.</tt><tt class="py-name">SetFont</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Font</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">,</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">DECORATIVE</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NORMAL</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NORMAL</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"Comic Sans MS"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Button</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">"Teacher Templates"</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt><tt class="py-op">.</tt><tt class="py-name">SetFont</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Font</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">,</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">DECORATIVE</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NORMAL</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NORMAL</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"Comic Sans MS"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnPrioritize</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Button</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">"Prioritize Sounds"</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnPrioritize</tt><tt class="py-op">.</tt><tt class="py-name">SetFont</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Font</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">,</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">DECORATIVE</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NORMAL</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">NORMAL</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"Comic Sans MS"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method GuiAssign.GuiAssign.__set_properties()=GuiAssign.GuiAssign-class.html#__set_properties,Method GuiPrioritize.GuiPrioritize.__set_properties()=GuiPrioritize.GuiPrioritize-class.html#__set_properties,Method GuiStart.GuiStart.__set_properties()=GuiStart.GuiStart-class.html#__set_properties,Method GuiStories.GuiStories.__set_properties()=GuiStories.GuiStories-class.html#__set_properties,Method GuiStudents.GuiStudents.__set_properties()=GuiStudents.GuiStudents-class.html#__set_properties,Method GuiVisualizer.GuiVisualizer.__set_properties()=GuiVisualizer.GuiVisualizer-class.html#__set_properties"><a title="GuiAssign.GuiAssign.__set_properties
+GuiPrioritize.GuiPrioritize.__set_properties
+GuiStart.GuiStart.__set_properties
+GuiStories.GuiStories.__set_properties
+GuiStudents.GuiStudents.__set_properties
+GuiVisualizer.GuiVisualizer.__set_properties" class="py-name" href="#" onclick="return doclink('link-2', '__set_properties', 'link-2');">__set_properties</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method GuiAssign.GuiAssign.__do_layout()=GuiAssign.GuiAssign-class.html#__do_layout,Method GuiPrioritize.GuiPrioritize.__do_layout()=GuiPrioritize.GuiPrioritize-class.html#__do_layout,Method GuiStart.GuiStart.__do_layout()=GuiStart.GuiStart-class.html#__do_layout,Method GuiStories.GuiStories.__do_layout()=GuiStories.GuiStories-class.html#__do_layout,Method GuiStudents.GuiStudents.__do_layout()=GuiStudents.GuiStudents-class.html#__do_layout,Method GuiVisualizer.GuiVisualizer.__do_layout()=GuiVisualizer.GuiVisualizer-class.html#__do_layout"><a title="GuiAssign.GuiAssign.__do_layout
+GuiPrioritize.GuiPrioritize.__do_layout
+GuiStart.GuiStart.__do_layout
+GuiStories.GuiStories.__do_layout
+GuiStudents.GuiStudents.__do_layout
+GuiVisualizer.GuiVisualizer.__do_layout" class="py-name" href="#" onclick="return doclink('link-3', '__do_layout', 'link-3');">__do_layout</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-comment"># Catch keys on all objects</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">objects</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt><tt class="py-op">]</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">obj</tt> <tt class="py-keyword">in</tt> <tt class="py-name">objects</tt><tt class="py-op">:</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">            <tt class="py-name">obj</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_KEY_UP</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.onKeyUp()=AuiInsertSound.AuiInsertSound-class.html#onKeyUp,Method AuiStoryCreation.AuiStoryCreation.onKeyUp()=AuiStoryCreation.AuiStoryCreation-class.html#onKeyUp,Method AuiStorySelection.AuiStorySelection.onKeyUp()=AuiStorySelection.AuiStorySelection-class.html#onKeyUp,Method GuiAssign.GuiAssign.onKeyUp()=GuiAssign.GuiAssign-class.html#onKeyUp,Method GuiPrioritize.GuiPrioritize.onKeyUp()=GuiPrioritize.GuiPrioritize-class.html#onKeyUp,Method GuiStart.GuiStart.onKeyUp()=GuiStart.GuiStart-class.html#onKeyUp,Method GuiStories.GuiStories.onKeyUp()=GuiStories.GuiStories-class.html#onKeyUp,Method GuiStudents.GuiStudents.onKeyUp()=GuiStudents.GuiStudents-class.html#onKeyUp,Method SamiSays.SamiSays.onKeyUp()=SamiSays.SamiSays-class.html#onKeyUp"><a title="AuiInsertSound.AuiInsertSound.onKeyUp
+AuiStoryCreation.AuiStoryCreation.onKeyUp
+AuiStorySelection.AuiStorySelection.onKeyUp
+GuiAssign.GuiAssign.onKeyUp
+GuiPrioritize.GuiPrioritize.onKeyUp
+GuiStart.GuiStart.onKeyUp
+GuiStories.GuiStories.onKeyUp
+GuiStudents.GuiStudents.onKeyUp
+SamiSays.SamiSays.onKeyUp" class="py-name" href="#" onclick="return doclink('link-4', 'onKeyUp', 'link-4');">onKeyUp</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">            <tt class="py-name">obj</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_KEY_DOWN</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.onKeyDown()=AuiInsertSound.AuiInsertSound-class.html#onKeyDown,Method AuiStoryCreation.AuiStoryCreation.onKeyDown()=AuiStoryCreation.AuiStoryCreation-class.html#onKeyDown,Method AuiStorySelection.AuiStorySelection.onKeyDown()=AuiStorySelection.AuiStorySelection-class.html#onKeyDown,Method GuiAssign.GuiAssign.onKeyDown()=GuiAssign.GuiAssign-class.html#onKeyDown,Method GuiPrioritize.GuiPrioritize.onKeyDown()=GuiPrioritize.GuiPrioritize-class.html#onKeyDown,Method GuiStart.GuiStart.onKeyDown()=GuiStart.GuiStart-class.html#onKeyDown,Method GuiStories.GuiStories.onKeyDown()=GuiStories.GuiStories-class.html#onKeyDown,Method GuiStudents.GuiStudents.onKeyDown()=GuiStudents.GuiStudents-class.html#onKeyDown,Method SamiSays.SamiSays.onKeyDown()=SamiSays.SamiSays-class.html#onKeyDown"><a title="AuiInsertSound.AuiInsertSound.onKeyDown
+AuiStoryCreation.AuiStoryCreation.onKeyDown
+AuiStorySelection.AuiStorySelection.onKeyDown
+GuiAssign.GuiAssign.onKeyDown
+GuiPrioritize.GuiPrioritize.onKeyDown
+GuiStart.GuiStart.onKeyDown
+GuiStories.GuiStories.onKeyDown
+GuiStudents.GuiStudents.onKeyDown
+SamiSays.SamiSays.onKeyDown" class="py-name" href="#" onclick="return doclink('link-5', 'onKeyDown', 'link-5');">onKeyDown</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_BUTTON</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method GuiStart.GuiStart.btnStoriesPressed()=GuiStart.GuiStart-class.html#btnStoriesPressed"><a title="GuiStart.GuiStart.btnStoriesPressed" class="py-name" href="#" onclick="return doclink('link-6', 'btnStoriesPressed', 'link-6');">btnStoriesPressed</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_BUTTON</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method GuiStart.GuiStart.btnTemplatesPressed()=GuiStart.GuiStart-class.html#btnTemplatesPressed"><a title="GuiStart.GuiStart.btnTemplatesPressed" class="py-name" href="#" onclick="return doclink('link-7', 'btnTemplatesPressed', 'link-7');">btnTemplatesPressed</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt><tt class="py-op">)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_BUTTON</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method GuiStart.GuiStart.btnPrioritizePressed()=GuiStart.GuiStart-class.html#btnPrioritizePressed"><a title="GuiStart.GuiStart.btnPrioritizePressed" class="py-name" href="#" onclick="return doclink('link-8', 'btnPrioritizePressed', 'link-8');">btnPrioritizePressed</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnPrioritize</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_SIZING</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method GuiStart.GuiStart.onSize()=GuiStart.GuiStart-class.html#onSize"><a title="GuiStart.GuiStart.onSize" class="py-name" href="#" onclick="return doclink('link-9', 'onSize', 'link-9');">onSize</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_CLOSE</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method GuiPrioritize.GuiPrioritize.onClose()=GuiPrioritize.GuiPrioritize-class.html#onClose,Method GuiStart.GuiStart.onClose()=GuiStart.GuiStart-class.html#onClose,Method GuiStories.GuiStories.onClose()=GuiStories.GuiStories-class.html#onClose,Method GuiStudents.GuiStudents.onClose()=GuiStudents.GuiStudents-class.html#onClose,Method GuiVisualizer.GuiVisualizer.onClose()=GuiVisualizer.GuiVisualizer-class.html#onClose"><a title="GuiPrioritize.GuiPrioritize.onClose
+GuiStart.GuiStart.onClose
+GuiStories.GuiStories.onClose
+GuiStudents.GuiStudents.onClose
+GuiVisualizer.GuiVisualizer.onClose" class="py-name" href="#" onclick="return doclink('link-10', 'onClose', 'link-10');">onClose</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+</div><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">         </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.__set_properties"></a><div id="GuiStart.__set_properties-def"><a name="L48"></a><tt class="py-lineno"> 48</tt> <a class="py-toggle" href="#" id="GuiStart.__set_properties-toggle" onclick="return toggle('GuiStart.__set_properties');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#__set_properties">__set_properties</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.__set_properties-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.__set_properties-expanded"><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        Helper function for the constructor (generated by wxGlade)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">SetTitle</tt><tt class="py-op">(</tt><tt class="py-string">"Sami Says"</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">SetPosition</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">SetSize</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">DisplaySize</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">.</tt><tt class="py-name">SetMinSize</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">175</tt><tt class="py-op">,</tt> <tt class="py-number">35</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">.</tt><tt class="py-name">SetToolTipString</tt><tt class="py-op">(</tt><tt class="py-string">"Make a story by recording and inserting sounds."</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">.</tt><tt class="py-name">SetDefault</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">.</tt><tt class="py-name">SetFocus</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt><tt class="py-op">.</tt><tt class="py-name">SetMinSize</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">175</tt><tt class="py-op">,</tt> <tt class="py-number">35</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt><tt class="py-op">.</tt><tt class="py-name">SetToolTipString</tt><tt class="py-op">(</tt><tt class="py-string">"Make story templates for students to fill in."</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnPrioritize</tt><tt class="py-op">.</tt><tt class="py-name">SetToolTipString</tt><tt class="py-op">(</tt><tt class="py-string">"Manage the sound library."</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt class="py-comment"># end guiStart.__set_properties</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.__do_layout"></a><div id="GuiStart.__do_layout-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="GuiStart.__do_layout-toggle" onclick="return toggle('GuiStart.__do_layout');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#__do_layout">__do_layout</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.__do_layout-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.__do_layout-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        Helper function for the constructor (generated by wxGlade)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-comment"># begin wxGlade: guiStart.__do_layout</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">szrPrnt</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BoxSizer</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">VERTICAL</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">szrChildH</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BoxSizer</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">HORIZONTAL</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BoxSizer</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">VERTICAL</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnStories</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EXPAND</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnTemplates</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EXPAND</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">btnPrioritize</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EXPAND</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">szrChildV</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">szrChildH</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-name">szrChildH</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-name">szrChildV</tt><tt class="py-op">,</tt> <tt class="py-number">3</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EXPAND</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-name">szrChildH</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-name">szrPrnt</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EXPAND</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">szrPrnt</tt><tt class="py-op">.</tt><tt class="py-name">Add</tt><tt class="py-op">(</tt><tt class="py-name">szrChildH</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EXPAND</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">.</tt><tt class="py-name">SetSizer</tt><tt class="py-op">(</tt><tt class="py-name">szrPrnt</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">.</tt><tt class="py-name">Layout</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">panel</tt><tt class="py-op">.</tt><tt class="py-name">SetAutoLayout</tt><tt class="py-op">(</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-name">w</tt><tt class="py-op">,</tt><tt class="py-name">h</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt><tt class="py-op">.</tt><tt class="py-name">GetSizeTuple</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">img</tt><tt class="py-op">.</tt><tt class="py-name">Rescale</tt><tt class="py-op">(</tt><tt class="py-name">w</tt><tt class="py-op">,</tt><tt class="py-name">h</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt><tt class="py-op">.</tt><tt class="py-name">SetBitmap</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BitmapFromImage</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">img</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">         </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.btnStoriesPressed"></a><div id="GuiStart.btnStoriesPressed-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="GuiStart.btnStoriesPressed-toggle" onclick="return toggle('GuiStart.btnStoriesPressed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#btnStoriesPressed">btnStoriesPressed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># wxGlade: guiStart.&lt;event_handler&gt;</tt> </tt>
+</div><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        Function for moving to the guiStudents frame. Bound to the Bookshelf </tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">        Button.</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Hide</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStudents'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Show</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">         </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.btnTemplatesPressed"></a><div id="GuiStart.btnTemplatesPressed-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="GuiStart.btnTemplatesPressed-toggle" onclick="return toggle('GuiStart.btnTemplatesPressed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#btnTemplatesPressed">btnTemplatesPressed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.btnTemplatesPressed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.btnTemplatesPressed-expanded"><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-docstring">        Function for moving to the guiStories frame in teacher mode. Bound to </tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-docstring">        the Teacher Templates button.</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">TEACHER_INDEX</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">2</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Hide</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method GuiStories.GuiStories.setStudent()=GuiStories.GuiStories-class.html#setStudent"><a title="GuiStories.GuiStories.setStudent" class="py-name" href="#" onclick="return doclink('link-11', 'setStudent', 'link-11');">setStudent</a></tt><tt class="py-op">(</tt><tt class="py-name">TEACHER_INDEX</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Show</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">         </tt>
+<a name="GuiStart.btnPrioritizePressed"></a><div id="GuiStart.btnPrioritizePressed-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="GuiStart.btnPrioritizePressed-toggle" onclick="return toggle('GuiStart.btnPrioritizePressed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#btnPrioritizePressed">btnPrioritizePressed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.btnPrioritizePressed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.btnPrioritizePressed-expanded"><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Hide</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiPrioritize'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Show</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">     </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.onClose"></a><div id="GuiStart.onClose-def"><a name="L117"></a><tt class="py-lineno">117</tt> <a class="py-toggle" href="#" id="GuiStart.onClose-toggle" onclick="return toggle('GuiStart.onClose');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#onClose">onClose</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.onClose-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.onClose-expanded"><a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">        Function for handing the close event.</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-name">dialog</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">MessageDialog</tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt><tt class="py-string">'Are you sure you want to leave?'</tt><tt class="py-op">,</tt><tt class="py-string">'Sami Says'</tt><tt class="py-op">,</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">YES_NO</tt> <tt class="py-op">|</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">ICON_EXCLAMATION</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">dialog</tt><tt class="py-op">.</tt><tt class="py-name">ShowModal</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">ID_YES</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-name">dialog</tt><tt class="py-op">.</tt><tt class="py-name">Destroy</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method AuiStorySelection.AuiStorySelection.exit()=AuiStorySelection.AuiStorySelection-class.html#exit"><a title="AuiStorySelection.AuiStorySelection.exit" class="py-name" href="#" onclick="return doclink('link-12', 'exit', 'link-12');">exit</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">            <tt class="py-name">dialog</tt><tt class="py-op">.</tt><tt class="py-name">Destroy</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">     </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.onSize"></a><div id="GuiStart.onSize-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="GuiStart.onSize-toggle" onclick="return toggle('GuiStart.onSize');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#onSize">onSize</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.onSize-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.onSize-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring">        Function for handling the resizing fo the banner image when frame is </tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-docstring">        resized.</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">img</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Image</tt><tt class="py-op">(</tt><tt class="py-string">"art/banner_1100x400.png"</tt><tt class="py-op">,</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BITMAP_TYPE_PNG</tt><tt class="py-op">)</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-name">w</tt><tt class="py-op">,</tt><tt class="py-name">h</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt><tt class="py-op">.</tt><tt class="py-name">GetSizeTuple</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">img</tt><tt class="py-op">.</tt><tt class="py-name">Rescale</tt><tt class="py-op">(</tt><tt class="py-name">w</tt><tt class="py-op">,</tt><tt class="py-name">h</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">picBanner</tt><tt class="py-op">.</tt><tt class="py-name">SetBitmap</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">BitmapFromImage</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">img</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">Refresh</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">     </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.setEnv"></a><div id="GuiStart.setEnv-def"><a name="L141"></a><tt class="py-lineno">141</tt> <a class="py-toggle" href="#" id="GuiStart.setEnv-toggle" onclick="return toggle('GuiStart.setEnv');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#setEnv">setEnv</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">env</tt><tt class="py-op">)</tt><tt class="py-op">:</tt>  </tt>
+</div><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring">        Function fo setting the application environment in Sami Says.</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-name">env</tt> </tt>
+</div><a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">     </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.onKeyDown"></a><div id="GuiStart.onKeyDown-def"><a name="L148"></a><tt class="py-lineno">148</tt> <a class="py-toggle" href="#" id="GuiStart.onKeyDown-toggle" onclick="return toggle('GuiStart.onKeyDown');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#onKeyDown">onKeyDown</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.onKeyDown-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.onKeyDown-expanded"><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"><tt class="py-docstring">        Functon for handling keyboard down events.</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">=</tt> <tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">GetKeyCode</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">     </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="GuiStart.onKeyUp"></a><div id="GuiStart.onKeyUp-def"><a name="L156"></a><tt class="py-lineno">156</tt> <a class="py-toggle" href="#" id="GuiStart.onKeyUp-toggle" onclick="return toggle('GuiStart.onKeyUp');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="GuiStart.GuiStart-class.html#onKeyUp">onKeyUp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GuiStart.onKeyUp-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GuiStart.onKeyUp-expanded"><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring">        Function for handing keyboard up events. This binds the onClose function </tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">        to the escape key.</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-name">keyCode</tt> <tt class="py-op">=</tt> <tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">GetKeyCode</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">keyCode</tt> <tt class="py-op">!=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt><tt class="py-op">:</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">Skip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">         </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">keyCode</tt> <tt class="py-op">==</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">WXK_ESCAPE</tt><tt class="py-op">:</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="GuiPrioritize.GuiPrioritize.onClose
+GuiStart.GuiStart.onClose
+GuiStories.GuiStories.onClose
+GuiStudents.GuiStudents.onClose
+GuiVisualizer.GuiVisualizer.onClose" class="py-name" href="#" onclick="return doclink('link-13', 'onClose', 'link-10');">onClose</a></tt><tt class="py-op">(</tt><tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">         </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">firstDown</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+</div></div><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"><tt class="py-string">''' Handling an attempt at standalone running '''</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'The class "GuiStart" is not runnable.'</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Thu May 03 15:13:57 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

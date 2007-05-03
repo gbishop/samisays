@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SamiSays</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;SamiSays
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SamiSays-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="SamiSays-module.html">Module SamiSays</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">''' Imports '''</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">wx</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module Class=Class-module.html,Class Class.Class=Class.Class-class.html"><a title="Class
+Class.Class" class="py-name" href="#" onclick="return doclink('link-0', 'Class', 'link-0');">Class</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Module GuiStart=GuiStart-module.html,Class GuiStart.GuiStart=GuiStart.GuiStart-class.html"><a title="GuiStart
+GuiStart.GuiStart" class="py-name" href="#" onclick="return doclink('link-1', 'GuiStart', 'link-1');">GuiStart</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Module GuiStories=GuiStories-module.html,Class GuiStories.GuiStories=GuiStories.GuiStories-class.html"><a title="GuiStories
+GuiStories.GuiStories" class="py-name" href="#" onclick="return doclink('link-2', 'GuiStories', 'link-2');">GuiStories</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name" targets="Module GuiStudents=GuiStudents-module.html,Class GuiStudents.GuiStudents=GuiStudents.GuiStudents-class.html"><a title="GuiStudents
+GuiStudents.GuiStudents" class="py-name" href="#" onclick="return doclink('link-3', 'GuiStudents', 'link-3');">GuiStudents</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name" targets="Module GuiAssign=GuiAssign-module.html,Class GuiAssign.GuiAssign=GuiAssign.GuiAssign-class.html"><a title="GuiAssign
+GuiAssign.GuiAssign" class="py-name" href="#" onclick="return doclink('link-4', 'GuiAssign', 'link-4');">GuiAssign</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-5" class="py-name" targets="Module SoundControl=SoundControl-module.html,Class SoundControl.SoundControl=SoundControl.SoundControl-class.html"><a title="SoundControl
+SoundControl.SoundControl" class="py-name" href="#" onclick="return doclink('link-5', 'SoundControl', 'link-5');">SoundControl</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-6" class="py-name" targets="Module AuiStorySelection=AuiStorySelection-module.html,Class AuiStorySelection.AuiStorySelection=AuiStorySelection.AuiStorySelection-class.html"><a title="AuiStorySelection
+AuiStorySelection.AuiStorySelection" class="py-name" href="#" onclick="return doclink('link-6', 'AuiStorySelection', 'link-6');">AuiStorySelection</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name" targets="Module AuiStoryCreation=AuiStoryCreation-module.html,Class AuiStoryCreation.AuiStoryCreation=AuiStoryCreation.AuiStoryCreation-class.html"><a title="AuiStoryCreation
+AuiStoryCreation.AuiStoryCreation" class="py-name" href="#" onclick="return doclink('link-7', 'AuiStoryCreation', 'link-7');">AuiStoryCreation</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name" targets="Module GuiVisualizer=GuiVisualizer-module.html,Class GuiVisualizer.GuiVisualizer=GuiVisualizer.GuiVisualizer-class.html"><a title="GuiVisualizer
+GuiVisualizer.GuiVisualizer" class="py-name" href="#" onclick="return doclink('link-8', 'GuiVisualizer', 'link-8');">GuiVisualizer</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-9" class="py-name" targets="Module GuiPrioritize=GuiPrioritize-module.html,Class GuiPrioritize.GuiPrioritize=GuiPrioritize.GuiPrioritize-class.html"><a title="GuiPrioritize
+GuiPrioritize.GuiPrioritize" class="py-name" href="#" onclick="return doclink('link-9', 'GuiPrioritize', 'link-9');">GuiPrioritize</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-10" class="py-name" targets="Module Constants=Constants-module.html"><a title="Constants" class="py-name" href="#" onclick="return doclink('link-10', 'Constants', 'link-10');">Constants</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"> </tt>
+<a name="SamiSays"></a><div id="SamiSays-def"><a name="L15"></a><tt class="py-lineno">15</tt> <a class="py-toggle" href="#" id="SamiSays-toggle" onclick="return toggle('SamiSays');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="SamiSays.SamiSays-class.html">SamiSays</a><tt class="py-op">(</tt><tt class="py-base-class">wx</tt><tt class="py-op">.</tt><tt class="py-base-class">App</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SamiSays-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="SamiSays-expanded"><a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line">    <tt class="py-docstring">'''</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">    This is the Launchpad for the application. All initializations and </tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring">    instantiation goes here.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">     </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"> </tt>
+<a name="SamiSays.OnInit"></a><div id="SamiSays.OnInit-def"><a name="L22"></a><tt class="py-lineno">22</tt> <a class="py-toggle" href="#" id="SamiSays.OnInit-toggle" onclick="return toggle('SamiSays.OnInit');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SamiSays.SamiSays-class.html#OnInit">OnInit</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SamiSays.OnInit-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="SamiSays.OnInit-expanded"><a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-docstring">        Does Everything!</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">        <tt class="py-name">currentClass</tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name"><a title="Class
+Class.Class" class="py-name" href="#" onclick="return doclink('link-11', 'Class', 'link-0');">Class</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-name">currentClass</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method Class.Class.save()=Class.Class-class.html#save"><a title="Class.Class.save" class="py-name" href="#" onclick="return doclink('link-12', 'save', 'link-12');">save</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">        <tt class="py-name">currentClass</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method Class.Class.load()=Class.Class-class.html#load"><a title="Class.Class.load" class="py-name" href="#" onclick="return doclink('link-13', 'load', 'link-13');">load</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">        <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">InitAllImageHandlers</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-name">start</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="GuiStart
+GuiStart.GuiStart" class="py-name" href="#" onclick="return doclink('link-14', 'GuiStart', 'link-1');">GuiStart</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">        <tt class="py-name">students</tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="GuiStudents
+GuiStudents.GuiStudents" class="py-name" href="#" onclick="return doclink('link-15', 'GuiStudents', 'link-3');">GuiStudents</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-name">stories</tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="GuiStories
+GuiStories.GuiStories" class="py-name" href="#" onclick="return doclink('link-16', 'GuiStories', 'link-2');">GuiStories</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-name">assign</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="GuiAssign
+GuiAssign.GuiAssign" class="py-name" href="#" onclick="return doclink('link-17', 'GuiAssign', 'link-4');">GuiAssign</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">        <tt class="py-name">prior</tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="GuiPrioritize
+GuiPrioritize.GuiPrioritize" class="py-name" href="#" onclick="return doclink('link-18', 'GuiPrioritize', 'link-9');">GuiPrioritize</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">'class'</tt><tt class="py-op">:</tt> <tt class="py-name">currentClass</tt><tt class="py-op">,</tt> <tt class="py-string">'guiStart'</tt><tt class="py-op">:</tt> <tt class="py-name">start</tt><tt class="py-op">,</tt> <tt class="py-string">'guiStudents'</tt><tt class="py-op">:</tt> <tt class="py-name">students</tt><tt class="py-op">,</tt>  </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">                    <tt class="py-string">'guiStories'</tt><tt class="py-op">:</tt> <tt class="py-name">stories</tt><tt class="py-op">,</tt> <tt class="py-string">'guiAssign'</tt><tt class="py-op">:</tt> <tt class="py-name">assign</tt><tt class="py-op">,</tt> <tt class="py-string">'guiPrioritize'</tt><tt class="py-op">:</tt> <tt class="py-name">prior</tt><tt class="py-op">}</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="SoundControl
+SoundControl.SoundControl" class="py-name" href="#" onclick="return doclink('link-19', 'SoundControl', 'link-5');">SoundControl</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'keyDownFunct'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'keyUpFunct'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiVisualizer'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="GuiVisualizer
+GuiVisualizer.GuiVisualizer" class="py-name" href="#" onclick="return doclink('link-20', 'GuiVisualizer', 'link-8');">GuiVisualizer</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiVisualizer'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_KEY_DOWN</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.onKeyDown()=AuiInsertSound.AuiInsertSound-class.html#onKeyDown,Method AuiStoryCreation.AuiStoryCreation.onKeyDown()=AuiStoryCreation.AuiStoryCreation-class.html#onKeyDown,Method AuiStorySelection.AuiStorySelection.onKeyDown()=AuiStorySelection.AuiStorySelection-class.html#onKeyDown,Method GuiAssign.GuiAssign.onKeyDown()=GuiAssign.GuiAssign-class.html#onKeyDown,Method GuiPrioritize.GuiPrioritize.onKeyDown()=GuiPrioritize.GuiPrioritize-class.html#onKeyDown,Method GuiStart.GuiStart.onKeyDown()=GuiStart.GuiStart-class.html#onKeyDown,Method GuiStories.GuiStories.onKeyDown()=GuiStories.GuiStories-class.html#onKeyDown,Method GuiStudents.GuiStudents.onKeyDown()=GuiStudents.GuiStudents-class.html#onKeyDown,Method SamiSays.SamiSays.onKeyDown()=SamiSays.SamiSays-class.html#onKeyDown"><a title="AuiInsertSound.AuiInsertSound.onKeyDown
+AuiStoryCreation.AuiStoryCreation.onKeyDown
+AuiStorySelection.AuiStorySelection.onKeyDown
+GuiAssign.GuiAssign.onKeyDown
+GuiPrioritize.GuiPrioritize.onKeyDown
+GuiStart.GuiStart.onKeyDown
+GuiStories.GuiStories.onKeyDown
+GuiStudents.GuiStudents.onKeyDown
+SamiSays.SamiSays.onKeyDown" class="py-name" href="#" onclick="return doclink('link-21', 'onKeyDown', 'link-21');">onKeyDown</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiVisualizer'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_KEY_UP</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method AuiInsertSound.AuiInsertSound.onKeyUp()=AuiInsertSound.AuiInsertSound-class.html#onKeyUp,Method AuiStoryCreation.AuiStoryCreation.onKeyUp()=AuiStoryCreation.AuiStoryCreation-class.html#onKeyUp,Method AuiStorySelection.AuiStorySelection.onKeyUp()=AuiStorySelection.AuiStorySelection-class.html#onKeyUp,Method GuiAssign.GuiAssign.onKeyUp()=GuiAssign.GuiAssign-class.html#onKeyUp,Method GuiPrioritize.GuiPrioritize.onKeyUp()=GuiPrioritize.GuiPrioritize-class.html#onKeyUp,Method GuiStart.GuiStart.onKeyUp()=GuiStart.GuiStart-class.html#onKeyUp,Method GuiStories.GuiStories.onKeyUp()=GuiStories.GuiStories-class.html#onKeyUp,Method GuiStudents.GuiStudents.onKeyUp()=GuiStudents.GuiStudents-class.html#onKeyUp,Method SamiSays.SamiSays.onKeyUp()=SamiSays.SamiSays-class.html#onKeyUp"><a title="AuiInsertSound.AuiInsertSound.onKeyUp
+AuiStoryCreation.AuiStoryCreation.onKeyUp
+AuiStorySelection.AuiStorySelection.onKeyUp
+GuiAssign.GuiAssign.onKeyUp
+GuiPrioritize.GuiPrioritize.onKeyUp
+GuiStart.GuiStart.onKeyUp
+GuiStories.GuiStories.onKeyUp
+GuiStudents.GuiStudents.onKeyUp
+SamiSays.SamiSays.onKeyUp" class="py-name" href="#" onclick="return doclink('link-22', 'onKeyUp', 'link-22');">onKeyUp</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_KEY_DOWN</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="AuiInsertSound.AuiInsertSound.onKeyDown
+AuiStoryCreation.AuiStoryCreation.onKeyDown
+AuiStorySelection.AuiStorySelection.onKeyDown
+GuiAssign.GuiAssign.onKeyDown
+GuiPrioritize.GuiPrioritize.onKeyDown
+GuiStart.GuiStart.onKeyDown
+GuiStories.GuiStories.onKeyDown
+GuiStudents.GuiStudents.onKeyDown
+SamiSays.SamiSays.onKeyDown" class="py-name" href="#" onclick="return doclink('link-23', 'onKeyDown', 'link-21');">onKeyDown</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStories'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_KEY_UP</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="AuiInsertSound.AuiInsertSound.onKeyUp
+AuiStoryCreation.AuiStoryCreation.onKeyUp
+AuiStorySelection.AuiStorySelection.onKeyUp
+GuiAssign.GuiAssign.onKeyUp
+GuiPrioritize.GuiPrioritize.onKeyUp
+GuiStart.GuiStart.onKeyUp
+GuiStories.GuiStories.onKeyUp
+GuiStudents.GuiStudents.onKeyUp
+SamiSays.SamiSays.onKeyUp" class="py-name" href="#" onclick="return doclink('link-24', 'onKeyUp', 'link-22');">onKeyUp</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'soundLibrary'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name" targets="Module SoundLibrary=SoundLibrary-module.html,Class SoundLibrary.SoundLibrary=SoundLibrary.SoundLibrary-class.html"><a title="SoundLibrary
+SoundLibrary.SoundLibrary" class="py-name" href="#" onclick="return doclink('link-25', 'SoundLibrary', 'link-25');">SoundLibrary</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'auiStorySelection'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="AuiStorySelection
+AuiStorySelection.AuiStorySelection" class="py-name" href="#" onclick="return doclink('link-26', 'AuiStorySelection', 'link-6');">AuiStorySelection</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'auiStoryCreation'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="AuiStoryCreation
+AuiStoryCreation.AuiStoryCreation" class="py-name" href="#" onclick="return doclink('link-27', 'AuiStoryCreation', 'link-7');">AuiStoryCreation</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'auiInsertSound'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name" targets="Module AuiInsertSound=AuiInsertSound-module.html,Class AuiInsertSound.AuiInsertSound=AuiInsertSound.AuiInsertSound-class.html"><a title="AuiInsertSound
+AuiInsertSound.AuiInsertSound" class="py-name" href="#" onclick="return doclink('link-28', 'AuiInsertSound', 'link-28');">AuiInsertSound</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'timer'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">Timer</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiVisualizer'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiVisualizer'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Bind</tt><tt class="py-op">(</tt><tt class="py-name">wx</tt><tt class="py-op">.</tt><tt class="py-name">EVT_TIMER</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'SoundControl'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method SoundControl.SoundControl.onTimer()=SoundControl.SoundControl-class.html#onTimer"><a title="SoundControl.SoundControl.onTimer" class="py-name" href="#" onclick="return doclink('link-29', 'onTimer', 'link-29');">onTimer</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'storiesLock'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-name">start</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method GuiAssign.GuiAssign.setEnv()=GuiAssign.GuiAssign-class.html#setEnv,Method GuiPrioritize.GuiPrioritize.setEnv()=GuiPrioritize.GuiPrioritize-class.html#setEnv,Method GuiStart.GuiStart.setEnv()=GuiStart.GuiStart-class.html#setEnv,Method GuiStories.GuiStories.setEnv()=GuiStories.GuiStories-class.html#setEnv,Method GuiStudents.GuiStudents.setEnv()=GuiStudents.GuiStudents-class.html#setEnv,Method GuiVisualizer.GuiVisualizer.setEnv()=GuiVisualizer.GuiVisualizer-class.html#setEnv"><a title="GuiAssign.GuiAssign.setEnv
+GuiPrioritize.GuiPrioritize.setEnv
+GuiStart.GuiStart.setEnv
+GuiStories.GuiStories.setEnv
+GuiStudents.GuiStudents.setEnv
+GuiVisualizer.GuiVisualizer.setEnv" class="py-name" href="#" onclick="return doclink('link-30', 'setEnv', 'link-30');">setEnv</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-name">students</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="GuiAssign.GuiAssign.setEnv
+GuiPrioritize.GuiPrioritize.setEnv
+GuiStart.GuiStart.setEnv
+GuiStories.GuiStories.setEnv
+GuiStudents.GuiStudents.setEnv
+GuiVisualizer.GuiVisualizer.setEnv" class="py-name" href="#" onclick="return doclink('link-31', 'setEnv', 'link-30');">setEnv</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-name">stories</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="GuiAssign.GuiAssign.setEnv
+GuiPrioritize.GuiPrioritize.setEnv
+GuiStart.GuiStart.setEnv
+GuiStories.GuiStories.setEnv
+GuiStudents.GuiStudents.setEnv
+GuiVisualizer.GuiVisualizer.setEnv" class="py-name" href="#" onclick="return doclink('link-32', 'setEnv', 'link-30');">setEnv</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt class="py-name">assign</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="GuiAssign.GuiAssign.setEnv
+GuiPrioritize.GuiPrioritize.setEnv
+GuiStart.GuiStart.setEnv
+GuiStories.GuiStories.setEnv
+GuiStudents.GuiStudents.setEnv
+GuiVisualizer.GuiVisualizer.setEnv" class="py-name" href="#" onclick="return doclink('link-33', 'setEnv', 'link-30');">setEnv</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">        <tt class="py-name">prior</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="GuiAssign.GuiAssign.setEnv
+GuiPrioritize.GuiPrioritize.setEnv
+GuiStart.GuiStart.setEnv
+GuiStories.GuiStories.setEnv
+GuiStudents.GuiStudents.setEnv
+GuiVisualizer.GuiVisualizer.setEnv" class="py-name" href="#" onclick="return doclink('link-34', 'setEnv', 'link-30');">setEnv</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiVisualizer'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="GuiAssign.GuiAssign.setEnv
+GuiPrioritize.GuiPrioritize.setEnv
+GuiStart.GuiStart.setEnv
+GuiStories.GuiStories.setEnv
+GuiStudents.GuiStudents.setEnv
+GuiVisualizer.GuiVisualizer.setEnv" class="py-name" href="#" onclick="return doclink('link-35', 'setEnv', 'link-30');">setEnv</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"> </tt>
+<a name="SamiSays.onKeyDown"></a><div id="SamiSays.onKeyDown-def"><a name="L62"></a><tt class="py-lineno">62</tt> <a class="py-toggle" href="#" id="SamiSays.onKeyDown-toggle" onclick="return toggle('SamiSays.onKeyDown');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SamiSays.SamiSays-class.html#onKeyDown">onKeyDown</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SamiSays.onKeyDown-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="SamiSays.onKeyDown-expanded"><a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"><tt class="py-docstring">        Placeholder for key down bindings.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'keyDownFunct'</tt><tt class="py-op">]</tt><tt class="py-op">(</tt><tt class="py-name">event</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">     </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt>
+<a name="SamiSays.onKeyUp"></a><div id="SamiSays.onKeyUp-def"><a name="L69"></a><tt class="py-lineno">69</tt> <a class="py-toggle" href="#" id="SamiSays.onKeyUp-toggle" onclick="return toggle('SamiSays.onKeyUp');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SamiSays.SamiSays-class.html#onKeyUp">onKeyUp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SamiSays.onKeyUp-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="SamiSays.onKeyUp-expanded"><a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">        <tt class="py-docstring">'''</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"><tt class="py-docstring">        Placeholder for key up bindings.</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'keyUpFunct'</tt><tt class="py-op">]</tt><tt class="py-op">(</tt><tt class="py-name">event</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"><tt class="py-string">''' Execute at Runtime '''</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">    <tt class="py-name">app</tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name" targets="Module SamiSays=SamiSays-module.html,Class SamiSays.SamiSays=SamiSays.SamiSays-class.html"><a title="SamiSays
+SamiSays.SamiSays" class="py-name" href="#" onclick="return doclink('link-36', 'SamiSays', 'link-36');">SamiSays</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">    <tt class="py-name">app</tt><tt class="py-op">.</tt><tt class="py-name">SetTopWindow</tt><tt class="py-op">(</tt><tt class="py-name">app</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStart'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">    <tt class="py-name">app</tt><tt class="py-op">.</tt><tt class="py-name">env</tt><tt class="py-op">[</tt><tt class="py-string">'guiStart'</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">Show</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">    <tt class="py-name">app</tt><tt class="py-op">.</tt><tt class="py-name">MainLoop</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/samisays">Sami Says v1.0</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Thu May 03 15:13:57 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
