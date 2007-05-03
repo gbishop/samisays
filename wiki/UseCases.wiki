@@ -22,10 +22,11 @@
 
 *T2. Adding a New Student*
   * The teacher starts the application with a click.
-  * The teacher selects "Stories" from the splash screen.
-  * The teacher clicks the "New" button.
-  * The teacher enters the student's name.
+  * The teacher selects "The Bookshelf" from the splash screen.
   * The teacher selects "Add Student".
+  * The teacher enters the student's name.
+  * The teacher presses Accept.
+
 
 *T3.  Deleting a Student*
   * The teacher starts the application with a click.
