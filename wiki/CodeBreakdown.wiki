@@ -4,13 +4,17 @@
 
 [ClassGeneral General Principles]
 
+==Infrastructure Classes==
 [ClassStory Story]
 
+[ClassClass Class]
+
+==Aui Classes==
 [ClassSoundCtrl SoundControl]
 
-[ClassAUIStoryCreation AUIStoryCreation]
+[ClassAUIStoryCreation AuiStoryCreation]
 
-[ClassAUIStorySelection AUIStorySelection/GUIStories]
+[ClassAUIStorySelection AuiStorySelection/GUIStories]
 
 [ClassSoundLibrary SoundLibrary]
 
