@@ -14,6 +14,7 @@
  # Giving a Text Name to a Student's Story
  # Exporting a Student's Story
  # Deleting a Student's Story
+ # Creating a teacher assignment
  # _Advanced_: Importing Sound File Into Library
 *
 
@@ -85,7 +86,14 @@
   * The teacher selects the story and clicks the "Delete" button.
   * A confirm dialog appears to avoid unplanned deletion.
 
-*T11. _Advanced:_ Importing Sound File Into Library*
+*T11. Creating a teacher assignment*
+  * The teacher starts the application with a click.
+  * The teacher selects "Teacher templates" from the splash screen.
+  * The teacher then clicks the "Write New" button.
+  * A confirm dialog appears to avoid unplanned deletion.
+
+
+*T12. _Advanced:_ Importing Sound File Into Library*
   * The teacher starts the applications with a click.
   * The teacher selects "Sounds".
   * The teacher then clicks the "Import Sound(s)" button.
