@@ -15,7 +15,6 @@
  # Exporting a Student's Story
  # Deleting a Student's Story
  # Creating a teacher assignment
- # _Advanced_: Importing Sound File Into Library
 *
 
 *T1.  Starting the Application*
@@ -92,19 +91,6 @@
   * The teacher then clicks the "Write New" button.
   * A confirm dialog appears to avoid unplanned deletion.
 
-
-*T12. _Advanced:_ Importing Sound File Into Library*
-  * The teacher starts the applications with a click.
-  * The teacher selects "Sounds".
-  * The teacher then clicks the "Import Sound(s)" button.
-  * A file dialog box opens.
-  * The teacher browses to the desired sound file or package for importation.
-  * If it is a single sound: 
-     * The teacher chooses a category for the sound from a list.
-     * If desired category does not exist, the teacher selects "Add New Category" and types in a name.
-  * The file is imported into the library.  
-  * A dialog pops up to let the teacher know the file has been imported.  
-  * The dialog asks if the teacher wishes for the source file to be deleted.
 
 === Student Use Cases ===
 *
