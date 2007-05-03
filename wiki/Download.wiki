@@ -5,9 +5,5 @@
 ===For Windows XP:===
  * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe SamiSays Setup.exe]
 
-===For All Other Versions:===
+===For Windows 98 / 2000 / NT:===
  * [http://samisays.googlecode.com/files/SamiSays%20Setup.exe SamiSays Setup.exe]
-
-= Installation Instructions =
-
-double click the installer
