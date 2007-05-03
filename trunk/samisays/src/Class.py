@@ -6,7 +6,7 @@ from Constants import *
 
 class Class:
     '''
-    This class represents a set of <i>Students</i> and does the necessary file I/O that 
+    This class represents a set of Students and does the necessary file I/O that 
     they require.
     '''
      
