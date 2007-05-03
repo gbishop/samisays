@@ -12,6 +12,9 @@ class GuiPrioritize(wx.Frame):
     
     
     def __init__(self, *args, **kwds):
+        '''
+        Constructor for initializing frame elements and binding window events
+        '''
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.panel = wx.Panel(self, -1)
