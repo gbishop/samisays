@@ -16,4 +16,19 @@
 
 [ClassSoundEffects SoundEffects]
 
-[ClassAUIInsertSound AUIInsertSound]
+[ClassAUIInsertSound AuiInsertSound]
+
+
+==Gui Classes==
+
+[ClassGUIAssign GuiAssign]
+
+[ClassGUIPrioritize GuiPrioritize]
+
+[ClassGUIStart GuiStart]
+
+[ClassGUIStudents GuiStudents]
+
+[ClassGUIVisualizer GuiVisualizer]
+
+[ClassSamiSays SamiSays]
