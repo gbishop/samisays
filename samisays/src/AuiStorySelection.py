@@ -10,7 +10,7 @@ class AuiStorySelection:
 	'''
 	The Audio User Interface for the story selection frame. It is active when said 
 	frame is in 'locked' mode. Enables students to navigate and access functionality 
-	of their “StoryBook”.
+	of their StoryBook.
 	'''
 	
 	def __init__(self, env):
