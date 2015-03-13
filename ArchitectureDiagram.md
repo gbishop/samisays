@@ -1,0 +1,1 @@
+![http://samisays.googlecode.com/svn/web/architecture%20diagram.jpg](http://samisays.googlecode.com/svn/web/architecture%20diagram.jpg)

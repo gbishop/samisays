@@ -1,0 +1,3 @@
+**Description**
+
+This class implements the sound manipulations present in the sound library that allow a user to slow down their voice, speed something up, or even add an echo.  The Sound Effect manager has to "trick" the SoundLibrary into treating the Sound Effects as just another category even though it's modifying the actual clips from the story and not just playing back a stock sound from the library itself.
